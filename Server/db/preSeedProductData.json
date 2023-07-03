@@ -1,0 +1,215 @@
+[
+  {
+    "id": "642578029fdf623741730929",
+    "category": "headphones",
+    "name": "Airpod",
+    "price": "200$",
+    "description": "Wireless earbuds with advanced features.",
+    "image": "https://i.ibb.co/HVtxRKv/alex.jpg"
+  },
+  {
+    "id": "8a7b3c4d5e6f7g8h9i0j",
+    "category": "headphones",
+    "name": "Beats Solo Pro",
+    "price": "299$",
+    "description": "High-performance over-ear headphones with active noise cancellation.",
+    "image": "https://i.ibb.co/HVtxRKv/alex.jpg"
+  },
+  {
+    "id": "9k8j7h6g5f4d3s2a1b",
+    "category": "headphones",
+    "name": "Sony WH-1000XM4",
+    "price": "349$",
+    "description": "Premium wireless noise-canceling headphones with exceptional sound quality.",
+    "image": "https://i.ibb.co/HVtxRKv/alex.jpg"
+  },
+  {
+    "id": "0q1w2e3r4t5y6u7i8o9p",
+    "category": "headphones",
+    "name": "Bose QuietComfort 35 II",
+    "price": "299$",
+    "description": "Comfortable over-ear headphones with industry-leading noise cancellation technology.",
+    "image": "https://i.ibb.co/HVtxRKv/alex.jpg"
+  },
+  {
+    "id": "a1b2c3d4e5f6g7h8i9j0k",
+    "category": "headphones",
+    "name": "Jabra Elite 75t",
+    "price": "179$",
+    "description": "True wireless earbuds with a secure fit and great sound quality.",
+    "image": "https://i.ibb.co/HVtxRKv/alex.jpg"
+  },
+  {
+    "id": "q9w8e7r6t5y4u3i2o1p",
+    "category": "headphones",
+    "name": "Sennheiser HD 660 S",
+    "price": "499$",
+    "description": "Open-back headphones with high-end audio performance and premium build.",
+    "image": "https://i.ibb.co/HVtxRKv/alex.jpg"
+  },
+  {
+    "id": "zxcvbnmasdfghjklqwertyui",
+    "category": "headphones",
+    "name": "AKG K702",
+    "price": "249$",
+    "description": "Professional-grade open-back studio headphones with accurate sound reproduction.",
+    "image": "https://i.ibb.co/HVtxRKv/alex.jpg"
+  },
+  {
+    "id": "poiuytrewqlkjhgfdsamnbvcxz",
+    "category": "headphones",
+    "name": "JBL Free X",
+    "price": "129$",
+    "description": "Compact true wireless earbuds with good bass response and water resistance.",
+    "image": "https://i.ibb.co/HVtxRKv/alex.jpg"
+  },
+  {
+    "id": "mnbvcxzlkjhgfdsapoiuytrewq",
+    "category": "headphones",
+    "name": "Audio-Technica ATH-M50x",
+    "price": "149$",
+    "description": "Highly popular studio monitor headphones with excellent sound clarity.",
+    "image": "https://i.ibb.co/HVtxRKv/alex.jpg"
+  },
+    {
+      "id": "642578029fdf623741730929",
+      "category": "laptops",
+      "name": "Alienware Area-51m",
+      "price": "$2,999",
+      "description": "Powerful gaming laptop with desktop-grade performance and customizable design."
+    },
+    {
+      "id": "642578029fdf623741730930",
+      "category": "laptops",
+      "name": "Dell XPS 13",
+      "price": "$1,399",
+      "description": "Premium ultrabook with a slim design, high-resolution display, and long battery life."
+    },
+    {
+      "id": "642578029fdf623741730931",
+      "category": "laptops",
+      "name": "Lenovo ThinkPad X1 Carbon",
+      "price": "$1,499",
+      "description": "Enterprise-grade business laptop with a durable build, excellent keyboard, and security features."
+    },
+    {
+      "id": "642578029fdf623741730932",
+      "category": "laptops",
+      "name": "HP Spectre x360",
+      "price": "$1,299",
+      "description": "Versatile 2-in-1 convertible laptop with a sleek design, touchscreen display, and long battery life."
+    },
+    {
+      "id": "642578029fdf623741730933",
+      "category": "laptops",
+      "name": "Razer Blade 15",
+      "price": "$1,799",
+      "description": "Thin and powerful gaming laptop with a high-refresh-rate display and premium build quality."
+    },
+    {
+      "id": "642578029fdf623741730934",
+      "category": "laptops",
+      "name": "Apple MacBook Air",
+      "price": "$999",
+      "description": "Lightweight and portable ultrabook with a retina display, Touch ID, and all-day battery life."
+    },
+    {
+      "id": "642578029fdf623741730935",
+      "category": "laptops",
+      "name": "ASUS ROG Zephyrus G14",
+      "price": "$1,499",
+      "description": "Powerful gaming laptop with an AMD Ryzen processor, high-refresh-rate display, and compact form factor."
+    },
+    {
+      "id": "642578029fdf623741730936",
+      "category": "laptops",
+      "name": "Microsoft Surface Laptop 4",
+      "price": "$1,299",
+      "description": "Sleek and lightweight business laptop with a vibrant touchscreen display and excellent performance."
+    },
+    {
+      "id": "642578029fdf623741730937",
+      "category": "laptops",
+      "name": "MSI GS66 Stealth",
+      "price": "$2,299",
+      "description": "Thin and powerful gaming laptop with a high-refresh-rate display, RGB keyboard, and advanced cooling."
+    },
+    {
+      "id": "642578029fdf623741730938",
+      "category": "laptops",
+      "name": "LG Gram 14",
+      "price": "$999",
+      "description": "Ultralight and portable laptop with long battery life, a durable build, and a bright display."
+    },
+      {
+        "id": "642578029fdf623741730939",
+        "category": "accessories",
+        "name": "Anker PowerCore 10000",
+        "price": "$29.99",
+        "description": "Portable charger with a capacity of 10000mAh to keep your devices charged on the go."
+      },
+      {
+        "id": "642578029fdf623741730940",
+        "category": "accessories",
+        "name": "Spigen Ultra Hybrid Case",
+        "price": "$12.99",
+        "description": "Transparent phone case with air cushion technology for drop protection."
+      },
+      {
+        "id": "642578029fdf623741730941",
+        "category": "accessories",
+        "name": "Logitech MX Master 3",
+        "price": "$99.99",
+        "description": "Advanced wireless mouse with customizable buttons and precise tracking."
+      },
+      {
+        "id": "642578029fdf623741730942",
+        "category": "accessories",
+        "name": "JBL Flip 5",
+        "price": "$89.99",
+        "description": "Portable Bluetooth speaker with powerful sound and water-resistant design."
+      },
+      {
+        "id": "642578029fdf623741730943",
+        "category": "accessories",
+        "name": "Samsung Galaxy Buds Pro",
+        "price": "$179.99",
+        "description": "Wireless earbuds with active noise cancellation and long-lasting battery life."
+      },
+      {
+        "id": "642578029fdf623741730944",
+        "category": "accessories",
+        "name": "SanDisk Extreme Portable SSD",
+        "price": "$149.99",
+        "description": "High-speed external SSD for fast data transfer and rugged durability."
+      },
+      {
+        "id": "642578029fdf623741730945",
+        "category": "accessories",
+        "name": "Anker PowerWave Wireless Charger",
+        "price": "$19.99",
+        "description": "Qi-certified wireless charger compatible with various devices."
+      },
+      {
+        "id": "642578029fdf623741730946",
+        "category": "accessories",
+        "name": "UGREEN USB C Hub",
+        "price": "$29.99",
+        "description": "Multiport USB C hub with HDMI, USB 3.0 ports, and SD card slot."
+      },
+      {
+        "id": "642578029fdf623741730947",
+        "category": "accessories",
+        "name": "PopSockets PopGrip",
+        "price": "$9.99",
+        "description": "Expandable phone grip and stand for better handling and media viewing."
+      },
+      {
+        "id": "642578029fdf623741730948",
+        "category": "accessories",
+        "name": "Bose QuietComfort 35 II Ear Cushions",
+        "price": "$29.99",
+        "description": "Replacement ear cushions for Bose QuietComfort 35 II headphones."
+      }
+    ]
+    
