@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TopBar from "../components/TopBar";
 import styled from "styled-components";
 import CategoryCard from "../components/CategoryCard";
+import BrandCard from "../components/BrandCard";
 
 const HomePageContainer = styled.div`
   display: flex;
@@ -102,7 +103,6 @@ const CategoryHeader = styled.h2`
   }
 `;
 const CategoryCardContainer = styled.div`
-
   width: 90%;
   max-width:1300px;
   margin:auto;
@@ -114,6 +114,8 @@ const CategoryCardContainer = styled.div`
     width:90%;
     margin:auto;
     grid-template-columns:repeat(3, 1fr);
+    grid-gap: 8px;
+
   }
   @media (min-width: 1200px) {
     padding:0px;
@@ -123,49 +125,97 @@ const CategoryCardContainer = styled.div`
     
   }
 `;
-type Categories = {
-  name: string;
+const BrandCardContainer = styled.div`
+  width: 90%;
+  margin: auto;
+  margin-top: 30px;
+  display: grid;
+  grid-gap: 15px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`;
+type CategoriesOrBrand = {
+  paragraph: string;
+  header?: any;
   image: string;
   link: string;
 };
 
 const HomePage = () => {
-  const [categories, setCategories] = useState<Categories[]>([
+  const [categories, setCategories] = useState<CategoriesOrBrand[]>([
     {
-      name: "something",
+      paragraph: "something",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      name: "something",
+      paragraph: "something",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      name: "something",
+      paragraph: "something",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      name: "something",
+      paragraph: "something",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      name: "something",
+      paragraph: "something",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      name: "something",
+      paragraph: "something",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
+    },
+  ]);
+  const [brands, setBrands] = useState<CategoriesOrBrand[]>([
+    {
+      header: "loremIpsum",
+      paragraph: "Lorem ipsum dolor sit amet,",
+      image:
+        "https://tse1.explicit.bing.net/th?id=OIP.3oKj-LUgDow4IXzHhZvl2wHaHa&pid=Api&P=0&h=180",
+
+      link: "someling",
+    },
+    {
+      header: "loremIpsum",
+      paragraph: "Lorem ipsum dolor sit amet,",
+      image:
+        "https://tse1.explicit.bing.net/th?id=OIP.3oKj-LUgDow4IXzHhZvl2wHaHa&pid=Api&P=0&h=180",
+
+      link: "someling",
+    },
+    {
+      header: "loremIpsum",
+      paragraph: "Lorem ipsum dolor sit amet,",
+      image:
+        "https://tse1.explicit.bing.net/th?id=OIP.3oKj-LUgDow4IXzHhZvl2wHaHa&pid=Api&P=0&h=180",
+
+      link: "someling",
+    },
+    {
+      header: "loremIpsum",
+      paragraph: "Lorem ipsum dolor sit amet,",
+      image:
+        "https://tse1.explicit.bing.net/th?id=OIP.3oKj-LUgDow4IXzHhZvl2wHaHa&pid=Api&P=0&h=180",
+      link: "someling",
     },
   ]);
   return (
@@ -191,12 +241,24 @@ const HomePage = () => {
           {categories.map((category, index) => (
             <CategoryCard
               key={index}
-              categoryName={category.name}
+              categoryName={category.paragraph}
               categoryLink={category.link}
               categoryImage={category.image}
             />
           ))}
         </CategoryCardContainer>
+        <CategoryHeader>Choose By Brand</CategoryHeader>
+        <BrandCardContainer>
+          {brands.map((brand, index) => (
+            <BrandCard
+              key={index}
+              image={brand.image}
+              header={brand.header}
+              paragraph={brand.paragraph}
+              brandLink={brand.link}
+            />
+          ))}
+        </BrandCardContainer>
       </HomePageContainer>
     </div>
   );
