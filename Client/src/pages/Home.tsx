@@ -13,7 +13,9 @@ const HomePageContainer = styled.div`
 const HeaderDiv = styled.div`
   height: 400px;
   width: 100%;
-  background: url("https://media.istockphoto.com/id/1126678409/photo/3d-render-technology-store.webp?b=1&s=170667a&w=0&k=20&c=CYGGTYRdD3X8THNcMdxfHkYOMNOQSlaqQ351V_hVMcg=")
+  // background: url("https://media.istockphoto.com/id/1126678409/photo/3d-render-technology-store.webp?b=1&s=170667a&w=0&k=20&c=CYGGTYRdD3X8THNcMdxfHkYOMNOQSlaqQ351V_hVMcg=")
+  //   no-repeat;
+  background: url("https://images.unsplash.com/photo-1487014679447-9f8336841d58?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2205&q=80")
     no-repeat;
   background-size: cover;
   @media (min-width: 768px) {
