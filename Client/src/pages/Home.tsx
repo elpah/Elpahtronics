@@ -3,6 +3,7 @@ import TopBar from "../components/TopBar";
 import styled from "styled-components";
 import CategoryCard from "../components/CategoryCard";
 import BrandCard from "../components/BrandCard";
+import Footer from "../components/Footer";
 
 const HomePageContainer = styled.div`
   display: flex;
@@ -27,11 +28,10 @@ const HeaderDiv = styled.div`
 const HeaderContainer = styled.div`
   width: 90%;
   margin: auto;
-  max-width: 1300px;
+  max-width: 1400px;
 `;
 const Header = styled.h2`
-  max-width: 1300px;
-
+  max-width: 1400px;
   display: flex;
   white-space: pre-line;
   font-size: 37px;
@@ -104,7 +104,7 @@ const CategoryHeader = styled.h2`
 `;
 const CategoryCardContainer = styled.div`
   width: 90%;
-  max-width:1300px;
+  max-width:1400px;
   margin:auto;
   display: grid;
   grid-template-columns:repeat(2, 1fr);
@@ -127,11 +127,10 @@ const CategoryCardContainer = styled.div`
 `;
 const BrandCardContainer = styled.div`
   width: 90%;
-  margin: auto;
-  margin-top: 30px;
+  max-width: 1400px;
+  margin: 30px auto 50px;
   display: grid;
   grid-gap: 15px;
-
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -149,37 +148,37 @@ type CategoriesOrBrand = {
 const HomePage = () => {
   const [categories, setCategories] = useState<CategoriesOrBrand[]>([
     {
-      paragraph: "something",
+      paragraph: ".",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      paragraph: "something",
+      paragraph: ".",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      paragraph: "something",
+      paragraph: ".",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      paragraph: "something",
+      paragraph: ".",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      paragraph: "something",
+      paragraph: ".",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      paragraph: "something",
+      paragraph: ".",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
@@ -259,6 +258,7 @@ const HomePage = () => {
             />
           ))}
         </BrandCardContainer>
+        <Footer />
       </HomePageContainer>
     </div>
   );

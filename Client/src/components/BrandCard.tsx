@@ -35,13 +35,13 @@ const CardImg = styled.img`
 const CardParaHeaderContainer = styled.div``;
 
 const CardHeader = styled.h2`
-  font-size: 18px;
+  font-size: 25px;
   color: #333;
   margin: 0;
 `;
 
 const CardParagraph = styled.p`
-  font-size: 14px;
+  font-size: 20px;
   color: #666;
 `;
 

@@ -11,8 +11,8 @@ interface Props {
 const CategoryItemContainer = styled.div<{ backgroundImage: string }>`
   background-image: url(${(props) => props.backgroundImage});no-repeat;
   background-size: cover;
-  
-height:200px;
+  aspect-ratio:4/5;
+ 
   padding:10px;
   margin-top:20px;
   border-radius: 10px;
