@@ -4,14 +4,13 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FaShoppingBag } from "react-icons/fa";
 const TopFooterContainer = styled.div`
   max-width: 1400px;
-  margin-top: 40px;
+  margin: 40px auto 0;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
   padding: 50px 0;
-
   width: 90%;
-  margin: auto;
   @media (min-width: 1198px) {
+    padding-bottom: 0;
     display: grid;
     grid-template-columns: 1fr auto 1fr; /* Set three columns with equal width */
     grid-gap: 10px; /* Add some gap between grid items */
@@ -22,8 +21,10 @@ const LogoContainer = styled.div`
   @media (min-width: 1198px) {
     grid-column: 1;
     padding-right: 10px;
+    padding-top: 5px;
   }
 `;
+const Logo = styled.div``;
 const DepAbSeHeContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -33,6 +34,7 @@ const DepAbSeHeContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
+    margin-top: -12px;
   }
 `;
 const Department = styled.div`
@@ -72,9 +74,9 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: 40px;
+  height: 35px;
   border: 2px solid rgb(100, 100, 100);
-  width: 70px;
+  width: 60px;
   padding: 10px;
   margin: 25px 10px 10px;
   transition: transform 0.3s, height 0.3s, width 0.3s, background-color 0.3s;
@@ -86,12 +88,12 @@ const Image = styled.img`
   }
 `;
 const Header = styled.h2`
-  font-size: 25px;
+  font-size: 18px;
   margin-bottom: 15px;
 `;
 const ListContainer = styled.ul``;
 const ListItems = styled.li`
-  font-size: 20px;
+  font-size: 15px;
   transition: transform 0.3s, color 0.3s;
 
   &:hover {
@@ -100,17 +102,11 @@ const ListItems = styled.li`
   }
 `;
 const Paragraph = styled.p`
-  margin-top: 35px;
-  font-size: 20px;
-  @media (min-width: 768px) {
-    font-size: 25px;
-  }
-  @media (min-width: 1199px) {
-    font-size: 25px;
-  }
+  margin-top: 18px;
+  font-size: 15px;
 `;
 const FooterParagraph = styled.p`
-  font-size: 20px;
+  font-size: 15px;
   display: inline;
   vertical-align: middle;
   &:hover {
@@ -168,9 +164,9 @@ export default function Footer() {
     <>
       <TopFooterContainer>
         <LogoContainer>
-          <div>
+          <Logo>
             <h1>LOGO</h1>
-          </div>
+          </Logo>
           <Paragraph>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus
             quidem repellat facilis officia dolore, nobis consequuntur molestiae

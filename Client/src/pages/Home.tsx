@@ -13,9 +13,8 @@ const HomePageContainer = styled.div`
 const HeaderDiv = styled.div`
   height: 400px;
   width: 100%;
-  // background: url("https://media.istockphoto.com/id/1126678409/photo/3d-render-technology-store.webp?b=1&s=170667a&w=0&k=20&c=CYGGTYRdD3X8THNcMdxfHkYOMNOQSlaqQ351V_hVMcg=")
-  //   no-repeat;
-  background: url("https://images.unsplash.com/photo-1487014679447-9f8336841d58?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2205&q=80")
+  background: url("https://images.unsplash.com/photo-1518481852452-9415b262eba4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80")
+    // background: url("https://images.unsplash.com/photo-1487014679447-9f8336841d58?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2205&q=80")
     no-repeat;
   background-size: cover;
   @media (min-width: 768px) {
@@ -58,8 +57,8 @@ const Para = styled.p`
   line-height: 1.1;
   font-size: 18px;
   max-width: 75%;
-  color: white;
-  background-color: red;
+  color: rgb(221, 187, 69);
+  background-color: rgba(68, 64, 56, 0.6);
   @media (min-width: 768px) {
     font-size: 2.5vw;
     width: 60%;
@@ -72,7 +71,7 @@ const Para = styled.p`
 
 const StyledButton = styled.button`
   padding: 10px 20px;
-  background-color: green;
+  background-color: rgb(62, 68, 77);
   color: #ffffff;
   font-size: 16px;
   border: none;
@@ -82,7 +81,7 @@ const StyledButton = styled.button`
   margin-top: 25px;
 
   &:hover {
-    background-color: #e89f0d;
+    background-color: rgb(155, 130, 28);
   }
   @media (min-width: 768px) {
     font-size: 25px;
@@ -150,37 +149,37 @@ type CategoriesOrBrand = {
 const HomePage = () => {
   const [categories, setCategories] = useState<CategoriesOrBrand[]>([
     {
-      paragraph: ".",
+      paragraph: "Furniture",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      paragraph: ".",
+      paragraph: "Bags",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      paragraph: ".",
+      paragraph: "Books",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      paragraph: ".",
+      paragraph: "Tech",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      paragraph: ".",
+      paragraph: "Sneakers",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
     },
     {
-      paragraph: ".",
+      paragraph: "Travel",
       image:
         "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       link: "somelink",
@@ -191,7 +190,14 @@ const HomePage = () => {
       header: "loremIpsum",
       paragraph: "Lorem ipsum dolor sit amet,",
       image:
-        "https://tse1.explicit.bing.net/th?id=OIP.3oKj-LUgDow4IXzHhZvl2wHaHa&pid=Api&P=0&h=180",
+        "https://www.logolynx.com/images/logolynx/67/6757ecb0ecd35f833b975d2306ec5c62.jpeg",
+      link: "someling",
+    },
+    {
+      header: "loremIpsum",
+      paragraph: "Lorem ipsum dolor sit amet,",
+      image:
+        "https://www.logolynx.com/images/logolynx/64/646c2e3dd4797516757703b3c61c889f.jpeg",
 
       link: "someling",
     },
@@ -199,7 +205,7 @@ const HomePage = () => {
       header: "loremIpsum",
       paragraph: "Lorem ipsum dolor sit amet,",
       image:
-        "https://tse1.explicit.bing.net/th?id=OIP.3oKj-LUgDow4IXzHhZvl2wHaHa&pid=Api&P=0&h=180",
+        "https://www.logolynx.com/images/logolynx/2f/2f953d06cd1cae7298c1bf47c43fa195.jpeg",
 
       link: "someling",
     },
@@ -207,15 +213,8 @@ const HomePage = () => {
       header: "loremIpsum",
       paragraph: "Lorem ipsum dolor sit amet,",
       image:
-        "https://tse1.explicit.bing.net/th?id=OIP.3oKj-LUgDow4IXzHhZvl2wHaHa&pid=Api&P=0&h=180",
+        "https://www.logolynx.com/images/logolynx/56/56a039f2654884a52aec89df3384a7d8.png",
 
-      link: "someling",
-    },
-    {
-      header: "loremIpsum",
-      paragraph: "Lorem ipsum dolor sit amet,",
-      image:
-        "https://tse1.explicit.bing.net/th?id=OIP.3oKj-LUgDow4IXzHhZvl2wHaHa&pid=Api&P=0&h=180",
       link: "someling",
     },
   ]);
