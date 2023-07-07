@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import TopBar from "../components/TopBar";
 import styled from "styled-components";
+import {
+  appleLogo,
+  ikeaLogo,
+  sonyLogo,
+  zaraLogo,
+  furniture,
+  sneakers,
+  bags,
+  books,
+  tech,
+  travel,
+} from "../assets/images/exportImages";
 import CategoryCard from "../components/CategoryCard";
 import BrandCard from "../components/BrandCard";
 import Footer from "../components/Footer";
@@ -150,71 +162,59 @@ const HomePage = () => {
   const [categories, setCategories] = useState<CategoriesOrBrand[]>([
     {
       paragraph: "Furniture",
-      image:
-        "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      image: furniture,
       link: "somelink",
     },
     {
       paragraph: "Bags",
-      image:
-        "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      image: bags,
       link: "somelink",
     },
     {
       paragraph: "Books",
-      image:
-        "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      image: books,
       link: "somelink",
     },
     {
       paragraph: "Tech",
-      image:
-        "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      image: tech,
       link: "somelink",
     },
     {
       paragraph: "Sneakers",
-      image:
-        "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      image: sneakers,
       link: "somelink",
     },
     {
       paragraph: "Travel",
-      image:
-        "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhlYWRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      image: travel,
       link: "somelink",
     },
   ]);
   const [brands, setBrands] = useState<CategoriesOrBrand[]>([
     {
-      header: "loremIpsum",
-      paragraph: "Lorem ipsum dolor sit amet,",
-      image:
-        "https://www.logolynx.com/images/logolynx/67/6757ecb0ecd35f833b975d2306ec5c62.jpeg",
+      header: "Apple",
+      paragraph: "Delivery in 24 hours",
+      image: appleLogo,
       link: "someling",
     },
     {
-      header: "loremIpsum",
-      paragraph: "Lorem ipsum dolor sit amet,",
-      image:
-        "https://www.logolynx.com/images/logolynx/64/646c2e3dd4797516757703b3c61c889f.jpeg",
+      header: "Ikea",
+      paragraph: "Delivery in 24 hours",
+      image: ikeaLogo,
+      link: "someling",
+    },
+    {
+      header: "Sony",
+      paragraph: "Delivery in 24 hours",
+      image: sonyLogo,
 
       link: "someling",
     },
     {
-      header: "loremIpsum",
-      paragraph: "Lorem ipsum dolor sit amet,",
-      image:
-        "https://www.logolynx.com/images/logolynx/2f/2f953d06cd1cae7298c1bf47c43fa195.jpeg",
-
-      link: "someling",
-    },
-    {
-      header: "loremIpsum",
-      paragraph: "Lorem ipsum dolor sit amet,",
-      image:
-        "https://www.logolynx.com/images/logolynx/56/56a039f2654884a52aec89df3384a7d8.png",
-
+      header: "Zara",
+      paragraph: "Delivery in 24 hours",
+      image: zaraLogo,
       link: "someling",
     },
   ]);
