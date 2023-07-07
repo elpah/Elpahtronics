@@ -16,6 +16,7 @@ import {
 import CategoryCard from "../components/CategoryCard";
 import BrandCard from "../components/BrandCard";
 import Footer from "../components/Footer";
+import Button from "../components/Button";
 
 const HomePageContainer = styled.div`
   display: flex;
@@ -75,30 +76,6 @@ const Para = styled.p`
   @media (min-width: 1198px) {
     // max-width: 90%;
     font-size: 2vw;
-  }
-`;
-
-const StyledButton = styled.button`
-  padding: 10px 20px;
-  background-color: rgb(62, 68, 77);
-  color: #ffffff;
-  font-size: 16px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 25px;
-
-  &:hover {
-    background-color: rgb(155, 130, 28);
-  }
-  @media (min-width: 768px) {
-    font-size: 25px;
-    margin-top: 40px;
-  }
-  @media (min-width: 1198px) {
-    font-size: 30px;
-    margin-top: 55px;
   }
 `;
 
@@ -235,7 +212,12 @@ const HomePage = () => {
               Shopping is a bit of a relaxing hobby for me, which is sometimes
               troubling for the bank balance.
             </Para>
-            <StyledButton>shop now</StyledButton>
+            <Button
+              buttonName="Shop Now"
+              onClick={() =>
+                console.log("Handle Click later..Redirect to product Page")
+              }
+            />
           </HeaderContainer>
         </HeaderDiv>
         <CategoryHeader>Shop some of categories</CategoryHeader>
