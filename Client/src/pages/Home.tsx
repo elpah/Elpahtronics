@@ -26,7 +26,6 @@ const HeaderDiv = styled.div`
   height: 400px;
   width: 100%;
   background: url("https://images.unsplash.com/photo-1518481852452-9415b262eba4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80")
-    // background: url("https://images.unsplash.com/photo-1487014679447-9f8336841d58?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2205&q=80")
     no-repeat;
   background-size: cover;
   @media (min-width: 768px) {
@@ -52,12 +51,10 @@ const Header = styled.h2`
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-top: 80px;
-  // margin-left: 20px;
   margin-bottom: 25px;
   line-height: 1.3;
   @media (min-width: 768px) {
     font-size: 50px;
-    // margin-left: 60px;
     margin-top: 100px;
   }
   @media (min-width: 1198px) {
@@ -129,7 +126,13 @@ const CategoryCardContainer = styled.div`
     grid-template-columns:repeat(3, 1fr);
     grid-gap: 8px;
 
+    &:hover {
+      > img {
+        transform: scale(1.1);
+      }
+    }
   }
+  
   @media (min-width: 1200px) {
     padding:0px;
     grid-template-columns:repeat(6, 1fr);
@@ -235,7 +238,6 @@ const HomePage = () => {
             <StyledButton>shop now</StyledButton>
           </HeaderContainer>
         </HeaderDiv>
-
         <CategoryHeader>Shop some of categories</CategoryHeader>
         <CategoryCardContainer>
           {categories.map((category, index) => (
