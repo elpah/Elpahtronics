@@ -61,6 +61,9 @@ const Header = styled.h2`
   @media (min-width: 1198px) {
     font-size: 65px;
   }
+  @media (max-width: 358px) {
+    font-size: 30px;
+  }
 `;
 const Para = styled.p`
   white-space: pre-line;
@@ -76,6 +79,9 @@ const Para = styled.p`
   @media (min-width: 1198px) {
     // max-width: 90%;
     font-size: 2vw;
+  }
+  @media (max-width: 358px) {
+    font-size: 14px;
   }
 `;
 

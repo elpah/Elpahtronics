@@ -1,4 +1,5 @@
-import coverImage from './cover.png';
+import coverImage from './homeCover.png';
+import productCover from './productCover.jpg';
 import appleLogo from './popularLogos/appleLogo.jpeg';
 import ikeaLogo from './popularLogos/ikeaLogo.png';
 import sonyLogo from './popularLogos/sonyLogo.jpeg';
@@ -11,4 +12,4 @@ import bags from './categories/bags.jpg';
 import books from './categories/books.jpg';
 
 
-export { appleLogo, ikeaLogo, sonyLogo, zaraLogo, coverImage,furniture, sneakers,bags,books,tech,travel};
+export { appleLogo, ikeaLogo, sonyLogo, zaraLogo, coverImage,furniture, sneakers,bags,books,tech,travel,productCover}
