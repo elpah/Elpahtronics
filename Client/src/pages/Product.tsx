@@ -120,7 +120,6 @@ export default function Product() {
           </ChildDivCenter>
         </HeaderContainer>
       </HeaderDiv>
-      <Product />
       <Footer />
     </ProductPageContainer>
   );
