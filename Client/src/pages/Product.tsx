@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { productCover } from "../assets/images/exportImages";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
+import ProductCard from "../components/ProductCard";
 
 const ProductPageContainer = styled.div`
   display: flex;
@@ -102,6 +103,7 @@ const Paragraph = styled.p`
     font-size: 30px;
   }
 `;
+const ProductCardContainer = styled.div``;
 export default function Product() {
   return (
     <ProductPageContainer>
@@ -120,6 +122,9 @@ export default function Product() {
           </ChildDivCenter>
         </HeaderContainer>
       </HeaderDiv>
+      <ProductCardContainer>
+        <ProductCard />
+      </ProductCardContainer>
       <Footer />
     </ProductPageContainer>
   );
