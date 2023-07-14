@@ -1,9 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { productCover } from "../assets/images/exportImages";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
 import ProductCard from "../components/ProductCard";
+import Product from "../productType";
+
+export default function ProductPage() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    fetchProducts();
+    console.log(products);
+  }, []);
+
+  const fetchProducts = async () => {
+    const response = await fetch(
+      "http://localhost:8000/api/products/available"
+    );
+    const results: Product[] = await response.json();
+    setProducts(results);
+  };
+
+  return (
+    <ProductPageContainer>
+      <HeaderDiv>
+        <HeaderContainer>
+          <ChildDivCenter>
+            <Header>Get 5% cashback on 200$</Header>
+            <Paragraph>
+              Shopping is a bit of a relaxing hobby for me, which is sometimes
+              troubling for the bank balance.
+            </Paragraph>
+            <Button
+              buttonName="Learn More"
+              onClick={() => console.log("redirect to my Github Profile")}
+            />
+          </ChildDivCenter>
+        </HeaderContainer>
+      </HeaderDiv>
+      {/* <form>
+        <label>Select Product Category</label>
+        <select id="dropdown" name="dropdown">
+          <option value="option1">Furniture</option>
+          <option value="option2">Bags</option>
+          <option value="option3">Books</option>
+          <option value="option2">Tech</option>
+          <option value="option3">Sneakers</option>
+          <option value="option3">Travel</option>
+        </select>
+        <input type="submit" value="Submit" />
+      </form>
+      <h1>Product Category</h1> */}
+      <h1>{"All Products"}</h1>
+      <ProductCardContainer>
+        {products.map((product) => (
+          <ProductCard
+            key={product.productId}
+            productDescription={product.productDescription}
+            productName={product.productName}
+            productPrice={product.productPrice}
+            productImage={product.productImage}
+          />
+        ))}
+      </ProductCardContainer>
+      <Footer />
+    </ProductPageContainer>
+  );
+}
 
 const ProductPageContainer = styled.div`
   display: flex;
@@ -118,30 +182,3 @@ const ProductCardContainer = styled.div`
     grid-template-columns: repeat(3, 1fr);
 
 `;
-export default function Product() {
-  return (
-    <ProductPageContainer>
-      <HeaderDiv>
-        <HeaderContainer>
-          <ChildDivCenter>
-            <Header>Get 5% cashback on 200$</Header>
-            <Paragraph>
-              Shopping is a bit of a relaxing hobby for me, which is sometimes
-              troubling for the bank balance.
-            </Paragraph>
-            <Button
-              buttonName="Learn More"
-              onClick={() => console.log("redirect to my Github Profile")}
-            />
-          </ChildDivCenter>
-        </HeaderContainer>
-      </HeaderDiv>
-      <ProductCardContainer>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-      </ProductCardContainer>
-      <Footer />
-    </ProductPageContainer>
-  );
-}

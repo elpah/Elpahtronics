@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { BsCart } from "react-icons/bs";
 import Home from "../pages/Home";
-import Product from "../pages/Product";
+import Product from "../pages/ProductPage";
 import Contact from "../pages/Contact";
 const NavContainer = styled.nav`
   display: flex;

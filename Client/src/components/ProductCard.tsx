@@ -3,13 +3,14 @@ import styled from "styled-components";
 import Product from "../productType";
 
 interface Props {
-  productName?: string;
-  productPrice?: string;
-  productDescription?: string;
-  productImage?: string;
+  productId?: string;
+  productName: string;
+  productPrice: string;
+  productDescription: string;
+  productImage: string;
   quantity?: number;
 }
-const ProductCardContainer = styled.div`
+const ProductCardContainerDiv = styled.div`
   margin: 30px auto 30px;
   width: 90%;
   background-color: #fff;
@@ -91,49 +92,25 @@ export default function ProductCard({
   quantity,
 }: Props) {
   return (
-    //   <ProductCardContainer>
-    //     <ImageDiv>
-    //       <Image>{productImage}</Image>
-    //     </ImageDiv>
-    //     <WithoutImageDiv>
-    //       <NamePrice>
-    //         <H2>{productName}</H2>
-    //         <H2>{productPrice}</H2>
-    //       </NamePrice>
-    //       <Description>{productDescription}</Description>
-    //       <QuantityAddToCartDiv>
-    //         <QuantityDiv>
-    //           <AddSubtractButton>+</AddSubtractButton>
-    //           <Quantity>{quantity}</Quantity>
-    //           <AddSubtractButton>-</AddSubtractButton>
-    //         </QuantityDiv>
-    //         <AddToCartButton>Add to cart</AddToCartButton>
-    //       </QuantityAddToCartDiv>
-    //     </WithoutImageDiv>
-    //   </ProductCardContainer>
-
-    <ProductCardContainer>
+    <ProductCardContainerDiv>
       <ImageDiv>
-        <Image
-          src="https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e48b497e63cc46b800_base%20camp%20duffel%2002-min.png"
-          alt="Product Image"
-        />
+        <Image src={productImage} alt="productImage" />
       </ImageDiv>
       <WithoutImageDiv>
         <NamePrice>
-          <H2>Camera</H2>
-          <H2>250.00$</H2>
+          <H2>{productName}</H2>
+          <H2>{productPrice}</H2>
         </NamePrice>
-        <Description>Lorem ipsum dolor sit, amet consectetur</Description>
+        <Description>{productDescription}</Description>
         <QuantityAddToCartDiv>
           <QuantityDiv>
             <AddSubtractButton>+</AddSubtractButton>
-            <Quantity>0</Quantity>
+            <Quantity>{quantity}</Quantity>
             <AddSubtractButton>-</AddSubtractButton>
           </QuantityDiv>
           <AddToCartButton>Add to cart</AddToCartButton>
         </QuantityAddToCartDiv>
       </WithoutImageDiv>
-    </ProductCardContainer>
+    </ProductCardContainerDiv>
   );
 }

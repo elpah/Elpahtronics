@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Contact from "./pages/Contact";
-import Product from "./pages/Product";
+import Product from "./pages/ProductPage";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import TopBar from "./components/TopBar";

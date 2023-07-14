@@ -18,6 +18,126 @@ import BrandCard from "../components/BrandCard";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
 
+type CategoriesOrBrand = {
+  paragraph: string;
+  header?: any;
+  image: string;
+  link: string;
+};
+
+const HomePage = () => {
+  const [categories, setCategories] = useState<CategoriesOrBrand[]>([
+    {
+      paragraph: "Furniture",
+      image: furniture,
+      link: "somelink",
+    },
+    {
+      paragraph: "Bags",
+      image: bags,
+      link: "somelink",
+    },
+    {
+      paragraph: "Books",
+      image: books,
+      link: "somelink",
+    },
+    {
+      paragraph: "Tech",
+      image: tech,
+      link: "somelink",
+    },
+    {
+      paragraph: "Sneakers",
+      image: sneakers,
+      link: "somelink",
+    },
+    {
+      paragraph: "Travel",
+      image: travel,
+      link: "somelink",
+    },
+  ]);
+  const [brands, setBrands] = useState<CategoriesOrBrand[]>([
+    {
+      header: "Apple",
+      paragraph: "Delivery in 24 hours",
+      image: appleLogo,
+      link: "someling",
+    },
+    {
+      header: "Ikea",
+      paragraph: "Delivery in 24 hours",
+      image: ikeaLogo,
+      link: "someling",
+    },
+    {
+      header: "Sony",
+      paragraph: "Delivery in 24 hours",
+      image: sonyLogo,
+
+      link: "someling",
+    },
+    {
+      header: "Zara",
+      paragraph: "Delivery in 24 hours",
+      image: zaraLogo,
+      link: "somelink",
+    },
+  ]);
+  return (
+    <div>
+      <HomePageContainer>
+        <HeaderDiv>
+          <HeaderContainer>
+            <Header>
+              Shopping And
+              {"\n"}
+              Department Store...
+            </Header>
+            <Para>
+              Shopping is a bit of a relaxing hobby for me, which is sometimes
+              troubling for the bank balance.
+            </Para>
+            <Button
+              buttonName="Shop Now"
+              onClick={() =>
+                console.log("Handle Click later..Redirect to product Page")
+              }
+            />
+          </HeaderContainer>
+        </HeaderDiv>
+        <CategoryHeader>Shop some of categories</CategoryHeader>
+        <CategoryCardContainer>
+          {categories.map((category, index) => (
+            <CategoryCard
+              key={index}
+              categoryName={category.paragraph}
+              categoryLink={category.link}
+              categoryImage={category.image}
+            />
+          ))}
+        </CategoryCardContainer>
+        <CategoryHeader>Choose By Brand</CategoryHeader>
+        <BrandCardContainer>
+          {brands.map((brand, index) => (
+            <BrandCard
+              key={index}
+              image={brand.image}
+              header={brand.header}
+              paragraph={brand.paragraph}
+              brandLink={brand.link}
+            />
+          ))}
+        </BrandCardContainer>
+        <Footer />
+      </HomePageContainer>
+    </div>
+  );
+};
+
+export default HomePage;
+
 const HomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -137,122 +257,3 @@ const BrandCardContainer = styled.div`
     grid-template-columns: repeat(4, 1fr);
   }
 `;
-type CategoriesOrBrand = {
-  paragraph: string;
-  header?: any;
-  image: string;
-  link: string;
-};
-
-const HomePage = () => {
-  const [categories, setCategories] = useState<CategoriesOrBrand[]>([
-    {
-      paragraph: "Furniture",
-      image: furniture,
-      link: "somelink",
-    },
-    {
-      paragraph: "Bags",
-      image: bags,
-      link: "somelink",
-    },
-    {
-      paragraph: "Books",
-      image: books,
-      link: "somelink",
-    },
-    {
-      paragraph: "Tech",
-      image: tech,
-      link: "somelink",
-    },
-    {
-      paragraph: "Sneakers",
-      image: sneakers,
-      link: "somelink",
-    },
-    {
-      paragraph: "Travel",
-      image: travel,
-      link: "somelink",
-    },
-  ]);
-  const [brands, setBrands] = useState<CategoriesOrBrand[]>([
-    {
-      header: "Apple",
-      paragraph: "Delivery in 24 hours",
-      image: appleLogo,
-      link: "someling",
-    },
-    {
-      header: "Ikea",
-      paragraph: "Delivery in 24 hours",
-      image: ikeaLogo,
-      link: "someling",
-    },
-    {
-      header: "Sony",
-      paragraph: "Delivery in 24 hours",
-      image: sonyLogo,
-
-      link: "someling",
-    },
-    {
-      header: "Zara",
-      paragraph: "Delivery in 24 hours",
-      image: zaraLogo,
-      link: "someling",
-    },
-  ]);
-  return (
-    <div>
-      <HomePageContainer>
-        <HeaderDiv>
-          <HeaderContainer>
-            <Header>
-              Shopping And
-              {"\n"}
-              Department Store...
-            </Header>
-            <Para>
-              Shopping is a bit of a relaxing hobby for me, which is sometimes
-              troubling for the bank balance.
-            </Para>
-            <Button
-              buttonName="Shop Now"
-              onClick={() =>
-                console.log("Handle Click later..Redirect to product Page")
-              }
-            />
-          </HeaderContainer>
-        </HeaderDiv>
-        <CategoryHeader>Shop some of categories</CategoryHeader>
-        <CategoryCardContainer>
-          {categories.map((category, index) => (
-            <CategoryCard
-              key={index}
-              categoryName={category.paragraph}
-              categoryLink={category.link}
-              categoryImage={category.image}
-            />
-          ))}
-        </CategoryCardContainer>
-        <CategoryHeader>Choose By Brand</CategoryHeader>
-        <BrandCardContainer>
-          {brands.map((brand, index) => (
-            <BrandCard
-              key={index}
-              image={brand.image}
-              header={brand.header}
-              paragraph={brand.paragraph}
-              brandLink={brand.link}
-            />
-          ))}
-        </BrandCardContainer>
-        <Footer />
-      </HomePageContainer>
-    </div>
-  );
-};
-
-export default HomePage;
