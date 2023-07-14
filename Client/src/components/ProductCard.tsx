@@ -10,9 +10,8 @@ interface Props {
   quantity?: number;
 }
 const ProductCardContainer = styled.div`
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 350px;
+  margin: 30px auto 30px;
+  width: 90%;
   background-color: #fff;
   border-radius: 4px;
 `;
@@ -25,7 +24,6 @@ const ImageDiv = styled.div`
 `;
 
 const Image = styled.img`
-  width: 300px;
   height: 250px;
   object-fit: contain;
   border-radius: 10px 10px 0 0;
@@ -40,14 +38,14 @@ const NamePrice = styled.div`
 `;
 
 const H2 = styled.h2`
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 600;
   margin: 0;
 `;
 
 const Description = styled.p`
+  font-size: 20px;
   margin-bottom: 8px;
-  font-size: 22px;
 `;
 
 const QuantityAddToCartDiv = styled.div`
