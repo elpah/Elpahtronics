@@ -5,9 +5,13 @@ import Footer from "../components/Footer";
 import Button from "../components/Button";
 import ProductCard from "../components/ProductCard";
 import Product from "../productType";
+import ProductModal from "../components/ProductModal";
 
 export default function ProductPage() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [productModalVisibility, setProductModalVisibility] =
+    useState<boolean>(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     fetchProducts();
@@ -22,6 +26,10 @@ export default function ProductPage() {
     setProducts(results);
   };
 
+  const handleCardClick = (product: Product) => {
+    setSelectedProduct(product);
+    setProductModalVisibility(true);
+  };
   return (
     <ProductPageContainer>
       <HeaderDiv>
@@ -53,14 +61,24 @@ export default function ProductPage() {
       </form>
       <h1>Product Category</h1> */}
       <h1>{"All Products"}</h1>
+      {productModalVisibility && (
+        <ProductModal
+          onClose={() => setProductModalVisibility(false)}
+          productName={selectedProduct?.productName || ""}
+          productDescription={selectedProduct?.productDescription || ""}
+          productPrice={selectedProduct?.productPrice || ""}
+          productImage={selectedProduct?.productImage || ""}
+        />
+      )}
       <ProductCardContainer>
         {products.map((product) => (
           <ProductCard
             key={product.productId}
-            productDescription={product.productDescription}
             productName={product.productName}
+            productDescription={product.productDescription}
             productPrice={product.productPrice}
             productImage={product.productImage}
+            handleCardClick={() => handleCardClick(product)}
           />
         ))}
       </ProductCardContainer>
@@ -135,8 +153,8 @@ const ChildDivCenter = styled.div`
 `;
 
 const Header = styled.h1`
+  color: rgb(229, 214, 110);
   font-size: 25px;
-  //smaller screens
   @media (max-width: 384px) {
     font-size: 20px;
   }
@@ -151,6 +169,7 @@ const Header = styled.h1`
   }
 `;
 const Paragraph = styled.p`
+  color: rgb(229, 214, 110);
   font-size: 18px;
   margin-top: 20px;
 

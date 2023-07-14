@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Product from "../productType";
 
@@ -9,7 +9,50 @@ interface Props {
   productDescription: string;
   productImage: string;
   quantity?: number;
+  handleCardClick: () => void;
 }
+
+export default function ProductCard({
+  productName,
+  productPrice,
+  productDescription,
+  productImage,
+  handleCardClick,
+}: Props) {
+  const [quantity, setQuantity] = useState<number>(1);
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+    }
+  };
+  return (
+    <ProductCardContainerDiv onClick={handleCardClick}>
+      <ImageDiv>
+        <Image src={productImage} alt="productImage" />
+      </ImageDiv>
+      <WithoutImageDiv>
+        <NamePrice>
+          <H2>{productName}</H2>
+          <H2>{productPrice}</H2>
+        </NamePrice>
+        <Description>{productDescription}</Description>
+        <QuantityAddToCartDiv>
+          <QuantityDiv>
+            <AddSubtractButton onClick={handleDecrement}>-</AddSubtractButton>
+            <Quantity>{quantity}</Quantity>
+            <AddSubtractButton onClick={handleIncrement}>+</AddSubtractButton>
+          </QuantityDiv>
+          <AddToCartButton>Add to cart</AddToCartButton>
+        </QuantityAddToCartDiv>
+      </WithoutImageDiv>
+    </ProductCardContainerDiv>
+  );
+}
+
 const ProductCardContainerDiv = styled.div`
   margin: 30px auto 30px;
   width: 90%;
@@ -84,33 +127,3 @@ const AddToCartButton = styled.button`
   cursor: pointer;
   font-size: 20px;
 `;
-export default function ProductCard({
-  productName,
-  productPrice,
-  productDescription,
-  productImage,
-  quantity,
-}: Props) {
-  return (
-    <ProductCardContainerDiv>
-      <ImageDiv>
-        <Image src={productImage} alt="productImage" />
-      </ImageDiv>
-      <WithoutImageDiv>
-        <NamePrice>
-          <H2>{productName}</H2>
-          <H2>{productPrice}</H2>
-        </NamePrice>
-        <Description>{productDescription}</Description>
-        <QuantityAddToCartDiv>
-          <QuantityDiv>
-            <AddSubtractButton>+</AddSubtractButton>
-            <Quantity>{quantity}</Quantity>
-            <AddSubtractButton>-</AddSubtractButton>
-          </QuantityDiv>
-          <AddToCartButton>Add to cart</AddToCartButton>
-        </QuantityAddToCartDiv>
-      </WithoutImageDiv>
-    </ProductCardContainerDiv>
-  );
-}
