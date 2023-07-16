@@ -8,6 +8,7 @@ interface Props {
   productPrice: string;
   productDescription: string;
   productImage: string;
+  category?: string;
   quantity?: number;
   handleCardClick: () => void;
 }
@@ -17,6 +18,7 @@ export default function ProductCard({
   productPrice,
   productDescription,
   productImage,
+  category,
   handleCardClick,
 }: Props) {
   const [quantity, setQuantity] = useState<number>(1);

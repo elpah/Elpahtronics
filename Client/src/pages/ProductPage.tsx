@@ -13,15 +13,16 @@ interface FilterCategoryProps {
 }
 
 export default function ProductPage() {
+  const [originalProducts, setOriginalProducts] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [categoryName, setCategoryName] = useState<string>("All Products");
   const [productModalVisibility, setProductModalVisibility] =
     useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
+
   useEffect(() => {
     fetchProducts();
-    console.log(products);
   }, []);
 
   const fetchProducts = async () => {
@@ -29,6 +30,7 @@ export default function ProductPage() {
       "http://localhost:8000/api/products/available"
     );
     const results: Product[] = await response.json();
+    setOriginalProducts(results);
     setProducts(results);
   };
 
@@ -36,9 +38,18 @@ export default function ProductPage() {
     setSelectedProduct(product);
     setProductModalVisibility(true);
   };
-  const handleCategoryItemClick = () => {
-    console.log("clicked");
+  useEffect(() => {
+    handleCategoryItemClick(categoryName);
+  }, [categoryName]);
+
+  const handleCategoryItemClick = (categoryName: string) => {
+    const lowerCategory = categoryName.toLowerCase();
+    const filteredProducts = originalProducts.filter(
+      (item) => item.category.toLowerCase() === lowerCategory
+    );
+    setProducts(filteredProducts);
   };
+
   return (
     <ProductPageContainer>
       <HeaderDiv>
@@ -56,7 +67,6 @@ export default function ProductPage() {
           </ChildDivCenter>
         </HeaderContainer>
       </HeaderDiv>
-
       <SelectCategoryContainer
         onClick={() => setShowCategoryList(!showCategoryList)}
       >
@@ -65,52 +75,25 @@ export default function ProductPage() {
       </SelectCategoryContainer>
       {
         <FilterCategory showCategoryList={showCategoryList}>
-          <CategoryItem
-            onClick={() => {
-              setCategoryName("furniture");
-              handleCategoryItemClick();
-            }}
-          >
+          <CategoryItem onClick={() => setCategoryName("All Products")}>
+            All Products
+          </CategoryItem>
+          <CategoryItem onClick={() => setCategoryName("furniture")}>
             Furniture
           </CategoryItem>
-          <CategoryItem
-            onClick={() => {
-              setCategoryName("bags");
-              handleCategoryItemClick();
-            }}
-          >
+          <CategoryItem onClick={() => setCategoryName("bags")}>
             Bags
           </CategoryItem>
-          <CategoryItem
-            onClick={() => {
-              setCategoryName("Books");
-              handleCategoryItemClick();
-            }}
-          >
+          <CategoryItem onClick={() => setCategoryName("Books")}>
             Books
           </CategoryItem>
-          <CategoryItem
-            onClick={() => {
-              setCategoryName("Tech");
-              handleCategoryItemClick();
-            }}
-          >
+          <CategoryItem onClick={() => setCategoryName("Tech")}>
             Tech
           </CategoryItem>
-          <CategoryItem
-            onClick={() => {
-              setCategoryName("sneakers");
-              handleCategoryItemClick();
-            }}
-          >
+          <CategoryItem onClick={() => setCategoryName("sneakers")}>
             Sneakers
           </CategoryItem>
-          <CategoryItem
-            onClick={() => {
-              setCategoryName("Travel");
-              handleCategoryItemClick();
-            }}
-          >
+          <CategoryItem onClick={() => setCategoryName("Travel")}>
             Travel
           </CategoryItem>
         </FilterCategory>
@@ -141,6 +124,7 @@ export default function ProductPage() {
     </ProductPageContainer>
   );
 }
+
 const ProductPageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -223,7 +207,6 @@ const Paragraph = styled.p`
   color: rgb(229, 214, 110);
   font-size: 18px;
   margin-top: 20px;
-
   @media (max-width: 354px) {
     font-size: 15px;
   }
@@ -248,8 +231,9 @@ const ProductCardContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
 
-   @media (min-width: 1198px) {
+  @media (min-width: 1198px) {
     grid-template-columns: repeat(3, 1fr);
+  }
 `;
 const ProductHeader = styled.h2`
   text-align: center;
