@@ -13,9 +13,8 @@ interface FilterCategoryProps {
 }
 
 export default function ProductPage() {
-  const [originalProducts, setOriginalProducts] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
-  const [categoryName, setCategoryName] = useState<string>("All Products");
+  const [categoryName, setCategoryName] = useState<string>("");
   const [productModalVisibility, setProductModalVisibility] =
     useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -30,7 +29,6 @@ export default function ProductPage() {
       "http://localhost:8000/api/products/available"
     );
     const results: Product[] = await response.json();
-    setOriginalProducts(results);
     setProducts(results);
   };
 
@@ -38,17 +36,24 @@ export default function ProductPage() {
     setSelectedProduct(product);
     setProductModalVisibility(true);
   };
-  useEffect(() => {
-    handleCategoryItemClick(categoryName);
-  }, [categoryName]);
+  console.log(products);
+  // const handleCategoryItemClick = (categoryName: string) => {
+  //   const lowerCategory = categoryName.toLowerCase();
+  //   const filteredProducts = originalProducts.filter(
+  //     (item) => item.category === lowerCategory
+  //   );
+  //   setProducts(filteredProducts);
+  // };
+  // useEffect(() => {
+  //   handleCategoryItemClick(categoryName);
+  // }, [categoryName]);
 
-  const handleCategoryItemClick = (categoryName: string) => {
-    const lowerCategory = categoryName.toLowerCase();
-    const filteredProducts = originalProducts.filter(
-      (item) => item.category.toLowerCase() === lowerCategory
-    );
-    setProducts(filteredProducts);
-  };
+  // useEffect(() => {
+  //   console.log(categoryName);
+  // }, [categoryName]);
+  // useEffect(() => {
+  //   console.log(products);
+  // }, [products]);
 
   return (
     <ProductPageContainer>
@@ -75,7 +80,7 @@ export default function ProductPage() {
       </SelectCategoryContainer>
       {
         <FilterCategory showCategoryList={showCategoryList}>
-          <CategoryItem onClick={() => setCategoryName("All Products")}>
+          <CategoryItem onClick={() => setCategoryName("")}>
             All Products
           </CategoryItem>
           <CategoryItem onClick={() => setCategoryName("furniture")}>
@@ -109,16 +114,20 @@ export default function ProductPage() {
         />
       )}
       <ProductCardContainer>
-        {products.map((product) => (
-          <ProductCard
-            key={product.productId}
-            productName={product.productName}
-            productDescription={product.productDescription}
-            productPrice={product.productPrice}
-            productImage={product.productImage}
-            handleCardClick={() => handleCardClick(product)}
-          />
-        ))}
+        {products
+          .filter((item) =>
+            item.category.toLowerCase().includes(categoryName.toLowerCase())
+          )
+          .map((product) => (
+            <ProductCard
+              key={product.productId}
+              productName={product.productName}
+              productDescription={product.productDescription}
+              productPrice={product.productPrice}
+              productImage={product.productImage}
+              handleCardClick={() => handleCardClick(product)}
+            />
+          ))}
       </ProductCardContainer>
       <Footer />
     </ProductPageContainer>
@@ -312,3 +321,6 @@ const CategoryItem = styled.p`
     font-size: 22px;
   }
 `;
+
+//
+//Aray of object. label and value
