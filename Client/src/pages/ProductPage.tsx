@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { productCover } from "../assets/images/exportImages";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
 import ProductCard from "../components/ProductCard";
 import Product from "../productType";
 import ProductModal from "../components/ProductModal";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+
+interface FilterCategoryProps {
+  showCategoryList: boolean;
+}
 
 export default function ProductPage() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [categoryName, setCategoryName] = useState<string>("All Products");
   const [productModalVisibility, setProductModalVisibility] =
     useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-
+  const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
   useEffect(() => {
     fetchProducts();
     console.log(products);
@@ -29,6 +35,9 @@ export default function ProductPage() {
   const handleCardClick = (product: Product) => {
     setSelectedProduct(product);
     setProductModalVisibility(true);
+  };
+  const handleCategoryItemClick = () => {
+    console.log("clicked");
   };
   return (
     <ProductPageContainer>
@@ -47,20 +56,66 @@ export default function ProductPage() {
           </ChildDivCenter>
         </HeaderContainer>
       </HeaderDiv>
-      {/* <form>
-        <label>Select Product Category</label>
-        <select id="dropdown" name="dropdown">
-          <option value="option1">Furniture</option>
-          <option value="option2">Bags</option>
-          <option value="option3">Books</option>
-          <option value="option2">Tech</option>
-          <option value="option3">Sneakers</option>
-          <option value="option3">Travel</option>
-        </select>
-        <input type="submit" value="Submit" />
-      </form>
-      <h1>Product Category</h1> */}
-      <h1>{"All Products"}</h1>
+
+      <SelectCategoryContainer
+        onClick={() => setShowCategoryList(!showCategoryList)}
+      >
+        <SelectCategory>Filter Category</SelectCategory>
+        <Icon>{showCategoryList ? <FiChevronUp /> : <FiChevronDown />}</Icon>
+      </SelectCategoryContainer>
+      {
+        <FilterCategory showCategoryList={showCategoryList}>
+          <CategoryItem
+            onClick={() => {
+              setCategoryName("furniture");
+              handleCategoryItemClick();
+            }}
+          >
+            Furniture
+          </CategoryItem>
+          <CategoryItem
+            onClick={() => {
+              setCategoryName("bags");
+              handleCategoryItemClick();
+            }}
+          >
+            Bags
+          </CategoryItem>
+          <CategoryItem
+            onClick={() => {
+              setCategoryName("Books");
+              handleCategoryItemClick();
+            }}
+          >
+            Books
+          </CategoryItem>
+          <CategoryItem
+            onClick={() => {
+              setCategoryName("Tech");
+              handleCategoryItemClick();
+            }}
+          >
+            Tech
+          </CategoryItem>
+          <CategoryItem
+            onClick={() => {
+              setCategoryName("sneakers");
+              handleCategoryItemClick();
+            }}
+          >
+            Sneakers
+          </CategoryItem>
+          <CategoryItem
+            onClick={() => {
+              setCategoryName("Travel");
+              handleCategoryItemClick();
+            }}
+          >
+            Travel
+          </CategoryItem>
+        </FilterCategory>
+      }
+      <ProductHeader>{categoryName}</ProductHeader>
       {productModalVisibility && (
         <ProductModal
           onClose={() => setProductModalVisibility(false)}
@@ -86,7 +141,6 @@ export default function ProductPage() {
     </ProductPageContainer>
   );
 }
-
 const ProductPageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -98,14 +152,12 @@ const HeaderDiv = styled.div`
   background-size: cover;
   @media (min-width: 768px) {
     height: 500px;
-
     margin: auto;
   }
   @media (min-width: 1198px) {
     height: 700px;
   }
 `;
-
 const HeaderContainer = styled.div`
   width: 90%;
   height: 400px;
@@ -151,7 +203,6 @@ const ChildDivCenter = styled.div`
     padding-right: 40px;
   }
 `;
-
 const Header = styled.h1`
   color: rgb(229, 214, 110);
   font-size: 25px;
@@ -199,5 +250,81 @@ const ProductCardContainer = styled.div`
 
    @media (min-width: 1198px) {
     grid-template-columns: repeat(3, 1fr);
+`;
+const ProductHeader = styled.h2`
+  text-align: center;
+  font-size: 25px;
+  margin: 3px auto -15px;
+  @media (min-width: 768px) {
+    margin-bottom: 15px;
+  }
+`;
+const SelectCategory = styled.p`
+  font-size: 25px;
+`;
+const SelectCategoryContainer = styled.div`
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+const Icon = styled.div`
+  padding-top: 10px;
+  padding-left: 2px;
+`;
+const FilterCategory = styled.div<FilterCategoryProps>`
+  border-radius: 10px;
+  background-color: rgba(245, 245, 245, 0.6);
+  padding: 4px;
+  width: 80%;
+  max-width: 1400px;
+  margin: auto;
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
 
+  ${({ showCategoryList }) =>
+    showCategoryList
+      ? css`
+          max-height: 500px;
+          opacity: 1;
+          visibility: visible;
+        `
+      : css`
+          max-height: 0;
+          opacity: 0;
+          visibility: hidden;
+        `}
+
+  @media (min-width: 768px) {
+    padding: 10px;
+    margin-top: 30px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-height: none;
+    opacity: 1;
+    visibility: visible;
+  }
+  @media (min-width: 1000px) {
+    padding: 10px;
+  }
+`;
+const CategoryItem = styled.p`
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  @media (min-width: 768px) {
+    display: block;
+    border: 2px solid black;
+    min-width: 100px;
+    border-radius: 15px;
+  }
+  @media (min-width: 1198px) {
+    width: 140px;
+    font-size: 22px;
+  }
 `;

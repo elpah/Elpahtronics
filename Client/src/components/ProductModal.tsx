@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Product from "../productType";
 
@@ -8,7 +8,7 @@ type Props = {
   productDescription: string;
   productPrice: string;
   productImage: string;
-  onClose: () => void; // Add onClose prop for close button
+  onClose: () => void;
 };
 
 export default function ProductModal({
@@ -19,6 +19,16 @@ export default function ProductModal({
   productImage,
   onClose,
 }: Props) {
+  const [quantity, setQuantity] = useState<number>(1);
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+    }
+  };
   return (
     <ProductModalDiv>
       <ProductCardDiv>
@@ -31,11 +41,15 @@ export default function ProductModal({
           <ProductDescription>{productDescription}</ProductDescription>
           <ProductPrice>{productPrice}</ProductPrice>
           <QuantityContainer>
-            <QuantityButton>-</QuantityButton>
-            <QuantityText>0</QuantityText>
-            <QuantityButton>+</QuantityButton>
+            <QuantityButton onClick={handleDecrement}>-</QuantityButton>
+            <QuantityText>{quantity}</QuantityText>
+            <QuantityButton onClick={handleIncrement}>+</QuantityButton>
           </QuantityContainer>
-          <AddToCartButton>Add to Cart</AddToCartButton>
+          <AddToCartButton
+            onClick={() => console.log("add to cart button clicked")}
+          >
+            Add to Cart
+          </AddToCartButton>
         </DetailsDiv>
       </ProductCardDiv>
     </ProductModalDiv>
@@ -57,6 +71,7 @@ const ProductModalDiv = styled.div`
 
 const ProductCardDiv = styled.div`
   width: 90%;
+  max-width:900px;
   margin: auto;
   background-color: white;
   position: relative;
@@ -64,14 +79,25 @@ const ProductCardDiv = styled.div`
   flex-direction: column;
   @media (min-width: 768px) {
     flex-direction: row;
+    width: 70%;
   }
+  @media (min-width: 1198px) {
+    width: 60%;
+    height:450px;
+
+
 `;
 
 const ImageDiv = styled.div`
+  background-color: RGB(245, 245, 245);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 `;
 
 const Image = styled.img`
@@ -135,9 +161,15 @@ const QuantityText = styled.p`
 
 const AddToCartButton = styled.button`
   padding: 8px 16px;
-  font-size: 18px;
-  border: none;
-  background-color: #007bff;
-  color: #fff;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: transparent;
+  color: black;
   cursor: pointer;
+  font-size: 20px;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 `;

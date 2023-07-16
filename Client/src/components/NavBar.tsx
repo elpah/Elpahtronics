@@ -6,6 +6,52 @@ import { BsCart } from "react-icons/bs";
 import Home from "../pages/Home";
 import Product from "../pages/ProductPage";
 import Contact from "../pages/Contact";
+
+export default function NavBar() {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const toggleNav = () => setShowMobileMenu(!showMobileMenu);
+  const closeMobileMenu = () => setShowMobileMenu(false);
+
+  return (
+    <StyledHeader>
+      <NavContainer>
+        <div>Logo</div>
+        <div>
+          {
+            <NavList showMobileMenu={showMobileMenu}>
+              <NavItem>
+                <NavLink to="/" onClick={closeMobileMenu}>
+                  Home
+                </NavLink>
+              </NavItem>
+
+              <NavItem>
+                <NavLink to="/product" onClick={closeMobileMenu}>
+                  Product
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/contact" onClick={closeMobileMenu}>
+                  Contact
+                </NavLink>
+              </NavItem>
+            </NavList>
+          }
+        </div>
+        <CartHamContainer>
+          <CartContainer>
+            <StyledLink to="/Cart">
+              <BsCart />
+            </StyledLink>
+          </CartContainer>
+          <HamburgerToggle onClick={toggleNav}>
+            {showMobileMenu ? <FaTimes /> : <FaBars />}
+          </HamburgerToggle>
+        </CartHamContainer>
+      </NavContainer>
+    </StyledHeader>
+  );
+}
 const NavContainer = styled.nav`
   display: flex;
   flex-direction: row;
@@ -30,7 +76,6 @@ const NavList = styled.ul<{ showMobileMenu: boolean }>`
   list-style: none;
   display: flex;
   align-items: center;
-  // margin-right: 10px;
   margin-top: 0px;
 
   @media (max-width: 768px) {
@@ -86,49 +131,3 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: #333;
 `;
-
-export default function NavBar() {
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const toggleNav = () => setShowMobileMenu(!showMobileMenu);
-  const closeMobileMenu = () => setShowMobileMenu(false);
-
-  return (
-    <StyledHeader>
-      <NavContainer>
-        <div>Logo</div>
-        <div>
-          {
-            <NavList showMobileMenu={showMobileMenu}>
-              <NavItem>
-                <NavLink to="/" onClick={closeMobileMenu}>
-                  Home
-                </NavLink>
-              </NavItem>
-
-              <NavItem>
-                <NavLink to="/product" onClick={closeMobileMenu}>
-                  Product
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="/contact" onClick={closeMobileMenu}>
-                  Contact
-                </NavLink>
-              </NavItem>
-            </NavList>
-          }
-        </div>
-        <CartHamContainer>
-          <CartContainer>
-            <StyledLink to="/Cart">
-              <BsCart />
-            </StyledLink>
-          </CartContainer>
-          <HamburgerToggle onClick={toggleNav}>
-            {showMobileMenu ? <FaTimes /> : <FaBars />}
-          </HamburgerToggle>
-        </CartHamContainer>
-      </NavContainer>
-    </StyledHeader>
-  );
-}
