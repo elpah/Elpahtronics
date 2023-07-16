@@ -2,7 +2,7 @@ import * as mongoDB from 'mongodb';
 import client from '../db/client';
 const data = require('../db/preSeedProductData.json');
 
-let db: mongoDB.Db | undefined; // Database instance
+let db: mongoDB.Db;
 
 const connectToDatabase = async () => {
   if (!db) {
@@ -16,6 +16,13 @@ const getAllProducts = async () => {
   const db = await connectToDatabase();
   const col: mongoDB.Collection = db.collection('products');
   const products = await col.find({}).toArray();
+  return products;
+};
+
+const getProductByCategory = async (category:string) => {
+  const db = await connectToDatabase();
+  const col: mongoDB.Collection = db.collection('products');
+  const products = await col.find({category}).toArray();
   return products;
 };
 
@@ -34,7 +41,6 @@ const updateProduct = async (id:string, date:string) => {
   return updateSitter;
 };
 
-
 const preSeedData = async () => {
   const db = await connectToDatabase();
   const col: mongoDB.Collection = db.collection('products');
@@ -42,6 +48,5 @@ const preSeedData = async () => {
   col.insertMany(data);
 };
 
-
-export { getAllProducts, getProductById, updateProduct, preSeedData,};
+export { getAllProducts, getProductById,getProductByCategory, updateProduct, preSeedData,};
 

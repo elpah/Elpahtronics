@@ -1,5 +1,5 @@
 import Router from 'express';
-import { getAllProducts, getProductById, updateProduct,} from '../productsDb/db';
+import { getAllProducts, getProductByCategory,getProductById, updateProduct} from '../productsDb/db';
 
 const router = Router();
 
@@ -7,6 +7,16 @@ router.get('/', async (req, res) => {
 res.send("Hello")
 });
 
+router.get('/available/:category',async(req,res)=>{
+  const { category } = req.params;
+  const products = await getProductByCategory(category.trim().toLowerCase());
+
+  if(products){
+    console.log('here', products);
+    res.json(products);
+  }
+
+})
 router.get('/available', async (_req, res) => {
   const products = await getAllProducts();
   res.json(products);
