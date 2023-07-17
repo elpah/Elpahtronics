@@ -129,4 +129,7 @@ const AddToCartButton = styled.button`
     background-color: black;
     color: white;
   }
+  &:active {
+    color: green;
+  }
 `;

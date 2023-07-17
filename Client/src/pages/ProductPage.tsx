@@ -36,25 +36,6 @@ export default function ProductPage() {
     setSelectedProduct(product);
     setProductModalVisibility(true);
   };
-  console.log(products);
-  // const handleCategoryItemClick = (categoryName: string) => {
-  //   const lowerCategory = categoryName.toLowerCase();
-  //   const filteredProducts = originalProducts.filter(
-  //     (item) => item.category === lowerCategory
-  //   );
-  //   setProducts(filteredProducts);
-  // };
-  // useEffect(() => {
-  //   handleCategoryItemClick(categoryName);
-  // }, [categoryName]);
-
-  // useEffect(() => {
-  //   console.log(categoryName);
-  // }, [categoryName]);
-  // useEffect(() => {
-  //   console.log(products);
-  // }, [products]);
-
   return (
     <ProductPageContainer>
       <HeaderDiv>
@@ -80,27 +61,11 @@ export default function ProductPage() {
       </SelectCategoryContainer>
       {
         <FilterCategory showCategoryList={showCategoryList}>
-          <CategoryItem onClick={() => setCategoryName("")}>
-            All Products
-          </CategoryItem>
-          <CategoryItem onClick={() => setCategoryName("furniture")}>
-            Furniture
-          </CategoryItem>
-          <CategoryItem onClick={() => setCategoryName("bags")}>
-            Bags
-          </CategoryItem>
-          <CategoryItem onClick={() => setCategoryName("Books")}>
-            Books
-          </CategoryItem>
-          <CategoryItem onClick={() => setCategoryName("Tech")}>
-            Tech
-          </CategoryItem>
-          <CategoryItem onClick={() => setCategoryName("sneakers")}>
-            Sneakers
-          </CategoryItem>
-          <CategoryItem onClick={() => setCategoryName("Travel")}>
-            Travel
-          </CategoryItem>
+          {label.map((labelItem) => (
+            <CategoryItem onClick={() => setCategoryName(labelItem.value)}>
+              {labelItem.categoryitemName}
+            </CategoryItem>
+          ))}
         </FilterCategory>
       }
       <ProductHeader>{categoryName}</ProductHeader>
@@ -115,9 +80,14 @@ export default function ProductPage() {
       )}
       <ProductCardContainer>
         {products
-          .filter((item) =>
-            item.category.toLowerCase().includes(categoryName.toLowerCase())
-          )
+
+          .filter((item) => {
+            return categoryName === "All Products"
+              ? true
+              : item.category
+                  .toLowerCase()
+                  .includes(categoryName.toLowerCase());
+          })
           .map((product) => (
             <ProductCard
               key={product.productId}
@@ -133,6 +103,16 @@ export default function ProductPage() {
     </ProductPageContainer>
   );
 }
+
+const label = [
+  { categoryitemName: "All Products", value: "All Products" },
+  { categoryitemName: "Furniture", value: "furniture" },
+  { categoryitemName: "Bags", value: "bags" },
+  { categoryitemName: "Books", value: "books" },
+  { categoryitemName: "Tech", value: "tech" },
+  { categoryitemName: "Sneakers", value: "sneakers" },
+  { categoryitemName: "Travel", value: "travel" },
+];
 
 const ProductPageContainer = styled.div`
   display: flex;
@@ -310,6 +290,7 @@ const CategoryItem = styled.p`
   font-size: 18px;
   text-align: center;
   padding: 5px;
+
   @media (min-width: 768px) {
     display: block;
     border: 2px solid black;
@@ -319,6 +300,10 @@ const CategoryItem = styled.p`
   @media (min-width: 1198px) {
     width: 140px;
     font-size: 22px;
+  }
+  &:hover {
+    background-color: black;
+    color: white;
   }
 `;
 
