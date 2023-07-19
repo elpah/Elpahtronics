@@ -8,6 +8,8 @@ type Props = {
   productDescription: string;
   productPrice: string;
   productImage: string;
+  handleAddToCartClick: (productId: string | undefined) => void;
+
   onClose: () => void;
 };
 
@@ -17,6 +19,7 @@ export default function ProductModal({
   productDescription,
   productPrice,
   productImage,
+  handleAddToCartClick,
   onClose,
 }: Props) {
   const [quantity, setQuantity] = useState<number>(1);
@@ -29,6 +32,12 @@ export default function ProductModal({
       setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
+
+  const addToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    handleAddToCartClick(productId);
+  };
+
   return (
     <ProductModalDiv>
       <ProductCardDiv>
@@ -45,11 +54,8 @@ export default function ProductModal({
             <QuantityText>{quantity}</QuantityText>
             <QuantityButton onClick={handleIncrement}>+</QuantityButton>
           </QuantityContainer>
-          <AddToCartButton
-            onClick={() => console.log("add to cart button clicked")}
-          >
-            Add to Cart
-          </AddToCartButton>
+
+          <AddToCartButton onClick={addToCart}>Add to cart</AddToCartButton>
         </DetailsDiv>
       </ProductCardDiv>
     </ProductModalDiv>

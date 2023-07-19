@@ -36,15 +36,54 @@ export default function ProductPage() {
     setSelectedProduct(product);
     setProductModalVisibility(true);
   };
+  // const handleAddToCartClick = (productId: string) => {
+  //   const selectedProduct = products.find(
+  //     (product) => product.productId === productId
+  //   );
+  //   if (selectedProduct) {
+  //     //check if product already exist in cart
+  //       const alreadyInCart = cartArray.find(
+  //       (product) => product.productId === productId)
+  //         if (alreadyInCart){
+  //           alreadyInCart.quantity+=1
+  //         }
+  //     // setCartArray((prevCartArray) => [...prevCartArray, selectedProduct]);
+  //     // console.log(selectedProduct);
+  //   }
+  // };
   const handleAddToCartClick = (productId: string) => {
-    const selectedProduct = products.find(
+    const existingProduct = cartArray.find(
       (product) => product.productId === productId
     );
-    if (selectedProduct) {
-      setCartArray((prevCartArray) => [...prevCartArray, selectedProduct]);
-      console.log(selectedProduct);
+
+    if (existingProduct) {
+      const updatedCartArray = cartArray.map((product) => {
+        if (product.productId === productId) {
+          return {
+            ...product,
+            quantity: product.quantity + 1,
+          };
+        }
+        return product;
+      });
+
+      setCartArray(updatedCartArray);
+    } else {
+      const selectedProduct = products.find(
+        (product) => product.productId === productId
+      );
+
+      if (selectedProduct) {
+        const updatedProduct = {
+          ...selectedProduct,
+          quantity: 1,
+        };
+
+        setCartArray((prevCartArray) => [...prevCartArray, updatedProduct]);
+      }
     }
   };
+  useEffect(() => console.log(cartArray), [cartArray]);
 
   return (
     <ProductPageContainer>
@@ -83,9 +122,13 @@ export default function ProductPage() {
         <ProductModal
           onClose={() => setProductModalVisibility(false)}
           productName={selectedProduct?.productName || ""}
+          productId={selectedProduct?.productId}
           productDescription={selectedProduct?.productDescription || ""}
           productPrice={selectedProduct?.productPrice || ""}
           productImage={selectedProduct?.productImage || ""}
+          handleAddToCartClick={() =>
+            handleAddToCartClick(selectedProduct?.productId || "")
+          }
         />
       )}
       <ProductCardContainer>
