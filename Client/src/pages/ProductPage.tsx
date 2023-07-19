@@ -15,6 +15,7 @@ interface FilterCategoryProps {
 export default function ProductPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
+  const [quantity, setQuantity] = useState<number>(1);
   const [productModalVisibility, setProductModalVisibility] =
     useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -36,21 +37,7 @@ export default function ProductPage() {
     setSelectedProduct(product);
     setProductModalVisibility(true);
   };
-  // const handleAddToCartClick = (productId: string) => {
-  //   const selectedProduct = products.find(
-  //     (product) => product.productId === productId
-  //   );
-  //   if (selectedProduct) {
-  //     //check if product already exist in cart
-  //       const alreadyInCart = cartArray.find(
-  //       (product) => product.productId === productId)
-  //         if (alreadyInCart){
-  //           alreadyInCart.quantity+=1
-  //         }
-  //     // setCartArray((prevCartArray) => [...prevCartArray, selectedProduct]);
-  //     // console.log(selectedProduct);
-  //   }
-  // };
+
   const handleAddToCartClick = (productId: string) => {
     const existingProduct = cartArray.find(
       (product) => product.productId === productId
@@ -61,27 +48,26 @@ export default function ProductPage() {
         if (product.productId === productId) {
           return {
             ...product,
-            quantity: product.quantity + 1,
+            productQuantity: product.productQuantity + quantity,
           };
         }
         return product;
       });
-
       setCartArray(updatedCartArray);
     } else {
       const selectedProduct = products.find(
         (product) => product.productId === productId
       );
-
       if (selectedProduct) {
         const updatedProduct = {
           ...selectedProduct,
-          quantity: 1,
+          productQuantity: quantity,
         };
 
         setCartArray((prevCartArray) => [...prevCartArray, updatedProduct]);
       }
     }
+    setQuantity(1);
   };
   useEffect(() => console.log(cartArray), [cartArray]);
 
@@ -126,6 +112,9 @@ export default function ProductPage() {
           productDescription={selectedProduct?.productDescription || ""}
           productPrice={selectedProduct?.productPrice || ""}
           productImage={selectedProduct?.productImage || ""}
+          handleIncrement={() => setQuantity(quantity + 1)}
+          handleDecrement={() => setQuantity(quantity - 1)}
+          quantity={quantity}
           handleAddToCartClick={() =>
             handleAddToCartClick(selectedProduct?.productId || "")
           }
