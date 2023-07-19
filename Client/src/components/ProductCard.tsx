@@ -11,15 +11,18 @@ interface Props {
   category?: string;
   quantity?: number;
   handleCardClick: () => void;
+  handleAddToCartClick: (productId: string | undefined) => void;
 }
 
 export default function ProductCard({
+  productId,
   productName,
   productPrice,
   productDescription,
   productImage,
   category,
   handleCardClick,
+  handleAddToCartClick,
 }: Props) {
   const [quantity, setQuantity] = useState<number>(1);
   const handleIncrement = () => {
@@ -31,6 +34,12 @@ export default function ProductCard({
       setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
+
+  const addToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    handleAddToCartClick(productId);
+  };
+
   return (
     <ProductCardContainerDiv>
       <ImageDiv onClick={handleCardClick}>
@@ -44,18 +53,10 @@ export default function ProductCard({
         <Description onClick={handleCardClick}>
           {productDescription}
         </Description>
-        <QuantityAddToCartDiv>
-          {/* <QuantityDiv>
-            <AddSubtractButton onClick={handleDecrement}>-</AddSubtractButton>
-            <Quantity>{quantity}</Quantity>
-            <AddSubtractButton onClick={handleIncrement}>+</AddSubtractButton>
-          </QuantityDiv> */}
-          <AddToCartButton
-            onClick={() => console.log("add to cart button clicked")}
-          >
-            Add to cart
-          </AddToCartButton>
-        </QuantityAddToCartDiv>
+        {/* <QuantityAddToCartDiv> */}
+
+        <AddToCartButton onClick={addToCart}>Add to cart</AddToCartButton>
+        {/* </QuantityAddToCartDiv> */}
       </WithoutImageDiv>
     </ProductCardContainerDiv>
   );

@@ -19,7 +19,7 @@ export default function ProductPage() {
     useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
-
+  const [cartArray, setCartArray] = useState<Product[]>([]);
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -36,6 +36,16 @@ export default function ProductPage() {
     setSelectedProduct(product);
     setProductModalVisibility(true);
   };
+  const handleAddToCartClick = (productId: string) => {
+    const selectedProduct = products.find(
+      (product) => product.productId === productId
+    );
+    if (selectedProduct) {
+      setCartArray((prevCartArray) => [...prevCartArray, selectedProduct]);
+      console.log(selectedProduct);
+    }
+  };
+
   return (
     <ProductPageContainer>
       <HeaderDiv>
@@ -96,6 +106,9 @@ export default function ProductPage() {
               productPrice={product.productPrice}
               productImage={product.productImage}
               handleCardClick={() => handleCardClick(product)}
+              handleAddToCartClick={() =>
+                handleAddToCartClick(product.productId)
+              }
             />
           ))}
       </ProductCardContainer>
@@ -306,6 +319,3 @@ const CategoryItem = styled.p`
     color: white;
   }
 `;
-
-//
-//Aray of object. label and value
