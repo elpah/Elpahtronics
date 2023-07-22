@@ -85,22 +85,28 @@ const ContactCardContainer = styled.div`
 `;
 const FaqFormContainer = styled.div`
   width: 90%;
-  height: 500px;
+  max-width: 1400px;
   border: 2px solid black;
   margin: 20px auto;
   display: grid;
-  @media (min-width: 1200px) {
+  @media (min-width: 1198px) {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 8px;
   }
 `;
-const FaqContainer = styled.div`
-  border: 2px solid red;
-`;
+const FaqContainer = styled.div``;
 const FormContainer = styled.div`
-  border: 2px solid red;
+  @media (max-width: 1198px) {
+    margin-top: 30px;
+  }
 `;
-const FaqFormHeader = styled.h2``;
+const FaqFormHeader = styled.h2`
+  font-size: 25px;
+  text-align: center;
+  @media (max-width: 280px) {
+    font-size: 18px;
+  }
+`;
 const Faq = styled.div``;
 const Form = styled.div``;
 
@@ -152,6 +158,8 @@ export default function Contact() {
         <FaqContainer>
           <FaqFormHeader>Frequently Asked Questions</FaqFormHeader>
           <Faq>
+            <FAQ />
+            <FAQ />
             <FAQ />
           </Faq>
         </FaqContainer>
