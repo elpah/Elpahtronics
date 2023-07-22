@@ -26,7 +26,7 @@ type CategoriesOrBrand = {
 };
 
 const HomePage = () => {
-  const [categories, setCategories] = useState<CategoriesOrBrand[]>([
+  const categories = [
     {
       paragraph: "Furniture",
       image: furniture,
@@ -57,8 +57,8 @@ const HomePage = () => {
       image: travel,
       link: "somelink",
     },
-  ]);
-  const [brands, setBrands] = useState<CategoriesOrBrand[]>([
+  ];
+  const brands = [
     {
       header: "Apple",
       paragraph: "Delivery in 24 hours",
@@ -84,55 +84,53 @@ const HomePage = () => {
       image: zaraLogo,
       link: "somelink",
     },
-  ]);
+  ];
   return (
-    <div>
-      <HomePageContainer>
-        <HeaderDiv>
-          <HeaderContainer>
-            <Header>
-              Shopping And
-              {"\n"}
-              Department Store...
-            </Header>
-            <Para>
-              Shopping is a bit of a relaxing hobby for me, which is sometimes
-              troubling for the bank balance.
-            </Para>
-            <Button
-              buttonName="Shop Now"
-              onClick={() =>
-                console.log("Handle Click later..Redirect to product Page")
-              }
-            />
-          </HeaderContainer>
-        </HeaderDiv>
-        <CategoryHeader>Shop some of categories</CategoryHeader>
-        <CategoryCardContainer>
-          {categories.map((category, index) => (
-            <CategoryCard
-              key={index}
-              categoryName={category.paragraph}
-              categoryLink={category.link}
-              categoryImage={category.image}
-            />
-          ))}
-        </CategoryCardContainer>
-        <CategoryHeader>Choose By Brand</CategoryHeader>
-        <BrandCardContainer>
-          {brands.map((brand, index) => (
-            <BrandCard
-              key={index}
-              image={brand.image}
-              header={brand.header}
-              paragraph={brand.paragraph}
-              brandLink={brand.link}
-            />
-          ))}
-        </BrandCardContainer>
-        <Footer />
-      </HomePageContainer>
-    </div>
+    <HomePageContainer>
+      <HeaderDiv>
+        <HeaderContainer>
+          <Header>
+            Shopping And
+            {"\n"}
+            Department Store...
+          </Header>
+          <Para>
+            Shopping is a bit of a relaxing hobby for me, which is sometimes
+            troubling for the bank balance.
+          </Para>
+          <Button
+            buttonName="Shop Now"
+            onClick={() =>
+              console.log("Handle Click later..Redirect to product Page")
+            }
+          />
+        </HeaderContainer>
+      </HeaderDiv>
+      <CategoryHeader>Shop some of categories</CategoryHeader>
+      <CategoryCardContainer>
+        {categories.map((category, index) => (
+          <CategoryCard
+            key={index}
+            categoryName={category.paragraph}
+            categoryLink={category.link}
+            categoryImage={category.image}
+          />
+        ))}
+      </CategoryCardContainer>
+      <CategoryHeader>Choose By Brand</CategoryHeader>
+      <BrandCardContainer>
+        {brands.map((brand, index) => (
+          <BrandCard
+            key={index}
+            image={brand.image}
+            header={brand.header}
+            paragraph={brand.paragraph}
+            brandLink={brand.link}
+          />
+        ))}
+      </BrandCardContainer>
+      <Footer />
+    </HomePageContainer>
   );
 };
 
