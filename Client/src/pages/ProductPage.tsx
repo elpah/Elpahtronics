@@ -6,14 +6,19 @@ import Button from "../components/Button";
 import ProductCard from "../components/ProductCard";
 import Product from "../productType";
 import ProductModal from "../components/ProductModal";
+import { useQuery } from "@tanstack/react-query";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import axios from "axios";
+import useProducts from "../components/hooks/useProducts";
+import ProductsIsLoading from "../components/productLoading/ProductsIsLoading";
+import ProductCardIsLoading from "../components/productLoading/ProductCardIsLoading";
 
 interface FilterCategoryProps {
   showCategoryList: boolean;
 }
 
 export default function ProductPage() {
-  const [products, setProducts] = useState<Product[]>([]);
+  // const [products, setProducts] = useState<Product[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
   const [productModalVisibility, setProductModalVisibility] =
@@ -21,17 +26,7 @@ export default function ProductPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
   const [cartArray, setCartArray] = useState<Product[]>([]);
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = async () => {
-    const response = await fetch(
-      "http://localhost:8000/api/products/available"
-    );
-    const results: Product[] = await response.json();
-    setProducts(results);
-  };
+  const { data: products, error, isLoading } = useProducts();
 
   const handleCardClick = (product: Product) => {
     setSelectedProduct(product);
@@ -55,7 +50,7 @@ export default function ProductPage() {
       });
       setCartArray(updatedCartArray);
     } else {
-      const selectedProduct = products.find(
+      const selectedProduct = products?.find(
         (product) => product.productId === productId
       );
       if (selectedProduct) {
@@ -69,7 +64,6 @@ export default function ProductPage() {
     }
     setQuantity(1);
   };
-  useEffect(() => console.log(cartArray), [cartArray]);
 
   return (
     <ProductPageContainer>
@@ -120,30 +114,33 @@ export default function ProductPage() {
           }
         />
       )}
-      <ProductCardContainer>
-        {products
-
-          .filter((item) => {
-            return categoryName === "All Products"
-              ? true
-              : item.category
-                  .toLowerCase()
-                  .includes(categoryName.toLowerCase());
-          })
-          .map((product) => (
-            <ProductCard
-              key={product.productId}
-              productName={product.productName}
-              productDescription={product.productDescription}
-              productPrice={product.productPrice}
-              productImage={product.productImage}
-              handleCardClick={() => handleCardClick(product)}
-              handleAddToCartClick={() =>
-                handleAddToCartClick(product.productId)
-              }
-            />
-          ))}
-      </ProductCardContainer>
+      {isLoading ? (
+        <ProductsIsLoading />
+      ) : (
+        <ProductCardContainer>
+          {products
+            ?.filter((item) => {
+              return categoryName === "All Products"
+                ? true
+                : item.category
+                    .toLowerCase()
+                    .includes(categoryName.toLowerCase());
+            })
+            .map((product) => (
+              <ProductCard
+                key={product.productId}
+                productName={product.productName}
+                productDescription={product.productDescription}
+                productPrice={product.productPrice}
+                productImage={product.productImage}
+                handleCardClick={() => handleCardClick(product)}
+                handleAddToCartClick={() =>
+                  handleAddToCartClick(product.productId)
+                }
+              />
+            ))}
+        </ProductCardContainer>
+      )}
       <Footer />
     </ProductPageContainer>
   );
@@ -278,7 +275,7 @@ const ProductHeader = styled.h2`
   }
 `;
 const SelectCategory = styled.p`
-  font-size: 25px;
+  // font-size: 10px;
 `;
 const SelectCategoryContainer = styled.div`
   width: 80%;
@@ -297,7 +294,7 @@ const FilterCategory = styled.div<FilterCategoryProps>`
   background-color: rgba(245, 245, 245, 0.6);
   padding: 4px;
   width: 80%;
-  max-width: 1400px;
+  max-width: 1300px;
   margin: auto;
   margin-bottom: 20px;
   overflow: hidden;
@@ -334,9 +331,12 @@ const FilterCategory = styled.div<FilterCategoryProps>`
 const CategoryItem = styled.p`
   font-size: 18px;
   text-align: center;
+
   padding: 5px;
 
   @media (min-width: 768px) {
+    font-size: 15px;
+
     display: block;
     border: 2px solid black;
     min-width: 100px;

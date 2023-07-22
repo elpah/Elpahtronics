@@ -64,6 +64,7 @@ export default function ProductCard({
 const ProductCardContainerDiv = styled.div`
   margin: 30px auto 30px;
   width: 90%;
+  max-width: 500px;
   background-color: #fff;
   border-radius: 4px;
 `;
