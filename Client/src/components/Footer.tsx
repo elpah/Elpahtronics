@@ -5,9 +5,9 @@ import { FaShoppingBag } from "react-icons/fa";
 const TopFooterContainer = styled.div`
   max-width: 1400px;
   margin: 40px auto 0;
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
-  padding: 50px 0;
+  border-top: 2px solid rgb(226, 226, 226);
+  border-bottom: 2px solid rgb(226, 226, 226);
+  padding: 25px 0;
   width: 90%;
   @media (min-width: 1198px) {
     padding-bottom: 0;

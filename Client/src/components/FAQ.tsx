@@ -1,29 +1,27 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import styled from "styled-components";
-import { FaGift, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+interface Props {
+  title: string;
+  paragraph: string;
+  icon: ReactElement;
+}
 
-export default function FAQ() {
+export default function FAQ({ title, paragraph, icon }: Props) {
   const [showPara, setShowPara] = useState<boolean>(false);
 
   return (
     <FaqContainer>
       <WithoutParagraph>
         <HeaderWrapper>
-          <IconWrapper>
-            <FaGift />
-          </IconWrapper>
-          <Header>Is there a free trial available?</Header>
+          <IconWrapper>{icon}</IconWrapper>
+          <Header>{title}</Header>
         </HeaderWrapper>
         <FaIconWrapper onClick={() => setShowPara(!showPara)}>
           {showPara ? <FaChevronUp /> : <FaChevronDown />}
         </FaIconWrapper>
       </WithoutParagraph>
-      {showPara && (
-        <Paragraph>
-          Yes, you can try us for free for 30 days. If you want, we will provide
-          you with a free 30 minutes onboarding call to get you up and running.
-        </Paragraph>
-      )}
+      {showPara && <Paragraph>{paragraph}</Paragraph>}
     </FaqContainer>
   );
 }
@@ -49,7 +47,7 @@ const IconWrapper = styled.div`
   border-radius: 5px;
   height: 35px;
   margin-right: 10px;
-  margin-top: 8px;
+  margin-top: 2px;
   @media (max-width: 280px) {
     font-size: 15px;
     height: 31px;
@@ -61,9 +59,9 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
 `;
 
-const Header = styled.h2`
-  font-size: 20px;
-  font-weight: bold;
+const Header = styled.p`
+  font-size: 18px;
+  font-weight: 600;
   margin-bottom: 8px;
   @media (max-width: 280px) {
     font-size: 18px;

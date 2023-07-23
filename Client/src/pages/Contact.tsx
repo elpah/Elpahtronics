@@ -7,8 +7,15 @@ import {
   FaUsers,
   FaPhoneAlt,
   FaMapMarkerAlt,
+  FaGift,
+  FaQuestionCircle,
+  FaUserFriends,
+  FaClock,
+  FaPhoneSquareAlt,
 } from "react-icons/fa";
+
 import FAQ from "../components/FAQ";
+import Footer from "../components/Footer";
 
 const ContactPageContainer = styled.div`
   // display: flex;
@@ -89,6 +96,7 @@ const FaqFormContainer = styled.div`
   border: 2px solid black;
   margin: 20px auto;
   display: grid;
+
   @media (min-width: 1198px) {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 8px;
@@ -137,6 +145,38 @@ export default function Contact() {
       icon: <FaPhoneAlt />,
     },
   ];
+  const Faquestions = [
+    {
+      title: "Is there a free trial available?",
+      paragraph:
+        "Yes, you can try us for free for 30 days. If you want, we will provide you with a free 30 minutes onboarding call to get you up and running.",
+      icon: <FaGift />,
+    },
+    {
+      title: "Can I change my plan later?",
+      paragraph:
+        "Yes, you can change your plan later at any time. We offer flexible plans that allow you to upgrade or downgrade as needed.",
+      icon: <FaQuestionCircle />,
+    },
+    {
+      title: "What payment methods do you accept?",
+      paragraph:
+        "We accept all major credit cards, including Visa, Mastercard, American Express, and Discover. We also support payments through PayPal.",
+      icon: <FaUserFriends />,
+    },
+    {
+      title: "Is my data safe and secure?",
+      paragraph:
+        "Yes, we take data security very seriously. We use industry-standard encryption and security measures to protect your data from unauthorized access.",
+      icon: <FaClock />,
+    },
+    {
+      title: "Do you offer customer support?",
+      paragraph:
+        "Absolutely! We have a dedicated customer support team available 24/7 to assist you with any questions or issues you may have.",
+      icon: <FaPhoneSquareAlt />,
+    },
+  ];
   return (
     <ContactPageContainer>
       <HeaderDiv>
@@ -158,9 +198,14 @@ export default function Contact() {
         <FaqContainer>
           <FaqFormHeader>Frequently Asked Questions</FaqFormHeader>
           <Faq>
-            <FAQ />
-            <FAQ />
-            <FAQ />
+            {Faquestions.map((question, index) => (
+              <FAQ
+                key={index}
+                title={question.title}
+                paragraph={question.paragraph}
+                icon={question.icon}
+              />
+            ))}
           </Faq>
         </FaqContainer>
         <FormContainer>
@@ -168,6 +213,7 @@ export default function Contact() {
           <Form></Form>
         </FormContainer>
       </FaqFormContainer>
+      <Footer />
     </ContactPageContainer>
   );
 }
