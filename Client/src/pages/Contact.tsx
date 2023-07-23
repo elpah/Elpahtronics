@@ -16,6 +16,7 @@ import {
 
 import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
+import MessageForm from "../components/MessageForm";
 
 const ContactPageContainer = styled.div`
   // display: flex;
@@ -93,19 +94,17 @@ const ContactCardContainer = styled.div`
 const FaqFormContainer = styled.div`
   width: 90%;
   max-width: 1400px;
-  border: 2px solid black;
   margin: 20px auto;
   display: grid;
 
-  @media (min-width: 1198px) {
+  @media (min-width: 850px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 8px;
+    grid-gap: 50px;
   }
 `;
 const FaqContainer = styled.div``;
 const FormContainer = styled.div`
   @media (max-width: 1198px) {
-    margin-top: 30px;
   }
 `;
 const FaqFormHeader = styled.h2`
@@ -210,7 +209,9 @@ export default function Contact() {
         </FaqContainer>
         <FormContainer>
           <FaqFormHeader> Send Us A Message</FaqFormHeader>
-          <Form></Form>
+          <Form>
+            <MessageForm />
+          </Form>
         </FormContainer>
       </FaqFormContainer>
       <Footer />

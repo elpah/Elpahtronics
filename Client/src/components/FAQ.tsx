@@ -27,6 +27,7 @@ export default function FAQ({ title, paragraph, icon }: Props) {
 }
 
 const FaqContainer = styled.div`
+  color: rgb(32, 33, 36);
   padding: 15px 30px 0px;
   @media (max-width: 280px) {
     padding: 15px;
