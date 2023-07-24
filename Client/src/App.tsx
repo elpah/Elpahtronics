@@ -9,6 +9,7 @@ import TopBar from "./components/TopBar";
 import NavBar from "./components/NavBar";
 import Cart from "./pages/Cart";
 import About from "./pages/About";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/product" element={<Product />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>
     </div>
