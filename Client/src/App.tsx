@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Contact from "./pages/Contact";
 import Product from "./pages/ProductPage";
@@ -8,8 +7,8 @@ import Home from "./pages/Home";
 import TopBar from "./components/TopBar";
 import NavBar from "./components/NavBar";
 import Cart from "./pages/Cart";
-import About from "./pages/About";
-import Admin from "./pages/Admin";
+import AdminLogin from "./pages/AdminLogin";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   return (
@@ -22,7 +21,10 @@ function App() {
           <Route path="/product" element={<Product />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/login" element={<AdminLogin />} />
+          <Route path="/adminpage" element={<AdminPage />} />
+
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </div>
     </div>
