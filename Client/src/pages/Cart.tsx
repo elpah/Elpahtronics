@@ -2,16 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import CartCard from "../components/CartCard";
 import { FaTags } from "react-icons/fa";
+import { useCartContext } from "../components/CartContext";
 
 export default function Cart() {
+  const { cartArray, setCartArray } = useCartContext();
+
   return (
     <CartDiv>
-      <CartCardContainer>
-        <CartCard />
-        <CartCard />
-        <CartCard />
-        <CartCard />
-      </CartCardContainer>
+      {cartArray.length > 0 ? (
+        <CartCardContainer>
+          {cartArray?.map((cartItem: any) => (
+            <CartCard
+              key={cartItem.productId}
+              productImage={cartItem.productImage}
+              productName={cartItem.productName}
+              productDetails={cartItem.productDescription}
+              price={cartItem.productPrice}
+              quantity={cartItem.productQuantity}
+            />
+          ))}{" "}
+        </CartCardContainer>
+      ) : (
+        <p>Empty Cart</p>
+      )}
       <SummaryDiv>
         <SummaryHeader>Order Summary</SummaryHeader>
         <PromoCodeInput type="text" placeholder="Have a promo code?" />

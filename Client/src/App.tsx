@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import Cart from "./pages/Cart";
 import AdminLogin from "./pages/AdminLogin";
 import AdminPage from "./pages/AdminPage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -23,8 +24,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<AdminLogin />} />
           <Route path="/adminpage" element={<AdminPage />} />
-
-          {/* <Route path="*" element={<NotFound />} /> */}
+          * <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </div>

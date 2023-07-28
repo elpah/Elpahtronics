@@ -42,6 +42,7 @@ export default function NavBar() {
           <CartContainer>
             <StyledLink to="/Cart">
               <BsCart />
+              <CartItemsNumber>10</CartItemsNumber>
             </StyledLink>
           </CartContainer>
           <HamburgerToggle onClick={toggleNav}>
@@ -128,6 +129,20 @@ const CartContainer = styled.div`
   }
 `;
 const StyledLink = styled(Link)`
+  position: relative;
   text-decoration: none;
   color: #333;
+`;
+
+const CartItemsNumber = styled.p`
+  position: absolute;
+  top: -6px;
+  right: -15px;
+  background-color: red;
+  border-radius: 150%;
+  color: white;
+  font-size: 15px;
+  width: 20px;
+  text-align: center;
+  font-weight: 600;
 `;

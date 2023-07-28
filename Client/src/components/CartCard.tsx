@@ -1,51 +1,31 @@
-// import React from "react";
-// import styled from "styled-components";
-
-// interface Props {
-//   productName: string;
-//   productDetails: string;
-//   productPrice: string;
-//   productImage: string;
-// }
-
-// export default function CartCard(props: Props) {
-//   const { productName, productDetails, productPrice, productImage } = props;
-
-//   return (
-//     <CartCardItemContainer>
-//       <ImageDiv>
-//         <img src={productImage} alt={productName} />
-//       </ImageDiv>
-//       <ProductDetailsDiv>
-//         <ProductHeader>{productName}</ProductHeader>
-//         <Paragraph>{productDetails}</Paragraph>
-//         <QuantityDiv>Quantity: 1</QuantityDiv>
-//         <PriceDiv>Price: ${productPrice}</PriceDiv>
-//         <RemoveButton>Remove</RemoveButton>
-//       </ProductDetailsDiv>
-//     </CartCardItemContainer>
-//   );
-// }
-
 import React from "react";
 import styled from "styled-components";
 
-interface Props {}
+interface Props {
+  productImage: string;
+  productName: string;
+  productDetails: string;
+  quantity: number;
+  price: string;
+}
 
-export default function CartCard() {
+export default function CartCard({
+  productImage,
+  productName,
+  productDetails,
+  quantity,
+  price,
+}: Props) {
   return (
     <CartCardItemContainer>
       <ImageDiv>
-        <Image
-          src="https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e61eb4ad4af6e75689_macbook%2013-min.png"
-          alt="productImage"
-        />
+        <Image src={productImage} alt="productImage" />
       </ImageDiv>
       <ProductDetailsDiv>
-        <ProductHeader>productName</ProductHeader>
-        <Paragraph>productDetails</Paragraph>
-        <QuantityDiv>Quantity: 1</QuantityDiv>
-        <PriceDiv>Price:</PriceDiv>
+        <ProductHeader>{productName}</ProductHeader>
+        <Paragraph>{productDetails}</Paragraph>
+        <QuantityDiv>{quantity}</QuantityDiv>
+        <PriceDiv>{price}</PriceDiv>
       </ProductDetailsDiv>
       <RemoveButton>X</RemoveButton>
     </CartCardItemContainer>

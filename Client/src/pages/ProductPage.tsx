@@ -12,20 +12,22 @@ import axios from "axios";
 import useProducts from "../components/hooks/useProducts";
 import ProductsIsLoading from "../components/productLoading/ProductsIsLoading";
 import ProductCardIsLoading from "../components/productLoading/ProductCardIsLoading";
+import { useCartContext } from "../components/CartContext";
 
 interface FilterCategoryProps {
   showCategoryList: boolean;
 }
 
 export default function ProductPage() {
-  // const [products, setProducts] = useState<Product[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
   const [productModalVisibility, setProductModalVisibility] =
     useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
-  const [cartArray, setCartArray] = useState<Product[]>([]);
+  // const [cartArray, setCartArray] = useState<Product[]>([]);
+  const { cartArray, setCartArray } = useCartContext();
+
   const { data: products, error, isLoading } = useProducts();
 
   const handleCardClick = (product: Product) => {
@@ -48,6 +50,7 @@ export default function ProductPage() {
         }
         return product;
       });
+
       setCartArray(updatedCartArray);
     } else {
       const selectedProduct = products?.find(

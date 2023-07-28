@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { CartContextProvider } from "./components/CartContext";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +17,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <App />
+        <CartContextProvider>
+          <App />
+        </CartContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools />
     </QueryClientProvider>
