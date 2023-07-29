@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Product from "../productType";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Product from '../productType';
 
 type Props = {
   productId?: string;

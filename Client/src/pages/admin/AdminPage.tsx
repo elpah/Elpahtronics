@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { auth } from "../../firebase";
-import { onAuthStateChanged, signOut, User } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../../firebase';
 
 export default function AdminPage() {
   const [authUser, setAuthUser] = useState<User | null>(null);
@@ -9,13 +9,13 @@ export default function AdminPage() {
   const navigate = useNavigate();
 
   const clearLocalStorage = () => {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userEmail");
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userEmail');
   };
 
   useEffect(() => {
-    const listen = onAuthStateChanged(auth, (user) => {
-      user ? setAuthUser(user) : navigate("/login");
+    const listen = onAuthStateChanged(auth, user => {
+      user ? setAuthUser(user) : navigate('/login');
       setLoading(false);
     });
     return () => {
@@ -28,9 +28,9 @@ export default function AdminPage() {
     signOut(auth)
       .then(() => {
         clearLocalStorage();
-        navigate("/login");
+        navigate('/login');
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
   };

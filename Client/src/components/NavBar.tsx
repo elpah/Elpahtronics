@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { FaBars, FaTimes } from "react-icons/fa";
-import { BsCart } from "react-icons/bs";
-import Home from "../pages/Home";
-import Product from "../pages/ProductPage";
-import Contact from "../pages/Contact";
-import { useCartContext } from "./CartContext";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { BsCart } from 'react-icons/bs';
+import Home from '../pages/Home';
+import Product from '../pages/ProductPage';
+import Contact from '../pages/Contact';
+import { useCartContext } from './CartContext';
 
 export default function NavBar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -15,7 +15,7 @@ export default function NavBar() {
   const { cartArray, setCartArray } = useCartContext();
   const totalQuantity = cartArray.reduce(
     (total, product) => total + product.productQuantity,
-    0
+    0,
   );
 
   return (
@@ -90,7 +90,7 @@ const NavList = styled.ul<{ showMobileMenu: boolean }>`
     flex-direction: column;
     right: 0;
     top: 100%;
-    display: ${(props) => (props.showMobileMenu ? "flex block" : "none")};
+    display: ${props => (props.showMobileMenu ? 'flex block' : 'none')};
     width: 200px;
     background-color: #f1f1f1;
     padding: 10px;

@@ -1,0 +1,10 @@
+{
+  "extends": "salt-typescript",
+  "parserOptions": {
+    "project": "tsconfig.json"
+  },
+  "rules": {
+    "no-console":"off"
+  }
+
+}

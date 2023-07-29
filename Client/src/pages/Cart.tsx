@@ -1,19 +1,19 @@
-import React from "react";
-import styled from "styled-components";
-import CartCard from "../components/CartCard";
-import { FaTags } from "react-icons/fa";
-import { useCartContext } from "../components/CartContext";
+import React from 'react';
+import styled from 'styled-components';
+import { FaTags } from 'react-icons/fa';
+import CartCard from '../components/CartCard';
+import { useCartContext } from '../components/CartContext';
 
 export default function Cart() {
   const { cartArray, setCartArray } = useCartContext();
 
   const handleIncrement = (productId: string) => {
     const existingProduct = cartArray.find(
-      (product) => product.productId === productId
+      product => product.productId === productId,
     );
 
     if (existingProduct) {
-      const updatedCartArray = cartArray.map((product) => {
+      const updatedCartArray = cartArray.map(product => {
         if (product.productId === productId) {
           return {
             ...product,
@@ -28,11 +28,11 @@ export default function Cart() {
   };
   const handleDecrement = (productId: string) => {
     const existingProduct = cartArray.find(
-      (product) => product.productId === productId
+      product => product.productId === productId,
     );
 
     if (existingProduct) {
-      const updatedCartArray = cartArray.map((product) => {
+      const updatedCartArray = cartArray.map(product => {
         if (product.productId === productId && product.productQuantity > 1) {
           return {
             ...product,
@@ -47,11 +47,11 @@ export default function Cart() {
   };
   const handleRemove = (productId: string) => {
     const existingProductIndex = cartArray.findIndex(
-      (product) => product.productId === productId
+      product => product.productId === productId,
     );
     if (existingProductIndex !== -1) {
       const updatedCartArray = cartArray.filter(
-        (product, index) => index !== existingProductIndex
+        (product, index) => index !== existingProductIndex,
       );
       setCartArray(updatedCartArray);
     }
@@ -74,7 +74,7 @@ export default function Cart() {
               price={cartItem.productPrice}
               quantity={cartItem.productQuantity}
             />
-          ))}{" "}
+          ))}{' '}
         </CartCardContainer>
       ) : (
         <p>Empty Cart</p>
@@ -99,11 +99,11 @@ export default function Cart() {
         <CheckoutButton>Proceed to checkout</CheckoutButton>
         <p
           style={{
-            fontSize: "20px",
-            fontWeight: "400",
-            fontStyle: "italic",
-            textAlign: "center",
-            padding: "7px",
+            fontSize: '20px',
+            fontWeight: '400',
+            fontStyle: 'italic',
+            textAlign: 'center',
+            padding: '7px',
           }}
         >
           OR

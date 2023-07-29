@@ -1,5 +1,5 @@
-import React, { ReactElement } from "react";
-import styled from "styled-components";
+import React, { ReactElement } from 'react';
+import styled from 'styled-components';
 
 interface Props {
   title: string;

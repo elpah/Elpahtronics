@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { auth } from "../../../src/firebase";
+import React, { useEffect, useState } from 'react';
+import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { auth } from '../../firebase';
 
 export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
   const signIn = (event: any) => {
     event.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
+      .then(userCredentials => {
         const userId = userCredentials.user.uid;
         const userEmail = userCredentials.user.email;
         if (userEmail) {
-          localStorage.setItem("userId", userId);
-          localStorage.setItem("userEmail", userEmail);
+          localStorage.setItem('userId', userId);
+          localStorage.setItem('userEmail', userEmail);
         }
-        navigate("/adminpage");
+        navigate('/adminpage');
       })
 
-      .catch((error) => {
+      .catch(error => {
         // Set the error message based on the error code
         if (
-          error.code === "auth/user-not-found" ||
-          error.code === "auth/wrong-password"
+          error.code === 'auth/user-not-found'
+          || error.code === 'auth/wrong-password'
         ) {
-          setError("Wrong email or password. Please try again.");
+          setError('Wrong email or password. Please try again.');
         } else {
-          setError("An error occurred. Please try again later.");
+          setError('An error occurred. Please try again later.');
         }
       });
   };
@@ -43,13 +43,13 @@ export default function SignIn() {
       <Input
         type="email"
         value={email}
-        onChange={(event) => setEmail(event.target.value)}
+        onChange={event => setEmail(event.target.value)}
         placeholder="Enter Email"
       />
       <Input
         type="password"
         value={password}
-        onChange={(event) => setPassword(event.target.value)}
+        onChange={event => setPassword(event.target.value)}
         placeholder="Enter Password"
       />
       {error && <ErrorMessage>{error}</ErrorMessage>}

@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 interface Props {
   categoryName: string;
@@ -25,7 +25,7 @@ const CategoryItemContainer = styled.div<{ backgroundImage: string }>`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(${(props) => props.backgroundImage});
+    background-image: url(${props => props.backgroundImage});
     background-repeat: no-repeat;
     background-size: cover;
     transition: transform 0.3s ease;
@@ -50,14 +50,12 @@ const CategoryParagraph = styled.p`
   transform: translateX(-50%);
   z-index: 1;
 `;
-const CategoryItem = ({ categoryName, categoryLink, categoryImage }: Props) => {
-  return (
+const CategoryItem = ({ categoryName, categoryLink, categoryImage }: Props) => (
     <CatLink to={categoryLink}>
       <CategoryItemContainer backgroundImage={categoryImage}>
         <CategoryParagraph>{categoryName}</CategoryParagraph>
       </CategoryItemContainer>
     </CatLink>
-  );
-};
+);
 
 export default CategoryItem;

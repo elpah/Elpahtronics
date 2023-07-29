@@ -1,7 +1,5 @@
-import React from "react";
-import TopBar from "../components/TopBar";
-import styled from "styled-components";
-import ContactCard from "../components/ContactCard";
+import React from 'react';
+import styled from 'styled-components';
 import {
   FaCommentDots,
   FaUsers,
@@ -12,11 +10,13 @@ import {
   FaUserFriends,
   FaClock,
   FaPhoneSquareAlt,
-} from "react-icons/fa";
+} from 'react-icons/fa';
+import TopBar from '../components/TopBar';
+import ContactCard from '../components/ContactCard';
 
-import FAQ from "../components/FAQ";
-import Footer from "../components/Footer";
-import MessageForm from "../components/MessageForm";
+import FAQ from '../components/FAQ';
+import Footer from '../components/Footer';
+import MessageForm from '../components/MessageForm';
 
 const ContactPageContainer = styled.div`
   // display: flex;
@@ -120,59 +120,59 @@ const Form = styled.div``;
 export default function Contact() {
   const contacts = [
     {
-      title: "Chat to sales",
-      paragraph: "Speak to our friendly team",
-      contact: "sales@elpahtronics.com",
+      title: 'Chat to sales',
+      paragraph: 'Speak to our friendly team',
+      contact: 'sales@elpahtronics.com',
       icon: <FaCommentDots />,
     },
     {
-      title: "Chat to support",
-      paragraph: "Speak to our friendly team",
-      contact: "support@elpahtronics.com",
+      title: 'Chat to support',
+      paragraph: 'Speak to our friendly team',
+      contact: 'support@elpahtronics.com',
       icon: <FaUsers />,
     },
     {
-      title: "Visit us",
-      paragraph: "Speak to our friendly team",
-      contact: "View location Google Maps",
+      title: 'Visit us',
+      paragraph: 'Speak to our friendly team',
+      contact: 'View location Google Maps',
       icon: <FaMapMarkerAlt />,
     },
     {
-      title: "Call us",
-      paragraph: "Mon- Fri from 8am-10pm",
-      contact: "+1-928-940-294ab",
+      title: 'Call us',
+      paragraph: 'Mon- Fri from 8am-10pm',
+      contact: '+1-928-940-294ab',
       icon: <FaPhoneAlt />,
     },
   ];
   const Faquestions = [
     {
-      title: "Is there a free trial available?",
+      title: 'Is there a free trial available?',
       paragraph:
-        "Yes, you can try us for free for 30 days. If you want, we will provide you with a free 30 minutes onboarding call to get you up and running.",
+        'Yes, you can try us for free for 30 days. If you want, we will provide you with a free 30 minutes onboarding call to get you up and running.',
       icon: <FaGift />,
     },
     {
-      title: "Can I change my plan later?",
+      title: 'Can I change my plan later?',
       paragraph:
-        "Yes, you can change your plan later at any time. We offer flexible plans that allow you to upgrade or downgrade as needed.",
+        'Yes, you can change your plan later at any time. We offer flexible plans that allow you to upgrade or downgrade as needed.',
       icon: <FaQuestionCircle />,
     },
     {
-      title: "What payment methods do you accept?",
+      title: 'What payment methods do you accept?',
       paragraph:
-        "We accept all major credit cards, including Visa, Mastercard, American Express, and Discover. We also support payments through PayPal.",
+        'We accept all major credit cards, including Visa, Mastercard, American Express, and Discover. We also support payments through PayPal.',
       icon: <FaUserFriends />,
     },
     {
-      title: "Is my data safe and secure?",
+      title: 'Is my data safe and secure?',
       paragraph:
-        "Yes, we take data security very seriously. We use industry-standard encryption and security measures to protect your data from unauthorized access.",
+        'Yes, we take data security very seriously. We use industry-standard encryption and security measures to protect your data from unauthorized access.',
       icon: <FaClock />,
     },
     {
-      title: "Do you offer customer support?",
+      title: 'Do you offer customer support?',
       paragraph:
-        "Absolutely! We have a dedicated customer support team available 24/7 to assist you with any questions or issues you may have.",
+        'Absolutely! We have a dedicated customer support team available 24/7 to assist you with any questions or issues you may have.',
       icon: <FaPhoneSquareAlt />,
     },
   ];

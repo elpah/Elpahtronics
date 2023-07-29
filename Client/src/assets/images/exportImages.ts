@@ -9,7 +9,8 @@ import sneakers from './categories/sneakers.jpg';
 import travel from './categories/travel.jpg';
 import tech from './categories/tech.jpg';
 import bags from './categories/bags.jpg';
-import books from './categories/books.jpg'; 
+import books from './categories/books.jpg';
 
-
-export { appleLogo, ikeaLogo, sonyLogo, zaraLogo, coverImage,furniture, sneakers,bags,books,tech,travel,productCover}
+export {
+  appleLogo, ikeaLogo, sonyLogo, zaraLogo, coverImage, furniture, sneakers, bags, books, tech, travel, productCover,
+};

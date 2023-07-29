@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import TopBar from "../components/TopBar";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import TopBar from '../components/TopBar';
 import {
   appleLogo,
   ikeaLogo,
@@ -12,11 +12,11 @@ import {
   books,
   tech,
   travel,
-} from "../assets/images/exportImages";
-import CategoryCard from "../components/CategoryCard";
-import BrandCard from "../components/BrandCard";
-import Footer from "../components/Footer";
-import Button from "../components/Button";
+} from '../assets/images/exportImages';
+import CategoryCard from '../components/CategoryCard';
+import BrandCard from '../components/BrandCard';
+import Footer from '../components/Footer';
+import Button from '../components/Button';
 
 type CategoriesOrBrand = {
   paragraph: string;
@@ -28,61 +28,61 @@ type CategoriesOrBrand = {
 const HomePage = () => {
   const categories = [
     {
-      paragraph: "Furniture",
+      paragraph: 'Furniture',
       image: furniture,
-      link: "somelink",
+      link: 'somelink',
     },
     {
-      paragraph: "Bags",
+      paragraph: 'Bags',
       image: bags,
-      link: "somelink",
+      link: 'somelink',
     },
     {
-      paragraph: "Books",
+      paragraph: 'Books',
       image: books,
-      link: "somelink",
+      link: 'somelink',
     },
     {
-      paragraph: "Tech",
+      paragraph: 'Tech',
       image: tech,
-      link: "somelink",
+      link: 'somelink',
     },
     {
-      paragraph: "Sneakers",
+      paragraph: 'Sneakers',
       image: sneakers,
-      link: "somelink",
+      link: 'somelink',
     },
     {
-      paragraph: "Travel",
+      paragraph: 'Travel',
       image: travel,
-      link: "somelink",
+      link: 'somelink',
     },
   ];
   const brands = [
     {
-      header: "Apple",
-      paragraph: "Delivery in 24 hours",
+      header: 'Apple',
+      paragraph: 'Delivery in 24 hours',
       image: appleLogo,
-      link: "someling",
+      link: 'someling',
     },
     {
-      header: "Ikea",
-      paragraph: "Delivery in 24 hours",
+      header: 'Ikea',
+      paragraph: 'Delivery in 24 hours',
       image: ikeaLogo,
-      link: "someling",
+      link: 'someling',
     },
     {
-      header: "Sony",
-      paragraph: "Delivery in 24 hours",
+      header: 'Sony',
+      paragraph: 'Delivery in 24 hours',
       image: sonyLogo,
 
-      link: "someling",
+      link: 'someling',
     },
     {
-      header: "Zara",
-      paragraph: "Delivery in 24 hours",
+      header: 'Zara',
+      paragraph: 'Delivery in 24 hours',
       image: zaraLogo,
-      link: "somelink",
+      link: 'somelink',
     },
   ];
   return (
@@ -91,7 +91,7 @@ const HomePage = () => {
         <HeaderContainer>
           <Header>
             Shopping And
-            {"\n"}
+            {'\n'}
             Department Store...
           </Header>
           <Para>
@@ -100,8 +100,7 @@ const HomePage = () => {
           </Para>
           <Button
             buttonName="Shop Now"
-            onClick={() =>
-              console.log("Handle Click later..Redirect to product Page")
+            onClick={() => console.log('Handle Click later..Redirect to product Page')
             }
           />
         </HeaderContainer>

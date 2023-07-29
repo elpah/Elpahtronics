@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Product from "../productType";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Product from '../productType';
 
 interface Props {
   productId?: string;
@@ -26,12 +26,12 @@ export default function ProductCard({
 }: Props) {
   const [quantity, setQuantity] = useState<number>(1);
   const handleIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    setQuantity(prevQuantity => prevQuantity + 1);
   };
 
   const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
+      setQuantity(prevQuantity => prevQuantity - 1);
     }
   };
 

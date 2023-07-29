@@ -1,20 +1,20 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import SignIn from "../../components/auth/SignIn";
-import SignUp from "../../components/auth/SignUp";
-import AuthDetails from "../../components/AuthDetails";
-import styled from "styled-components";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import styled from 'styled-components';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import SignIn from '../../components/auth/SignIn';
+import SignUp from '../../components/auth/SignUp';
+import AuthDetails from '../../components/AuthDetails';
+import { auth } from '../../firebase';
 
 export default function AdminLogin() {
   const [checkingLogIn, setCheckingLogIn] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) {
         // User is signed in, navigate to AdminPage when user is signed in
-        navigate("/adminPage");
+        navigate('/adminPage');
       }
       setCheckingLogIn(false);
     });

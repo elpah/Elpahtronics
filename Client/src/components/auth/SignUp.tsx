@@ -1,20 +1,20 @@
-//Delete Later
+// Delete Later
 
-import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import styled, { css } from "styled-components";
-import { auth } from "../../../src/firebase";
+import React, { useState } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import styled, { css } from 'styled-components';
+import { auth } from '../../firebase';
 
 export default function SignUp() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const SignUp = (event: any) => {
     event.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
+      .then(userCredentials => {
         console.log(userCredentials);
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   };
   return (
     <SignInContainer>
@@ -23,13 +23,13 @@ export default function SignUp() {
         <Input
           type="email"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={event => setEmail(event.target.value)}
           placeholder="Enter Email"
         />
         <Input
           type="password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={event => setPassword(event.target.value)}
           name=""
           placeholder="Enter Password"
           id=""

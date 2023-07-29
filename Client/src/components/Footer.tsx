@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FaShoppingBag } from "react-icons/fa";
+import React from 'react';
+import styled from 'styled-components';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FaShoppingBag } from 'react-icons/fa';
+
 const TopFooterContainer = styled.div`
   max-width: 1400px;
   margin: 40px auto 0;

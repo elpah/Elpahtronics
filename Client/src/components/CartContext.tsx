@@ -5,15 +5,15 @@ import React, {
   useContext,
   useEffect,
   useState,
-} from "react";
-import Product from "../productType";
+} from 'react';
+import Product from '../productType';
 
 interface CartContextType {
   cartArray: Product[];
   setCartArray: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 const initialCartData: Product[] = JSON.parse(
-  localStorage.getItem("cartData") || "[]"
+  localStorage.getItem('cartData') || '[]',
 );
 
 const CartContext = createContext<CartContextType>({
@@ -27,14 +27,14 @@ export const CartContextProvider: FC<{ children: ReactNode }> = ({
   const [cartArray, setCartArray] = useState<Product[]>(initialCartData);
 
   useEffect(() => {
-    const savedCartData = localStorage.getItem("cartData");
+    const savedCartData = localStorage.getItem('cartData');
     if (savedCartData) {
       setCartArray(JSON.parse(savedCartData));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("cartData", JSON.stringify(cartArray));
+    localStorage.setItem('cartData', JSON.stringify(cartArray));
     console.log(cartArray);
   }, [cartArray]);
 

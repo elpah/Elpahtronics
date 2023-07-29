@@ -1,6 +1,6 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import ProductCardIsLoading from "./ProductCardIsLoading";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import ProductCardIsLoading from './ProductCardIsLoading';
 
 export default function ProductsIsLoading() {
   return (

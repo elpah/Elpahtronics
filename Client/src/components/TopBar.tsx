@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { BsTelephone } from "react-icons/bs";
+import React from 'react';
+import styled from 'styled-components';
+import { BsTelephone } from 'react-icons/bs';
 
 export default function TopBar() {
   return (

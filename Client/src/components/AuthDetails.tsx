@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { auth } from "../../src/firebase";
-import { onAuthStateChanged, signOut, User } from "firebase/auth";
+import React, { useState, useEffect } from 'react';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { auth } from '../firebase';
 
 export default function AuthDetails() {
   const [authUser, setAuthUser] = useState<User | null>(null);
   useEffect(() => {
-    const listen = onAuthStateChanged(auth, (user) => {
+    const listen = onAuthStateChanged(auth, user => {
       if (user) {
         setAuthUser(user);
       } else {
@@ -20,9 +20,9 @@ export default function AuthDetails() {
   const useSignOut = () => {
     signOut(auth)
       .then(() => {
-        console.log("signed Out successfull");
+        console.log('signed Out successfull');
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
   };

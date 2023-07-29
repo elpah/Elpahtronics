@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
-import { productCover } from "../assets/images/exportImages";
-import Footer from "../components/Footer";
-import Button from "../components/Button";
-import ProductCard from "../components/ProductCard";
-import Product from "../productType";
-import ProductModal from "../components/ProductModal";
-import { useQuery } from "@tanstack/react-query";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import axios from "axios";
-import useProducts from "../components/hooks/useProducts";
-import ProductsIsLoading from "../components/productLoading/ProductsIsLoading";
-import ProductCardIsLoading from "../components/productLoading/ProductCardIsLoading";
-import { useCartContext } from "../components/CartContext";
+import React, { useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
+import { useQuery } from '@tanstack/react-query';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import axios from 'axios';
+import { productCover } from '../assets/images/exportImages';
+import Footer from '../components/Footer';
+import Button from '../components/Button';
+import ProductCard from '../components/ProductCard';
+import Product from '../productType';
+import ProductModal from '../components/ProductModal';
+import useProducts from '../components/hooks/useProducts';
+import ProductsIsLoading from '../components/productLoading/ProductsIsLoading';
+import ProductCardIsLoading from '../components/productLoading/ProductCardIsLoading';
+import { useCartContext } from '../components/CartContext';
 
 interface FilterCategoryProps {
   showCategoryList: boolean;
 }
 
 export default function ProductPage() {
-  const [categoryName, setCategoryName] = useState<string>("");
+  const [categoryName, setCategoryName] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
-  const [productModalVisibility, setProductModalVisibility] =
-    useState<boolean>(false);
+  const [productModalVisibility, setProductModalVisibility] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
   const { cartArray, setCartArray } = useCartContext();
@@ -36,11 +35,11 @@ export default function ProductPage() {
 
   const handleAddToCartClick = (productId: string) => {
     const existingProduct = cartArray.find(
-      (product) => product.productId === productId
+      product => product.productId === productId,
     );
 
     if (existingProduct) {
-      const updatedCartArray = cartArray.map((product) => {
+      const updatedCartArray = cartArray.map(product => {
         if (product.productId === productId) {
           return {
             ...product,
@@ -53,7 +52,7 @@ export default function ProductPage() {
       setCartArray(updatedCartArray);
     } else {
       const selectedProduct = products?.find(
-        (product) => product.productId === productId
+        product => product.productId === productId,
       );
       if (selectedProduct) {
         const updatedProduct = {
@@ -61,7 +60,7 @@ export default function ProductPage() {
           productQuantity: quantity,
         };
 
-        setCartArray((prevCartArray) => [...prevCartArray, updatedProduct]);
+        setCartArray(prevCartArray => [...prevCartArray, updatedProduct]);
       }
     }
     setQuantity(1);
@@ -79,7 +78,7 @@ export default function ProductPage() {
             </Paragraph>
             <Button
               buttonName="Learn More"
-              onClick={() => console.log("redirect to my Github Profile")}
+              onClick={() => console.log('redirect to my Github Profile')}
             />
           </ChildDivCenter>
         </HeaderContainer>
@@ -92,7 +91,7 @@ export default function ProductPage() {
       </SelectCategoryContainer>
       {
         <FilterCategory showCategoryList={showCategoryList}>
-          {label.map((labelItem) => (
+          {label.map(labelItem => (
             <CategoryItem onClick={() => setCategoryName(labelItem.value)}>
               {labelItem.categoryitemName}
             </CategoryItem>
@@ -103,16 +102,15 @@ export default function ProductPage() {
       {productModalVisibility && (
         <ProductModal
           onClose={() => setProductModalVisibility(false)}
-          productName={selectedProduct?.productName || ""}
+          productName={selectedProduct?.productName || ''}
           productId={selectedProduct?.productId}
-          productDescription={selectedProduct?.productDescription || ""}
-          productPrice={selectedProduct?.productPrice || ""}
-          productImage={selectedProduct?.productImage || ""}
+          productDescription={selectedProduct?.productDescription || ''}
+          productPrice={selectedProduct?.productPrice || ''}
+          productImage={selectedProduct?.productImage || ''}
           handleIncrement={() => setQuantity(quantity + 1)}
           handleDecrement={() => setQuantity(quantity - 1)}
           quantity={quantity}
-          handleAddToCartClick={() =>
-            handleAddToCartClick(selectedProduct?.productId || "")
+          handleAddToCartClick={() => handleAddToCartClick(selectedProduct?.productId || '')
           }
         />
       )}
@@ -121,14 +119,12 @@ export default function ProductPage() {
       ) : (
         <ProductCardContainer>
           {products
-            ?.filter((item) => {
-              return categoryName === "All Products"
-                ? true
-                : item.category
-                    .toLowerCase()
-                    .includes(categoryName.toLowerCase());
-            })
-            .map((product) => (
+            ?.filter(item => (categoryName === 'All Products'
+              ? true
+              : item.category
+                .toLowerCase()
+                .includes(categoryName.toLowerCase())))
+            .map(product => (
               <ProductCard
                 key={product.productId}
                 productName={product.productName}
@@ -136,8 +132,7 @@ export default function ProductPage() {
                 productPrice={product.productPrice}
                 productImage={product.productImage}
                 handleCardClick={() => handleCardClick(product)}
-                handleAddToCartClick={() =>
-                  handleAddToCartClick(product.productId)
+                handleAddToCartClick={() => handleAddToCartClick(product.productId)
                 }
               />
             ))}
@@ -149,13 +144,13 @@ export default function ProductPage() {
 }
 
 const label = [
-  { categoryitemName: "All Products", value: "All Products" },
-  { categoryitemName: "Furniture", value: "furniture" },
-  { categoryitemName: "Bags", value: "bags" },
-  { categoryitemName: "Books", value: "books" },
-  { categoryitemName: "Tech", value: "tech" },
-  { categoryitemName: "Sneakers", value: "sneakers" },
-  { categoryitemName: "Travel", value: "travel" },
+  { categoryitemName: 'All Products', value: 'All Products' },
+  { categoryitemName: 'Furniture', value: 'furniture' },
+  { categoryitemName: 'Bags', value: 'bags' },
+  { categoryitemName: 'Books', value: 'books' },
+  { categoryitemName: 'Tech', value: 'tech' },
+  { categoryitemName: 'Sneakers', value: 'sneakers' },
+  { categoryitemName: 'Travel', value: 'travel' },
 ];
 
 const ProductPageContainer = styled.div`
@@ -302,18 +297,17 @@ const FilterCategory = styled.div<FilterCategoryProps>`
   overflow: hidden;
   transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
 
-  ${({ showCategoryList }) =>
-    showCategoryList
-      ? css`
+  ${({ showCategoryList }) => (showCategoryList
+    ? css`
           max-height: 500px;
           opacity: 1;
           visibility: visible;
         `
-      : css`
+    : css`
           max-height: 0;
           opacity: 0;
           visibility: hidden;
-        `}
+        `)}
 
   @media (min-width: 768px) {
     padding: 10px;

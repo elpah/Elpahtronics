@@ -1,15 +1,15 @@
-import React from "react";
-import "./App.css";
-import Contact from "./pages/Contact";
-import Product from "./pages/ProductPage";
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import TopBar from "./components/TopBar";
-import NavBar from "./components/NavBar";
-import Cart from "./pages/Cart";
-import AdminLogin from "./pages/admin/AdminLogin";
-import AdminPage from "./pages/admin/AdminPage";
-import NotFound from "./pages/NotFound";
+import React from 'react';
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Contact from './pages/Contact';
+import Product from './pages/ProductPage';
+import Home from './pages/Home';
+import TopBar from './components/TopBar';
+import NavBar from './components/NavBar';
+import Cart from './pages/Cart';
+import AdminLogin from './pages/admin/AdminLogin';
+import AdminPage from './pages/admin/AdminPage';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (

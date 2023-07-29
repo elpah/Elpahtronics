@@ -1,6 +1,7 @@
-import React, { ReactElement, useState } from "react";
-import styled from "styled-components";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import React, { ReactElement, useState } from 'react';
+import styled from 'styled-components';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+
 interface Props {
   title: string;
   paragraph: string;

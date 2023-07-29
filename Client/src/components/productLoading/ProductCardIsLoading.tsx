@@ -60,8 +60,8 @@
 //   font-size: 20px;
 // `;
 
-import React from "react";
-import styled, { keyframes } from "styled-components";
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
 
 export default function ProductCardIsLoading() {
   return (

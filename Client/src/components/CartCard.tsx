@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 interface Props {
   productId: string;
@@ -33,9 +33,9 @@ export default function CartCard({
         <ProductHeader>{productName}</ProductHeader>
         <Paragraph>{productDetails}</Paragraph>
         <QuantityDivContainer>
-          {" "}
+          {' '}
           <Button
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               handleDecrement(productId);
             }}
@@ -44,7 +44,7 @@ export default function CartCard({
           </Button>
           <QuantityDiv>{quantity}</QuantityDiv>
           <Button
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               handleIncrement(productId);
             }}
@@ -55,7 +55,7 @@ export default function CartCard({
         <PriceDiv>{price}</PriceDiv>
       </ProductDetailsDiv>
       <RemoveButton
-        onClick={(e) => {
+        onClick={e => {
           e.preventDefault();
           handleRemove(productId);
         }}
