@@ -7,12 +7,66 @@ import { useCartContext } from "../components/CartContext";
 export default function Cart() {
   const { cartArray, setCartArray } = useCartContext();
 
+  const handleIncrement = (productId: string) => {
+    const existingProduct = cartArray.find(
+      (product) => product.productId === productId
+    );
+
+    if (existingProduct) {
+      const updatedCartArray = cartArray.map((product) => {
+        if (product.productId === productId) {
+          return {
+            ...product,
+            productQuantity: product.productQuantity + 1,
+          };
+        }
+        return product;
+      });
+
+      setCartArray(updatedCartArray);
+    }
+  };
+  const handleDecrement = (productId: string) => {
+    const existingProduct = cartArray.find(
+      (product) => product.productId === productId
+    );
+
+    if (existingProduct) {
+      const updatedCartArray = cartArray.map((product) => {
+        if (product.productId === productId && product.productQuantity > 1) {
+          return {
+            ...product,
+            productQuantity: product.productQuantity - 1,
+          };
+        }
+        return product;
+      });
+
+      setCartArray(updatedCartArray);
+    }
+  };
+  const handleRemove = (productId: string) => {
+    const existingProductIndex = cartArray.findIndex(
+      (product) => product.productId === productId
+    );
+    if (existingProductIndex !== -1) {
+      const updatedCartArray = cartArray.filter(
+        (product, index) => index !== existingProductIndex
+      );
+      setCartArray(updatedCartArray);
+    }
+  };
+
   return (
     <CartDiv>
       {cartArray.length > 0 ? (
         <CartCardContainer>
           {cartArray?.map((cartItem: any) => (
             <CartCard
+              productId={cartItem.productId}
+              handleDecrement={handleDecrement}
+              handleIncrement={handleIncrement}
+              handleRemove={handleRemove}
               key={cartItem.productId}
               productImage={cartItem.productImage}
               productName={cartItem.productName}

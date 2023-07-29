@@ -1,10 +1,10 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import SignIn from "../components/auth/SignIn";
-import SignUp from "../components/auth/SignUp";
-import AuthDetails from "../components/AuthDetails";
+import SignIn from "../../components/auth/SignIn";
+import SignUp from "../../components/auth/SignUp";
+import AuthDetails from "../../components/AuthDetails";
 import styled from "styled-components";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {

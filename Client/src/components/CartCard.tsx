@@ -2,19 +2,27 @@ import React from "react";
 import styled from "styled-components";
 
 interface Props {
+  productId: string;
   productImage: string;
   productName: string;
   productDetails: string;
   quantity: number;
   price: string;
+  handleDecrement: (productId: string) => void;
+  handleIncrement: (productId: string) => void;
+  handleRemove: (productId: string) => void;
 }
 
 export default function CartCard({
+  productId,
   productImage,
   productName,
   productDetails,
   quantity,
   price,
+  handleDecrement,
+  handleIncrement,
+  handleRemove,
 }: Props) {
   return (
     <CartCardItemContainer>
@@ -24,10 +32,36 @@ export default function CartCard({
       <ProductDetailsDiv>
         <ProductHeader>{productName}</ProductHeader>
         <Paragraph>{productDetails}</Paragraph>
-        <QuantityDiv>{quantity}</QuantityDiv>
+        <QuantityDivContainer>
+          {" "}
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              handleDecrement(productId);
+            }}
+          >
+            -
+          </Button>
+          <QuantityDiv>{quantity}</QuantityDiv>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              handleIncrement(productId);
+            }}
+          >
+            +
+          </Button>
+        </QuantityDivContainer>
         <PriceDiv>{price}</PriceDiv>
       </ProductDetailsDiv>
-      <RemoveButton>X</RemoveButton>
+      <RemoveButton
+        onClick={(e) => {
+          e.preventDefault();
+          handleRemove(productId);
+        }}
+      >
+        X
+      </RemoveButton>
     </CartCardItemContainer>
   );
 }
@@ -35,15 +69,9 @@ export default function CartCard({
 const CartCardItemContainer = styled.div`
   display: flex;
   flex-direction: row;
-  //   justify-content: space-between;
   align-items: center;
-  //   border-radius: 8px;
   padding: 10px;
-  //   margin-bottom: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  //   @media (min-width: 768px) {
-  //     width: 60%;
-  //   }
 `;
 
 const ImageDiv = styled.div`
@@ -101,6 +129,8 @@ const QuantityDiv = styled.div`
   font-size: 16px;
   margin-bottom: 5px;
   color: #444;
+  display: flex;
+  padding: 10px;
 `;
 
 const PriceDiv = styled.div`
@@ -128,5 +158,27 @@ const RemoveButton = styled.button`
   @media (max-width: 300px) {
     margin-left: 10px;
     padding: 5px 8px;
+  }
+`;
+const QuantityDivContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Button = styled.button`
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 10%;
+  background-color: #f0f0f0;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: #e0e0e0;
   }
 `;

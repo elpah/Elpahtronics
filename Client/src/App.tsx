@@ -7,8 +7,8 @@ import Home from "./pages/Home";
 import TopBar from "./components/TopBar";
 import NavBar from "./components/NavBar";
 import Cart from "./pages/Cart";
-import AdminLogin from "./pages/AdminLogin";
-import AdminPage from "./pages/AdminPage";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminPage from "./pages/admin/AdminPage";
 import NotFound from "./pages/NotFound";
 
 function App() {

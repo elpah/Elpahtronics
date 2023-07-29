@@ -6,11 +6,17 @@ import { BsCart } from "react-icons/bs";
 import Home from "../pages/Home";
 import Product from "../pages/ProductPage";
 import Contact from "../pages/Contact";
+import { useCartContext } from "./CartContext";
 
 export default function NavBar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const toggleNav = () => setShowMobileMenu(!showMobileMenu);
   const closeMobileMenu = () => setShowMobileMenu(false);
+  const { cartArray, setCartArray } = useCartContext();
+  const totalQuantity = cartArray.reduce(
+    (total, product) => total + product.productQuantity,
+    0
+  );
 
   return (
     <StyledHeader>
@@ -42,7 +48,7 @@ export default function NavBar() {
           <CartContainer>
             <StyledLink to="/Cart">
               <BsCart />
-              <CartItemsNumber>10</CartItemsNumber>
+              <CartItemsNumber>{totalQuantity}</CartItemsNumber>
             </StyledLink>
           </CartContainer>
           <HamburgerToggle onClick={toggleNav}>

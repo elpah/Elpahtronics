@@ -25,7 +25,6 @@ export default function ProductPage() {
     useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
-  // const [cartArray, setCartArray] = useState<Product[]>([]);
   const { cartArray, setCartArray } = useCartContext();
 
   const { data: products, error, isLoading } = useProducts();

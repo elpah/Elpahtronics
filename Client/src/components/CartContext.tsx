@@ -26,7 +26,6 @@ export const CartContextProvider: FC<{ children: ReactNode }> = ({
 }) => {
   const [cartArray, setCartArray] = useState<Product[]>(initialCartData);
 
-  // Load cart data from local storage only when the component mounts for the first time
   useEffect(() => {
     const savedCartData = localStorage.getItem("cartData");
     if (savedCartData) {
@@ -35,7 +34,6 @@ export const CartContextProvider: FC<{ children: ReactNode }> = ({
   }, []);
 
   useEffect(() => {
-    // Save cartArray to local storage whenever it changes
     localStorage.setItem("cartData", JSON.stringify(cartArray));
     console.log(cartArray);
   }, [cartArray]);
