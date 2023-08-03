@@ -4,7 +4,14 @@
     "project": "tsconfig.json"
   },
   "rules": {
-    "no-console":"off"
+    "no-console": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "true"
+        // "tsx": "never"
+      }
+    ]
   }
-
 }

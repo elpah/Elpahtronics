@@ -11,12 +11,10 @@ import {
   FaClock,
   FaPhoneSquareAlt,
 } from 'react-icons/fa';
-import TopBar from '../components/TopBar';
-import ContactCard from '../components/ContactCard';
-
-import FAQ from '../components/FAQ';
-import Footer from '../components/Footer';
-import MessageForm from '../components/MessageForm';
+import ContactCard from '../components/ContactCard.tsx';
+import FAQ from '../components/FAQ.tsx';
+import Footer from '../components/Footer.tsx';
+import MessageForm from '../components/MessageForm.tsx';
 
 const ContactPageContainer = styled.div`
   // display: flex;
@@ -29,7 +27,7 @@ const HeaderDiv = styled.div`
   justify-content: center;
   height: 350px;
   width: 100%;
-  background: url("https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1774&q=80")
+  background: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1774&q=80')
     no-repeat;
   background-size: cover;
   @media (min-width: 768px) {
@@ -198,12 +196,7 @@ export default function Contact() {
           <FaqFormHeader>Frequently Asked Questions</FaqFormHeader>
           <Faq>
             {Faquestions.map((question, index) => (
-              <FAQ
-                key={index}
-                title={question.title}
-                paragraph={question.paragraph}
-                icon={question.icon}
-              />
+              <FAQ key={index} title={question.title} paragraph={question.paragraph} icon={question.icon} />
             ))}
           </Faq>
         </FaqContainer>

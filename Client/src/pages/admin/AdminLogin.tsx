@@ -1,40 +1,10 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import SignIn from '../../components/auth/SignIn';
-import SignUp from '../../components/auth/SignUp';
 import AuthDetails from '../../components/AuthDetails';
 import { auth } from '../../firebase';
-
-export default function AdminLogin() {
-  const [checkingLogIn, setCheckingLogIn] = useState(true);
-  const navigate = useNavigate();
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      if (user) {
-        // User is signed in, navigate to AdminPage when user is signed in
-        navigate('/adminPage');
-      }
-      setCheckingLogIn(false);
-    });
-
-    // Clean up the listener when the component unmounts
-    return () => unsubscribe();
-  }, [navigate]);
-
-  if (checkingLogIn) return <p>Loading...</p>;
-
-  return (
-    <AdminPageContainer>
-      <SignInFormContainer>
-        {<SignIn />}
-        {/* <SignUp /> */}
-        {/* <AuthDetails /> */}
-      </SignInFormContainer>
-    </AdminPageContainer>
-  );
-}
 
 const AdminPageContainer = styled.div`
   background-color: #f9f9f9;
@@ -62,3 +32,29 @@ const SignInFormContainer = styled.div`
     height: 70vh;
   }
 `;
+export default function AdminLogin() {
+  const [checkingLogIn, setCheckingLogIn] = useState(true);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      if (user) {
+        navigate('/adminPage');
+      }
+      setCheckingLogIn(false);
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
+
+  if (checkingLogIn) return <p>Loading...</p>;
+
+  return (
+    <AdminPageContainer>
+      <SignInFormContainer>
+        {<SignIn />}
+        {/* <SignUp /> */}
+        {/* <AuthDetails /> */}
+      </SignInFormContainer>
+    </AdminPageContainer>
+  );
+}

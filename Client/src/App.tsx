@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Contact from './pages/Contact';
-import Product from './pages/ProductPage';
-import Home from './pages/Home';
-import TopBar from './components/TopBar';
-import NavBar from './components/NavBar';
-import Cart from './pages/Cart';
-import AdminLogin from './pages/admin/AdminLogin';
-import AdminPage from './pages/admin/AdminPage';
-import NotFound from './pages/NotFound';
+import Contact from './pages/Contact.tsx';
+import Product from './pages/ProductPage.tsx';
+import Home from './pages/Home.tsx';
+import TopBar from './components/TopBar.tsx';
+import NavBar from './components/NavBar.tsx';
+import Cart from './pages/Cart.tsx';
+import AdminLogin from './pages/admin/AdminLogin.tsx';
+import AdminPage from './pages/admin/AdminPage.tsx';
+import NotFound from './pages/NotFound.tsx';
+import Checkout from './pages/Checkout.tsx';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<AdminLogin />} />
           <Route path="/adminpage" element={<AdminPage />} />
+          <Route path="/checkoutpage" element={<Checkout />} />
           * <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

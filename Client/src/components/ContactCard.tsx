@@ -8,24 +8,6 @@ interface Props {
   icon: ReactElement;
 }
 
-export default function ContactCard({
-  title,
-  paragraph,
-  contact,
-  icon,
-}: Props) {
-  return (
-    <ContactCardContainer>
-      <FaDiv>{icon}</FaDiv>
-      <DetailsDiv>
-        <Header>{title}</Header>
-        <Para>{paragraph}</Para>
-        <Det>{contact}</Det>
-      </DetailsDiv>
-    </ContactCardContainer>
-  );
-}
-
 const ContactCardContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -86,3 +68,21 @@ const Det = styled.h3`
     cursor: pointer;
   }
 `;
+
+export default function ContactCard({
+  title,
+  paragraph,
+  contact,
+  icon,
+}: Props) {
+  return (
+    <ContactCardContainer>
+      <FaDiv>{icon}</FaDiv>
+      <DetailsDiv>
+        <Header>{title}</Header>
+        <Para>{paragraph}</Para>
+        <Det>{contact}</Det>
+      </DetailsDiv>
+    </ContactCardContainer>
+  );
+}

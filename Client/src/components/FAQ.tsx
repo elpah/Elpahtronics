@@ -8,25 +8,6 @@ interface Props {
   icon: ReactElement;
 }
 
-export default function FAQ({ title, paragraph, icon }: Props) {
-  const [showPara, setShowPara] = useState<boolean>(false);
-
-  return (
-    <FaqContainer>
-      <WithoutParagraph>
-        <HeaderWrapper>
-          <IconWrapper>{icon}</IconWrapper>
-          <Header>{title}</Header>
-        </HeaderWrapper>
-        <FaIconWrapper onClick={() => setShowPara(!showPara)}>
-          {showPara ? <FaChevronUp /> : <FaChevronDown />}
-        </FaIconWrapper>
-      </WithoutParagraph>
-      {showPara && <Paragraph>{paragraph}</Paragraph>}
-    </FaqContainer>
-  );
-}
-
 const FaqContainer = styled.div`
   color: rgb(32, 33, 36);
   padding: 15px 30px 0px;
@@ -99,3 +80,22 @@ const FaIconWrapper = styled.div`
     padding-top: 5px;
   }
 `;
+
+export default function FAQ({ title, paragraph, icon }: Props) {
+  const [showPara, setShowPara] = useState<boolean>(false);
+
+  return (
+    <FaqContainer>
+      <WithoutParagraph>
+        <HeaderWrapper>
+          <IconWrapper>{icon}</IconWrapper>
+          <Header>{title}</Header>
+        </HeaderWrapper>
+        <FaIconWrapper onClick={() => setShowPara(!showPara)}>
+          {showPara ? <FaChevronUp /> : <FaChevronDown />}
+        </FaIconWrapper>
+      </WithoutParagraph>
+      {showPara && <Paragraph>{paragraph}</Paragraph>}
+    </FaqContainer>
+  );
+}

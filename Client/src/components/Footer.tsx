@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FaShoppingBag } from 'react-icons/fa';
 
 const TopFooterContainer = styled.div`
   max-width: 1400px;
@@ -274,7 +272,7 @@ export default function Footer() {
           </TxtImg>
           <TxtImg>
             <ImageIcon
-              src="	https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63eb0ed6ae57fd74e0402aa4_help-circle.svg"
+              src="https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63eb0ed6ae57fd74e0402aa4_help-circle.svg"
               alt=""
             />
             <FooterParagraph>Help Center</FooterParagraph>

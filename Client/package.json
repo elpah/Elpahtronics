@@ -19,6 +19,8 @@
     "@types/react-dom": "^18.2.5",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.4.0",
+    "country-calling-codes": "^1.1.2",
+    "country-code": "^0.0.3",
     "express": "^4.18.2",
     "firebase": "^10.1.0",
     "react": "^18.2.0",

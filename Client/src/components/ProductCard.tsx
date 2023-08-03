@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Product from '../productType';
 
 interface Props {
   productId?: string;
@@ -8,59 +7,10 @@ interface Props {
   productPrice: string;
   productDescription: string;
   productImage: string;
-  category?: string;
-  quantity?: number;
   handleCardClick: () => void;
   handleAddToCartClick: (productId: string | undefined) => void;
 }
 
-export default function ProductCard({
-  productId,
-  productName,
-  productPrice,
-  productDescription,
-  productImage,
-  category,
-  handleCardClick,
-  handleAddToCartClick,
-}: Props) {
-  const [quantity, setQuantity] = useState<number>(1);
-  const handleIncrement = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(prevQuantity => prevQuantity - 1);
-    }
-  };
-
-  const addToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    handleAddToCartClick(productId);
-  };
-
-  return (
-    <ProductCardContainerDiv>
-      <ImageDiv onClick={handleCardClick}>
-        <Image src={productImage} alt="productImage" />
-      </ImageDiv>
-      <WithoutImageDiv>
-        <NamePrice onClick={handleCardClick}>
-          <H2>{productName}</H2>
-          <H2>{productPrice}</H2>
-        </NamePrice>
-        <Description onClick={handleCardClick}>
-          {productDescription}
-        </Description>
-        {/* <QuantityAddToCartDiv> */}
-
-        <AddToCartButton onClick={addToCart}>Add to cart</AddToCartButton>
-        {/* </QuantityAddToCartDiv> */}
-      </WithoutImageDiv>
-    </ProductCardContainerDiv>
-  );
-}
 const ProductCardContainerDiv = styled.div`
   margin: 30px auto 30px;
   width: 90%;
@@ -95,29 +45,7 @@ const Description = styled.p`
   font-size: 20px;
   margin-bottom: 8px;
 `;
-const QuantityAddToCartDiv = styled.div`
-  margin-top: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-const QuantityDiv = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 8px;
-`;
-const AddSubtractButton = styled.button`
-  padding: 8px;
-  border: none;
-  background-color: #f5f5f5;
-  color: #888;
-  cursor: pointer;
-  font-size: 20px;
-`;
-const Quantity = styled.p`
-  margin: 0 8px;
-  font-size: 20px;
-`;
+
 const AddToCartButton = styled.button`
   padding: 8px 16px;
   border: 1px solid black;
@@ -135,3 +63,39 @@ const AddToCartButton = styled.button`
     color: green;
   }
 `;
+
+export default function ProductCard({
+  productId,
+  productName,
+  productPrice,
+  productDescription,
+  productImage,
+  handleCardClick,
+  handleAddToCartClick,
+}: Props) {
+  const addToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    handleAddToCartClick(productId);
+  };
+
+  return (
+    <ProductCardContainerDiv>
+      <ImageDiv onClick={handleCardClick}>
+        <Image src={productImage} alt="productImage" />
+      </ImageDiv>
+      <WithoutImageDiv>
+        <NamePrice onClick={handleCardClick}>
+          <H2>{productName}</H2>
+          <H2>{productPrice}</H2>
+        </NamePrice>
+        <Description onClick={handleCardClick}>
+          {productDescription}
+        </Description>
+        {/* <QuantityAddToCartDiv> */}
+
+        <AddToCartButton onClick={addToCart}>Add to cart</AddToCartButton>
+        {/* </QuantityAddToCartDiv> */}
+      </WithoutImageDiv>
+    </ProductCardContainerDiv>
+  );
+}

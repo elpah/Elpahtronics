@@ -12,5 +12,16 @@ import bags from './categories/bags.jpg';
 import books from './categories/books.jpg';
 
 export {
-  appleLogo, ikeaLogo, sonyLogo, zaraLogo, coverImage, furniture, sneakers, bags, books, tech, travel, productCover,
+  appleLogo,
+  ikeaLogo,
+  sonyLogo,
+  zaraLogo,
+  coverImage,
+  furniture,
+  sneakers,
+  bags,
+  books,
+  tech,
+  travel,
+  productCover,
 };

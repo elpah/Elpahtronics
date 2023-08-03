@@ -1,65 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { auth } from '../../firebase';
-
-export default function SignIn() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const navigate = useNavigate();
-
-  const signIn = (event: any) => {
-    event.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(userCredentials => {
-        const userId = userCredentials.user.uid;
-        const userEmail = userCredentials.user.email;
-        if (userEmail) {
-          localStorage.setItem('userId', userId);
-          localStorage.setItem('userEmail', userEmail);
-        }
-        navigate('/adminpage');
-      })
-
-      .catch(error => {
-        // Set the error message based on the error code
-        if (
-          error.code === 'auth/user-not-found'
-          || error.code === 'auth/wrong-password'
-        ) {
-          setError('Wrong email or password. Please try again.');
-        } else {
-          setError('An error occurred. Please try again later.');
-        }
-      });
-  };
-
-  return (
-    <Form onSubmit={signIn}>
-      <Header>Log In</Header>
-      <Input
-        type="email"
-        value={email}
-        onChange={event => setEmail(event.target.value)}
-        placeholder="Enter Email"
-      />
-      <Input
-        type="password"
-        value={password}
-        onChange={event => setPassword(event.target.value)}
-        placeholder="Enter Password"
-      />
-      {error && <ErrorMessage>{error}</ErrorMessage>}
-
-      <Button type="submit">Login</Button>
-
-      <ForgotPassword>Forgot your password?</ForgotPassword>
-    </Form>
-  );
-}
 
 const Form = styled.form``;
 
@@ -111,3 +54,51 @@ const Button = styled.button`
     background-color: #0056b3;
   }
 `;
+
+export default function SignIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const navigate = useNavigate();
+
+  const signIn = (event: any) => {
+    event.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then(userCredentials => {
+        const userId = userCredentials.user.uid;
+        const userEmail = userCredentials.user.email;
+        if (userEmail) {
+          localStorage.setItem('userId', userId);
+          localStorage.setItem('userEmail', userEmail);
+        }
+        navigate('/adminpage');
+      })
+      .catch(error => {
+        if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+          setErrorMessage('Wrong email or password. Please try again.');
+        } else {
+          setErrorMessage('An error occurred. Please try again later.');
+        }
+      });
+  };
+
+  return (
+    <Form onSubmit={signIn}>
+      <h1>LOGO</h1>
+      <Header>Log In</Header>
+      <Input type="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="Enter Email" />
+      <Input
+        type="password"
+        value={password}
+        onChange={event => setPassword(event.target.value)}
+        placeholder="Enter Password"
+      />
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+
+      <Button type="submit">Login</Button>
+
+      <ForgotPassword>Forgot your password?</ForgotPassword>
+    </Form>
+  );
+}

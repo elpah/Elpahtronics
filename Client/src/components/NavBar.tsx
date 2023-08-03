@@ -3,62 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { BsCart } from 'react-icons/bs';
-import Home from '../pages/Home';
-import Product from '../pages/ProductPage';
-import Contact from '../pages/Contact';
-import { useCartContext } from './CartContext';
+import { useCartContext } from './CartContext.tsx';
 
-export default function NavBar() {
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const toggleNav = () => setShowMobileMenu(!showMobileMenu);
-  const closeMobileMenu = () => setShowMobileMenu(false);
-  const { cartArray, setCartArray } = useCartContext();
-  const totalQuantity = cartArray.reduce(
-    (total, product) => total + product.productQuantity,
-    0,
-  );
-
-  return (
-    <StyledHeader>
-      <NavContainer>
-        <div>Logo</div>
-        <div>
-          {
-            <NavList showMobileMenu={showMobileMenu}>
-              <NavItem>
-                <NavLink to="/" onClick={closeMobileMenu}>
-                  Home
-                </NavLink>
-              </NavItem>
-
-              <NavItem>
-                <NavLink to="/product" onClick={closeMobileMenu}>
-                  Product
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="/contact" onClick={closeMobileMenu}>
-                  Contact
-                </NavLink>
-              </NavItem>
-            </NavList>
-          }
-        </div>
-        <CartHamContainer>
-          <CartContainer>
-            <StyledLink to="/Cart">
-              <BsCart />
-              <CartItemsNumber>{totalQuantity}</CartItemsNumber>
-            </StyledLink>
-          </CartContainer>
-          <HamburgerToggle onClick={toggleNav}>
-            {showMobileMenu ? <FaTimes /> : <FaBars />}
-          </HamburgerToggle>
-        </CartHamContainer>
-      </NavContainer>
-    </StyledHeader>
-  );
-}
 const NavContainer = styled.nav`
   display: flex;
   flex-direction: row;
@@ -73,6 +19,7 @@ const StyledHeader = styled.header`
   padding: 10px;
   width: 80%;
   margin: auto;
+
   @media (max-width: 768px) {
     width: 100%;
     margin: auto;
@@ -152,3 +99,55 @@ const CartItemsNumber = styled.p`
   text-align: center;
   font-weight: 600;
 `;
+
+export default function NavBar() {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const toggleNav = () => setShowMobileMenu(!showMobileMenu);
+  const closeMobileMenu = () => setShowMobileMenu(false);
+  const { cartArray } = useCartContext();
+  const totalQuantity = cartArray.reduce(
+    (total, product) => total + product.productQuantity,
+    0,
+  );
+
+  return (
+    <StyledHeader>
+      <NavContainer>
+        <div>Logo</div>
+        <div>
+          {
+            <NavList showMobileMenu={showMobileMenu}>
+              <NavItem>
+                <NavLink to="/" onClick={closeMobileMenu}>
+                  Home
+                </NavLink>
+              </NavItem>
+
+              <NavItem>
+                <NavLink to="/product" onClick={closeMobileMenu}>
+                  Product
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/contact" onClick={closeMobileMenu}>
+                  Contact
+                </NavLink>
+              </NavItem>
+            </NavList>
+          }
+        </div>
+        <CartHamContainer>
+          <CartContainer>
+            <StyledLink to="/Cart">
+              <BsCart />
+              <CartItemsNumber>{totalQuantity}</CartItemsNumber>
+            </StyledLink>
+          </CartContainer>
+          <HamburgerToggle onClick={toggleNav}>
+            {showMobileMenu ? <FaTimes /> : <FaBars />}
+          </HamburgerToggle>
+        </CartHamContainer>
+      </NavContainer>
+    </StyledHeader>
+  );
+}

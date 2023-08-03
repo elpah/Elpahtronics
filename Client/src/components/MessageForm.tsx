@@ -1,26 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function MessageForm() {
-  return (
-    <Form>
-      <NameDiv>
-        <FormInput type="text" name="firstName" placeholder="First Name" />
-        <FormInput type="text" name="lastName" placeholder="Last Name" />
-      </NameDiv>
-      <FormInput type="email" name="email" placeholder="youremail@email.com" />
-      <FormInput type="text" name="subject" placeholder="Subject" />
-      <TextArea name="message" placeholder="Enter Your Message" />
-      <PrivacyLabel>
-        <input type="checkbox" /> You agree to our friendly Privacy Policy
-      </PrivacyLabel>
-      <Button>Send Message</Button>
-    </Form>
-  );
-}
-
 const Form = styled.form`
-  //   max-width: 400px;
   margin: auto;
   margin-top: -15;
   display: flex;
@@ -84,3 +65,21 @@ const PrivacyLabel = styled.label`
     margin-right: 8px;
   }
 `;
+
+export default function MessageForm() {
+  return (
+    <Form>
+      <NameDiv>
+        <FormInput type="text" name="firstName" placeholder="First Name" />
+        <FormInput type="text" name="lastName" placeholder="Last Name" />
+      </NameDiv>
+      <FormInput type="email" name="email" placeholder="youremail@email.com" />
+      <FormInput type="text" name="subject" placeholder="Subject" />
+      <TextArea name="message" placeholder="Enter Your Message" />
+      <PrivacyLabel>
+        <input type="checkbox" /> You agree to our friendly Privacy Policy
+      </PrivacyLabel>
+      <Button>Send Message</Button>
+    </Form>
+  );
+}

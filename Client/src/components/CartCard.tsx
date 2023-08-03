@@ -1,71 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface Props {
-  productId: string;
-  productImage: string;
-  productName: string;
-  productDetails: string;
-  quantity: number;
-  price: string;
-  handleDecrement: (productId: string) => void;
-  handleIncrement: (productId: string) => void;
-  handleRemove: (productId: string) => void;
-}
-
-export default function CartCard({
-  productId,
-  productImage,
-  productName,
-  productDetails,
-  quantity,
-  price,
-  handleDecrement,
-  handleIncrement,
-  handleRemove,
-}: Props) {
-  return (
-    <CartCardItemContainer>
-      <ImageDiv>
-        <Image src={productImage} alt="productImage" />
-      </ImageDiv>
-      <ProductDetailsDiv>
-        <ProductHeader>{productName}</ProductHeader>
-        <Paragraph>{productDetails}</Paragraph>
-        <QuantityDivContainer>
-          {' '}
-          <Button
-            onClick={e => {
-              e.preventDefault();
-              handleDecrement(productId);
-            }}
-          >
-            -
-          </Button>
-          <QuantityDiv>{quantity}</QuantityDiv>
-          <Button
-            onClick={e => {
-              e.preventDefault();
-              handleIncrement(productId);
-            }}
-          >
-            +
-          </Button>
-        </QuantityDivContainer>
-        <PriceDiv>{price}</PriceDiv>
-      </ProductDetailsDiv>
-      <RemoveButton
-        onClick={e => {
-          e.preventDefault();
-          handleRemove(productId);
-        }}
-      >
-        X
-      </RemoveButton>
-    </CartCardItemContainer>
-  );
-}
-
 const CartCardItemContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -182,3 +117,68 @@ const Button = styled.button`
     background-color: #e0e0e0;
   }
 `;
+
+interface Props {
+  productId: string;
+  productImage: string;
+  productName: string;
+  productDetails: string;
+  quantity: number;
+  price: string;
+  handleDecrement: (productId: string) => void;
+  handleIncrement: (productId: string) => void;
+  handleRemove: (productId: string) => void;
+}
+
+export default function CartCard({
+  productId,
+  productImage,
+  productName,
+  productDetails,
+  quantity,
+  price,
+  handleDecrement,
+  handleIncrement,
+  handleRemove,
+}: Props) {
+  return (
+    <CartCardItemContainer>
+      <ImageDiv>
+        <Image src={productImage} alt="productImage" />
+      </ImageDiv>
+      <ProductDetailsDiv>
+        <ProductHeader>{productName}</ProductHeader>
+        <Paragraph>{productDetails}</Paragraph>
+        <QuantityDivContainer>
+          {' '}
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              handleDecrement(productId);
+            }}
+          >
+            -
+          </Button>
+          <QuantityDiv>{quantity}</QuantityDiv>
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              handleIncrement(productId);
+            }}
+          >
+            +
+          </Button>
+        </QuantityDivContainer>
+        <PriceDiv>{price}</PriceDiv>
+      </ProductDetailsDiv>
+      <RemoveButton
+        onClick={e => {
+          e.preventDefault();
+          handleRemove(productId);
+        }}
+      >
+        X
+      </RemoveButton>
+    </CartCardItemContainer>
+  );
+}

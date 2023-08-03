@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Product from '../productType';
 
 type Props = {
   productId?: string;
@@ -14,58 +13,6 @@ type Props = {
   quantity: number;
   onClose: () => void;
 };
-
-export default function ProductModal({
-  productId,
-  productName,
-  productDescription,
-  productPrice,
-  quantity,
-  productImage,
-  handleIncrement,
-  handleDecrement,
-  handleAddToCartClick,
-  onClose,
-}: Props) {
-  // const [quantity, setQuantity] = useState<number>(1);
-  // const handleIncrement = () => {
-  //   setQuantity((prevQuantity) => prevQuantity + 1);
-  // };
-
-  // const handleDecrement = () => {
-  //   if (quantity > 1) {
-  //     setQuantity((prevQuantity) => prevQuantity - 1);
-  //   }
-  // };
-
-  const addToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    handleAddToCartClick(productId);
-  };
-
-  return (
-    <ProductModalDiv>
-      <ProductCardDiv>
-        <CloseButton onClick={onClose}>X</CloseButton> {/* Close button */}
-        <ImageDiv>
-          <Image src={productImage} alt="Product Image" />
-        </ImageDiv>
-        <DetailsDiv>
-          <ProductName>{productName}</ProductName>
-          <ProductDescription>{productDescription}</ProductDescription>
-          <ProductPrice>{productPrice}</ProductPrice>
-          <QuantityContainer>
-            <QuantityButton onClick={handleDecrement}>-</QuantityButton>
-            <QuantityText>{quantity}</QuantityText>
-            <QuantityButton onClick={handleIncrement}>+</QuantityButton>
-          </QuantityContainer>
-
-          <AddToCartButton onClick={addToCart}>Add to cart</AddToCartButton>
-        </DetailsDiv>
-      </ProductCardDiv>
-    </ProductModalDiv>
-  );
-}
 
 const ProductModalDiv = styled.div`
   position: fixed;
@@ -187,3 +134,44 @@ const AddToCartButton = styled.button`
     color: green;
   }
 `;
+
+export default function ProductModal({
+  productId,
+  productName,
+  productDescription,
+  productPrice,
+  quantity,
+  productImage,
+  handleIncrement,
+  handleDecrement,
+  handleAddToCartClick,
+  onClose,
+}: Props) {
+  const addToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    handleAddToCartClick(productId);
+  };
+
+  return (
+    <ProductModalDiv>
+      <ProductCardDiv>
+        <CloseButton onClick={onClose}>X</CloseButton> {/* Close button */}
+        <ImageDiv>
+          <Image src={productImage} alt="Product Image" />
+        </ImageDiv>
+        <DetailsDiv>
+          <ProductName>{productName}</ProductName>
+          <ProductDescription>{productDescription}</ProductDescription>
+          <ProductPrice>{productPrice}</ProductPrice>
+          <QuantityContainer>
+            <QuantityButton onClick={handleDecrement}>-</QuantityButton>
+            <QuantityText>{quantity}</QuantityText>
+            <QuantityButton onClick={handleIncrement}>+</QuantityButton>
+          </QuantityContainer>
+
+          <AddToCartButton onClick={addToCart}>Add to cart</AddToCartButton>
+        </DetailsDiv>
+      </ProductCardDiv>
+    </ProductModalDiv>
+  );
+}

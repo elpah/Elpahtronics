@@ -1,146 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { useQuery } from '@tanstack/react-query';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
-import axios from 'axios';
 import { productCover } from '../assets/images/exportImages';
-import Footer from '../components/Footer';
-import Button from '../components/Button';
-import ProductCard from '../components/ProductCard';
+import Footer from '../components/Footer.tsx';
+import Button from '../components/Button.tsx';
+import ProductCard from '../components/ProductCard.tsx';
 import Product from '../productType';
-import ProductModal from '../components/ProductModal';
+import ProductModal from '../components/ProductModal.tsx';
 import useProducts from '../components/hooks/useProducts';
-import ProductsIsLoading from '../components/productLoading/ProductsIsLoading';
-import ProductCardIsLoading from '../components/productLoading/ProductCardIsLoading';
-import { useCartContext } from '../components/CartContext';
+import ProductsIsLoading from '../components/productLoading/ProductsIsLoading.tsx';
+import { useCartContext } from '../components/CartContext.tsx';
 
 interface FilterCategoryProps {
   showCategoryList: boolean;
-}
-
-export default function ProductPage() {
-  const [categoryName, setCategoryName] = useState<string>('');
-  const [quantity, setQuantity] = useState<number>(1);
-  const [productModalVisibility, setProductModalVisibility] = useState<boolean>(false);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
-  const { cartArray, setCartArray } = useCartContext();
-
-  const { data: products, error, isLoading } = useProducts();
-
-  const handleCardClick = (product: Product) => {
-    setSelectedProduct(product);
-    setProductModalVisibility(true);
-  };
-
-  const handleAddToCartClick = (productId: string) => {
-    const existingProduct = cartArray.find(
-      product => product.productId === productId,
-    );
-
-    if (existingProduct) {
-      const updatedCartArray = cartArray.map(product => {
-        if (product.productId === productId) {
-          return {
-            ...product,
-            productQuantity: product.productQuantity + quantity,
-          };
-        }
-        return product;
-      });
-
-      setCartArray(updatedCartArray);
-    } else {
-      const selectedProduct = products?.find(
-        product => product.productId === productId,
-      );
-      if (selectedProduct) {
-        const updatedProduct = {
-          ...selectedProduct,
-          productQuantity: quantity,
-        };
-
-        setCartArray(prevCartArray => [...prevCartArray, updatedProduct]);
-      }
-    }
-    setQuantity(1);
-  };
-
-  return (
-    <ProductPageContainer>
-      <HeaderDiv>
-        <HeaderContainer>
-          <ChildDivCenter>
-            <Header>Get 5% cashback on 200$</Header>
-            <Paragraph>
-              Shopping is a bit of a relaxing hobby for me, which is sometimes
-              troubling for the bank balance.
-            </Paragraph>
-            <Button
-              buttonName="Learn More"
-              onClick={() => console.log('redirect to my Github Profile')}
-            />
-          </ChildDivCenter>
-        </HeaderContainer>
-      </HeaderDiv>
-      <SelectCategoryContainer
-        onClick={() => setShowCategoryList(!showCategoryList)}
-      >
-        <SelectCategory>Filter Category</SelectCategory>
-        <Icon>{showCategoryList ? <FiChevronUp /> : <FiChevronDown />}</Icon>
-      </SelectCategoryContainer>
-      {
-        <FilterCategory showCategoryList={showCategoryList}>
-          {label.map(labelItem => (
-            <CategoryItem onClick={() => setCategoryName(labelItem.value)}>
-              {labelItem.categoryitemName}
-            </CategoryItem>
-          ))}
-        </FilterCategory>
-      }
-      <ProductHeader>{categoryName}</ProductHeader>
-      {productModalVisibility && (
-        <ProductModal
-          onClose={() => setProductModalVisibility(false)}
-          productName={selectedProduct?.productName || ''}
-          productId={selectedProduct?.productId}
-          productDescription={selectedProduct?.productDescription || ''}
-          productPrice={selectedProduct?.productPrice || ''}
-          productImage={selectedProduct?.productImage || ''}
-          handleIncrement={() => setQuantity(quantity + 1)}
-          handleDecrement={() => setQuantity(quantity - 1)}
-          quantity={quantity}
-          handleAddToCartClick={() => handleAddToCartClick(selectedProduct?.productId || '')
-          }
-        />
-      )}
-      {isLoading ? (
-        <ProductsIsLoading />
-      ) : (
-        <ProductCardContainer>
-          {products
-            ?.filter(item => (categoryName === 'All Products'
-              ? true
-              : item.category
-                .toLowerCase()
-                .includes(categoryName.toLowerCase())))
-            .map(product => (
-              <ProductCard
-                key={product.productId}
-                productName={product.productName}
-                productDescription={product.productDescription}
-                productPrice={product.productPrice}
-                productImage={product.productImage}
-                handleCardClick={() => handleCardClick(product)}
-                handleAddToCartClick={() => handleAddToCartClick(product.productId)
-                }
-              />
-            ))}
-        </ProductCardContainer>
-      )}
-      <Footer />
-    </ProductPageContainer>
-  );
 }
 
 const label = [
@@ -297,17 +169,18 @@ const FilterCategory = styled.div<FilterCategoryProps>`
   overflow: hidden;
   transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
 
-  ${({ showCategoryList }) => (showCategoryList
-    ? css`
+  ${({ showCategoryList }) =>
+    showCategoryList
+      ? css`
           max-height: 500px;
           opacity: 1;
           visibility: visible;
         `
-    : css`
+      : css`
           max-height: 0;
           opacity: 0;
           visibility: hidden;
-        `)}
+        `}
 
   @media (min-width: 768px) {
     padding: 10px;
@@ -347,3 +220,112 @@ const CategoryItem = styled.p`
     color: white;
   }
 `;
+
+export default function ProductPage() {
+  const [categoryName, setCategoryName] = useState<string>('');
+  const [quantity, setQuantity] = useState<number>(1);
+  const [productModalVisibility, setProductModalVisibility] = useState<boolean>(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
+  const { cartArray, setCartArray } = useCartContext();
+
+  const { data: products, isLoading } = useProducts();
+
+  const handleCardClick = (product: Product) => {
+    setSelectedProduct(product);
+    setProductModalVisibility(true);
+  };
+
+  const handleAddToCartClick = (productId: string) => {
+    const existingProduct = cartArray.find(product => product.productId === productId);
+
+    if (existingProduct) {
+      const updatedCartArray = cartArray.map(product => {
+        if (product.productId === productId) {
+          return {
+            ...product,
+            productQuantity: product.productQuantity + quantity,
+          };
+        }
+        return product;
+      });
+
+      setCartArray(updatedCartArray);
+    } else {
+      const selectedProduct = products?.find(product => product.productId === productId);
+      if (selectedProduct) {
+        const updatedProduct = {
+          ...selectedProduct,
+          productQuantity: quantity,
+        };
+
+        setCartArray(prevCartArray => [...prevCartArray, updatedProduct]);
+      }
+    }
+    setQuantity(1);
+  };
+
+  return (
+    <ProductPageContainer>
+      <HeaderDiv>
+        <HeaderContainer>
+          <ChildDivCenter>
+            <Header>Get 5% cashback on 200$</Header>
+            <Paragraph>
+              Shopping is a bit of a relaxing hobby for me, which is sometimes troubling for the bank balance.
+            </Paragraph>
+            <Button buttonName="Learn More" onClick={() => console.log('redirect to my Github Profile')} />
+          </ChildDivCenter>
+        </HeaderContainer>
+      </HeaderDiv>
+      <SelectCategoryContainer onClick={() => setShowCategoryList(!showCategoryList)}>
+        <SelectCategory>Filter Category</SelectCategory>
+        <Icon>{showCategoryList ? <FiChevronUp /> : <FiChevronDown />}</Icon>
+      </SelectCategoryContainer>
+      {
+        <FilterCategory showCategoryList={showCategoryList}>
+          {label.map(labelItem => (
+            <CategoryItem onClick={() => setCategoryName(labelItem.value)}>{labelItem.categoryitemName}</CategoryItem>
+          ))}
+        </FilterCategory>
+      }
+      <ProductHeader>{categoryName}</ProductHeader>
+      {productModalVisibility && (
+        <ProductModal
+          onClose={() => setProductModalVisibility(false)}
+          productName={selectedProduct?.productName || ''}
+          productId={selectedProduct?.productId}
+          productDescription={selectedProduct?.productDescription || ''}
+          productPrice={selectedProduct?.productPrice || ''}
+          productImage={selectedProduct?.productImage || ''}
+          handleIncrement={() => setQuantity(quantity + 1)}
+          handleDecrement={() => setQuantity(quantity - 1)}
+          quantity={quantity}
+          handleAddToCartClick={() => handleAddToCartClick(selectedProduct?.productId || '')}
+        />
+      )}
+      {isLoading ? (
+        <ProductsIsLoading />
+      ) : (
+        <ProductCardContainer>
+          {products
+            ?.filter(item =>
+              categoryName === 'All Products' ? true : item.category.toLowerCase().includes(categoryName.toLowerCase()),
+            )
+            .map(product => (
+              <ProductCard
+                key={product.productId}
+                productName={product.productName}
+                productDescription={product.productDescription}
+                productPrice={product.productPrice}
+                productImage={product.productImage}
+                handleCardClick={() => handleCardClick(product)}
+                handleAddToCartClick={() => handleAddToCartClick(product.productId)}
+              />
+            ))}
+        </ProductCardContainer>
+      )}
+      <Footer />
+    </ProductPageContainer>
+  );
+}

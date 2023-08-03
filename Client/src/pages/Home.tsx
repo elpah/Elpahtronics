@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import TopBar from '../components/TopBar';
 import {
   appleLogo,
   ikeaLogo,
@@ -13,127 +12,10 @@ import {
   tech,
   travel,
 } from '../assets/images/exportImages';
-import CategoryCard from '../components/CategoryCard';
-import BrandCard from '../components/BrandCard';
-import Footer from '../components/Footer';
-import Button from '../components/Button';
-
-type CategoriesOrBrand = {
-  paragraph: string;
-  header?: any;
-  image: string;
-  link: string;
-};
-
-const HomePage = () => {
-  const categories = [
-    {
-      paragraph: 'Furniture',
-      image: furniture,
-      link: 'somelink',
-    },
-    {
-      paragraph: 'Bags',
-      image: bags,
-      link: 'somelink',
-    },
-    {
-      paragraph: 'Books',
-      image: books,
-      link: 'somelink',
-    },
-    {
-      paragraph: 'Tech',
-      image: tech,
-      link: 'somelink',
-    },
-    {
-      paragraph: 'Sneakers',
-      image: sneakers,
-      link: 'somelink',
-    },
-    {
-      paragraph: 'Travel',
-      image: travel,
-      link: 'somelink',
-    },
-  ];
-  const brands = [
-    {
-      header: 'Apple',
-      paragraph: 'Delivery in 24 hours',
-      image: appleLogo,
-      link: 'someling',
-    },
-    {
-      header: 'Ikea',
-      paragraph: 'Delivery in 24 hours',
-      image: ikeaLogo,
-      link: 'someling',
-    },
-    {
-      header: 'Sony',
-      paragraph: 'Delivery in 24 hours',
-      image: sonyLogo,
-
-      link: 'someling',
-    },
-    {
-      header: 'Zara',
-      paragraph: 'Delivery in 24 hours',
-      image: zaraLogo,
-      link: 'somelink',
-    },
-  ];
-  return (
-    <HomePageContainer>
-      <HeaderDiv>
-        <HeaderContainer>
-          <Header>
-            Shopping And
-            {'\n'}
-            Department Store...
-          </Header>
-          <Para>
-            Shopping is a bit of a relaxing hobby for me, which is sometimes
-            troubling for the bank balance.
-          </Para>
-          <Button
-            buttonName="Shop Now"
-            onClick={() => console.log('Handle Click later..Redirect to product Page')
-            }
-          />
-        </HeaderContainer>
-      </HeaderDiv>
-      <CategoryHeader>Shop some of categories</CategoryHeader>
-      <CategoryCardContainer>
-        {categories.map((category, index) => (
-          <CategoryCard
-            key={index}
-            categoryName={category.paragraph}
-            categoryLink={category.link}
-            categoryImage={category.image}
-          />
-        ))}
-      </CategoryCardContainer>
-      <CategoryHeader>Choose By Brand</CategoryHeader>
-      <BrandCardContainer>
-        {brands.map((brand, index) => (
-          <BrandCard
-            key={index}
-            image={brand.image}
-            header={brand.header}
-            paragraph={brand.paragraph}
-            brandLink={brand.link}
-          />
-        ))}
-      </BrandCardContainer>
-      <Footer />
-    </HomePageContainer>
-  );
-};
-
-export default HomePage;
+import CategoryCard from '../components/CategoryCard.tsx';
+import BrandCard from '../components/BrandCard.tsx';
+import Footer from '../components/Footer.tsx';
+import Button from '../components/Button.tsx';
 
 const HomePageContainer = styled.div`
   display: flex;
@@ -143,7 +25,7 @@ const HomePageContainer = styled.div`
 const HeaderDiv = styled.div`
   height: 400px;
   width: 100%;
-  background: url("https://images.unsplash.com/photo-1518481852452-9415b262eba4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80")
+  background: url('https://images.unsplash.com/photo-1518481852452-9415b262eba4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')
     no-repeat;
   background-size: cover;
   @media (min-width: 768px) {
@@ -254,3 +136,106 @@ const BrandCardContainer = styled.div`
     grid-template-columns: repeat(4, 1fr);
   }
 `;
+
+const HomePage = () => {
+  const categories = [
+    {
+      paragraph: 'Furniture',
+      image: furniture,
+      link: 'somelink',
+    },
+    {
+      paragraph: 'Bags',
+      image: bags,
+      link: 'somelink',
+    },
+    {
+      paragraph: 'Books',
+      image: books,
+      link: 'somelink',
+    },
+    {
+      paragraph: 'Tech',
+      image: tech,
+      link: 'somelink',
+    },
+    {
+      paragraph: 'Sneakers',
+      image: sneakers,
+      link: 'somelink',
+    },
+    {
+      paragraph: 'Travel',
+      image: travel,
+      link: 'somelink',
+    },
+  ];
+  const brands = [
+    {
+      header: 'Apple',
+      paragraph: 'Delivery in 24 hours',
+      image: appleLogo,
+      link: 'someling',
+    },
+    {
+      header: 'Ikea',
+      paragraph: 'Delivery in 24 hours',
+      image: ikeaLogo,
+      link: 'someling',
+    },
+    {
+      header: 'Sony',
+      paragraph: 'Delivery in 24 hours',
+      image: sonyLogo,
+
+      link: 'someling',
+    },
+    {
+      header: 'Zara',
+      paragraph: 'Delivery in 24 hours',
+      image: zaraLogo,
+      link: 'somelink',
+    },
+  ];
+  return (
+    <HomePageContainer>
+      <HeaderDiv>
+        <HeaderContainer>
+          <Header>
+            Shopping And
+            {'\n'}
+            Departmental Oasis...
+          </Header>
+          <Para>Shopping is a bit of a relaxing hobby, which is sometimes troubling for the bank balance.</Para>
+          <Button buttonName="Shop Now" onClick={() => console.log('Handle Click later..Redirect to product Page')} />
+        </HeaderContainer>
+      </HeaderDiv>
+      <CategoryHeader>Shop some of categories</CategoryHeader>
+      <CategoryCardContainer>
+        {categories.map((category, index) => (
+          <CategoryCard
+            key={index}
+            categoryName={category.paragraph}
+            categoryLink={category.link}
+            categoryImage={category.image}
+          />
+        ))}
+      </CategoryCardContainer>
+      <CategoryHeader>Choose By Brand</CategoryHeader>
+      <BrandCardContainer>
+        {brands.map((brand, index) => (
+          <BrandCard
+            key={index}
+            image={brand.image}
+            header={brand.header}
+            paragraph={brand.paragraph}
+            brandLink={brand.link}
+          />
+        ))}
+      </BrandCardContainer>
+      <Footer />
+    </HomePageContainer>
+  );
+};
+
+export default HomePage;
