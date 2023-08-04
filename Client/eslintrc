@@ -1,0 +1,23 @@
+// {
+//   "extends": "salt-typescript",
+//   "parserOptions": {
+//     "project": "tsconfig.json"
+//   },
+//   "rules": {
+//     "no-console": "off",
+//     "import/extensions": [
+//       "error",
+//       "ignorePackages",
+//       {
+//         "ts": "true"
+//         // "tsx": "never"
+//       }
+//     ]
+//   }
+// }
+
+//paste in package.json, script late
+
+// "test": "react-scripts test",
+// "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
+// "lintfix": "eslint --fix '**/*.{js,jsx,ts,tsx}'"
