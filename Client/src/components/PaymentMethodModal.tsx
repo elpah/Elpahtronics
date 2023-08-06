@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { secured, paypal, visa, ideal } from '../assets/images/exportImages';
 
 const PaymentMethodModalContainer = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const PaymentMethodsContainer = styled.div`
   position: relative;
   width: 90%;
   max-width: 500px;
-  height: 620px;
+  height: 550px;
   background-color: #fff;
   padding: 20px;
   border-radius: 4px;
@@ -35,48 +36,120 @@ const Header = styled.h2`
 const Paragraph = styled.p`
   text-align: center;
   margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 15px;
   color: rgb(74, 186, 127);
 `;
 
+const Div = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const Image = styled.img`
+  width: 13px;
+  height: 20px;
+  margin-right: 5px;
+`;
+
 const PaymentCardContainer = styled.div`
-  widdth: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
   height: 50px;
   border: 1px solid black;
   margin-bottom: 20px;
+  cursor: pointer;
+
+  & img {
+    vertical-align: middle;
+    padding-bottom: 4px;
+    height: 20px;
+    width: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const ConfirmButton = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: rgb(237, 101, 40);
+  padding: 8px;
+  width: 100px;
+  border-radius: 6px;
+  color: white;
+  border: 1px solid #ccc;
+  font-weight: 600;
+  margin-right: 10px;
+  cursor: pointer;
 `;
 
-export default function PaymentMethodModal() {
+const CancelButton = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  padding: 8px;
+  width: 90px;
+  border-radius: 6px;
+  color: black;
+  border: 1px solid #ccc;
+  font-weight: 600;
+  cursor: pointer;
+`;
+
+const Label = styled.label``;
+const Input = styled.input``;
+
+interface Props {
+  handleCancel: () => void;
+}
+
+export default function PaymentMethodModal({ handleCancel }: Props) {
+  const [PaymentMethodChosen, setPaymentMethodChosen] = useState<string>('');
   return (
     <PaymentMethodModalContainer>
       <PaymentMethodsContainer>
         <Header>Payment Methods</Header>
-        <Paragraph>Your payment details are safe with us</Paragraph>
+        <Div>
+          <Image src={secured} alt="" />
+          <Paragraph>Your payment details are safe with us</Paragraph>
+        </Div>
 
-        <PaymentCardContainer>
-          <label>
-            <input type="radio" value="option1" onChange={() => console.log('changed')} />
-            Option 1
-          </label>
-        </PaymentCardContainer>
-        <PaymentCardContainer>
-          <label>
-            <input type="radio" value="option1" onChange={() => console.log('changed')} />
-            Option 2
-          </label>
-        </PaymentCardContainer>
-        <PaymentCardContainer>
-          <label>
-            <input type="radio" value="option1" onChange={() => console.log('changed')} />
-            Option 2
-          </label>
-        </PaymentCardContainer>
-        <PaymentCardContainer>
-          <label>
-            <input type="radio" value="option1" onChange={() => console.log('changed')} />
-            Option 4
-          </label>
-        </PaymentCardContainer>
+        <Label>
+          <PaymentCardContainer>
+            <Input type="radio" name="paymentMethod" value="ideal" onChange={() => console.log('changed')} />
+            <img src={ideal} alt="ideal logo" /> Ideal
+          </PaymentCardContainer>
+        </Label>
+
+        <Label>
+          <PaymentCardContainer>
+            <Input type="radio" name="paymentMethod" value="visa" onChange={() => console.log('changed')} />
+            <img src={visa} alt="visa logo" />
+            Visa
+          </PaymentCardContainer>
+        </Label>
+
+        <Label>
+          <PaymentCardContainer>
+            <Input type="radio" name="paymentMethod" value="paypal" onChange={() => console.log('changed')} />
+            <img src={paypal} alt="paypal logo" /> Paypal
+          </PaymentCardContainer>
+        </Label>
+        <Label>
+          <PaymentCardContainer>
+            <Input type="radio" name="paymentMethod" value="bitcoin" onChange={() => console.log('changed')} />
+            <img src="https://cdn-icons-png.flaticon.com/128/196/196543.png" alt="bitcoin logo" /> Bitcoin
+          </PaymentCardContainer>
+        </Label>
+        <ButtonContainer>
+          <ConfirmButton>Confirm</ConfirmButton>
+          <CancelButton onClick={handleCancel}>Cancel</CancelButton>
+        </ButtonContainer>
       </PaymentMethodsContainer>
     </PaymentMethodModalContainer>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useCartContext } from './CartContext.tsx';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
 const SummaryDiv = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -80,8 +81,7 @@ const PaypalCheckOut = styled.button`
 export default function SummaryCard() {
   const { cartArray } = useCartContext();
   const totalPrice = cartArray.reduce(
-    (total, product) =>
-      total + parseInt(product.productPrice, 10) * product.productQuantity,
+    (total, product) => total + parseInt(product.productPrice, 10) * product.productQuantity,
     0,
   );
   const navigate = useNavigate();
@@ -103,9 +103,7 @@ export default function SummaryCard() {
         <TotalTxt>Total:</TotalTxt>
         <TotalTxt>{`${totalPrice}$`}</TotalTxt>
       </Total>
-      <CheckoutButton onClick={() => navigate('/checkoutpage')}>
-        Proceed to checkout
-      </CheckoutButton>
+      <CheckoutButton onClick={() => navigate('/checkoutpage')}>Proceed to checkout</CheckoutButton>
       <p
         style={{
           fontSize: '20px',
@@ -117,7 +115,12 @@ export default function SummaryCard() {
       >
         OR
       </p>
-      <PaypalCheckOut>Check out with PayPal</PaypalCheckOut>
+      <PayPalScriptProvider
+        options={{ clientId: 'AXNjYbmWdubqgfVmfsznh40FH6kORv9Orp-_XSEC8QGimP13MxDyh90266ACBL8BiR4HuEDx_jRVdeFk' }}
+      >
+        <PayPalButtons />
+      </PayPalScriptProvider>
+      {/* <PaypalCheckOut>Check out with PayPal</PaypalCheckOut> */}
     </SummaryDiv>
   );
 }

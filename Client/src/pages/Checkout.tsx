@@ -66,16 +66,7 @@ const Paragraph = styled.p`
   }
 `;
 
-const SelectPaymentMethods = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 10px;
-`;
-const PaymentOptions = styled.div`
-  border: 1px solid black;
-  height: 30px;
-  width: 60px;
-`;
+const ChosenPaymentParagraph = styled.p``;
 
 export default function Checkout() {
   const [showCheckoutModal, setShowCheckoutModal] = useState<boolean>(false);
@@ -109,8 +100,9 @@ export default function Checkout() {
           </DeliveryAddress>
           <PaymentMethod>
             <Header>Payment Methods</Header>
-            <Paragraph onClick={() => console.log('clicked')}>Select Payment Method</Paragraph>
-            <PaymentMethodModal />
+            <Paragraph onClick={() => setShowPaymentMethods(true)}>Select Payment Method</Paragraph>
+            <ChosenPaymentParagraph></ChosenPaymentParagraph>
+            {ShowPaymentMethods && <PaymentMethodModal handleCancel={() => setShowPaymentMethods(false)} />}
           </PaymentMethod>
           <ProductsToCheckout></ProductsToCheckout>
         </WithoutSumCardDiv>
