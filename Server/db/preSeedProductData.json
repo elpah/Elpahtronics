@@ -1,5 +1,6 @@
 [
-  {"productId": "642578029fdf623741730929",
+  {
+    "productId": "642578029fdf623741730929",
     "category":"furniture",
     "productName": "Sofa",
     "productPrice": "500$",
@@ -32,7 +33,7 @@
     "productImage": "https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4037f3ba53bcf2021_adidas%20sneakers-min.png"
   },
   {
-    "productId": "q9w8e7r6t5y4u3i2o1p",
+    "productId": "q9w8e7r6t5y4u3i2o1pe",
     "category": "travel",
     "productName": "Cabin",
     "productPrice": "283$",

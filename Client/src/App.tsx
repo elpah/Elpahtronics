@@ -11,6 +11,8 @@ import AdminLogin from './pages/admin/AdminLogin.tsx';
 import AdminPage from './pages/admin/AdminPage.tsx';
 import NotFound from './pages/NotFound.tsx';
 import Checkout from './pages/Checkout.tsx';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import PaymentSuccess from './pages/PaymentSuccess.tsx';
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           <Route path="/login" element={<AdminLogin />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/checkoutpage" element={<Checkout />} />
+          <Route path="/success" element={<PaymentSuccess />} />
           * <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
