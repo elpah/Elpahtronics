@@ -18,7 +18,6 @@ const Paragraph = styled.p`
     color: green;
   }
 `;
-
 const CartProductDiv = styled.div`
   display: flex;
   justify-content: space-between;
@@ -50,11 +49,6 @@ const CartCardContainer = styled.div``;
 export default function Cart() {
   const navigate = useNavigate();
   const { cartArray, setCartArray } = useCartContext();
-
-  // const totalPrice = cartArray.reduce(
-  //   (total, product) => total + parseInt(product.productPrice, 10) * product.productQuantity,
-  //   0,
-  // );
 
   const handleIncrement = (productId: string) => {
     const existingProduct = cartArray.find(product => product.productId === productId);
@@ -118,7 +112,6 @@ export default function Cart() {
                 size={12}
                 style={{
                   border: '1px solid black',
-
                   borderRadius: '50%',
                   marginRight: '10px',
                 }}
@@ -126,20 +119,23 @@ export default function Cart() {
               CLEAR CART
             </Paragraph>
           </CartProductDiv>
-          {cartArray?.map((cartItem: any) => (
-            <CartCard
-              productId={cartItem.productId}
-              handleDecrement={handleDecrement}
-              handleIncrement={handleIncrement}
-              handleRemove={handleRemove}
-              key={cartItem.productId}
-              productImage={cartItem.productImage}
-              productName={cartItem.productName}
-              productDetails={cartItem.productDescription}
-              price={`${(parseInt(cartItem.productPrice, 10) * cartItem.productQuantity).toString()}$`}
-              quantity={cartItem.productQuantity}
-            />
-          ))}{' '}
+          {cartArray?.map((cartItem: any) => {
+            const totalPrice = parseInt(cartItem.productPrice, 10) * cartItem.productQuantity;
+            return (
+              <CartCard
+                productId={cartItem.productId}
+                handleDecrement={handleDecrement}
+                handleIncrement={handleIncrement}
+                handleRemove={handleRemove}
+                key={cartItem.productId}
+                productImage={cartItem.productImage}
+                productName={cartItem.productName}
+                productDetails={cartItem.productDescription}
+                price={`${totalPrice}$`}
+                quantity={cartItem.productQuantity}
+              />
+            );
+          })}{' '}
         </CartCardContainer>
       ) : (
         <EmptyCartContainer>

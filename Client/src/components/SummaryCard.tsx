@@ -81,11 +81,7 @@ const PaypalCheckOut = styled.button`
 
 export default function SummaryCard() {
   const { cartArray } = useCartContext();
-  const [success, setSuccess] = useState(false);
-  const [ErrorMessage, setErrorMessage] = useState('');
-  const [orderID, setOrderID] = useState(false);
   const navigate = useNavigate();
-
   const totalPrice = cartArray.reduce(
     (total, product) => total + parseInt(product.productPrice, 10) * product.productQuantity,
     0,

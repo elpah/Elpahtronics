@@ -1,9 +1,7 @@
-import "dotenv/config"; // loads variables from .env file
+import "dotenv/config";
 import * as paypal from "../paypal-api";
 import Router from "express";
 const paypalRouter = Router();
-
-// parse post params sent in body in json format
 
 paypalRouter.post("/create-paypal-order", async (req, res) => {
   try {
@@ -15,9 +13,19 @@ paypalRouter.post("/create-paypal-order", async (req, res) => {
 });
 
 paypalRouter.post("/capture-paypal-order", async (req, res) => {
-  const { orderID } = req.body;
+  const { orderID, cart, totalPrice } = req.body;
   try {
     const captureData = await paypal.capturePayment(orderID);
+    const shippingAddress = captureData.purchase_units[0].shipping;
+    // console.log("Address:", shippingAddress); // Log the response
+    const newOrder = {
+      orderNumber: orderID,
+      items: cart,
+      totalPrice: totalPrice,
+      shippingAddress: shippingAddress,
+      status: "order confirmed",
+    };
+    console.log(newOrder);
     res.json(`${captureData} paid`);
   } catch (err: any) {
     res.status(500).send(err.message);
