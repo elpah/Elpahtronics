@@ -1,3 +1,3 @@
 # Elpahtronics
 
-simple E-commerce site
+non-commercial E-commerce site
