@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import productRouter from "./routes/products";
 import paypalRouter from "./routes/paypal-routes";
-
+import * as paypal from "/Users/elpah/Desktop/ElpahtronicsNew/Elpahtronics/Server/paypal-api";
 import { preSeedData } from "./productsDb/db";
 
 dotenv.config();

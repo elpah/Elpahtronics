@@ -5,9 +5,14 @@ import { useCartContext } from './CartContext';
 export default function PayPalPayment() {
   const { cartArray, setCartArray } = useCartContext();
 
-  const createOrder = (data: any, action: any) => {
+  const createOrder = (data: any) => {
+    const totalPrice = cartArray.reduce(
+      (total, product) => total + parseInt(product.productPrice, 10) * product.productQuantity,
+      0,
+    );
+
     // Order is created on the server and the order id is returned
-    return fetch('localhost:8000/api/paypalPaymentTest/create-paypal-order', {
+    return fetch('http://localhost:8000/api/paypalPaymentTest/create-paypal-order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -15,20 +20,16 @@ export default function PayPalPayment() {
       // use the "body" param to optionally pass additional order information
       // like product skus and quantities
       body: JSON.stringify({
-        cart: [
-          {
-            sku: 'YOUR_PRODUCT_STOCK_KEEPING_UNIT',
-            quantity: 'YOUR_PRODUCT_QUANTITY',
-          },
-        ],
+        product: cartArray,
+        totalPrice: totalPrice,
       }),
     })
       .then(response => response.json())
       .then(order => order.id);
   };
-  const onApprove = (data: any, action: any) => {
+  const onApprove = (data: any) => {
     // Order is captured on the server and the response is returned to the browser
-    return fetch('localhost:8000/api/paypalPaymentTest/capture-paypal-order', {
+    return fetch('http://localhost:8000/api/paypalPaymentTest/capture-paypal-order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -39,9 +40,6 @@ export default function PayPalPayment() {
     }).then(response => response.json());
   };
   return (
-    <PayPalButtons
-      createOrder={(data, actions) => createOrder(data, actions)}
-      onApprove={(data, actions) => onApprove(data, actions)}
-    />
+    <PayPalButtons createOrder={(data, actions) => createOrder(data)} onApprove={(data, actions) => onApprove(data)} />
   );
 }

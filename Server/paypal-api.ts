@@ -7,12 +7,6 @@ const base = "https://api-m.sandbox.paypal.com";
  * @see https://developer.paypal.com/docs/api/orders/v2/#orders_create
  */
 export async function createOrder(data: any) {
-  //calculate total here
-  //   const totalPrice = data.reduce(
-  //     (total: any, product: any) =>
-  //       total + parseInt(product.productPrice, 10) * product.productQuantity,
-  //     0
-  //   );
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders`;
   const response = await fetch(url, {
@@ -26,8 +20,8 @@ export async function createOrder(data: any) {
       purchase_units: [
         {
           amount: {
-            currency_code: "EUR",
-            value: 100,
+            currency_code: "USD",
+            value: data.totalPrice,
           },
         },
       ],

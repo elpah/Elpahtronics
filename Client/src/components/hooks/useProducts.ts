@@ -2,10 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Product from '../../productType';
 
-const useTodos = () => {
-  const fetchProducts = () => axios
-    .get<Product[]>('http://localhost:8000/api/products/available')
-    .then(res => res.data);
+const useProducts = () => {
+  const fetchProducts = () =>
+    axios.get<Product[]>('http://localhost:8000/api/products/available').then(res => res.data);
 
   return useQuery<Product[], Error>({
     queryKey: ['products'],
@@ -13,4 +12,4 @@ const useTodos = () => {
   });
 };
 
-export default useTodos;
+export default useProducts;

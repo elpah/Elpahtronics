@@ -93,44 +93,43 @@ export default function SummaryCard() {
 
   const initialOptions = {
     clientId: 'AXNjYbmWdubqgfVmfsznh40FH6kORv9Orp-_XSEC8QGimP13MxDyh90266ACBL8BiR4HuEDx_jRVdeFk',
-    currency: 'EUR',
+    currency: 'USD',
     intent: 'capture',
   };
 
   return (
-    <SummaryDiv>
-      <SummaryHeader>Order Summary</SummaryHeader>
-      <PromoCodeInput type="text" placeholder="Have a promo code?" />
-      <div>
-        <SumAndAmount>
-          <SummaryParagraph>Merchandise</SummaryParagraph>
-          <SummaryParagraph>{`${totalPrice}$`}</SummaryParagraph>
-        </SumAndAmount>
-        <SumAndAmount>
-          <SummaryParagraph>Estimated Shipping</SummaryParagraph>
-          <SummaryParagraph>Free</SummaryParagraph>
-        </SumAndAmount>
-      </div>
-      <Total>
-        <TotalTxt>Total:</TotalTxt>
-        <TotalTxt>{`${totalPrice}$`}</TotalTxt>
-      </Total>
-      <CheckoutButton onClick={() => navigate('/checkoutpage')}>Proceed to checkout</CheckoutButton>
-      <p
-        style={{
-          fontSize: '20px',
-          fontWeight: '400',
-          fontStyle: 'italic',
-          textAlign: 'center',
-          padding: '7px',
-        }}
-      >
-        OR
-      </p>
-      <PayPalScriptProvider options={initialOptions}>
+    <PayPalScriptProvider options={initialOptions}>
+      <SummaryDiv>
+        <SummaryHeader>Order Summary</SummaryHeader>
+        <PromoCodeInput type="text" placeholder="Have a promo code?" />
+        <div>
+          <SumAndAmount>
+            <SummaryParagraph>Merchandise</SummaryParagraph>
+            <SummaryParagraph>{`${totalPrice}$`}</SummaryParagraph>
+          </SumAndAmount>
+          <SumAndAmount>
+            <SummaryParagraph>Estimated Shipping</SummaryParagraph>
+            <SummaryParagraph>Free</SummaryParagraph>
+          </SumAndAmount>
+        </div>
+        <Total>
+          <TotalTxt>Total:</TotalTxt>
+          <TotalTxt>{`${totalPrice}$`}</TotalTxt>
+        </Total>
+        <CheckoutButton onClick={() => navigate('/checkoutpage')}>Proceed to checkout</CheckoutButton>
+        <p
+          style={{
+            fontSize: '20px',
+            fontWeight: '400',
+            fontStyle: 'italic',
+            textAlign: 'center',
+            padding: '7px',
+          }}
+        >
+          OR
+        </p>
         <PayPalPayment />
-      </PayPalScriptProvider>
-      {/* <PaypalCheckOut>Check out with PayPal</PaypalCheckOut> */}
-    </SummaryDiv>
+      </SummaryDiv>
+    </PayPalScriptProvider>
   );
 }
