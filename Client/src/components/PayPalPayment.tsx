@@ -40,6 +40,10 @@ export default function PayPalPayment() {
     }).then(response => response.json());
   };
   return (
-    <PayPalButtons createOrder={(data, actions) => createOrder(data)} onApprove={(data, actions) => onApprove(data)} />
+    <PayPalButtons
+      fundingSource="paypal"
+      createOrder={(data, actions) => createOrder(data)}
+      onApprove={(data, actions) => onApprove(data)}
+    />
   );
 }
