@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useCartContext } from './CartContext';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function PayPalPayment() {
-  const { cartArray, setCartArray } = useCartContext();
+  const { cartArray } = useCartContext();
+  const navigate = useNavigate();
 
   const createOrder = (data: any) => {
     const totalPrice = cartArray.reduce(
@@ -37,7 +39,11 @@ export default function PayPalPayment() {
       body: JSON.stringify({
         orderID: data.orderID,
       }),
-    }).then(response => response.json());
+    }).then(response => {
+      response.json();
+      console.log(response);
+      navigate('/success');
+    });
   };
   return (
     <PayPalButtons
