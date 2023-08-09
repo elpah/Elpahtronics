@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { FaLessThan, FaTimes } from 'react-icons/fa';
@@ -80,7 +80,6 @@ export default function Cart() {
         }
         return product;
       });
-
       setCartArray(updatedCartArray);
     }
   };

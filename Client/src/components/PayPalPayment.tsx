@@ -5,14 +5,16 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import Product from '../productType';
 
 export default function PayPalPayment() {
-  const { cartArray } = useCartContext();
-
+  const { cartArray, totalPrice } = useCartContext();
+  //   const [totalPrice, setTotalPricee] = useState();
   const navigate = useNavigate();
+  // useEffect(()=>calculateTotalPrice())
 
-  const totalPrice = cartArray.reduce(
-    (total, product) => total + parseInt(product.productPrice, 10) * product.productQuantity,
-    0,
-  );
+  //   const totalPrice = cartArray.reduce(
+  //     (total, product) => total + parseInt(product.productPrice, 10) * product.productQuantity,
+  //     0,
+  //   );
+
   const createOrder = (data: any) => {
     // Order is created on the server and the order id is returned
     return fetch('http://localhost:8000/api/paypalPaymentTest/create-paypal-order', {
@@ -60,6 +62,7 @@ export default function PayPalPayment() {
   //show order on the frontend on successPage
 
   //On error,
+
   return (
     <PayPalButtons
       //   fundingSource="paypal"

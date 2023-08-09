@@ -82,10 +82,12 @@ const PaypalCheckOut = styled.button`
 export default function SummaryCard() {
   const { cartArray } = useCartContext();
   const navigate = useNavigate();
-  const totalPrice = cartArray.reduce(
-    (total, product) => total + parseInt(product.productPrice, 10) * product.productQuantity,
-    0,
-  );
+  const { totalPrice } = useCartContext();
+
+  //   const totalPrice = cartArray.reduce(
+  //     (total, product) => total + parseInt(product.productPrice, 10) * product.productQuantity,
+  //     0,
+  //   );
 
   const initialOptions = {
     clientId: 'AXNjYbmWdubqgfVmfsznh40FH6kORv9Orp-_XSEC8QGimP13MxDyh90266ACBL8BiR4HuEDx_jRVdeFk',
@@ -124,7 +126,7 @@ export default function SummaryCard() {
         >
           OR
         </p>
-        <PayPalPayment />
+        <PayPalPayment key={totalPrice} />
       </SummaryDiv>
     </PayPalScriptProvider>
   );
