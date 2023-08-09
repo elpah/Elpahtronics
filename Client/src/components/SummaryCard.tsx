@@ -114,7 +114,9 @@ export default function SummaryCard() {
           <TotalTxt>Total:</TotalTxt>
           <TotalTxt>{`${totalPrice}$`}</TotalTxt>
         </Total>
-        <CheckoutButton onClick={() => navigate('/checkoutpage')}>Proceed to checkout</CheckoutButton>
+        <CheckoutButton disabled={cartArray.length === 0} onClick={() => navigate('/checkoutpage')}>
+          Proceed to checkout
+        </CheckoutButton>
         <p
           style={{
             fontSize: '20px',

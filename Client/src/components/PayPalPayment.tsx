@@ -6,14 +6,7 @@ import Product from '../productType';
 
 export default function PayPalPayment() {
   const { cartArray, totalPrice } = useCartContext();
-  //   const [totalPrice, setTotalPricee] = useState();
   const navigate = useNavigate();
-  // useEffect(()=>calculateTotalPrice())
-
-  //   const totalPrice = cartArray.reduce(
-  //     (total, product) => total + parseInt(product.productPrice, 10) * product.productQuantity,
-  //     0,
-  //   );
 
   const createOrder = (data: any) => {
     // Order is created on the server and the order id is returned
@@ -49,11 +42,12 @@ export default function PayPalPayment() {
         })),
         totalPrice: totalPrice,
       }),
-    }).then(response => {
-      response.json();
-      console.log(response);
-      //   navigate('/success');
-    });
+    })
+      .then(response => {
+        response.json();
+        navigate('/success');
+      })
+      .catch(err => console.log(err));
   };
 
   //todo
@@ -65,7 +59,8 @@ export default function PayPalPayment() {
 
   return (
     <PayPalButtons
-      //   fundingSource="paypal"
+      disabled={cartArray.length === 0}
+      fundingSource="paypal"
       createOrder={(data, actions) => createOrder(data)}
       onApprove={(data, actions) => onApprove(data)}
     />
