@@ -14,6 +14,9 @@ import secured from './icons/securedIcon.png';
 import visa from './icons/visaIcon.png';
 import paypal from './icons/paypalIcon.png';
 import ideal from './icons/idealIcon.png';
+import facebook from './icons/facebook.png';
+import instagram from './icons/instagram.png';
+import twitter from './icons/twitter.png';
 
 export {
   appleLogo,
@@ -32,4 +35,7 @@ export {
   visa,
   paypal,
   ideal,
+  facebook,
+  instagram,
+  twitter,
 };

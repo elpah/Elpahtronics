@@ -109,7 +109,7 @@ interface Props {
 }
 
 export default function PaymentMethodModal({ handleCancel }: Props) {
-  const [PaymentMethodChosen, setPaymentMethodChosen] = useState<string>('');
+  const [selectedPaymentMethod, setPaymentMethodChosen] = useState<string>('');
   return (
     <PaymentMethodModalContainer>
       <PaymentMethodsContainer>
@@ -121,14 +121,14 @@ export default function PaymentMethodModal({ handleCancel }: Props) {
 
         <Label>
           <PaymentCardContainer>
-            <Input type="radio" name="paymentMethod" value="ideal" onChange={() => console.log('changed')} />
+            <Input type="radio" name="paymentMethod" value="ideal" onChange={() => setPaymentMethodChosen('ideal')} />
             <img src={ideal} alt="ideal logo" /> Ideal
           </PaymentCardContainer>
         </Label>
 
         <Label>
           <PaymentCardContainer>
-            <Input type="radio" name="paymentMethod" value="visa" onChange={() => console.log('changed')} />
+            <Input type="radio" name="paymentMethod" value="visa" onChange={() => setPaymentMethodChosen('visa')} />
             <img src={visa} alt="visa logo" />
             Visa
           </PaymentCardContainer>
@@ -136,13 +136,18 @@ export default function PaymentMethodModal({ handleCancel }: Props) {
 
         <Label>
           <PaymentCardContainer>
-            <Input type="radio" name="paymentMethod" value="paypal" onChange={() => console.log('changed')} />
+            <Input type="radio" name="paymentMethod" value="paypal" onChange={() => setPaymentMethodChosen('paypal')} />
             <img src={paypal} alt="paypal logo" /> Paypal
           </PaymentCardContainer>
         </Label>
         <Label>
           <PaymentCardContainer>
-            <Input type="radio" name="paymentMethod" value="bitcoin" onChange={() => console.log('changed')} />
+            <Input
+              type="radio"
+              name="paymentMethod"
+              value="bitcoin"
+              onChange={() => setPaymentMethodChosen('bitcoin')}
+            />
             <img src="https://cdn-icons-png.flaticon.com/128/196/196543.png" alt="bitcoin logo" /> Bitcoin
           </PaymentCardContainer>
         </Label>

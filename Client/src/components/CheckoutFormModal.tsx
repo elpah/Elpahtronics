@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useCountries from './hooks/useCountries';
 
@@ -127,7 +127,25 @@ const CloseButton = styled.button`
 
 export default function CheckoutFormModal({ handleAddressSubmit, handleCloseButton }: Props) {
   const { data: countries, error, isLoading } = useCountries();
-  useEffect(() => console.log(countries), []);
+  // const [address, setAddress] = useState({
+  //   fullName: '',
+  //   phoneNumber: '',
+  //   apartment: '',
+  //   street: '',
+  //   country: '',
+  //   state: '',
+  //   city: '',
+  //   zipCode: '',
+  // });
+
+  const [fullName, setFullName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [apartment, setApartment] = useState('');
+  const [street, setStreet] = useState('');
+  const [country, setCountry] = useState('');
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
+  const [zipCode, setZipCode] = useState('');
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -144,18 +162,28 @@ export default function CheckoutFormModal({ handleAddressSubmit, handleCloseButt
         <Form onSubmit={() => console.log('submitted')}>
           <SubHeader>Contact</SubHeader>
           <TwoRowDiv>
-            <Input type="text" placeholder="Name" />
-            <Input type="text" placeholder="Phone number" />
+            <Input value={fullName} type="text" placeholder="Full Name" onChange={e => setFullName(e.target.value)} />
+            <Input
+              value={phoneNumber}
+              type="text"
+              placeholder="Phone number"
+              onChange={e => setPhoneNumber(e.target.value)}
+            />
           </TwoRowDiv>
 
           <SubHeader>Address</SubHeader>
           <TwoRowDiv>
-            <Input type="text" placeholder="Street" />
-            <Input type="text" placeholder="Apartment, unit, etc" />
+            <Input value={street} type="text" placeholder="Street" onChange={e => setStreet(e.target.value)} />
+            <Input
+              value={apartment}
+              type="text"
+              placeholder="Apartment, unit, etc"
+              onChange={e => setApartment(e.target.value)}
+            />
           </TwoRowDiv>
           <ThreeRowDiv>
-            <Select name="countryCode" id="countryCode">
-              <option value="">Select a country</option>
+            <Select name="countryCode" id="countryCode" onChange={e => setCountry(e.target.value)}>
+              <option value={country}>Select a country</option>
               {countries?.map(country => (
                 <option key={country.name} value={country.name}>
                   {country.name}
@@ -163,10 +191,15 @@ export default function CheckoutFormModal({ handleAddressSubmit, handleCloseButt
               ))}
             </Select>
 
-            <Input type="text" placeholder="State/Provice/Region" />
-            <Input type="text" placeholder="City" />
+            <Input
+              value={state}
+              type="text"
+              placeholder="State/Provice/Region"
+              onChange={e => setState(e.target.value)}
+            />
+            <Input value={city} type="text" placeholder="City" onChange={e => setCity(e.target.value)} />
           </ThreeRowDiv>
-          <Input type="text" placeholder="Zip Code" />
+          <Input value={zipCode} type="text" placeholder="Zip Code" onChange={e => setZipCode(e.target.value)} />
           <Button type="submit" onClick={handleAddressSubmit}>
             Submit
           </Button>
