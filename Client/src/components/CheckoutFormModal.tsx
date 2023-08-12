@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useCountries from './hooks/useCountries';
+import Address from '../addressType';
 
-interface Props {
-  handleAddressSubmit: () => void;
-  handleCloseButton: () => void;
-}
 const FormModalContainer = styled.div`
   display: flex;
   align-items: center;
@@ -73,6 +70,7 @@ const Button = styled.button`
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;
+  cursor: pointer;
   @media (min-width: 768px) {
     background-color: transparent;
     &:hover {
@@ -125,28 +123,26 @@ const CloseButton = styled.button`
   }
 `;
 
-export default function CheckoutFormModal({ handleAddressSubmit, handleCloseButton }: Props) {
+interface Props {
+  handleAddressSubmit: () => void;
+  handleCloseButton: () => void;
+
+  onInputChange: (field: keyof Address, value: string) => void; // Add this prop
+  address: Address;
+}
+
+export default function CheckoutFormModal({ address, handleAddressSubmit, handleCloseButton, onInputChange }: Props) {
   const { data: countries, error, isLoading } = useCountries();
-  // const [address, setAddress] = useState({
-  //   fullName: '',
-  //   phoneNumber: '',
-  //   apartment: '',
-  //   street: '',
-  //   country: '',
-  //   state: '',
-  //   city: '',
-  //   zipCode: '',
+
+  // const handleInputChange = (field: keyof Address, value: string) => {
+  // onAddressChange({
+  //   ...address,
+  //   [field]: value,
   // });
+  // };
+  // handleAddressSubmit({...address,[field]:value}){
 
-  const [fullName, setFullName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [apartment, setApartment] = useState('');
-  const [street, setStreet] = useState('');
-  const [country, setCountry] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
-  const [zipCode, setZipCode] = useState('');
-
+  // }
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -159,31 +155,46 @@ export default function CheckoutFormModal({ handleAddressSubmit, handleCloseButt
     <FormModalContainer>
       <FormContainer>
         <FormHeader>Add a new address</FormHeader>
-        <Form onSubmit={() => console.log('submitted')}>
+        <Form
+          onSubmit={e => {
+            e.preventDefault();
+            handleAddressSubmit();
+          }}
+        >
           <SubHeader>Contact</SubHeader>
           <TwoRowDiv>
-            <Input value={fullName} type="text" placeholder="Full Name" onChange={e => setFullName(e.target.value)} />
             <Input
-              value={phoneNumber}
+              value={address.fullName}
+              type="text"
+              placeholder="Full Name"
+              onChange={e => onInputChange('fullName', e.target.value)}
+            />
+            <Input
+              value={address.phoneNumber}
               type="text"
               placeholder="Phone number"
-              onChange={e => setPhoneNumber(e.target.value)}
+              onChange={e => onInputChange('phoneNumber', e.target.value)}
             />
           </TwoRowDiv>
 
           <SubHeader>Address</SubHeader>
           <TwoRowDiv>
-            <Input value={street} type="text" placeholder="Street" onChange={e => setStreet(e.target.value)} />
             <Input
-              value={apartment}
+              value={address.street}
+              type="text"
+              placeholder="Street"
+              onChange={e => onInputChange('street', e.target.value)}
+            />
+            <Input
+              value={address.apartment}
               type="text"
               placeholder="Apartment, unit, etc"
-              onChange={e => setApartment(e.target.value)}
+              onChange={e => onInputChange('apartment', e.target.value)}
             />
           </TwoRowDiv>
           <ThreeRowDiv>
-            <Select name="countryCode" id="countryCode" onChange={e => setCountry(e.target.value)}>
-              <option value={country}>Select a country</option>
+            <Select name="countryCode" onChange={e => onInputChange('country', e.target.value)}>
+              <option value={address.country}>Select a country</option>
               {countries?.map(country => (
                 <option key={country.name} value={country.name}>
                   {country.name}
@@ -192,17 +203,25 @@ export default function CheckoutFormModal({ handleAddressSubmit, handleCloseButt
             </Select>
 
             <Input
-              value={state}
+              value={address.state}
               type="text"
               placeholder="State/Provice/Region"
-              onChange={e => setState(e.target.value)}
+              onChange={e => onInputChange('state', e.target.value)}
             />
-            <Input value={city} type="text" placeholder="City" onChange={e => setCity(e.target.value)} />
+            <Input
+              value={address.city}
+              type="text"
+              placeholder="City"
+              onChange={e => onInputChange('city', e.target.value)}
+            />
           </ThreeRowDiv>
-          <Input value={zipCode} type="text" placeholder="Zip Code" onChange={e => setZipCode(e.target.value)} />
-          <Button type="submit" onClick={handleAddressSubmit}>
-            Submit
-          </Button>
+          <Input
+            value={address.zipCode}
+            type="text"
+            placeholder="Zip Code"
+            onChange={e => onInputChange('zipCode', e.target.value)}
+          />
+          <Button type="submit">Submit</Button>
         </Form>
         <CloseButton onClick={handleCloseButton}>X</CloseButton>
       </FormContainer>

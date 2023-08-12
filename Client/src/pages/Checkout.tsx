@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import SummaryCard from '../components/SummaryCard.tsx';
 import Footer from '../components/Footer.tsx';
 import CheckoutFormModal from '../components/CheckoutFormModal.tsx';
 import PaymentMethodModal from '../components/PaymentMethodModal.tsx';
+import Address from '../addressType.ts';
 const CheckoutContainer = styled.div`
   max-width: 1400px;
   margin: auto;
@@ -18,6 +19,7 @@ const CheckoutContainer = styled.div`
 `;
 const WithoutSumCardDiv = styled.div``;
 const DeliveryAddress = styled.div`
+  position: relative;
   width: 100%;
   min-height: 90px;
   padding: 15px;
@@ -51,6 +53,7 @@ const CityCountryZip = styled.div`
 const OtherInfoPara = styled.div`
   color: rgb(74, 73, 73);
   font-size: 15px;
+  margin-right: 5px;
 `;
 
 const ProductsToCheckout = styled.div``;
@@ -65,12 +68,40 @@ const Paragraph = styled.p`
     cursor: pointer;
   }
 `;
+const ModifyPara = styled.p`
+  position: absolute;
+  top: 40px;
+  right: 15px;
+  font-size: 15px;
+  color: rgb(35, 96, 161);
+  &:hover {
+    color: rgb(5, 32, 89);
+    cursor: pointer;
+  }
+`;
 
 const ChosenPaymentParagraph = styled.p``;
 
 export default function Checkout() {
   const [showCheckoutModal, setShowCheckoutModal] = useState<boolean>(false);
   const [ShowPaymentMethods, setShowPaymentMethods] = useState<boolean>(false);
+  const [address, setAddress] = useState({
+    fullName: '',
+    phoneNumber: '',
+    apartment: '',
+    street: '',
+    country: '',
+    state: '',
+    city: '',
+    zipCode: '',
+  });
+  const [addressCopy, setAddressCopy] = useState<Address | null>();
+  const handleInputChange = (field: keyof Address, value: string) => {
+    setAddress(prevAddress => ({
+      ...prevAddress,
+      [field]: value,
+    }));
+  };
 
   return (
     <>
@@ -78,24 +109,36 @@ export default function Checkout() {
         <WithoutSumCardDiv>
           <DeliveryAddress>
             <Header>Delivery Address</Header>
-            <AddressInformation>
-              <NameNumberDiv>
-                <Name>El-Pachris Obeng</Name>
-                <Number>+31627499165</Number>
-              </NameNumberDiv>
-              <OtherInfoPara>Havenstraat 21B</OtherInfoPara>
-              <CityCountryZip>
-                <OtherInfoPara>ZAANDAM,</OtherInfoPara>
-                <OtherInfoPara>Netherlands,</OtherInfoPara>
-                <OtherInfoPara>1506PG,</OtherInfoPara>
-              </CityCountryZip>
-            </AddressInformation>
-            <Paragraph onClick={() => setShowCheckoutModal(true)}>+ Add New Address</Paragraph>
+            {addressCopy ? (
+              <AddressInformation>
+                <NameNumberDiv>
+                  <Name>{addressCopy?.fullName}</Name>
+                  <Number>{addressCopy?.phoneNumber}</Number>
+                </NameNumberDiv>
+                <OtherInfoPara>{addressCopy?.street}</OtherInfoPara>
+                <CityCountryZip>
+                  <OtherInfoPara>{`${addressCopy?.city.toUpperCase()}, `}</OtherInfoPara>
+                  <OtherInfoPara>{`${addressCopy?.country}, `}</OtherInfoPara>
+                  <OtherInfoPara>{addressCopy?.zipCode}</OtherInfoPara>
+                </CityCountryZip>
+              </AddressInformation>
+            ) : (
+              <Paragraph onClick={() => setShowCheckoutModal(true)}>+ Add New Address</Paragraph>
+            )}
             {showCheckoutModal && (
               <CheckoutFormModal
-                handleAddressSubmit={() => console.log('Address')}
+                address={address}
+                onInputChange={handleInputChange}
+                handleAddressSubmit={() => {
+                  setShowCheckoutModal(false);
+                  setAddressCopy(address);
+                }}
                 handleCloseButton={() => setShowCheckoutModal(false)}
               />
+            )}
+
+            {addressCopy && !showCheckoutModal && (
+              <ModifyPara onClick={() => setShowCheckoutModal(true)}>Modify Address</ModifyPara>
             )}
           </DeliveryAddress>
           <PaymentMethod>
