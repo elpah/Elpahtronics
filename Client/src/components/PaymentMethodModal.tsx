@@ -21,7 +21,7 @@ const PaymentMethodsContainer = styled.div`
   height: 550px;
   background-color: #fff;
   padding: 20px;
-  border-radius: 4px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
   @media (min-width: 768px) {
@@ -106,9 +106,10 @@ const Input = styled.input``;
 
 interface Props {
   handleCancel: () => void;
+  visaTrueFunction: () => void;
 }
 
-export default function PaymentMethodModal({ handleCancel }: Props) {
+export default function PaymentMethodModal({ handleCancel, visaTrueFunction }: Props) {
   const [selectedPaymentMethod, setPaymentMethodChosen] = useState<string>('');
   return (
     <PaymentMethodModalContainer>
@@ -125,15 +126,21 @@ export default function PaymentMethodModal({ handleCancel }: Props) {
             <img src={ideal} alt="ideal logo" /> Ideal
           </PaymentCardContainer>
         </Label>
-
         <Label>
           <PaymentCardContainer>
-            <Input type="radio" name="paymentMethod" value="visa" onChange={() => setPaymentMethodChosen('visa')} />
+            <Input
+              type="radio"
+              name="paymentMethod"
+              value="visa"
+              onChange={() => {
+                setPaymentMethodChosen('visa');
+                visaTrueFunction();
+              }}
+            />
             <img src={visa} alt="visa logo" />
             Visa
           </PaymentCardContainer>
         </Label>
-
         <Label>
           <PaymentCardContainer>
             <Input type="radio" name="paymentMethod" value="paypal" onChange={() => setPaymentMethodChosen('paypal')} />

@@ -5,6 +5,9 @@ import { FaLessThan, FaTimes } from 'react-icons/fa';
 import CartCard from '../components/CartCard.tsx';
 import { useCartContext } from '../components/CartContext.tsx';
 import SummaryCard from '../components/SummaryCard.tsx';
+import CheckOutButton from '../components/CheckOutButton.tsx';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import PayPalPayment from '/Users/elpah/Desktop/ElpahtronicsNew/Elpahtronics/Client/src/components/PayPalPayment.tsx';
 
 const CartHeader = styled.h2`
   margin-bottom: 10px;
@@ -46,8 +49,16 @@ const CartDiv = styled.div`
 `;
 const CartCardContainer = styled.div``;
 
+const initialOptions = {
+  clientId: 'AXNjYbmWdubqgfVmfsznh40FH6kORv9Orp-_XSEC8QGimP13MxDyh90266ACBL8BiR4HuEDx_jRVdeFk',
+  currency: 'USD',
+  intent: 'capture',
+};
+
 export default function Cart() {
   const navigate = useNavigate();
+  const { totalPrice } = useCartContext();
+
   const { cartArray, setCartArray } = useCartContext();
 
   const handleIncrement = (productId: string) => {
@@ -92,56 +103,73 @@ export default function Cart() {
   };
 
   return (
-    <CartDiv>
-      {cartArray.length > 0 ? (
-        <CartCardContainer>
-          <CartHeader> Your Cart</CartHeader>
-          <CartProductDiv>
-            <Paragraph onClick={() => navigate('/product')}>
-              <FaLessThan
-                size={10}
-                style={{
-                  marginRight: '10px',
-                }}
-              />{' '}
-              BACK TO PRODUCTS
-            </Paragraph>
-            <Paragraph onClick={() => setCartArray([])}>
-              <FaTimes
-                size={12}
-                style={{
-                  border: '1px solid black',
-                  borderRadius: '50%',
-                  marginRight: '10px',
-                }}
-              />
-              CLEAR CART
-            </Paragraph>
-          </CartProductDiv>
-          {cartArray?.map((cartItem: any) => {
-            const totalPrice = parseInt(cartItem.productPrice, 10) * cartItem.productQuantity;
-            return (
-              <CartCard
-                productId={cartItem.productId}
-                handleDecrement={handleDecrement}
-                handleIncrement={handleIncrement}
-                handleRemove={handleRemove}
-                key={cartItem.productId}
-                productImage={cartItem.productImage}
-                productName={cartItem.productName}
-                productDetails={cartItem.productDescription}
-                price={`${totalPrice}$`}
-                quantity={cartItem.productQuantity}
-              />
-            );
-          })}{' '}
-        </CartCardContainer>
-      ) : (
-        <EmptyCartContainer>
-          <EmptyCart>Cart is Empty</EmptyCart>
-        </EmptyCartContainer>
-      )}
-      <SummaryCard />
-    </CartDiv>
+    <PayPalScriptProvider options={initialOptions}>
+      <CartDiv>
+        {cartArray.length > 0 ? (
+          <CartCardContainer>
+            <CartHeader> Your Cart</CartHeader>
+            <CartProductDiv>
+              <Paragraph onClick={() => navigate('/product')}>
+                <FaLessThan
+                  size={10}
+                  style={{
+                    marginRight: '10px',
+                  }}
+                />{' '}
+                BACK TO PRODUCTS
+              </Paragraph>
+              <Paragraph onClick={() => setCartArray([])}>
+                <FaTimes
+                  size={12}
+                  style={{
+                    border: '1px solid black',
+                    borderRadius: '50%',
+                    marginRight: '10px',
+                  }}
+                />
+                CLEAR CART
+              </Paragraph>
+            </CartProductDiv>
+            {cartArray?.map((cartItem: any) => {
+              const totalPrice = parseInt(cartItem.productPrice, 10) * cartItem.productQuantity;
+              return (
+                <CartCard
+                  productId={cartItem.productId}
+                  handleDecrement={handleDecrement}
+                  handleIncrement={handleIncrement}
+                  handleRemove={handleRemove}
+                  key={cartItem.productId}
+                  productImage={cartItem.productImage}
+                  productName={cartItem.productName}
+                  productDetails={cartItem.productDescription}
+                  price={`${totalPrice}$`}
+                  quantity={cartItem.productQuantity}
+                />
+              );
+            })}{' '}
+          </CartCardContainer>
+        ) : (
+          <EmptyCartContainer>
+            <EmptyCart>Cart is Empty</EmptyCart>
+          </EmptyCartContainer>
+        )}
+        <SummaryCard>
+          <CheckOutButton buttonName="Proceed to checkout" handleButtonSubmit={() => navigate('/checkoutpage')} />
+
+          <p
+            style={{
+              fontSize: '20px',
+              fontWeight: '400',
+              fontStyle: 'italic',
+              textAlign: 'center',
+              padding: '7px',
+            }}
+          >
+            OR
+          </p>
+          <PayPalPayment key={totalPrice} />
+        </SummaryCard>
+      </CartDiv>
+    </PayPalScriptProvider>
   );
 }

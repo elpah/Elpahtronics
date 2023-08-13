@@ -10,7 +10,7 @@ const SummaryDiv = styled.div`
   padding: 2%;
 
   width: 100%;
-  height: 400px;
+  min-height: 330px;
   margin-top: 30px;
 
   @media (min-width: 1198px) {
@@ -49,87 +49,36 @@ const Total = styled.div`
   padding-bottom: 10px;
 `;
 const TotalTxt = styled.h3``;
-const CheckoutButton = styled.button`
-  background-color: #000;
-  color: #fff;
-  width: 100%;
-  height: 40px;
-  font-size: 18px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  textdecoration: none;
-  &:hover {
-    background-color: #1a961c;
-  }
-`;
 
-const PaypalCheckOut = styled.button`
-  font-style: italic;
-  width: 100%;
-  color: blue;
-  height: 40px;
-  font-size: 18px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  textdecoration: none;
-  &:hover {
-    background-color: #dedede;
-  }
-`;
+interface Props {
+  children: React.ReactNode;
+}
 
-export default function SummaryCard() {
+export default function SummaryCard({ children }: Props) {
   const { cartArray } = useCartContext();
   const navigate = useNavigate();
   const { totalPrice } = useCartContext();
 
-  //   const totalPrice = cartArray.reduce(
-  //     (total, product) => total + parseInt(product.productPrice, 10) * product.productQuantity,
-  //     0,
-  //   );
-
-  const initialOptions = {
-    clientId: 'AXNjYbmWdubqgfVmfsznh40FH6kORv9Orp-_XSEC8QGimP13MxDyh90266ACBL8BiR4HuEDx_jRVdeFk',
-    currency: 'USD',
-    intent: 'capture',
-  };
-
   return (
-    <PayPalScriptProvider options={initialOptions}>
-      <SummaryDiv>
-        <SummaryHeader>Order Summary</SummaryHeader>
-        <PromoCodeInput type="text" placeholder="Have a promo code?" />
-        <div>
-          <SumAndAmount>
-            <SummaryParagraph>Merchandise</SummaryParagraph>
-            <SummaryParagraph>{`${totalPrice}$`}</SummaryParagraph>
-          </SumAndAmount>
-          <SumAndAmount>
-            <SummaryParagraph>Estimated Shipping</SummaryParagraph>
-            <SummaryParagraph>Free</SummaryParagraph>
-          </SumAndAmount>
-        </div>
-        <Total>
-          <TotalTxt>Total:</TotalTxt>
-          <TotalTxt>{`${totalPrice}$`}</TotalTxt>
-        </Total>
-        <CheckoutButton disabled={cartArray.length === 0} onClick={() => navigate('/checkoutpage')}>
-          Proceed to checkout
-        </CheckoutButton>
-        <p
-          style={{
-            fontSize: '20px',
-            fontWeight: '400',
-            fontStyle: 'italic',
-            textAlign: 'center',
-            padding: '7px',
-          }}
-        >
-          OR
-        </p>
-        <PayPalPayment key={totalPrice} />
-      </SummaryDiv>
-    </PayPalScriptProvider>
+    <SummaryDiv>
+      <SummaryHeader>Order Summary</SummaryHeader>
+      <PromoCodeInput type="text" placeholder="Have a promo code?" />
+      <div>
+        <SumAndAmount>
+          <SummaryParagraph>Merchandise</SummaryParagraph>
+          <SummaryParagraph>{`${totalPrice}$`}</SummaryParagraph>
+        </SumAndAmount>
+        <SumAndAmount>
+          <SummaryParagraph>Estimated Shipping</SummaryParagraph>
+          <SummaryParagraph>Free</SummaryParagraph>
+        </SumAndAmount>
+      </div>
+      <Total>
+        <TotalTxt>Total:</TotalTxt>
+        <TotalTxt>{`${totalPrice}$`}</TotalTxt>
+      </Total>
+
+      {children}
+    </SummaryDiv>
   );
 }

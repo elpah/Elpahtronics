@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
 import styled from 'styled-components';
 import SummaryCard from '../components/SummaryCard.tsx';
 import Footer from '../components/Footer.tsx';
 import CheckoutFormModal from '../components/CheckoutFormModal.tsx';
 import PaymentMethodModal from '../components/PaymentMethodModal.tsx';
 import Address from '../addressType.ts';
+import VisaCard from '../components/VisaCard.tsx';
+import CheckOutButton from '../components/CheckOutButton.tsx';
 const CheckoutContainer = styled.div`
   max-width: 1400px;
   margin: auto;
@@ -82,9 +87,16 @@ const ModifyPara = styled.p`
 
 const ChosenPaymentParagraph = styled.p``;
 
+const stripePromise = loadStripe(
+  'pk_test_51NeD0XJdD69kDqchRQLwOOpe6NmrC5aO8ASOjpfbKxj8tpocFwobsGsBl7Xa0rabqGzR0gQDoR1GOGYSkRvrwm5M00U5F45wh3',
+);
+
 export default function Checkout() {
   const [showCheckoutModal, setShowCheckoutModal] = useState<boolean>(false);
   const [ShowPaymentMethods, setShowPaymentMethods] = useState<boolean>(false);
+  const [showVisaCard, setShowVisaCard] = useState<boolean>(false);
+  const [clientSecret, setClientSecret] = useState('');
+
   const [address, setAddress] = useState({
     fullName: '',
     phoneNumber: '',
@@ -136,7 +148,14 @@ export default function Checkout() {
                 handleCloseButton={() => setShowCheckoutModal(false)}
               />
             )}
-
+            {showVisaCard && (
+              <VisaCard
+                handleBackClick={() => {
+                  setShowVisaCard(false);
+                  setShowPaymentMethods(true);
+                }}
+              />
+            )}
             {addressCopy && !showCheckoutModal && (
               <ModifyPara onClick={() => setShowCheckoutModal(true)}>Modify Address</ModifyPara>
             )}
@@ -145,11 +164,21 @@ export default function Checkout() {
             <Header>Payment Methods</Header>
             <Paragraph onClick={() => setShowPaymentMethods(true)}>Select Payment Method</Paragraph>
             <ChosenPaymentParagraph></ChosenPaymentParagraph>
-            {ShowPaymentMethods && <PaymentMethodModal handleCancel={() => setShowPaymentMethods(false)} />}
+            {ShowPaymentMethods && (
+              <PaymentMethodModal
+                handleCancel={() => setShowPaymentMethods(false)}
+                visaTrueFunction={() => {
+                  setShowVisaCard(true);
+                  setShowPaymentMethods(false);
+                }}
+              />
+            )}
           </PaymentMethod>
           <ProductsToCheckout></ProductsToCheckout>
         </WithoutSumCardDiv>
-        <SummaryCard />
+        <SummaryCard>
+          <CheckOutButton buttonName="Pay" handleButtonSubmit={() => console.log('paid')} />
+        </SummaryCard>
       </CheckoutContainer>
       <Footer />
     </>
