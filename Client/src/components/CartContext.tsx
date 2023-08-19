@@ -41,7 +41,6 @@ export const CartContextProvider: FC<{ children: ReactNode }> = ({ children }) =
     setTotalPrice(calculateTotalPrice(cartArray));
   }, [cartArray]);
 
-  useEffect(() => console.log(totalPrice), [totalPrice]);
   return (
     <CartContext.Provider value={{ cartArray, setCartArray, totalPrice, setTotalPrice }}>
       {children}

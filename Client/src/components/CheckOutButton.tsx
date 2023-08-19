@@ -11,15 +11,21 @@ const CheckoutButton = styled.button`
   border: none;
   cursor: pointer;
   textdecoration: none;
-  &:hover {
+
+  &:not(:disabled):hover {
     background-color: #1a961c;
   }
 `;
 interface Props {
   handleButtonSubmit: () => void;
   buttonName: string;
+  disabled?: boolean;
 }
 
-export default function CheckOutButton({ buttonName, handleButtonSubmit }: Props) {
-  return <CheckoutButton onClick={handleButtonSubmit}>{buttonName}</CheckoutButton>;
+export default function CheckOutButton({ buttonName, handleButtonSubmit, disabled }: Props) {
+  return (
+    <CheckoutButton disabled={disabled} onClick={handleButtonSubmit}>
+      {buttonName}
+    </CheckoutButton>
+  );
 }

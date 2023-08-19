@@ -13,6 +13,8 @@ import NotFound from './pages/NotFound.tsx';
 import Checkout from './pages/Checkout.tsx';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import PaymentSuccess from './pages/PaymentSuccess.tsx';
+import StripePayment from './components/StripePayment.tsx';
+import PaymentFailed from './pages/PaymentFailed.tsx';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/checkoutpage" element={<Checkout />} />
           <Route path="/success" element={<PaymentSuccess />} />
+          <Route path="/failed" element={<PaymentFailed />} />
+          <Route path="/stripe" element={<StripePayment />} />
           * <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

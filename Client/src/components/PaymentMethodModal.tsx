@@ -106,7 +106,7 @@ const Input = styled.input``;
 
 interface Props {
   handleCancel: () => void;
-  visaTrueFunction: () => void;
+  visaTrueFunction?: () => void;
 }
 
 export default function PaymentMethodModal({ handleCancel, visaTrueFunction }: Props) {
@@ -134,7 +134,7 @@ export default function PaymentMethodModal({ handleCancel, visaTrueFunction }: P
               value="visa"
               onChange={() => {
                 setPaymentMethodChosen('visa');
-                visaTrueFunction();
+                // visaTrueFunction();
               }}
             />
             <img src={visa} alt="visa logo" />
