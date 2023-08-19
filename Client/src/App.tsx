@@ -11,7 +11,6 @@ import AdminLogin from './pages/admin/AdminLogin.tsx';
 import AdminPage from './pages/admin/AdminPage.tsx';
 import NotFound from './pages/NotFound.tsx';
 import Checkout from './pages/Checkout.tsx';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import PaymentSuccess from './pages/PaymentSuccess.tsx';
 import StripePayment from './components/StripePayment.tsx';
 import PaymentFailed from './pages/PaymentFailed.tsx';

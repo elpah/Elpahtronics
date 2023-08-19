@@ -8,11 +8,16 @@ import PayPalPayment from './PayPalPayment.tsx';
 const SummaryDiv = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 2%;
-
   width: 100%;
-  min-height: 330px;
-  margin-top: 30px;
+  max-width: 500px;
 
+  min-height: 330px;
+  max-height: 400px;
+  margin: auto;
+  margin-top: 30px;
+  @media (min-width: 768px) {
+    max-width: 350px;
+  }
   @media (min-width: 1198px) {
     margin-top: 0;
     margin-left: 100px;

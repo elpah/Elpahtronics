@@ -21,6 +21,13 @@ const Paragraph = styled.p`
     color: green;
   }
 `;
+const ClearCartParagraph = styled.p`
+  cursor: pointer;
+  font-size: 15px;
+  &:hover {
+    color: red;
+  }
+`;
 const CartProductDiv = styled.div`
   display: flex;
   justify-content: space-between;
@@ -118,7 +125,7 @@ export default function Cart() {
                 />{' '}
                 BACK TO PRODUCTS
               </Paragraph>
-              <Paragraph onClick={() => setCartArray([])}>
+              <ClearCartParagraph onClick={() => setCartArray([])}>
                 <FaTimes
                   size={12}
                   style={{
@@ -128,7 +135,7 @@ export default function Cart() {
                   }}
                 />
                 CLEAR CART
-              </Paragraph>
+              </ClearCartParagraph>
             </CartProductDiv>
             {cartArray?.map((cartItem: any) => {
               const totalPrice = parseInt(cartItem.productPrice, 10) * cartItem.productQuantity;

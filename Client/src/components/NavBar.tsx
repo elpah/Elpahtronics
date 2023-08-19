@@ -18,6 +18,8 @@ const CartHamContainer = styled.div`
 const StyledHeader = styled.header`
   padding: 10px;
   width: 80%;
+  max-width: 1500px;
+
   margin: auto;
 
   @media (max-width: 768px) {
@@ -105,10 +107,7 @@ export default function NavBar() {
   const toggleNav = () => setShowMobileMenu(!showMobileMenu);
   const closeMobileMenu = () => setShowMobileMenu(false);
   const { cartArray } = useCartContext();
-  const totalQuantity = cartArray.reduce(
-    (total, product) => total + product.productQuantity,
-    0,
-  );
+  const totalQuantity = cartArray.reduce((total, product) => total + product.productQuantity, 0);
 
   return (
     <StyledHeader>
@@ -143,9 +142,7 @@ export default function NavBar() {
               <CartItemsNumber>{totalQuantity}</CartItemsNumber>
             </StyledLink>
           </CartContainer>
-          <HamburgerToggle onClick={toggleNav}>
-            {showMobileMenu ? <FaTimes /> : <FaBars />}
-          </HamburgerToggle>
+          <HamburgerToggle onClick={toggleNav}>{showMobileMenu ? <FaTimes /> : <FaBars />}</HamburgerToggle>
         </CartHamContainer>
       </NavContainer>
     </StyledHeader>

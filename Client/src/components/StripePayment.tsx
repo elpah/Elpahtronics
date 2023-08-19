@@ -6,7 +6,7 @@ import { Elements } from '@stripe/react-stripe-js';
 
 export default function StripePayment() {
   const [stripePromise, setStripePromise] = useState<Promise<Stripe | null> | null>(null);
-  const [clientSecret, setClientSecret] = useState<string | undefined>();
+  const [clientSecret, setClientSecret] = useState<string | null>();
 
   useEffect(() => {
     fetch('http://localhost:8000/api/stripePaymentTest/config').then(async result => {

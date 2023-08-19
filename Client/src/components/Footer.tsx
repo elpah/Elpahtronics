@@ -8,6 +8,8 @@ const FooterContainer = styled.div`
   padding-right: 20px;
   // padding-top: -20px;
   width: 100%;
+  max-width: 1500px;
+  margin: auto;
 `;
 const TopFooterContainer = styled.div`
   margin: 40px auto 0;

@@ -19,13 +19,9 @@ export default function StripeCheckoutForm() {
     e.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-
     setIsProcessing(true);
-
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
@@ -69,9 +65,11 @@ export default function StripeCheckoutForm() {
 }
 
 const StyledForm = styled.form`
-  max-width: 500px;
+  max-width: 520px;
   width: 100%;
   margin: auto;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 const StyledButton = styled.button`

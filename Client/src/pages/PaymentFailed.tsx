@@ -8,7 +8,6 @@ const PaymentFailedContainer = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  // background-color: #f4f4f4;
   padding: 20px; /* Add some padding to the top */
 `;
 
