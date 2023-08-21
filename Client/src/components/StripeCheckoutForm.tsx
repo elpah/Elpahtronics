@@ -5,7 +5,7 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 export default function StripeCheckoutForm() {
@@ -14,10 +14,10 @@ export default function StripeCheckoutForm() {
   const [message, setMessage] = useState<string | undefined>();
   const [email, setEmail] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [address, setAddress] = useState({});
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (!stripe || !elements) {
       return;
     }
@@ -29,13 +29,14 @@ export default function StripeCheckoutForm() {
       },
     });
 
-    if (error.type === 'card_error' || error.type === 'validation_error') {
+    if (error) {
       setMessage(error.message);
     } else {
-      setMessage('An unexpected error occured.');
-    }
+      console.log('Payment Successfull');
+      setMessage('Payment successful!');
 
-    setIsProcessing(false);
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -44,22 +45,19 @@ export default function StripeCheckoutForm() {
         onChange={event => {
           setEmail(event.value.email);
         }}
-        options={{ defaultValues: { email: 'youremail@email.com' } }}
       />
       <AddressElement
         options={{ mode: 'shipping' }}
-
-        // Access the address like so:
-        // onChange={(event) => {
-        //   setAddressState(event.value);
-        // }}
+        onChange={event => {
+          setAddress(event.value);
+        }}
       />
 
       <PaymentElement />
-      <StyledButton disabled={isProcessing || !stripe || !elements} id="submit">
-        <span id="button-text">{isProcessing ? 'Processing ... ' : 'Pay now'}</span>
+      <StyledButton disabled={isProcessing || !stripe || !elements}>
+        <span>{isProcessing ? 'Processing ... ' : 'Pay now'}</span>
       </StyledButton>
-      {message && <div id="payment-message">{message}</div>}
+      {message && <div>{message}</div>}
     </StyledForm>
   );
 }

@@ -9,14 +9,12 @@ export default function PayPalPayment() {
   const navigate = useNavigate();
 
   const createOrder = (data: any) => {
-    // Order is created on the server and the order id is returned
     return fetch('http://localhost:8000/api/paypalPaymentTest/create-paypal-order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      // use the "body" param to optionally pass additional order information
-      // like product skus and quantities
+
       body: JSON.stringify({
         product: cartArray,
         totalPrice: totalPrice,
@@ -45,7 +43,8 @@ export default function PayPalPayment() {
     })
       .then(response => {
         response.json();
-        navigate('/success');
+        console.log(response);
+        // navigate('/success');
       })
       .catch(err => console.log(err));
   };

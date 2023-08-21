@@ -2,6 +2,7 @@ import "dotenv/config";
 import * as paypal from "../paypal-api";
 import Router from "express";
 const paypalRouter = Router();
+import { createOrder } from "../ordersdb/db";
 
 paypalRouter.post("/create-paypal-order", async (req, res) => {
   try {
@@ -17,16 +18,19 @@ paypalRouter.post("/capture-paypal-order", async (req, res) => {
   try {
     const captureData = await paypal.capturePayment(orderID);
     const shippingAddress = captureData.purchase_units[0].shipping;
-    // console.log("Address:", shippingAddress); // Log the response
+    const emailAddress = captureData.payer.email_address;
+    const orderId = captureData.id;
     const newOrder = {
-      orderNumber: orderID,
+      orderNumber: orderId,
       items: cart,
       totalPrice: totalPrice,
       shippingAddress: shippingAddress,
       status: "order confirmed",
+      emailAddress: emailAddress,
     };
-    console.log(newOrder);
-    res.json(`${captureData} paid`);
+    //uncomment Later to save order to db
+    // createOrder(newOrder);
+    res.json({ captureData });
   } catch (err: any) {
     res.status(500).send(err.message);
   }

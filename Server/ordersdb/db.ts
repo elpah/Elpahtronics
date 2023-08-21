@@ -11,7 +11,7 @@ const connectToDatabase = async () => {
   return db;
 };
 type Order = {
-  orderId: string;
+  orderId?: string;
   orderNumber: string;
   items: {
     name: string;
@@ -27,8 +27,9 @@ type Order = {
     country_code: string;
   };
   status: string;
+  emailAddress: string;
 };
-const createOrder = async (order: any) => {
+const createOrder = async (order: Order) => {
   const newOrder = {
     orderId: uuidv4(),
     orderNumber: order.orderNumber,
@@ -36,8 +37,8 @@ const createOrder = async (order: any) => {
     totalPrice: order.totalPrice,
     shippingAddress: order.shippingAddress,
     status: order.status,
+    emailAddress: order.emailAddress,
   };
-
   const db = await connectToDatabase();
   const col: mongoDB.Collection = db.collection("orders");
   await col.insertOne(newOrder);

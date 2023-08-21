@@ -199,33 +199,10 @@ const SocialsImageContainer = styled.div`
 `;
 
 export default function PaymentSuccess() {
-  // const stripe = useStripe();
-  // let [searchParams, setSearchParams] = useSearchParams();
-  // const [messages, setMessages] = useState('');
-
-  // useEffect(() => {
-  //   if (!stripe) {
-  //     return;
-  //   }
-
-  //   const clientSecret = searchParams.get('payment_intent_client_secret')!;
-  //   stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-  //     setMessages(
-  //       prevMessages => `${prevMessages}
-  //     Payment Intent: ${paymentIntent?.id}`,
-  //     );
-  //   });
-  // }, [stripe]);
-
   return (
     <SuccessPageContainer>
       <TopHeaderContainer>
         <Container>
-          {/* <Elements options={stripePromise}>
-            <div id="messages" style={{ display: 'block' }}>
-              {messages}{' '}
-            </div>
-          </Elements> */}
           <svg width="50" height="50" viewBox="0 0 24 24">
             <Circle cx="12" cy="12" r="10" />
             <CheckIcon viewBox="0 0 28 23 ">
@@ -284,51 +261,3 @@ export default function PaymentSuccess() {
     </SuccessPageContainer>
   );
 }
-
-// import { useState, useEffect } from 'react';
-// import { useSearchParams } from 'react-router-dom';
-// import { Elements } from '@stripe/react-stripe-js';
-// import { useStripe } from '@stripe/react-stripe-js';
-// import { Stripe } from '@stripe/stripe-js';
-// interface SuccessProps {
-//   stripePromise: Promise<Stripe | null>;
-// }
-// const PaymentSuccess = () => {
-//   const stripe = useStripe();
-//   let [searchParams, setSearchParams] = useSearchParams();
-//   const [messages, setMessages] = useState('');
-
-//   useEffect(() => {
-//     if (!stripe) {
-//       return;
-//     }
-
-//     const clientSecret = searchParams.get('payment_intent_client_secret')!;
-//     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-//       setMessages(`${messages}
-//       Payment Intent: ${paymentIntent?.id}`);
-//     });
-//   }, [stripe]);
-
-//   return (
-//     <div className="sr-root">
-//       <div className="sr-main">
-//         <h1>Success</h1>
-
-//         <div id="messages" style={{ display: 'block' }}>
-//           {messages}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const Success: React.FC<SuccessProps> = ({ stripePromise }) => {
-//   return (
-//     <Elements stripe={stripePromise}>
-//       <PaymentSuccess />
-//     </Elements>
-//   );
-// };
-
-// export { Success, PaymentSuccess };

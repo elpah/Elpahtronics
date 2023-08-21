@@ -161,7 +161,11 @@ export default function Cart() {
           </EmptyCartContainer>
         )}
         <SummaryCard>
-          <CheckOutButton buttonName="Proceed to checkout" handleButtonSubmit={() => navigate('/checkoutpage')} />
+          <CheckOutButton
+            buttonName="Proceed to checkout"
+            disabled={totalPrice === 0}
+            handleButtonSubmit={() => navigate('/checkoutpage')}
+          />
 
           <p
             style={{
