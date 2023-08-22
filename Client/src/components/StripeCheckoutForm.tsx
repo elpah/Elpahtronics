@@ -5,16 +5,26 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
-import { useEffect, useState } from 'react';
+
+import { Stripe, loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+
+import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useCartContext } from './CartContext';
 
 export default function StripeCheckoutForm() {
+  const { cartArray, totalPrice, setCartArray } = useCartContext();
   const stripe = useStripe();
   const elements = useElements();
   const [message, setMessage] = useState<string | undefined>();
   const [email, setEmail] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [address, setAddress] = useState({});
+  const [returnUrl, setReturnUrl] = useState('');
+
+  // useEffect(() => console.log(stripe), []);
+  // useEffect(() => console.log(elements), []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,21 +32,47 @@ export default function StripeCheckoutForm() {
       return;
     }
     setIsProcessing(true);
+
     const { error } = await stripe.confirmPayment({
       elements,
-      confirmParams: {
-        return_url: `${window.location.origin}/success`,
-      },
+      redirect: 'if_required',
     });
 
     if (error) {
-      setMessage(error.message);
-    } else {
-      console.log('Payment Successfull');
-      setMessage('Payment successful!');
-
+      console.log('error');
       setIsProcessing(false);
+    } else {
+      fetch('http://localhost:8000/api/stripePaymentTest/create-new-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cart: cartArray.map(item => ({
+            productName: item.productName,
+            productQuantity: item.productQuantity,
+          })),
+          totalPrice: totalPrice,
+          address: address,
+          email: email,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Response from server:', data);
+        })
+        .catch(error => {
+          console.error('Error sending POST request:', error);
+        });
     }
+    // if (!error) {
+    //   console.log('Payment Successfull');
+    //   setCartArray([]);
+    // } else {
+    //   setMessage(error.message);
+    //   console.log('Payment Successfull');
+    //   setIsProcessing(false);
+    // }
   };
 
   return (
@@ -54,7 +90,7 @@ export default function StripeCheckoutForm() {
       />
 
       <PaymentElement />
-      <StyledButton disabled={isProcessing || !stripe || !elements}>
+      <StyledButton disabled={!stripe || !elements}>
         <span>{isProcessing ? 'Processing ... ' : 'Pay now'}</span>
       </StyledButton>
       {message && <div>{message}</div>}
