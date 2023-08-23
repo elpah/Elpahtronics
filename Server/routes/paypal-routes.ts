@@ -27,9 +27,11 @@ paypalRouter.post("/capture-paypal-order", async (req, res) => {
       shippingAddress: shippingAddress,
       status: "order confirmed",
       emailAddress: emailAddress,
+      paymentMethod: "Paypal",
+      orderDate: "",
+      expectedDelivery: "",
     };
-    //uncomment Later to save order to db
-    // createOrder(newOrder);
+    createOrder(newOrder);
     res.json({ captureData });
   } catch (err: any) {
     res.status(500).send(err.message);

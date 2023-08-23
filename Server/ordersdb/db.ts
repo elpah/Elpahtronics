@@ -28,6 +28,9 @@ type Order = {
   };
   status: string;
   emailAddress: string;
+  paymentMethod: string;
+  orderDate: string;
+  expectedDelivery: string;
 };
 const createOrder = async (order: Order) => {
   const newOrder = {
@@ -38,6 +41,8 @@ const createOrder = async (order: Order) => {
     shippingAddress: order.shippingAddress,
     status: order.status,
     emailAddress: order.emailAddress,
+    orderDate: order.orderDate,
+    expectedDelivery: order.expectedDelivery,
   };
   const db = await connectToDatabase();
   const col: mongoDB.Collection = db.collection("orders");
