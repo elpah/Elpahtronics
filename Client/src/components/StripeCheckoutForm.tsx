@@ -11,11 +11,11 @@ import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useCartContext } from './CartContext';
 import { useOrderContext } from './OrderContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function StripeCheckoutForm() {
   const { cartArray, totalPrice, setCartArray } = useCartContext();
   const {
-    orderNumber,
     setOrderNumber,
     orderTotal,
     setOrderTotal,
@@ -36,6 +36,7 @@ export default function StripeCheckoutForm() {
   const [email, setEmail] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [address, setAddress] = useState({});
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,20 +69,24 @@ export default function StripeCheckoutForm() {
           email: email,
         }),
       })
-        //redireect to success page
-        //clear cart
         //email notification
         .then(response => response.json())
         .then(data => {
-          console.log(data);
-          // console.log(`orderNumber:`, data.orderNumber);
-          // setOrderNumber(data.orderNumber);
-          // setEmail(data.orderEmail);
-          // console.log(orderNumber);
+          // console.log(data);
+          setOrderNumber(data.orderNumber);
+          setOrderDate(data.orderDate);
+          setPaymentMethod(data.paymentMethod);
+          setOrderEmail(data.emailAddress);
+          setExpectedDelivery(data.expectedDelivery);
+          setDeliveryOptions(data.deliveryOptions);
+          setOrderTotal(`${'\u20AC'}${data.totalPrice}`);
         })
         .catch(error => {
           console.error('Error sending POST request:', error);
         });
+
+      setCartArray([]);
+      navigate('/success');
     }
   };
 

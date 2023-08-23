@@ -3,7 +3,8 @@ import styled, { keyframes } from 'styled-components';
 import Footer from '../components/Footer';
 import { facebook, instagram, twitter } from '../assets/images/exportImages';
 import { Elements, useStripe } from '@stripe/react-stripe-js';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useOrderContext } from '../components/OrderContext';
 
 const rotateAnimation = keyframes`
   0% {
@@ -199,6 +200,23 @@ const SocialsImageContainer = styled.div`
 `;
 
 export default function PaymentSuccess() {
+  const { orderNumber, orderTotal, orderDate, paymentMethod, orderEmail, expectedDelivery, deliveryOptions } =
+    useOrderContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (
+      !orderNumber &&
+      !orderTotal &&
+      !orderDate &&
+      !paymentMethod &&
+      !orderEmail &&
+      !expectedDelivery &&
+      !deliveryOptions
+    ) {
+      navigate('/');
+    }
+  }, []);
   return (
     <SuccessPageContainer>
       <TopHeaderContainer>
@@ -215,31 +233,31 @@ export default function PaymentSuccess() {
       </TopHeaderContainer>
 
       <OrderDetailsContainer>
-        <OrderNumberHeader>Order Number: #139482940242</OrderNumberHeader>
+        <OrderNumberHeader>Order Number: {`#${orderNumber}`}</OrderNumberHeader>
         <DetailsDiv>
           <SmallDiv>
             <SmallDivHeader>Order total</SmallDivHeader>
-            <SmallDivParagraph>Lorem Ipsum</SmallDivParagraph>
+            <SmallDivParagraph>{orderTotal}</SmallDivParagraph>
           </SmallDiv>
           <SmallDiv>
             <SmallDivHeader>Order date</SmallDivHeader>
-            <SmallDivParagraph>Lorem Ipsum</SmallDivParagraph>
+            <SmallDivParagraph>{orderDate}</SmallDivParagraph>
           </SmallDiv>
           <SmallDiv>
             <SmallDivHeader>Payment method</SmallDivHeader>
-            <SmallDivParagraph>Lorem Ipsum</SmallDivParagraph>
+            <SmallDivParagraph>{paymentMethod}</SmallDivParagraph>
           </SmallDiv>
           <SmallDiv>
             <SmallDivHeader>Email</SmallDivHeader>
-            <SmallDivParagraph>Lorem Ipsum</SmallDivParagraph>
+            <SmallDivParagraph>{orderEmail}</SmallDivParagraph>
           </SmallDiv>
           <SmallDiv>
             <SmallDivHeader>Expected delivery</SmallDivHeader>
-            <SmallDivParagraph>Lorem Ipsum</SmallDivParagraph>
+            <SmallDivParagraph>{expectedDelivery}</SmallDivParagraph>
           </SmallDiv>
           <SmallDiv>
             <SmallDivHeader>Delivery options</SmallDivHeader>
-            <SmallDivParagraph>Fedex</SmallDivParagraph>
+            <SmallDivParagraph>{deliveryOptions}</SmallDivParagraph>
           </SmallDiv>
         </DetailsDiv>
         <EmailDivContainer>
