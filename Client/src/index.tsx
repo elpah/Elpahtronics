@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import reportWebVitals from './reportWebVitals';
 import App from './App.tsx';
 import { CartContextProvider } from './components/CartContext.tsx';
+import { OrderContextProvider } from './components/OrderContext.tsx';
 
 const queryClient = new QueryClient();
 
@@ -15,9 +16,11 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <CartContextProvider>
-          <App />
-        </CartContextProvider>
+        <OrderContextProvider>
+          <CartContextProvider>
+            <App />
+          </CartContextProvider>
+        </OrderContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools />
     </QueryClientProvider>

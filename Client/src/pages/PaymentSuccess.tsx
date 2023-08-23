@@ -239,7 +239,7 @@ export default function PaymentSuccess() {
           </SmallDiv>
           <SmallDiv>
             <SmallDivHeader>Delivery options</SmallDivHeader>
-            <SmallDivParagraph>Lorem Ipsum</SmallDivParagraph>
+            <SmallDivParagraph>Fedex</SmallDivParagraph>
           </SmallDiv>
         </DetailsDiv>
         <EmailDivContainer>
