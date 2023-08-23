@@ -2,6 +2,7 @@ import Router from "express";
 import "dotenv/config";
 import express from "express";
 import { createOrder } from "../ordersdb/db";
+import { getDate, generateOrderNumber } from "./generalFunctions";
 
 const stripeRouter = Router();
 
@@ -43,50 +44,17 @@ stripeRouter.post("/create-new-order", async (req, res) => {
       totalPrice: totalPrice,
       shippingAddress: address,
       status: "order confirmed",
-      emailAddress: email,
+      emailAddress: email.toLowerCase(),
       paymentMethod: "stripe",
       orderDate: getDate().orderDate,
       expectedDelivery: getDate().expectedDelivery,
+      deliveryOptions: "fedex",
     };
-    // createOrder(newOrder);
+
     res.send(newOrder);
-    //next Step, save order to db and send the order number to frontend
   } catch (e) {
     console.log(e);
   }
 });
-function getDate() {
-  let currentDate = new Date();
-  let year = currentDate.getFullYear();
-  let month = currentDate.getMonth() + 1;
-  let day = currentDate.getDate();
 
-  let deliveryDate = new Date(year, month - 1, day + 10); // Use a new Date object to calculate the correct delivery date
-  let deliveryYear = deliveryDate.getFullYear();
-  let deliveryMonth = deliveryDate.getMonth() + 1;
-  let deliveryDay = deliveryDate.getDate();
-
-  return {
-    orderDate: `${day}-${month}-${year}`,
-    expectedDelivery: `${deliveryDay}-${deliveryMonth}-${deliveryYear}`,
-  };
-}
-
-function generateOrderNumber(): string {
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const numbers = "0123456789";
-  let orderNumber = "";
-  orderNumber += "44";
-  for (let i = 0; i < 4; i++) {
-    const randomIndex = Math.floor(Math.random() * letters.length);
-    orderNumber += letters.charAt(randomIndex);
-  }
-  for (let i = 0; i < 8; i++) {
-    const randomIndex = Math.floor(Math.random() * numbers.length);
-    orderNumber += numbers.charAt(randomIndex);
-  }
-  const randomIndex = Math.floor(Math.random() * letters.length);
-  orderNumber += letters.charAt(randomIndex);
-  return orderNumber;
-}
 export default stripeRouter;
