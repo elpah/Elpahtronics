@@ -43,11 +43,6 @@ export const OrderContextProvider: FC<{ children: ReactNode }> = ({ children }) 
   const [expectedDelivery, setExpectedDelivery] = useState<string>('');
   const [deliveryOptions, setDeliveryOptions] = useState<string>('');
 
-  useEffect(
-    () => console.log(orderNumber, orderTotal, orderDate, orderEmail, orderNumber, expectedDelivery, deliveryOptions),
-    [orderNumber, orderTotal, orderDate, orderEmail, orderNumber, expectedDelivery, deliveryOptions],
-  );
-
   return (
     <OrderContext.Provider
       value={{

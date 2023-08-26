@@ -13,17 +13,20 @@ import { useCartContext } from './CartContext';
 import { useOrderContext } from './OrderContext';
 import { useNavigate } from 'react-router-dom';
 
+import { useShippingAddressContext } from '../components/ShippingAddressContext';
+
 export default function StripeCheckoutForm() {
   const { cartArray, totalPrice, setCartArray } = useCartContext();
   const {
+    orderTotal,
+    orderDate,
+    paymentMethod,
+    orderEmail,
+    expectedDelivery,
+    deliveryOptions,
+    orderNumber,
     setOrderNumber,
-    // orderTotal,
     setOrderTotal,
-    // orderDate,
-    // paymentMethod,
-    // orderEmail,
-    // expectedDelivery,
-    // deliveryOptions,
     setOrderDate,
     setPaymentMethod,
     setOrderEmail,
@@ -36,7 +39,9 @@ export default function StripeCheckoutForm() {
   const [message, setMessage] = useState<string | undefined>();
   const [email, setEmail] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [address, setAddress] = useState({});
+  const [billingAddress, setBillingAddress] = useState({});
+  const { shippingAddress, setShippingAddress } = useShippingAddressContext();
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -66,14 +71,14 @@ export default function StripeCheckoutForm() {
             productQuantity: item.productQuantity,
           })),
           totalPrice: totalPrice,
-          address: address,
+          address: shippingAddress,
           email: email,
         }),
       })
         //email notification
         .then(response => response.json())
         .then(data => {
-          // console.log(data);
+          console.log(data);
           setOrderNumber(data.orderNumber);
           setOrderDate(data.orderDate);
           setPaymentMethod(data.paymentMethod);
@@ -81,16 +86,29 @@ export default function StripeCheckoutForm() {
           setExpectedDelivery(data.expectedDelivery);
           setDeliveryOptions(data.deliveryOptions);
           setOrderTotal(`${'\u20AC'}${data.totalPrice}`);
+          // if (
+          //   orderNumber &&
+          //   orderTotal &&
+          //   orderDate &&
+          //   orderEmail &&
+          //   orderNumber &&
+          //   expectedDelivery &&
+          //   deliveryOptions
+          // ) {
+          //   navigate('/success');
+          // }
         })
         .catch(error => {
           console.error('Error sending POST request:', error);
         });
-
       setCartArray([]);
-      navigate('/success');
     }
   };
-
+  // useEffect(() => {
+  //   if (orderNumber && orderTotal && orderDate && orderEmail && orderNumber && expectedDelivery && deliveryOptions) {
+  //     navigate('/success');
+  //   }
+  // }, [orderNumber, orderTotal, orderDate, orderEmail, orderNumber, expectedDelivery, deliveryOptions]);
   return (
     <StyledForm onSubmit={handleSubmit}>
       <LinkAuthenticationElement
@@ -100,14 +118,23 @@ export default function StripeCheckoutForm() {
       />
       <PaymentElement />
       <BillingPara>Billing Address</BillingPara>
-
-      <input type="checkbox" onChange={() => setSameAsShipping(!sameAsShipping)} />
-      <label>Same as Shipping Address</label>
+      <BillingDiv>
+        <input
+          type="checkbox"
+          onChange={() => {
+            setSameAsShipping(!sameAsShipping);
+            if (sameAsShipping) {
+              setBillingAddress(shippingAddress);
+            }
+          }}
+        />
+        <label>Same as Shipping Address</label>
+      </BillingDiv>
       {!sameAsShipping && (
         <AddressElement
           options={{ mode: 'billing' }}
           onChange={event => {
-            setAddress(event.value);
+            setBillingAddress(event.value);
           }}
         />
       )}
@@ -119,9 +146,12 @@ export default function StripeCheckoutForm() {
   );
 }
 
+const BillingDiv = styled.div`
+  margin-bottom: 10px;
+`;
 const BillingPara = styled.p`
   margin-top: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 16px;
 `;
 const StyledForm = styled.form`

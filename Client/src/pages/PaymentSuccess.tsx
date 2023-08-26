@@ -206,12 +206,12 @@ export default function PaymentSuccess() {
 
   useEffect(() => {
     if (
-      !orderNumber &&
-      !orderTotal &&
-      !orderDate &&
-      !paymentMethod &&
-      !orderEmail &&
-      !expectedDelivery &&
+      !orderNumber ||
+      !orderTotal ||
+      !orderDate ||
+      !paymentMethod ||
+      !orderEmail ||
+      !expectedDelivery ||
       !deliveryOptions
     ) {
       navigate('/');

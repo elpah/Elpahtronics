@@ -65,19 +65,21 @@ const Select = styled.select`
   outline: none;
   max-width: ;
 `;
-const Button = styled.button`
-  margin-bottom: 15px;
-  padding: 10px;
+const ConfirmButton = styled.button`
+  display: flex;
+  justify-content: center;
+  background-color: rgb(253, 89, 7);
+  padding: 8px;
+  width: 100px;
+  border-radius: 6px;
+  color: white;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
+  font-weight: 600;
+  margin-right: 10px;
   cursor: pointer;
-  @media (min-width: 768px) {
-    background-color: transparent;
-    &:hover {
-      background-color: black;
-      color: white;
-    }
+
+  &:hover {
+    background-color: rgb(237, 101, 40);
   }
 `;
 
@@ -109,6 +111,23 @@ justify-content: space-between;
     width: 33%;
   }
 `;
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const CancelButton = styled.button`
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  padding: 8px;
+  width: 90px;
+  border-radius: 6px;
+  color: black;
+  border: 1px solid #ccc;
+  font-weight: 600;
+  cursor: pointer;
+`;
+
 const CloseButton = styled.button`
   position: absolute;
   top: 10px;
@@ -228,7 +247,10 @@ export default function CheckoutFormModal({ handleAddressSubmit, handleCloseButt
             placeholder="Postal Code"
             onChange={e => handleInputShippingAddressChange('postalCode', e.target.value)}
           />
-          <Button type="submit">Submit</Button>
+          <ButtonContainer>
+            <ConfirmButton type="submit">Submit</ConfirmButton>
+            <CancelButton onClick={handleCloseButton}>Cancel</CancelButton>
+          </ButtonContainer>
         </Form>
         <CloseButton onClick={handleCloseButton}>X</CloseButton>
       </FormContainer>

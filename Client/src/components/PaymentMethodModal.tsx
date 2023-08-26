@@ -74,10 +74,10 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
 `;
-const ConfirmButton = styled.div`
+const ConfirmButton = styled.button`
   display: flex;
   justify-content: center;
-  background-color: rgb(237, 101, 40);
+  background-color: rgb(253, 89, 7);
   padding: 8px;
   width: 100px;
   border-radius: 6px;
@@ -86,9 +86,13 @@ const ConfirmButton = styled.div`
   font-weight: 600;
   margin-right: 10px;
   cursor: pointer;
+
+  &:hover {
+    background-color: rgb(237, 101, 40);
+  }
 `;
 
-const CancelButton = styled.div`
+const CancelButton = styled.button`
   display: flex;
   justify-content: center;
   background-color: transparent;

@@ -74,7 +74,7 @@ const StripeContainer = styled.div`
   background-color: #fff;
   border-radius: 5px;
   width: 80%;
-  max-width: 700px;
+  max-width: 550px;
   padding: 10px;
   max-height: 600px;
   overflow: auto;
