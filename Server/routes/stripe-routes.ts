@@ -32,10 +32,6 @@ stripeRouter.post("/create-payment-intent", async (req, res) => {
 
 stripeRouter.post("/create-new-order", async (req, res) => {
   const { email, address, cart, totalPrice } = req.body;
-
-  // let hours = currentDate.getHours();
-  // let minutes = currentDate.getMinutes();
-  // let seconds = currentDate.getSeconds();
   try {
     const orderNumber = generateOrderNumber();
     const newOrder = {
@@ -50,7 +46,7 @@ stripeRouter.post("/create-new-order", async (req, res) => {
       expectedDelivery: getDate().expectedDelivery,
       deliveryOptions: "fedex",
     };
-
+    createOrder(newOrder);
     res.send(newOrder);
   } catch (e) {
     console.log(e);
