@@ -4,11 +4,16 @@ import { Stripe, StripeElementsOptions, loadStripe } from '@stripe/stripe-js';
 import StripeCheckoutForm from './StripeCheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { useCartContext } from './CartContext';
+import styled from 'styled-components';
 
-export default function StripePayment() {
+interface Props {
+  handleCloseButton: () => void;
+}
+
+export default function StripePayment({ handleCloseButton }: Props) {
   const [stripePromise, setStripePromise] = useState<Promise<Stripe | null> | null>(null);
   const [clientSecret, setClientSecret] = useState<string | null>();
-  const { totalPrice, setCartArray, cartArray } = useCartContext();
+  const { totalPrice } = useCartContext();
   useEffect(() => {
     fetch('http://localhost:8000/api/stripePaymentTest/config').then(async result => {
       const { publishableKey } = await result.json();
@@ -38,9 +43,52 @@ export default function StripePayment() {
 
   return (
     clientSecret && (
-      <Elements stripe={stripePromise} options={{ clientSecret }}>
-        <StripeCheckoutForm />
-      </Elements>
+      <ModalContainer>
+        <StripeContainer>
+          <Elements stripe={stripePromise} options={{ clientSecret }}>
+            <StripeCheckoutForm />
+          </Elements>
+          <CloseButton onClick={handleCloseButton}>X</CloseButton>
+        </StripeContainer>
+      </ModalContainer>
     )
   );
 }
+
+const ModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+`;
+
+const StripeContainer = styled.div`
+  position: relative;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 700px;
+  padding: 10px;
+  max-height: 600px;
+  overflow: auto;
+`;
+
+const CloseButton = styled.button`
+  font-size: 15px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
+`;

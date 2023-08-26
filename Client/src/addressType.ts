@@ -1,10 +1,10 @@
 export default interface Address {
   fullName: string;
   phoneNumber: string;
-  apartment: string;
   street: string;
-  country: string;
-  state: string;
+  apartment?: string;
   city: string;
-  zipCode: string;
+  state: string;
+  postalCode: string;
+  country: string;
 }

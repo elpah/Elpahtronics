@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import App from './App.tsx';
 import { CartContextProvider } from './components/CartContext.tsx';
 import { OrderContextProvider } from './components/OrderContext.tsx';
+import { ShippingAddressContextProvider } from './components/ShippingAddressContext.tsx';
 
 const queryClient = new QueryClient();
 
@@ -18,7 +19,9 @@ root.render(
       <BrowserRouter>
         <OrderContextProvider>
           <CartContextProvider>
-            <App />
+            <ShippingAddressContextProvider>
+              <App />
+            </ShippingAddressContextProvider>
           </CartContextProvider>
         </OrderContextProvider>
       </BrowserRouter>

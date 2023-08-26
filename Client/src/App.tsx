@@ -31,7 +31,7 @@ function App() {
           <Route path="/checkoutpage" element={<Checkout />} />
           <Route path="/success" element={<PaymentSuccess />} />
           <Route path="/failed" element={<PaymentFailed />} />
-          <Route path="/stripe" element={<StripePayment />} />
+          {/* <Route path="/stripe" element={<StripePayment />} /> */}
           * <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

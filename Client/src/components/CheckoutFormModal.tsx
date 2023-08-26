@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useCountries from './hooks/useCountries';
 import Address from '../addressType';
+import { useShippingAddressContext } from './ShippingAddressContext';
 
 const FormModalContainer = styled.div`
   display: flex;
@@ -126,23 +127,19 @@ const CloseButton = styled.button`
 interface Props {
   handleAddressSubmit: () => void;
   handleCloseButton: () => void;
-
-  onInputChange: (field: keyof Address, value: string) => void; // Add this prop
-  address: Address;
 }
 
-export default function CheckoutFormModal({ address, handleAddressSubmit, handleCloseButton, onInputChange }: Props) {
+export default function CheckoutFormModal({ handleAddressSubmit, handleCloseButton }: Props) {
   const { data: countries, error, isLoading } = useCountries();
+  const { shippingAddress, setShippingAddress } = useShippingAddressContext();
 
-  // const handleInputChange = (field: keyof Address, value: string) => {
-  // onAddressChange({
-  //   ...address,
-  //   [field]: value,
-  // });
-  // };
-  // handleAddressSubmit({...address,[field]:value}){
+  const handleInputShippingAddressChange = (field: keyof Address, value: string) => {
+    setShippingAddress(prevAddress => ({
+      ...prevAddress,
+      [field]: value,
+    }));
+  };
 
-  // }
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -159,42 +156,52 @@ export default function CheckoutFormModal({ address, handleAddressSubmit, handle
           onSubmit={e => {
             e.preventDefault();
             handleAddressSubmit();
+            setShippingAddress({
+              fullName: shippingAddress.fullName,
+              phoneNumber: shippingAddress.phoneNumber,
+              street: shippingAddress.street,
+              apartment: shippingAddress.apartment,
+              city: shippingAddress.city,
+              state: shippingAddress.state,
+              postalCode: shippingAddress.postalCode,
+              country: shippingAddress.country,
+            });
           }}
         >
           <SubHeader>Contact</SubHeader>
           <TwoRowDiv>
             <Input
-              value={address.fullName}
+              value={shippingAddress.fullName}
               type="text"
               placeholder="Full Name"
-              onChange={e => onInputChange('fullName', e.target.value)}
+              onChange={e => handleInputShippingAddressChange('fullName', e.target.value)}
             />
             <Input
-              value={address.phoneNumber}
+              value={shippingAddress.phoneNumber}
               type="text"
               placeholder="Phone number"
-              onChange={e => onInputChange('phoneNumber', e.target.value)}
+              onChange={e => handleInputShippingAddressChange('phoneNumber', e.target.value)}
             />
           </TwoRowDiv>
 
           <SubHeader>Address</SubHeader>
           <TwoRowDiv>
             <Input
-              value={address.street}
+              value={shippingAddress.street}
               type="text"
               placeholder="Street"
-              onChange={e => onInputChange('street', e.target.value)}
+              onChange={e => handleInputShippingAddressChange('street', e.target.value)}
             />
             <Input
-              value={address.apartment}
+              value={shippingAddress.apartment}
               type="text"
               placeholder="Apartment, unit, etc"
-              onChange={e => onInputChange('apartment', e.target.value)}
+              onChange={e => handleInputShippingAddressChange('apartment', e.target.value)}
             />
           </TwoRowDiv>
           <ThreeRowDiv>
-            <Select name="countryCode" onChange={e => onInputChange('country', e.target.value)}>
-              <option value={address.country}>Select a country</option>
+            <Select name="countryCode" onChange={e => handleInputShippingAddressChange('country', e.target.value)}>
+              <option value={shippingAddress.country}>Select a country</option>
               {countries?.map(country => (
                 <option key={country.name} value={country.name}>
                   {country.name}
@@ -203,23 +210,23 @@ export default function CheckoutFormModal({ address, handleAddressSubmit, handle
             </Select>
 
             <Input
-              value={address.state}
+              value={shippingAddress.state}
               type="text"
               placeholder="State/Provice/Region"
-              onChange={e => onInputChange('state', e.target.value)}
+              onChange={e => handleInputShippingAddressChange('state', e.target.value)}
             />
             <Input
-              value={address.city}
+              value={shippingAddress.city}
               type="text"
               placeholder="City"
-              onChange={e => onInputChange('city', e.target.value)}
+              onChange={e => handleInputShippingAddressChange('city', e.target.value)}
             />
           </ThreeRowDiv>
           <Input
-            value={address.zipCode}
+            value={shippingAddress.postalCode}
             type="text"
-            placeholder="Zip Code"
-            onChange={e => onInputChange('zipCode', e.target.value)}
+            placeholder="Postal Code"
+            onChange={e => handleInputShippingAddressChange('postalCode', e.target.value)}
           />
           <Button type="submit">Submit</Button>
         </Form>

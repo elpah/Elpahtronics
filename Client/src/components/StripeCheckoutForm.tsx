@@ -17,19 +17,20 @@ export default function StripeCheckoutForm() {
   const { cartArray, totalPrice, setCartArray } = useCartContext();
   const {
     setOrderNumber,
-    orderTotal,
+    // orderTotal,
     setOrderTotal,
-    orderDate,
-    paymentMethod,
-    orderEmail,
-    expectedDelivery,
-    deliveryOptions,
+    // orderDate,
+    // paymentMethod,
+    // orderEmail,
+    // expectedDelivery,
+    // deliveryOptions,
     setOrderDate,
     setPaymentMethod,
     setOrderEmail,
     setExpectedDelivery,
     setDeliveryOptions,
   } = useOrderContext();
+  const [sameAsShipping, setSameAsShipping] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const [message, setMessage] = useState<string | undefined>();
@@ -97,14 +98,19 @@ export default function StripeCheckoutForm() {
           setEmail(event.value.email);
         }}
       />
-      <AddressElement
-        options={{ mode: 'shipping' }}
-        onChange={event => {
-          setAddress(event.value);
-        }}
-      />
-
       <PaymentElement />
+      <BillingPara>Billing Address</BillingPara>
+
+      <input type="checkbox" onChange={() => setSameAsShipping(!sameAsShipping)} />
+      <label>Same as Shipping Address</label>
+      {!sameAsShipping && (
+        <AddressElement
+          options={{ mode: 'billing' }}
+          onChange={event => {
+            setAddress(event.value);
+          }}
+        />
+      )}
       <StyledButton disabled={!stripe || !elements}>
         <span>{isProcessing ? 'Processing ... ' : 'Pay now'}</span>
       </StyledButton>
@@ -113,8 +119,13 @@ export default function StripeCheckoutForm() {
   );
 }
 
+const BillingPara = styled.p`
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 16px;
+`;
 const StyledForm = styled.form`
-  max-width: 520px;
+  max-width: 700px;
   width: 100%;
   margin: auto;
   padding: 15px;

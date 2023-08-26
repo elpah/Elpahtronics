@@ -30,6 +30,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.2",
     "react-icons": "^4.9.0",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
     "stripe": "^12.18.0",

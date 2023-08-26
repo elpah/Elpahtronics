@@ -11,7 +11,7 @@ const CheckoutButton = styled.button`
   border: none;
   cursor: pointer;
   textdecoration: none;
-
+  background-color: ${props => (props.disabled ? 'rgb(86,86,86)' : 'black')};
   &:not(:disabled):hover {
     background-color: #1a961c;
   }
