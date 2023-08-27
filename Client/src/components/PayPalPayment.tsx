@@ -35,9 +35,11 @@ export default function PayPalPayment() {
       body: JSON.stringify({
         orderID: data.orderID,
         cart: cartArray.map(item => ({
+          productId: item.productId,
           productName: item.productName,
           productQuantity: item.productQuantity,
         })),
+
         totalPrice: totalPrice,
       }),
     })
@@ -53,7 +55,6 @@ export default function PayPalPayment() {
   //function that creates an order using the order ID, and send it to the backend, and save it to the order db
   // generate an orderNumber, or use orderID
   //show order on the frontend on successPage
-
   //On error,
 
   return (

@@ -86,17 +86,6 @@ export default function StripeCheckoutForm() {
           setExpectedDelivery(data.expectedDelivery);
           setDeliveryOptions(data.deliveryOptions);
           setOrderTotal(`${'\u20AC'}${data.totalPrice}`);
-          // if (
-          //   orderNumber &&
-          //   orderTotal &&
-          //   orderDate &&
-          //   orderEmail &&
-          //   orderNumber &&
-          //   expectedDelivery &&
-          //   deliveryOptions
-          // ) {
-          //   navigate('/success');
-          // }
         })
         .catch(error => {
           console.error('Error sending POST request:', error);
@@ -106,7 +95,7 @@ export default function StripeCheckoutForm() {
   };
   // useEffect(() => {
   //   if (orderNumber && orderTotal && orderDate && orderEmail && orderNumber && expectedDelivery && deliveryOptions) {
-  //     navigate('/success');
+  navigate('/success');
   //   }
   // }, [orderNumber, orderTotal, orderDate, orderEmail, orderNumber, expectedDelivery, deliveryOptions]);
   return (
