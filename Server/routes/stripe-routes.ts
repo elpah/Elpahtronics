@@ -41,7 +41,7 @@ stripeRouter.post("/create-new-order", async (req, res) => {
       shippingAddress: address,
       status: "order confirmed",
       emailAddress: email.toLowerCase(),
-      paymentMethod: "stripe",
+      paymentMethod: "visa",
       orderDate: getDate().orderDate,
       expectedDelivery: getDate().expectedDelivery,
       deliveryOptions: "fedex",

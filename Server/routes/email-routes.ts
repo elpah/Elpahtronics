@@ -1,35 +1,44 @@
-// import "dotenv/config";
-// import * as paypal from "../paypal-api";
-// import Router from "express";
-// const paypalRouter = Router();
+import mailjet from "node-mailjet";
 
-// paypalRouter.post("/create-paypal-order", async (req, res) => {
-//   try {
-//     const order = await paypal.createOrder(req.body);
-//     res.json(order);
-//   } catch (err: any) {
-//     res.status(500).send(err.message);
-//   }
-// });
+router.post("/send-email", async (req, res) => {
+  const mailjetClient = mailjet.connect(
+    "df92719b746ff069f82809f61a4b6c61",
+    "770bb486a9f9e86a695711bbd1c80151"
+  );
 
-// paypalRouter.post("/capture-paypal-order", async (req, res) => {
-//   const { orderID, cart, totalPrice } = req.body;
-//   try {
-//     const captureData = await paypal.capturePayment(orderID);
-//     const shippingAddress = captureData.purchase_units[0].shipping;
-//     // console.log("Address:", shippingAddress); // Log the response
-//     const newOrder = {
-//       orderNumber: orderID,
-//       items: cart,
-//       totalPrice: totalPrice,
-//       shippingAddress: shippingAddress,
-//       status: "order confirmed",
-//     };
-//     console.log(newOrder);
-//     res.json(`${captureData} paid`);
-//   } catch (err: any) {
-//     res.status(500).send(err.message);
-//   }
-// });
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({ error: "Email is required" });
+  }
 
-// export default paypalRouter;
+  const request = mailjetClient.post("send", { version: "v3.1" }).request({
+    Messages: [
+      {
+        From: {
+          Email: "elpachris.obeng@appliedtechnology.se",
+          Name: "Tinny Sitters",
+        },
+        To: [
+          {
+            Email: email,
+          },
+        ],
+        Subject: "Booking Confirmation",
+        TextPart: "Testing Testing",
+        HTMLPart:
+          "<h3>Thank you for booking a sitter <a href='localhost/3000/sitters'>TinnySitters</a>!</h3><br/>!",
+        CustomID: "Tinny Sitters",
+      },
+    ],
+  });
+
+  try {
+    const result = await request;
+    console.log(result.body);
+    console.log("hello");
+    res.json({ message: "Email sent successfully" });
+  } catch (err: any) {
+    console.error(err);
+    res.status(err.statusCode || 500).json({ error: err.message });
+  }
+});
