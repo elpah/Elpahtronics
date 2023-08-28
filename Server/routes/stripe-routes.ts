@@ -2,7 +2,7 @@ import Router from "express";
 import "dotenv/config";
 import express from "express";
 import { createOrder } from "../ordersdb/db";
-import { getDate, generateOrderNumber } from "./generalFunctions";
+import { getDate, sendEmail, generateOrderNumber } from "./generalFunctions";
 
 const stripeRouter = Router();
 
@@ -47,6 +47,7 @@ stripeRouter.post("/create-new-order", async (req, res) => {
       deliveryOptions: "fedex",
     };
     createOrder(newOrder);
+    sendEmail(email, orderNumber);
     res.send(newOrder);
   } catch (e) {
     console.log(e);
