@@ -9,6 +9,7 @@ import App from './App.tsx';
 import { CartContextProvider } from './components/CartContext.tsx';
 import { OrderContextProvider } from './components/OrderContext.tsx';
 import { ShippingAddressContextProvider } from './components/ShippingAddressContext.tsx';
+import GlobalStyles from './components/GlobalStyles.tsx';
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ root.render(
         <OrderContextProvider>
           <CartContextProvider>
             <ShippingAddressContextProvider>
+              <GlobalStyles />
               <App />
             </ShippingAddressContextProvider>
           </CartContextProvider>

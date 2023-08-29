@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { auth } from '../../firebase';
+import { footerlogosmall } from '../../assets/images/exportImages';
 
 const Form = styled.form``;
 
@@ -85,7 +86,7 @@ export default function SignIn() {
 
   return (
     <Form onSubmit={signIn}>
-      <h1>LOGO</h1>
+      <Image src={footerlogosmall} alt="" />
       <Header>Log In</Header>
       <Input type="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="Enter Email" />
       <Input
@@ -102,3 +103,8 @@ export default function SignIn() {
     </Form>
   );
 }
+
+const Image = styled.img`
+  height: 50px;
+  widthl: 60px;
+`;

@@ -5,7 +5,7 @@ import { BsTelephone } from 'react-icons/bs';
 const Bar = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 90%;
   margin: auto;
 `;
 const BarContainer = styled.div`

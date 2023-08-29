@@ -1,10 +1,31 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+
 import styled from 'styled-components';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUser } from 'react-icons/fa';
 import { BsCart } from 'react-icons/bs';
 import { useCartContext } from './CartContext.tsx';
-import { elpahtronicsblack, elpahtronicswhite } from '../assets/images/exportImages.ts';
+import {
+  elpahtronicsblack,
+  elpahtronicswhite,
+  elpahtronicsblue,
+  elpahlogotry,
+  elpahtronicslogosmall,
+} from '../assets/images/exportImages.ts';
+
+const StyledHeader = styled.header`
+  border-bottom: 2px solid red;
+  width: 100%;
+  max-width: 1500px;
+  height: 80px;
+  margin: auto;
+  position: relative;
+
+  @media (min-width: 768px) {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+`;
 
 const NavContainer = styled.nav`
   display: flex;
@@ -14,21 +35,9 @@ const NavContainer = styled.nav`
 
 const CartHamContainer = styled.div`
   display: flex;
+  margin-top: 28px;
 `;
 
-const StyledHeader = styled.header`
-  padding: 10px;
-  width: 80%;
-  max-width: 1500px;
-
-  margin: auto;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    margin: auto;
-    position: relative;
-  }
-`;
 const NavList = styled.ul<{ showMobileMenu: boolean }>`
   list-style: none;
   display: flex;
@@ -48,26 +57,56 @@ const NavList = styled.ul<{ showMobileMenu: boolean }>`
   }
 `;
 const NavItem = styled.li`
-  font-size: 20px;
+  font-size: 15px;
   margin-left: 10px;
-  @media (max-width: 768px) {
-    margin: 10px 0;
-    font-size: 15px;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
   }
 `;
-
 const NavLink = styled(Link)`
-  color: #333;
+  color: rgb(60, 103, 172);
+  font-weight: 300;
   text-decoration: none;
   padding: 25px;
+  padding: 10px;
+  position: relative;
 
-  &:hover {
-    color: #666;
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(239, 159, 70);
+    transition: width 0.2s ease;
   }
-  @media (max-width: 768px) {
-    padding: 5px;
+
+  @media (min-width: 768px) {
+    &:hover {
+      color: #000080;
+      &:before {
+        width: 100%;
+      }
+    }
   }
 `;
+
+// const NavLink = styled(Link)`
+//   color: rgb(60, 103, 172);
+//   text-decoration: none;
+//   padding: 25px;
+//   padding: 10px;
+//   transition: border-bottom 0.3s ease;
+
+//   @media (min-width: 768px) {
+//     &:hover {
+//       color: rgb(48, 67, 141);
+//       border-bottom: 3px solid rgb(239, 159, 70);
+//     }
+//   }
+// `;
 const HamburgerToggle = styled.div`
   display: none;
 
@@ -80,6 +119,7 @@ const HamburgerToggle = styled.div`
 `;
 const CartContainer = styled.div`
   font-size: 24px;
+
   @media (max-width: 768px) {
     margin-right: 50px;
   }
@@ -104,11 +144,17 @@ const CartItemsNumber = styled.p`
 `;
 const LogoContainer = styled.div``;
 const Image = styled.img`
-  height: 60px;
-  width: 200px;
+  height: 75px;
+  width: 120px;
+  cursor: pointer;
+`;
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export default function NavBar() {
+  const navigate = useNavigate();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const toggleNav = () => setShowMobileMenu(!showMobileMenu);
   const closeMobileMenu = () => setShowMobileMenu(false);
@@ -118,31 +164,41 @@ export default function NavBar() {
   return (
     <StyledHeader>
       <NavContainer>
-        <LogoContainer>
-          <Image src={elpahtronicswhite} alt="" />
+        <LogoContainer onClick={() => navigate('/')}>
+          <Image src={elpahtronicsblue} alt="logo" />
         </LogoContainer>
-        <div>
-          {
-            <NavList showMobileMenu={showMobileMenu}>
-              <NavItem>
-                <NavLink to="/" onClick={closeMobileMenu}>
-                  Home
-                </NavLink>
-              </NavItem>
+        <Div>
+          <NavList showMobileMenu={showMobileMenu}>
+            <NavItem>
+              <NavLink to="/" onClick={closeMobileMenu}>
+                Home
+              </NavLink>
+            </NavItem>
 
-              <NavItem>
-                <NavLink to="/product" onClick={closeMobileMenu}>
-                  Product
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="/contact" onClick={closeMobileMenu}>
-                  Contact
-                </NavLink>
-              </NavItem>
-            </NavList>
-          }
-        </div>
+            <NavItem>
+              <NavLink to="/product" onClick={closeMobileMenu}>
+                Product
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to="/contact" onClick={closeMobileMenu}>
+                Contact
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to="/login" onClick={closeMobileMenu}>
+                <FaUser
+                  style={{
+                    fontSize: '15px',
+                    marginRight: '5px',
+                    color: 'rgb(239, 159, 70)',
+                  }}
+                />
+                admin
+              </NavLink>
+            </NavItem>
+          </NavList>
+        </Div>
         <CartHamContainer>
           <CartContainer>
             <StyledLink to="/Cart">

@@ -19,6 +19,11 @@ import instagram from './icons/instagram.png';
 import twitter from './icons/twitter.png';
 import elpahtronicsblack from './elpahtronicsLogo/elpahtronicslogoblack.png';
 import elpahtronicswhite from './elpahtronicsLogo/elpahtronicslogowhite.png';
+import elpahtronicsblue from './elpahtronicsLogo/elpahtronicslogoblue.png';
+import elpahlogotry from './elpahtronicsLogo/elpahlogotry.png';
+import elpahtronicslogosmall from './elpahtronicsLogo/elpatronicslogosmall.png';
+import footerlogosmall from './elpahtronicsLogo/footerlogosmall.png';
+import footerlogobig from './elpahtronicsLogo/footerlogobig.png';
 
 export {
   appleLogo,
@@ -42,4 +47,9 @@ export {
   twitter,
   elpahtronicsblack,
   elpahtronicswhite,
+  elpahtronicsblue,
+  elpahlogotry,
+  elpahtronicslogosmall,
+  footerlogobig,
+  footerlogosmall,
 };

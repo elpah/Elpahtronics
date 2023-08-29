@@ -47,7 +47,7 @@ const Header = styled.h2`
   display: flex;
   white-space: pre-line;
   font-size: 37px;
-  font-weight: 800;
+  font-weight: 400;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-top: 80px;
@@ -68,6 +68,7 @@ const Para = styled.p`
   white-space: pre-line;
   line-height: 1.1;
   font-size: 18px;
+  font-weight: 300;
   max-width: 75%;
   color: rgb(221, 187, 69);
   background-color: rgba(68, 64, 56, 0.6);
@@ -89,6 +90,7 @@ const CategoryHeader = styled.h2`
   margin: auto;
   display: flex;
   font-size: 30px;
+  font-weight: 300;
   margin-top: 50px;
   @media (min-width: 768px) {
     font-size: 40px;
@@ -198,43 +200,46 @@ const HomePage = () => {
     },
   ];
   return (
-    <HomePageContainer>
-      <HeaderDiv>
-        <HeaderContainer>
-          <Header>
-            Shopping And
-            {'\n'}
-            Departmental Oasis...
-          </Header>
-          <Para>Shopping is a bit of a relaxing hobby, which is sometimes troubling for the bank balance.</Para>
-          <Button buttonName="Shop Now" onClick={() => console.log('Handle Click later..Redirect to product Page')} />
-        </HeaderContainer>
-      </HeaderDiv>
-      <CategoryHeader>Shop some of categories</CategoryHeader>
-      <CategoryCardContainer>
-        {categories.map((category, index) => (
-          <CategoryCard
-            key={index}
-            categoryName={category.paragraph}
-            categoryLink={category.link}
-            categoryImage={category.image}
-          />
-        ))}
-      </CategoryCardContainer>
-      <CategoryHeader>Choose By Brand</CategoryHeader>
-      <BrandCardContainer>
-        {brands.map((brand, index) => (
-          <BrandCard
-            key={index}
-            image={brand.image}
-            header={brand.header}
-            paragraph={brand.paragraph}
-            brandLink={brand.link}
-          />
-        ))}
-      </BrandCardContainer>
-      <Footer />
-    </HomePageContainer>
+    <>
+      {/* <GlobalStyles /> */}
+      <HomePageContainer>
+        <HeaderDiv>
+          <HeaderContainer>
+            <Header>
+              Shopping And
+              {'\n'}
+              Departmental Oasis...
+            </Header>
+            <Para>Shopping is a bit of a relaxing hobby, which is sometimes troubling for the bank balance.</Para>
+            <Button buttonName="Shop Now" onClick={() => console.log('Handle Click later..Redirect to product Page')} />
+          </HeaderContainer>
+        </HeaderDiv>
+        <CategoryHeader>Shop some of categories</CategoryHeader>
+        <CategoryCardContainer>
+          {categories.map((category, index) => (
+            <CategoryCard
+              key={index}
+              categoryName={category.paragraph}
+              categoryLink={category.link}
+              categoryImage={category.image}
+            />
+          ))}
+        </CategoryCardContainer>
+        <CategoryHeader>Choose By Brand</CategoryHeader>
+        <BrandCardContainer>
+          {brands.map((brand, index) => (
+            <BrandCard
+              key={index}
+              image={brand.image}
+              header={brand.header}
+              paragraph={brand.paragraph}
+              brandLink={brand.link}
+            />
+          ))}
+        </BrandCardContainer>
+        <Footer />
+      </HomePageContainer>
+    </>
   );
 };
 
