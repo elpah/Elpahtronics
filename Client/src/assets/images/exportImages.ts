@@ -17,6 +17,8 @@ import ideal from './icons/idealIcon.png';
 import facebook from './icons/facebook.png';
 import instagram from './icons/instagram.png';
 import twitter from './icons/twitter.png';
+import elpahtronicsblack from './elpahtronicsLogo/elpahtronicslogoblack.png';
+import elpahtronicswhite from './elpahtronicsLogo/elpahtronicslogowhite.png';
 
 export {
   appleLogo,
@@ -38,4 +40,6 @@ export {
   facebook,
   instagram,
   twitter,
+  elpahtronicsblack,
+  elpahtronicswhite,
 };

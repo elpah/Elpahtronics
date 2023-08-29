@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { BsCart } from 'react-icons/bs';
 import { useCartContext } from './CartContext.tsx';
+import { elpahtronicsblack, elpahtronicswhite } from '../assets/images/exportImages.ts';
 
 const NavContainer = styled.nav`
   display: flex;
@@ -101,6 +102,11 @@ const CartItemsNumber = styled.p`
   text-align: center;
   font-weight: 600;
 `;
+const LogoContainer = styled.div``;
+const Image = styled.img`
+  height: 60px;
+  width: 200px;
+`;
 
 export default function NavBar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -112,7 +118,9 @@ export default function NavBar() {
   return (
     <StyledHeader>
       <NavContainer>
-        <div>Logo</div>
+        <LogoContainer>
+          <Image src={elpahtronicswhite} alt="" />
+        </LogoContainer>
         <div>
           {
             <NavList showMobileMenu={showMobileMenu}>

@@ -10,6 +10,7 @@ const Bar = styled.div`
 `;
 const BarContainer = styled.div`
   background-color: green;
+  color: white;
   height: 30px;
   @media (max-width: 768px) {
     display: none;

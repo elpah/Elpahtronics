@@ -18,13 +18,6 @@ import { useShippingAddressContext } from '../components/ShippingAddressContext'
 export default function StripeCheckoutForm() {
   const { cartArray, totalPrice, setCartArray } = useCartContext();
   const {
-    orderTotal,
-    orderDate,
-    paymentMethod,
-    orderEmail,
-    expectedDelivery,
-    deliveryOptions,
-    orderNumber,
     setOrderNumber,
     setOrderTotal,
     setOrderDate,
@@ -67,7 +60,9 @@ export default function StripeCheckoutForm() {
         },
         body: JSON.stringify({
           cart: cartArray.map(item => ({
+            productId: item.productId,
             productName: item.productName,
+            productPrice: item.productPrice,
             productQuantity: item.productQuantity,
           })),
           totalPrice: totalPrice,
@@ -75,10 +70,8 @@ export default function StripeCheckoutForm() {
           email: email,
         }),
       })
-        //email notification
         .then(response => response.json())
         .then(data => {
-          console.log(data);
           setOrderNumber(data.orderNumber);
           setOrderDate(data.orderDate);
           setPaymentMethod(data.paymentMethod);
@@ -86,18 +79,14 @@ export default function StripeCheckoutForm() {
           setExpectedDelivery(data.expectedDelivery);
           setDeliveryOptions(data.deliveryOptions);
           setOrderTotal(`${'\u20AC'}${data.totalPrice}`);
+          setCartArray([]);
+          navigate('/success');
         })
         .catch(error => {
           console.error('Error sending POST request:', error);
         });
-      setCartArray([]);
     }
   };
-  // useEffect(() => {
-  //   if (orderNumber && orderTotal && orderDate && orderEmail && orderNumber && expectedDelivery && deliveryOptions) {
-  navigate('/success');
-  //   }
-  // }, [orderNumber, orderTotal, orderDate, orderEmail, orderNumber, expectedDelivery, deliveryOptions]);
   return (
     <StyledForm onSubmit={handleSubmit}>
       <LinkAuthenticationElement
@@ -108,7 +97,7 @@ export default function StripeCheckoutForm() {
       <PaymentElement />
       <BillingPara>Billing Address</BillingPara>
       <BillingDiv>
-        <input
+        <Input
           type="checkbox"
           onChange={() => {
             setSameAsShipping(!sameAsShipping);
@@ -135,7 +124,9 @@ export default function StripeCheckoutForm() {
   );
 }
 
+const Input = styled.input``;
 const BillingDiv = styled.div`
+  cursor: pointer;
   margin-bottom: 10px;
 `;
 const BillingPara = styled.p`

@@ -66,7 +66,9 @@ const HeaderParagraph = styled.p`
     font-size: 13px;
   }
 `;
-
+const Span = styled.span`
+  color: blue;
+`;
 const OrderNumberHeader = styled.h2`
   font-size: 13px;
   @media (max-width: 280px) {
@@ -229,7 +231,9 @@ export default function PaymentSuccess() {
           </svg>
         </Container>
         <Header>Thank You For Your Order!</Header>
-        <HeaderParagraph>Check your inbox for a confirmation sent to youremail@email.com</HeaderParagraph>
+        <HeaderParagraph>
+          Check your inbox for a confirmation sent to <Span>{orderEmail}</Span>
+        </HeaderParagraph>
       </TopHeaderContainer>
 
       <OrderDetailsContainer>

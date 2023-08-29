@@ -1,12 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 import { useCartContext } from './CartContext';
-import { Navigate, useNavigate } from 'react-router-dom';
-import Product from '../productType';
+import { useNavigate } from 'react-router-dom';
+import { useOrderContext } from './OrderContext';
 
 export default function PayPalPayment() {
-  const { cartArray, totalPrice } = useCartContext();
+  const { cartArray, setCartArray, totalPrice } = useCartContext();
   const navigate = useNavigate();
+  const {
+    setOrderNumber,
+    setOrderTotal,
+    setOrderDate,
+    setPaymentMethod,
+    setOrderEmail,
+    setExpectedDelivery,
+    setDeliveryOptions,
+  } = useOrderContext();
 
   const createOrder = (data: any) => {
     return fetch('http://localhost:8000/api/paypalPaymentTest/create-paypal-order', {
@@ -37,32 +45,33 @@ export default function PayPalPayment() {
         cart: cartArray.map(item => ({
           productId: item.productId,
           productName: item.productName,
+          productPrice: item.productPrice,
           productQuantity: item.productQuantity,
         })),
-
         totalPrice: totalPrice,
       }),
     })
-      .then(response => {
-        response.json();
-        console.log(response);
-        // navigate('/success');
+      .then(response => response.json())
+      .then(data => {
+        setOrderNumber(data.orderNumber);
+        setOrderDate(data.orderDate);
+        setPaymentMethod(data.paymentMethod);
+        setOrderEmail(data.emailAddress);
+        setExpectedDelivery(data.expectedDelivery);
+        setDeliveryOptions(data.deliveryOptions);
+        setOrderTotal(`${'\u20AC'}${data.totalPrice}`);
+        setCartArray([]);
+        navigate('/success');
       })
       .catch(err => console.log(err));
   };
-
-  //todo
-  //function that creates an order using the order ID, and send it to the backend, and save it to the order db
-  // generate an orderNumber, or use orderID
-  //show order on the frontend on successPage
-  //On error,
 
   return (
     <PayPalButtons
       disabled={cartArray.length === 0}
       fundingSource="paypal"
-      createOrder={(data, actions) => createOrder(data)}
-      onApprove={(data, actions) => onApprove(data)}
+      createOrder={data => createOrder(data)}
+      onApprove={data => onApprove(data)}
     />
   );
 }
