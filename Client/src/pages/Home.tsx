@@ -18,6 +18,7 @@ import Footer from '../components/Footer.tsx';
 import Button from '../components/Button.tsx';
 
 const HomePageContainer = styled.div`
+  margin-top: 110px;
   display: flex;
   flex-direction: column;
 `;
@@ -77,7 +78,6 @@ const Para = styled.p`
     width: 60%;
   }
   @media (min-width: 1198px) {
-    // max-width: 90%;
     font-size: 2vw;
   }
   @media (max-width: 358px) {
@@ -201,7 +201,6 @@ const HomePage = () => {
   ];
   return (
     <>
-      {/* <GlobalStyles /> */}
       <HomePageContainer>
         <HeaderDiv>
           <HeaderContainer>

@@ -24,6 +24,7 @@ import elpahlogotry from './elpahtronicsLogo/elpahlogotry.png';
 import elpahtronicslogosmall from './elpahtronicsLogo/elpatronicslogosmall.png';
 import footerlogosmall from './elpahtronicsLogo/footerlogosmall.png';
 import footerlogobig from './elpahtronicsLogo/footerlogobig.png';
+import techprod1 from './techprod1.jpg';
 
 export {
   appleLogo,
@@ -52,4 +53,5 @@ export {
   elpahtronicslogosmall,
   footerlogobig,
   footerlogosmall,
+  techprod1,
 };

@@ -4,6 +4,8 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaBars, FaTimes, FaUser } from 'react-icons/fa';
 import { BsCart } from 'react-icons/bs';
+import { BsTelephone } from 'react-icons/bs';
+
 import { useCartContext } from './CartContext.tsx';
 import {
   elpahtronicsblack,
@@ -13,7 +15,32 @@ import {
   elpahtronicslogosmall,
 } from '../assets/images/exportImages.ts';
 
+const BarContainer = styled.div`
+  width: 100%;
+  background-color: green;
+  color: white;
+  height: 30px;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const Bar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+`;
+
+const BarParagraph = styled.p`
+  text-align: center;
+  margin: 0;
+  padding: 3px;
+  font-size: 15px;
+`;
+
 const StyledHeader = styled.header`
+  background-color: #fff;
   border-bottom: 2px solid red;
   width: 100%;
   max-width: 1500px;
@@ -93,20 +120,6 @@ const NavLink = styled(Link)`
   }
 `;
 
-// const NavLink = styled(Link)`
-//   color: rgb(60, 103, 172);
-//   text-decoration: none;
-//   padding: 25px;
-//   padding: 10px;
-//   transition: border-bottom 0.3s ease;
-
-//   @media (min-width: 768px) {
-//     &:hover {
-//       color: rgb(48, 67, 141);
-//       border-bottom: 3px solid rgb(239, 159, 70);
-//     }
-//   }
-// `;
 const HamburgerToggle = styled.div`
   display: none;
 
@@ -152,6 +165,12 @@ const Div = styled.div`
   display: flex;
   justify-content: center;
 `;
+const Container = styled.div`
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  width: 100%;
+`;
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -162,53 +181,65 @@ export default function NavBar() {
   const totalQuantity = cartArray.reduce((total, product) => total + product.productQuantity, 0);
 
   return (
-    <StyledHeader>
-      <NavContainer>
-        <LogoContainer onClick={() => navigate('/')}>
-          <Image src={elpahtronicsblue} alt="logo" />
-        </LogoContainer>
-        <Div>
-          <NavList showMobileMenu={showMobileMenu}>
-            <NavItem>
-              <NavLink to="/" onClick={closeMobileMenu}>
-                Home
-              </NavLink>
-            </NavItem>
+    <Container>
+      <BarContainer>
+        <Bar>
+          <BarParagraph>
+            <BsTelephone />
+            +233203829421
+          </BarParagraph>
+          <BarParagraph> 30% Discount | Shop Now</BarParagraph>
+          <BarParagraph>Lorem Ipsum</BarParagraph>
+        </Bar>
+      </BarContainer>
+      <StyledHeader>
+        <NavContainer>
+          <LogoContainer onClick={() => navigate('/')}>
+            <Image src={elpahtronicsblue} alt="logo" />
+          </LogoContainer>
+          <Div>
+            <NavList showMobileMenu={showMobileMenu}>
+              <NavItem>
+                <NavLink to="/" onClick={closeMobileMenu}>
+                  Home
+                </NavLink>
+              </NavItem>
 
-            <NavItem>
-              <NavLink to="/product" onClick={closeMobileMenu}>
-                Product
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/contact" onClick={closeMobileMenu}>
-                Contact
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/login" onClick={closeMobileMenu}>
-                <FaUser
-                  style={{
-                    fontSize: '15px',
-                    marginRight: '5px',
-                    color: 'rgb(239, 159, 70)',
-                  }}
-                />
-                admin
-              </NavLink>
-            </NavItem>
-          </NavList>
-        </Div>
-        <CartHamContainer>
-          <CartContainer>
-            <StyledLink to="/Cart">
-              <BsCart />
-              <CartItemsNumber>{totalQuantity}</CartItemsNumber>
-            </StyledLink>
-          </CartContainer>
-          <HamburgerToggle onClick={toggleNav}>{showMobileMenu ? <FaTimes /> : <FaBars />}</HamburgerToggle>
-        </CartHamContainer>
-      </NavContainer>
-    </StyledHeader>
+              <NavItem>
+                <NavLink to="/product" onClick={closeMobileMenu}>
+                  Product
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/contact" onClick={closeMobileMenu}>
+                  Contact
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/login" onClick={closeMobileMenu}>
+                  <FaUser
+                    style={{
+                      fontSize: '15px',
+                      marginRight: '5px',
+                      color: 'rgb(239, 159, 70)',
+                    }}
+                  />
+                  admin
+                </NavLink>
+              </NavItem>
+            </NavList>
+          </Div>
+          <CartHamContainer>
+            <CartContainer>
+              <StyledLink to="/Cart">
+                <BsCart />
+                <CartItemsNumber>{totalQuantity}</CartItemsNumber>
+              </StyledLink>
+            </CartContainer>
+            <HamburgerToggle onClick={toggleNav}>{showMobileMenu ? <FaTimes /> : <FaBars />}</HamburgerToggle>
+          </CartHamContainer>
+        </NavContainer>
+      </StyledHeader>
+    </Container>
   );
 }

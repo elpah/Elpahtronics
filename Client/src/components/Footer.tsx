@@ -129,6 +129,8 @@ const FooterParagraph = styled.p`
 `;
 const BottomFooter = styled.div`
   border-top: 2px solid rgb(226, 226, 226);
+  width: 90%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -45,13 +45,17 @@ const EmptyCart = styled.p`
 const CartDiv = styled.div`
   max-width: 1400px;
   margin: auto;
+  margin-top: 100px;
+
   display: grid;
   grid-gap: 10px;
-
+  @media (min-width: 768px) {
+    margin-top: 120px;
+  }
   @media (min-width: 1198px) {
     grid-template-columns: repeat(2, 1fr);
     padding-left: 20px;
-    margin-top: 20px;
+    margin-top: 130px;
   }
 `;
 const CartCardContainer = styled.div``;

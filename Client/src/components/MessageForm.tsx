@@ -38,7 +38,7 @@ const TextArea = styled.textarea`
   outline: none;
   rows: 5;
   overflow-y: auto;
-  font-family: inherit;
+  // font-family: inherit;
   resize: none;
 `;
 

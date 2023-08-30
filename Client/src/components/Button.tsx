@@ -7,13 +7,13 @@ interface Props {
 }
 
 const StyledButton = styled.button`
-  padding: 10px 20px;
-  background-color: rgb(62, 68, 77);
+  padding: 10px;
+  background-color: rgba(62, 68, 77, 0.2);
   color: #ffffff;
   font-size: 16px;
-  font-weight: 100;
-  border: none;
-  border-radius: 20px;
+  font-weight: 300;
+  border: 1px solid rgb(239, 159, 70);
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 25px;

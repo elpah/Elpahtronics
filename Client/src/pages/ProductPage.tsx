@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
-import { productCover } from '../assets/images/exportImages';
+import { techprod1 } from '../assets/images/exportImages';
 import Footer from '../components/Footer.tsx';
 import Button from '../components/Button.tsx';
 import ProductCard from '../components/ProductCard.tsx';
@@ -29,34 +29,38 @@ const ProductPageContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const HeaderDiv = styled.div`
-  height: 400px;
+const FixedImage = styled.div`
+  position: fixed;
+  top: 80px;
+  z-index: -1;
+  height: 320px;
   width: 100%;
-  background: url(${productCover}) no-repeat;
+  background: url(${techprod1}) no-repeat;
   background-size: cover;
   @media (min-width: 768px) {
     height: 500px;
     margin: auto;
   }
   @media (min-width: 1198px) {
-    height: 700px;
+    height: 600px;
   }
 `;
 const HeaderContainer = styled.div`
   width: 90%;
-  height: 400px;
+  height: 300px;
   max-width: 1400px;
   margin: auto;
+  margin-top: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   @media (min-width: 768px) {
-    height: 500px;
+    height: 450px;
     align-items: flex-end;
   }
   @media (min-width: 1198px) {
-    height: 700px;
+    height: 600px;
   }
 `;
 const ChildDivCenter = styled.div`
@@ -267,65 +271,78 @@ export default function ProductPage() {
 
   return (
     <ProductPageContainer>
-      <HeaderDiv>
-        <HeaderContainer>
-          <ChildDivCenter>
-            <Header>Get 5% cashback on 200$</Header>
-            <Paragraph>
-              Shopping is a bit of a relaxing hobby for me, which is sometimes troubling for the bank balance.
-            </Paragraph>
-            <Button buttonName="Learn More" onClick={() => console.log('redirect to my Github Profile')} />
-          </ChildDivCenter>
-        </HeaderContainer>
-      </HeaderDiv>
-      <SelectCategoryContainer onClick={() => setShowCategoryList(!showCategoryList)}>
-        <SelectCategory>Filter Category</SelectCategory>
-        <Icon>{showCategoryList ? <FiChevronUp /> : <FiChevronDown />}</Icon>
-      </SelectCategoryContainer>
-      {
-        <FilterCategory showCategoryList={showCategoryList}>
-          {label.map(labelItem => (
-            <CategoryItem onClick={() => setCategoryName(labelItem.value)}>{labelItem.categoryitemName}</CategoryItem>
-          ))}
-        </FilterCategory>
-      }
-      <ProductHeader>{categoryName}</ProductHeader>
-      {productModalVisibility && (
-        <ProductModal
-          onClose={() => setProductModalVisibility(false)}
-          productName={selectedProduct?.productName || ''}
-          productId={selectedProduct?.productId}
-          productDescription={selectedProduct?.productDescription || ''}
-          productPrice={selectedProduct?.productPrice || ''}
-          productImage={selectedProduct?.productImage || ''}
-          handleIncrement={() => setQuantity(quantity + 1)}
-          handleDecrement={() => setQuantity(quantity - 1)}
-          quantity={quantity}
-          handleAddToCartClick={() => handleAddToCartClick(selectedProduct?.productId || '')}
-        />
-      )}
-      {isLoading ? (
-        <ProductsIsLoading />
-      ) : (
-        <ProductCardContainer>
-          {products
-            ?.filter(item =>
-              categoryName === 'All Products' ? true : item.category.toLowerCase().includes(categoryName.toLowerCase()),
-            )
-            .map(product => (
-              <ProductCard
-                key={product.productId}
-                productName={product.productName}
-                productDescription={product.productDescription}
-                productPrice={product.productPrice}
-                productImage={product.productImage}
-                handleCardClick={() => handleCardClick(product)}
-                handleAddToCartClick={() => handleAddToCartClick(product.productId)}
-              />
+      <FixedImage></FixedImage>
+      <HeaderContainer>
+        <ChildDivCenter>
+          <Header>Get 5% cashback on 200$</Header>
+          <Paragraph>
+            Shopping is a bit of a relaxing hobby for me, which is sometimes troubling for the bank balance.
+          </Paragraph>
+          <Button buttonName="Learn More" onClick={() => console.log('redirect to my Github Profile')} />
+        </ChildDivCenter>
+      </HeaderContainer>
+      <ContentContainer>
+        <SelectCategoryContainer onClick={() => setShowCategoryList(!showCategoryList)}>
+          <SelectCategory>Filter Category</SelectCategory>
+          <Icon>{showCategoryList ? <FiChevronUp /> : <FiChevronDown />}</Icon>
+        </SelectCategoryContainer>
+        {
+          <FilterCategory showCategoryList={showCategoryList}>
+            {label.map(labelItem => (
+              <CategoryItem onClick={() => setCategoryName(labelItem.value)}>{labelItem.categoryitemName}</CategoryItem>
             ))}
-        </ProductCardContainer>
-      )}
+          </FilterCategory>
+        }
+        <ProductHeader>{categoryName}</ProductHeader>
+        {productModalVisibility && (
+          <ProductModal
+            onClose={() => setProductModalVisibility(false)}
+            productName={selectedProduct?.productName || ''}
+            productId={selectedProduct?.productId}
+            productDescription={selectedProduct?.productDescription || ''}
+            productPrice={selectedProduct?.productPrice || ''}
+            productImage={selectedProduct?.productImage || ''}
+            handleIncrement={() => setQuantity(quantity + 1)}
+            handleDecrement={() => setQuantity(quantity - 1)}
+            quantity={quantity}
+            handleAddToCartClick={() => handleAddToCartClick(selectedProduct?.productId || '')}
+          />
+        )}
+        {isLoading ? (
+          <ProductsIsLoading />
+        ) : (
+          <ProductCardContainer>
+            {products
+              ?.filter(item =>
+                categoryName === 'All Products'
+                  ? true
+                  : item.category.toLowerCase().includes(categoryName.toLowerCase()),
+              )
+              .map(product => (
+                <ProductCard
+                  key={product.productId}
+                  productName={product.productName}
+                  productDescription={product.productDescription}
+                  productPrice={product.productPrice}
+                  productImage={product.productImage}
+                  handleCardClick={() => handleCardClick(product)}
+                  handleAddToCartClick={() => handleAddToCartClick(product.productId)}
+                />
+              ))}
+          </ProductCardContainer>
+        )}
+      </ContentContainer>
       <Footer />
     </ProductPageContainer>
   );
 }
+
+const ContentContainer = styled.div`
+  position: relative;
+  background-color: white;
+  z-index: 1;
+
+  @media (min-width: 768px) {
+    // margin-top: 700px;
+  }
+`;

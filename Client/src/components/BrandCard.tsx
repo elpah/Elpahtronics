@@ -36,6 +36,7 @@ const CardParaHeaderContainer = styled.div``;
 
 const CardHeader = styled.h2`
   font-size: 25px;
+  font-weight: 500;
   color: #333;
   margin: 0;
 `;
@@ -49,12 +50,7 @@ const BrandLink = styled(Link)`
   text-decoration: none;
 `;
 
-export default function BrandCard({
-  image,
-  header,
-  paragraph,
-  brandLink,
-}: Props) {
+export default function BrandCard({ image, header, paragraph, brandLink }: Props) {
   return (
     <BrandLink to={brandLink}>
       <Card>

@@ -114,7 +114,6 @@ const DetailsDiv = styled.div`
   gap: 40px;
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
-
     gap: auto;
     width: 100%;
     margin: 0 auto;
@@ -206,19 +205,19 @@ export default function PaymentSuccess() {
     useOrderContext();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (
-      !orderNumber ||
-      !orderTotal ||
-      !orderDate ||
-      !paymentMethod ||
-      !orderEmail ||
-      !expectedDelivery ||
-      !deliveryOptions
-    ) {
-      navigate('/');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (
+  //     !orderNumber ||
+  //     !orderTotal ||
+  //     !orderDate ||
+  //     !paymentMethod ||
+  //     !orderEmail ||
+  //     !expectedDelivery ||
+  //     !deliveryOptions
+  //   ) {
+  //     navigate('/');
+  //   }
+  // }, []);
   return (
     <SuccessPageContainer>
       <TopHeaderContainer>
