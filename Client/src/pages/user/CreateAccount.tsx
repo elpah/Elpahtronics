@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import SignIn from '../../components/auth/SignIn';
-import AuthDetails from '../../components/AuthDetails';
 import { auth } from '../../firebase';
+import SignUp from '../../components/auth/SignUp';
 
-const AdminPageContainer = styled.div`
+const CreateAccountPageContainer = styled.div`
   background-color: #f9f9f9;
   height: 100vh;
   display: flex;
@@ -16,16 +15,16 @@ const AdminPageContainer = styled.div`
   margin-top: 120px;
 `;
 
-const SignInFormContainer = styled.div`
+const SignUpFormContainer = styled.div`
   height: 300px;
   width: 100%;
-  max-width: 400px;
+  max-width: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 5px;
-  margin-top: -300px;
+  margin-top: -250px;
 
   border-radius: 5px;
   @media (min-width: 768px) {
@@ -33,7 +32,7 @@ const SignInFormContainer = styled.div`
     height: 70vh;
   }
 `;
-export default function AdminLogin() {
+export default function CreateAccount() {
   const [checkingLogIn, setCheckingLogIn] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
@@ -50,12 +49,11 @@ export default function AdminLogin() {
   if (checkingLogIn) return <p>Loading...</p>;
 
   return (
-    <AdminPageContainer>
-      <SignInFormContainer>
-        {<SignIn />}
-        {/* <SignUp /> */}
+    <CreateAccountPageContainer>
+      <SignUpFormContainer>
+        <SignUp />
         {/* <AuthDetails /> */}
-      </SignInFormContainer>
-    </AdminPageContainer>
+      </SignUpFormContainer>
+    </CreateAccountPageContainer>
   );
 }

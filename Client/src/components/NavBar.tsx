@@ -224,7 +224,7 @@ export default function NavBar() {
                       color: 'rgb(239, 159, 70)',
                     }}
                   />
-                  admin
+                  Account v
                 </NavLink>
               </NavItem>
             </NavList>

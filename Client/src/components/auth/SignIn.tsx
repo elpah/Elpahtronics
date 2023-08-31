@@ -5,7 +5,13 @@ import styled from 'styled-components';
 import { auth } from '../../firebase';
 import { footerlogosmall } from '../../assets/images/exportImages';
 
-const Form = styled.form``;
+const Form = styled.form`
+  width: 90%;
+  margin: auto;
+  @media (min-width: 768px) {
+    min-width: 550px;
+  }
+`;
 
 const Header = styled.h2`
   margin-bottom: 20px;
@@ -24,16 +30,7 @@ const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 3px;
 `;
-const ForgotPassword = styled.p`
-  font-size: 20px;
-  margin-top: 10px;
-  text-align: center;
-  color: rgb(186, 186, 186);
-  &:hover {
-    color: black;
-    cursor: pointer;
-  }
-`;
+
 const ErrorMessage = styled.p`
   color: red;
   text-align: center;
@@ -99,12 +96,29 @@ export default function SignIn() {
 
       <Button type="submit">Login</Button>
 
-      <ForgotPassword>Forgot your password?</ForgotPassword>
+      <CreateAccount>
+        No Account Yet? <Span onClick={() => navigate('/signup')}>Create Account</Span>
+      </CreateAccount>
     </Form>
   );
 }
+const Span = styled.span`
+  text-decoration: underline;
+  cursor: pointer;
+  margin-bottom: 20px;
+  &:hover {
+    color: blue;
+  }
+`;
 
 const Image = styled.img`
   height: 50px;
   widthl: 60px;
+`;
+
+const CreateAccount = styled.p`
+  font-size: 18px;
+  margin-top: 10px;
+  text-align: center;
+  color: rgb(186, 186, 186);
 `;
