@@ -16,7 +16,7 @@ const SummaryDiv = styled.div`
   margin: auto;
   margin-top: 30px;
   @media (min-width: 768px) {
-    max-width: 350px;
+    max-width: 650px;
   }
   @media (min-width: 1198px) {
     margin-top: 0;

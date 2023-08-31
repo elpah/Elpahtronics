@@ -50,12 +50,12 @@ const CartDiv = styled.div`
   display: grid;
   grid-gap: 10px;
   @media (min-width: 768px) {
-    margin-top: 120px;
+    margin-top: 130px;
   }
   @media (min-width: 1198px) {
     grid-template-columns: repeat(2, 1fr);
     padding-left: 20px;
-    margin-top: 130px;
+    margin-top: 140px;
   }
 `;
 const CartCardContainer = styled.div``;

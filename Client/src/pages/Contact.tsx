@@ -17,30 +17,11 @@ import Footer from '../components/Footer.tsx';
 import MessageForm from '../components/MessageForm.tsx';
 
 const ContactPageContainer = styled.div`
-  // display: flex;
-  // flex-direction: column;
-`;
-const HeaderDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 350px;
   width: 100%;
-  background: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1774&q=80')
-    no-repeat;
-  background-size: cover;
-  @media (min-width: 768px) {
-    height: 500px;
-  }
-  @media (min-width: 1198px) {
-    height: 600px;
-  }
 `;
-
 const Header = styled.h2`
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 25px;
+  font-weight: 400;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
@@ -102,7 +83,13 @@ const FaqFormContainer = styled.div`
 `;
 const FaqContainer = styled.div``;
 const FormContainer = styled.div`
-  @media (max-width: 1198px) {
+  margin-top: 50px;
+  margin-bottom: 80px;
+  @media (min-width: 768px) {
+    margin-top: 100px;
+  }
+  @media (min-width: 1198px) {
+    margin-top: 0;
   }
 `;
 const FaqFormHeader = styled.h2`
@@ -176,38 +163,82 @@ export default function Contact() {
   ];
   return (
     <ContactPageContainer>
-      <HeaderDiv>
+      <FixedImage></FixedImage>
+      <HeaderContent>
         <Header>Contact Our Friendly Team</Header>
         <Para>Let us know how we can help you...</Para>
-      </HeaderDiv>
-      <ContactCardContainer>
-        {contacts.map((contact, index) => (
-          <ContactCard
-            key={index}
-            title={contact.title}
-            paragraph={contact.paragraph}
-            contact={contact.contact}
-            icon={contact.icon}
-          />
-        ))}
-      </ContactCardContainer>
-      <FaqFormContainer>
-        <FaqContainer>
-          <FaqFormHeader>Frequently Asked Questions</FaqFormHeader>
-          <Faq>
-            {Faquestions.map((question, index) => (
-              <FAQ key={index} title={question.title} paragraph={question.paragraph} icon={question.icon} />
-            ))}
-          </Faq>
-        </FaqContainer>
-        <FormContainer>
-          <FaqFormHeader> Send Us A Message</FaqFormHeader>
-          <Form>
-            <MessageForm />
-          </Form>
-        </FormContainer>
-      </FaqFormContainer>
-      <Footer />
+      </HeaderContent>
+      <Container>
+        <ContactCardContainer>
+          {contacts.map((contact, index) => (
+            <ContactCard
+              key={index}
+              title={contact.title}
+              paragraph={contact.paragraph}
+              contact={contact.contact}
+              icon={contact.icon}
+            />
+          ))}
+        </ContactCardContainer>
+        <FaqFormContainer>
+          <FaqContainer>
+            <FaqFormHeader>Frequently Asked Questions</FaqFormHeader>
+            <Faq>
+              {Faquestions.map((question, index) => (
+                <FAQ key={index} title={question.title} paragraph={question.paragraph} icon={question.icon} />
+              ))}
+            </Faq>
+          </FaqContainer>
+          <FormContainer>
+            <FaqFormHeader> Send Us A Message</FaqFormHeader>
+            <Form>
+              <MessageForm />
+            </Form>
+          </FormContainer>
+        </FaqFormContainer>
+      </Container>
+      <FooterContainer>
+        <Footer />
+      </FooterContainer>
     </ContactPageContainer>
   );
 }
+const FooterContainer = styled.div`
+  // width: 110%;
+`;
+const HeaderContent = styled.div`
+  margin: 200px auto 100px;
+  text-align: center;
+  max-width: 800px;
+  @media (min-width: 1198px) {
+    margin-bottom: 200px;
+  }
+`;
+const Container = styled.div`
+  padding-bottom: 50px;
+  padding-top: px;
+  margin-top: 100px;
+  background-color: #fff;
+  z-index: 1;
+  @media (min-width: 198px) {
+    padding-top: 5px;
+  }
+`;
+
+const FixedImage = styled.div`
+  position: fixed;
+  top: 80px;
+  z-index: -1;
+  height: 250px;
+  width: 100%;
+  background: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1774&q=80')
+    no-repeat;
+  background-size: cover;
+  @media (min-width: 768px) {
+    height: 500px;
+    margin: auto;
+  }
+  @media (min-width: 1198px) {
+    height: 520px;
+  }
+`;

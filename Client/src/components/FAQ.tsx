@@ -44,7 +44,7 @@ const HeaderWrapper = styled.div`
 
 const Header = styled.p`
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 8px;
   @media (max-width: 280px) {
     font-size: 18px;
@@ -53,6 +53,7 @@ const Header = styled.p`
 
 const Paragraph = styled.p`
   font-size: 16px;
+  font-weight: 200;
   color: #333;
   margin-left: 40px;
   margin-right: 40px;

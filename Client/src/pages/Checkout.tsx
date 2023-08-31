@@ -11,14 +11,17 @@ import StripePayment from '../components/StripePayment.tsx';
 import { useShippingAddressContext } from '../components/ShippingAddressContext';
 
 const CheckoutContainer = styled.div`
+  height: 100vh;
   max-width: 1400px;
+
   margin: auto;
+  margin-top: 120px;
   display: grid;
   grid-gap: 10px;
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     padding-left: 20px;
-    margin-top: 20px;
+    margin-top: 150px;
   }
 `;
 const WithoutSumCardDiv = styled.div``;

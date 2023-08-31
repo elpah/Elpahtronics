@@ -16,7 +16,7 @@ const ContactCardContainer = styled.div`
   padding: 30px;
   position: relative;
   width: 90%;
-  min-width: 280px;
+  min-width: 250px;
   margin: 20px auto;
   height: 280px;
   border: 1px solid #ccc;
@@ -69,12 +69,7 @@ const Det = styled.h3`
   }
 `;
 
-export default function ContactCard({
-  title,
-  paragraph,
-  contact,
-  icon,
-}: Props) {
+export default function ContactCard({ title, paragraph, contact, icon }: Props) {
   return (
     <ContactCardContainer>
       <FaDiv>{icon}</FaDiv>

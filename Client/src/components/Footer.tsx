@@ -114,10 +114,16 @@ const ListItems = styled.li`
     transform: translateX(7px);
     color: red;
   }
+  @media (max-width: 280px) {
+    font-size: 10px;
+  }
 `;
 const Paragraph = styled.p`
   margin-top: 18px;
   font-size: 15px;
+  @media (max-width: 280px) {
+    font-size: 12px;
+  }
 `;
 const FooterParagraph = styled.p`
   font-size: 12px;
@@ -125,6 +131,9 @@ const FooterParagraph = styled.p`
   vertical-align: middle;
   &:hover {
     color: red;
+  }
+  @media (max-width: 280px) {
+    font-size: 10px;
   }
 `;
 const BottomFooter = styled.div`
