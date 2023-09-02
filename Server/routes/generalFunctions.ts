@@ -1,3 +1,4 @@
+import "dotenv/config";
 import mailjet from "node-mailjet";
 
 function generateOrderNumber(): string {
@@ -33,15 +34,35 @@ function getDate() {
     expectedDelivery: `${deliveryDay}-${deliveryMonth}-${deliveryYear}`,
   };
 }
-async function sendEmail(email: string, orderNumber: string) {
+
+async function sendEmail(
+  email: string,
+  orderNumber: string,
+  cart: {
+    productId: string;
+    productName: string;
+    productPrice: string;
+    productQuantity: number;
+  }[],
+  totalPrice: string
+) {
   const mailjetClient = mailjet.connect(
-    "df92719b746ff069f82809f61a4b6c61",
-    "770bb486a9f9e86a695711bbd1c80151"
+    process.env.MAIL_JET_PK as string,
+    process.env.MAIL_JET_SK as string
   );
 
   if (!email) {
     return "Email not found";
   }
+
+  const cartItems = cart
+    .map(
+      (item) =>
+        `<li>${item.productName} (Qty: ${item.productQuantity}) - $${parseFloat(
+          item.productPrice
+        ).toFixed(2)}</li>`
+    )
+    .join("");
 
   const request = mailjetClient.post("send", { version: "v3.1" }).request({
     Messages: [
@@ -55,56 +76,73 @@ async function sendEmail(email: string, orderNumber: string) {
             Email: email,
           },
         ],
-        Subject: "Order Confirmation...",
+        Subject: "Order Confirmation",
         HTMLPart: `
-            <html>
-              <head>
-                <style>
-                  /* Add styles later */
-                  body {
-                    font-family: Arial, sans-serif;
-                  }
-                  .container {
-                    max-width: 600px;
-                    margin: 0 auto;
-                    padding: 20px;
-                    border: 1px solid #ccc;
-                    background-color: #f9f9f9;
-                  }
-                  .header {
-                    text-align: center;
-                    margin-bottom: 20px;
-                  }
-                  .message {
-                    font-size: 18px;
-                    margin-bottom: 20px;
-                  }
-                  .link {
-                    color: #007bff;
-                    text-decoration: none;
-                  }
-                </style>
-              </head>
-              <body>
-                <div class="container">
-                  <div class="header">
-                    <h1>Order Confirmation</h1>
+              <html>
+                <head>
+                  <style>
+                    body {
+                    //   font-family: Arial, sans-serif;
+                      margin: 0;
+                      padding: 0;
+                    }
+                    .container {
+                      max-width: 600px;
+                      margin: 0 auto;
+                      padding: 20px;
+                      border: 1px solid #ccc;
+                      background-color: #f9f9f9;
+                    }
+                    .header {
+                      text-align: center;
+                      margin-bottom: 20px;
+                    }
+                    .message {
+                      font-size: 18px;
+                      margin-bottom: 20px;
+                    }
+                    .order-details {
+                      margin-top: 20px;
+                      padding: 10px;
+                      border: 1px solid #ccc;
+                      background-color: #fff;
+                    }
+                    .footer {
+                      text-align: center;
+                      margin-top: 20px;
+                      padding-top: 10px;
+                      border-top: 1px solid #ccc;
+                    }
+                    .link {
+                      color: #007bff;
+                      text-decoration: none;
+                    }
+                  </style>
+                </head>
+                <body>
+                  <div class="container">
+                    <div class="header">
+                      <h1>Order Confirmation</h1>
+                    </div>
+                    <div class="message">
+                      <p>Thank you for your order from Elpahtronics!</p>
+                      <p>We are processing your order and will update you with the tracking information.</p>
+                      <div class="order-details">
+                        <p>Your order details:</p>
+                        <ul>
+                          ${cartItems}
+                        </ul>
+                        <p>Total Price: $${totalPrice}</p>
+                        <p>Order Number: ${orderNumber}</p>
+                      </div>
+                    </div>
+                    <div class="footer">
+                      <p>If you have any questions, please <a class="link" href="#">contact us</a>.</p>
+                    </div>
                   </div>
-                  <div class="message">
-                    <p>Thank you for your order from Elpahtronics!</p>
-                    <p>We are processing your order and will update you with the tracking information.</p>
-                    <p>Your order details:</p>
-                    <ul>
-                      <!-- Add your order details here -->
-                    </ul>
-                  </div>
-                  <div class="footer">
-                    <p>If you have any questions, please <a class="link" href="#">contact us</a>.</p>
-                  </div>
-                </div>
-              </body>
-            </html>
-          `,
+                </body>
+              </html>
+            `,
         CustomID: "Elpahtronics",
       },
     ],

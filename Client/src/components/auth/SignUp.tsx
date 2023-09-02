@@ -43,7 +43,7 @@
 // const Button = styled.button``;
 
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { auth } from '../../firebase';
@@ -148,16 +148,75 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-
   const [phoneNumber, setPhoneNumber] = useState('');
   const [dob, setDOB] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
+  const clearLocalStorage = () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userEmail');
+  };
+
+  const useSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        clearLocalStorage();
+        navigate('/login');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   const signUp = (event: any) => {
     event.preventDefault();
-    // Perform sign-up logic here
+    if (password !== repeatPassword) {
+      return setErrorMessage('passwords do not match');
+    }
+    setErrorMessage('');
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        const uid = user.uid;
+        if (uid) {
+          const userDate = {
+            userName: `${firstName} ${lastName}`,
+            userEmailAddress: email,
+            dob: dob,
+            fbId: uid,
+          };
+        }
+      })
+      .catch(error => console.log(error));
   };
+
+  fetch('https://localhost:8000/api/users/create-user', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: `${firstName} ${lastName}`,
+      userEmailAddress: email,
+      dob: dob,
+      fbId: 'uid',
+    }),
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Response data:', data);
+
+      navigate('/success');
+    })
+    .catch(error => {
+      console.error('Error sending POST request:', error);
+    });
 
   return (
     <Form onSubmit={signUp}>
@@ -179,7 +238,6 @@ export default function SignUp() {
       </Container>
       <Container>
         <Dob type="date" value={dob} onChange={event => setDOB(event.target.value)} placeholder="Date of Birth" />
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         <Phone
           type="tel"
           value={phoneNumber}
@@ -187,12 +245,7 @@ export default function SignUp() {
           placeholder="Phone Number"
         />
       </Container>
-      <Input
-        type="email"
-        value={password}
-        onChange={event => setEmail(event.target.value)}
-        placeholder="Email Address"
-      />
+      <Input type="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="Email Address" />
       <Container>
         <NamePass
           type="password"
@@ -207,6 +260,7 @@ export default function SignUp() {
           placeholder=" repeat password"
         />
       </Container>
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <Button type="submit">Sign Up</Button>
       <HaveAccount>
         Already have an account? <Span onClick={() => navigate('/login')}> Sign in</Span>

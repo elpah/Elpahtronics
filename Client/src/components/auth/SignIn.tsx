@@ -70,7 +70,7 @@ export default function SignIn() {
           localStorage.setItem('userId', userId);
           localStorage.setItem('userEmail', userEmail);
         }
-        navigate('/adminpage');
+        navigate('/userpage');
       })
       .catch(error => {
         if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {

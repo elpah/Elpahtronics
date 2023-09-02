@@ -47,7 +47,7 @@ stripeRouter.post("/create-new-order", async (req, res) => {
       deliveryOptions: "fedex",
     };
     createOrder(newOrder);
-    sendEmail(email, orderNumber);
+    sendEmail(email, orderNumber, cart, totalPrice);
     res.send(newOrder);
   } catch (e) {
     console.log(e);

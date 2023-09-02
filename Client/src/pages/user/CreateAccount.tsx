@@ -38,7 +38,7 @@ export default function CreateAccount() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) {
-        navigate('/adminPage');
+        navigate('/userpage');
       }
       setCheckingLogIn(false);
     });
