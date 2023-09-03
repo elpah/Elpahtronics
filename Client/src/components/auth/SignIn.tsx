@@ -57,20 +57,21 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
   const navigate = useNavigate();
 
   const signIn = (event: any) => {
     event.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
-        const userId = userCredentials.user.uid;
+        const user = userCredentials.user;
+        const fbId = userCredentials.user.uid;
         const userEmail = userCredentials.user.email;
-        if (userEmail) {
-          localStorage.setItem('userId', userId);
-          localStorage.setItem('userEmail', userEmail);
+        if (fbId) {
+          getUser(fbId);
+          // localStorage.setItem('userId', userId);
+          // localStorage.setItem('userEmail', userEmail);
         }
-        navigate('/userpage');
+        // navigate('/userpage');
       })
       .catch(error => {
         if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
@@ -80,6 +81,29 @@ export default function SignIn() {
         }
       });
   };
+
+  async function getUser(fbId: string) {
+    try {
+      const response = await fetch('http://localhost:8000/api/users/get-user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fbId: fbId,
+        }),
+      });
+
+      if (response.ok) {
+        const userData = await response.json();
+        console.log(userData);
+      } else {
+        console.error('Request failed with status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error sending POST request:', error);
+    }
+  }
 
   return (
     <Form onSubmit={signIn}>

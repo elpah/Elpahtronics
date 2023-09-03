@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import SignIn from '../../components/auth/SignIn';
-import AuthDetails from '../../components/AuthDetails';
 import { auth } from '../../firebase';
-import SignUp from '../../components/auth/SignUp';
 
 const SignInPageContainer = styled.div`
   background-color: #f9f9f9;
@@ -52,11 +50,7 @@ export default function Login() {
 
   return (
     <SignInPageContainer>
-      <SignInFormContainer>
-        {<SignIn />}
-        {/* <SignUp /> */}
-        {/* <AuthDetails /> */}
-      </SignInFormContainer>
+      <SignInFormContainer>{<SignIn />}</SignInFormContainer>
     </SignInPageContainer>
   );
 }

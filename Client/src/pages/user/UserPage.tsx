@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
+import { SignOutFunction } from '../../components/auth/SignOut';
 import styled from 'styled-components';
 
 export default function UserPage() {
@@ -23,7 +24,7 @@ export default function UserPage() {
       listen();
       setLoading(true);
     };
-  }, []);
+  }, [authUser]);
 
   const useSignOut = () => {
     signOut(auth)
