@@ -21,6 +21,7 @@ type User = {
 const createUser = async (user: User) => {
   const newUser = {
     userId: uuidv4(),
+    userName: user.userName,
     fbId: user.fbId,
     userEmailAddress: user.userEmailAddress,
     dob: user.dob,
