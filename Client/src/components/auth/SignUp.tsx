@@ -153,12 +153,12 @@ export default function SignUp() {
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
+
   const clearLocalStorage = () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('userEmail');
   };
-
-  const useSignOut = () => {
+  const SignOutFunction = () => {
     signOut(auth)
       .then(() => {
         clearLocalStorage();
@@ -179,44 +179,39 @@ export default function SignUp() {
       .then(userCredentials => {
         const user = userCredentials.user;
         const uid = user.uid;
-        if (uid) {
-          const userDate = {
-            userName: `${firstName} ${lastName}`,
-            userEmailAddress: email,
-            dob: dob,
-            fbId: uid,
-          };
+        if (user) {
+          createUserInDb(firstName, lastName, email, dob, uid);
+          SignOutFunction();
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        setErrorMessage(error.message);
+      });
   };
+  async function createUserInDb(firstName: string, lastName: string, email: string, dob: string, fbId: string) {
+    try {
+      const response = await fetch('http://localhost:8000/api/users/create-user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: `${firstName} ${lastName}`,
+          userEmailAddress: email,
+          dob: dob,
+          fbId: fbId,
+        }),
+      });
 
-  fetch('https://localhost:8000/api/users/create-user', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      name: `${firstName} ${lastName}`,
-      userEmailAddress: email,
-      dob: dob,
-      fbId: 'uid',
-    }),
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      if (response.ok) {
+        console.log(response.status);
+      } else {
+        console.error('Request failed with status:', response.status);
       }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Response data:', data);
-
-      navigate('/success');
-    })
-    .catch(error => {
+    } catch (error) {
       console.error('Error sending POST request:', error);
-    });
+    }
+  }
 
   return (
     <Form onSubmit={signUp}>
@@ -226,13 +221,17 @@ export default function SignUp() {
         <NamePass
           type="text"
           value={firstName}
-          onChange={event => setFirstName(event.target.value)}
+          onChange={event => {
+            setFirstName(event.target.value);
+          }}
           placeholder="First Name"
         />
         <NamePass
           type="text"
           value={lastName}
-          onChange={event => setLastName(event.target.value)}
+          onChange={event => {
+            setLastName(event.target.value);
+          }}
           placeholder="Last Name"
         />
       </Container>
@@ -245,18 +244,32 @@ export default function SignUp() {
           placeholder="Phone Number"
         />
       </Container>
-      <Input type="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="Email Address" />
+      <Input
+        type="email"
+        value={email}
+        onChange={event => {
+          setErrorMessage('');
+          setEmail(event.target.value);
+        }}
+        placeholder="Email Address"
+      />
       <Container>
         <NamePass
           type="password"
           value={password}
-          onChange={event => setPassword(event.target.value)}
+          onChange={event => {
+            setErrorMessage('');
+            setPassword(event.target.value);
+          }}
           placeholder="password"
         />
         <NamePass
           type="password"
           value={repeatPassword}
-          onChange={event => setRepeatPassword(event.target.value)}
+          onChange={event => {
+            setErrorMessage('');
+            setRepeatPassword(event.target.value);
+          }}
           placeholder=" repeat password"
         />
       </Container>
