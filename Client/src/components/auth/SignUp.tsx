@@ -99,6 +99,31 @@ const Button = styled.button`
   }
 `;
 
+const Span = styled.span`
+  text-decoration: underline;
+  cursor: pointer;
+  margin-bottom: 20px;
+  &:hover {
+    color: blue;
+  }
+`;
+
+const HaveAccount = styled.p`
+  font-size: 18px;
+  margin-top: 10px;
+  text-align: center;
+  color: rgb(186, 186, 186);
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
 export default function SignUp() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -223,28 +248,3 @@ export default function SignUp() {
     </Form>
   );
 }
-
-const Span = styled.span`
-  text-decoration: underline;
-  cursor: pointer;
-  margin-bottom: 20px;
-  &:hover {
-    color: blue;
-  }
-`;
-
-const HaveAccount = styled.p`
-  font-size: 18px;
-  margin-top: 10px;
-  text-align: center;
-  color: rgb(186, 186, 186);
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-`;

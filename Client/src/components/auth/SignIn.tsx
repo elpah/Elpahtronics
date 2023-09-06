@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { auth } from '../../firebase';
+import { useUserContext } from '../../components/UserContext';
 import { footerlogosmall } from '../../assets/images/exportImages';
+import { UserContextProvider } from '../UserContext';
 
 const Form = styled.form`
   width: 90%;
@@ -58,6 +60,7 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const { currentUser, setCurrentUser } = useUserContext();
 
   const signIn = (event: any) => {
     event.preventDefault();
@@ -67,11 +70,9 @@ export default function SignIn() {
         const fbId = userCredentials.user.uid;
         const userEmail = userCredentials.user.email;
         if (fbId) {
-          getUser(fbId);
-          // localStorage.setItem('userId', userId);
-          // localStorage.setItem('userEmail', userEmail);
+          getUserFromDB(fbId);
+          navigate('/userpage');
         }
-        // navigate('/userpage');
       })
       .catch(error => {
         if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
@@ -82,7 +83,7 @@ export default function SignIn() {
       });
   };
 
-  async function getUser(fbId: string) {
+  async function getUserFromDB(fbId: string) {
     try {
       const response = await fetch('http://localhost:8000/api/users/get-user', {
         method: 'POST',
@@ -96,7 +97,10 @@ export default function SignIn() {
 
       if (response.ok) {
         const userData = await response.json();
-        console.log(userData);
+        if (userData) {
+          setCurrentUser(userData);
+          localStorage.setItem('currentUserLocal', JSON.stringify(userData));
+        }
       } else {
         console.error('Request failed with status:', response.status);
       }

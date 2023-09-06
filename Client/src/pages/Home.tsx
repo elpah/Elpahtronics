@@ -16,6 +16,7 @@ import CategoryCard from '../components/CategoryCard.tsx';
 import BrandCard from '../components/BrandCard.tsx';
 import Footer from '../components/Footer.tsx';
 import Button from '../components/Button.tsx';
+import { useNavigate } from 'react-router-dom';
 
 const HomePageContainer = styled.div`
   margin-top: 110px;
@@ -140,6 +141,7 @@ const BrandCardContainer = styled.div`
 `;
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const categories = [
     {
       paragraph: 'Furniture',
@@ -210,7 +212,7 @@ const HomePage = () => {
               Departmental Oasis...
             </Header>
             <Para>Shopping is a bit of a relaxing hobby, which is sometimes troubling for the bank balance.</Para>
-            <Button buttonName="Shop Now" onClick={() => console.log('Handle Click later..Redirect to product Page')} />
+            <Button buttonName="Shop Now" onClick={() => navigate('/product')} />
           </HeaderContainer>
         </HeaderDiv>
         <CategoryHeader>Shop some of categories</CategoryHeader>

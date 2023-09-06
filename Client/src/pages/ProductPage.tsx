@@ -16,7 +16,7 @@ interface FilterCategoryProps {
 }
 
 const label = [
-  { categoryitemName: 'All Products', value: 'All Products' },
+  { categoryitemName: 'All', value: 'All Products' },
   { categoryitemName: 'Furniture', value: 'furniture' },
   { categoryitemName: 'Bags', value: 'bags' },
   { categoryitemName: 'Books', value: 'books' },
@@ -187,9 +187,8 @@ const FilterCategory = styled.div<FilterCategoryProps>`
         `}
 
   @media (min-width: 768px) {
-    padding: 10px;
+    padding: 5px;
     margin-top: 30px;
-    background-color: transparent;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -208,16 +207,20 @@ const CategoryItem = styled.p`
   padding: 5px;
 
   @media (min-width: 768px) {
-    font-size: 15px;
+    font-size: 14px;
 
     display: block;
     border: 2px solid black;
-    min-width: 100px;
-    border-radius: 15px;
+    width: 130px;
+    margin-left: 5px;
+    height: 30px;
+    min-width: 80px;
+    border-radius: 5px;
   }
   @media (min-width: 1198px) {
     width: 140px;
     font-size: 22px;
+    height: 40px;
   }
   &:hover {
     background-color: black;
