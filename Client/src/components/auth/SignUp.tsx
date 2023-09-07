@@ -15,8 +15,7 @@ const Form = styled.form`
 `;
 const Image = styled.img`
   height: 50px;
-  width: 60px;
-  margin-top: 80px;
+  // margin-top: 100px;
 `;
 const Header = styled.h2`
   margin-bottom: 20px;

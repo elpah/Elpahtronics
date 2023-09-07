@@ -13,7 +13,13 @@ const SignInPageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 120px;
+  margin-top: 80px;
+  @media (min-width: 768px) {
+    margin-top: 110px;
+  }
+  @media (min-width: 1198px) {
+    margin-top: 60px;
+  }
 `;
 
 const SignInFormContainer = styled.div`

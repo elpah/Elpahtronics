@@ -11,6 +11,20 @@ export default function UserPage() {
   const [authUser, setAuthUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const resetUser = {
+    userName: '',
+    fbId: '',
+    userEmailAddress: '',
+    orders: [],
+    ShippingAddress: {
+      street: '',
+      apartment: '',
+      city: '',
+      state: '',
+      postalCode: '',
+      country: '',
+    },
+  };
 
   useEffect(() => {
     const storedUser = localStorage.getItem('currentUserLocal');
@@ -36,17 +50,16 @@ export default function UserPage() {
       .then(() => {
         localStorage.removeItem('currentUserLocal');
         navigate('/login');
+        setCurrentUser(resetUser);
       })
       .catch(error => {
         console.log(error);
       });
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  return (
+  return loading || !currentUser.userName ? (
+    <LoadingP>Loading...</LoadingP>
+  ) : (
     <Container>
       <div>{authUser ? <p>{`Signed In as ${currentUser.userName}`}</p> : <p>Signed Out</p>}</div>
 
@@ -58,3 +71,15 @@ export default function UserPage() {
 const Container = styled.div`
   margin-top: 200px;
 `;
+
+const LoadingP = styled.div`
+  margin-top: 150px;
+`;
+
+const resetUser = {
+  userName: '',
+  fbId: '',
+  userEmailAddress: '',
+  orders: [],
+  ShippingAddress: { street: '', apartment: '', city: '', state: '', postalCode: '', country: '' },
+};

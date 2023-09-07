@@ -68,36 +68,40 @@ const CartHamContainer = styled.div`
 const NavList = styled.ul<{ showMobileMenu: boolean }>`
   list-style: none;
   display: flex;
-  align-items: center;
   margin-top: 0px;
 
   @media (max-width: 768px) {
     position: absolute;
     flex-direction: column;
+    justify-content: space-evenly;
     right: 0;
     top: 100%;
+    margin-top: 2px;
     display: ${props => (props.showMobileMenu ? 'flex block' : 'none')};
-    width: 200px;
-    background-color: #f1f1f1;
-    padding: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    max-width: 400px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 2.5);
+    box-shadow: 0px 3px 8px 3px rgba(0, 0, 0, 0.1);
   }
 `;
+
 const NavItem = styled.li`
   font-size: 15px;
-  margin-left: 10px;
+  margin-left: 20px;
+  padding: 10px;
 
   @media (min-width: 768px) {
     font-size: 20px;
+    padding-top: 26px;
   }
 `;
 const NavLink = styled(Link)`
   color: rgb(60, 103, 172);
-  font-weight: 300;
+  font-weight: 400;
   text-decoration: none;
-  padding: 25px;
-  padding: 10px;
   position: relative;
+  font-size: 30px;
 
   &:before {
     content: '';
@@ -105,12 +109,15 @@ const NavLink = styled(Link)`
     bottom: -1px;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 3px;
     background-color: rgb(239, 159, 70);
     transition: width 0.2s ease;
   }
 
   @media (min-width: 768px) {
+    padding-bottom: 10px;
+    font-size: 25px;
+
     &:hover {
       color: #000080;
       &:before {
@@ -163,13 +170,22 @@ const Image = styled.img`
 `;
 const Div = styled.div`
   display: flex;
-  justify-content: center;
 `;
 const Container = styled.div`
   position: fixed;
   z-index: 2;
   top: 0;
   width: 100%;
+`;
+
+const Account = styled.p`
+  font-size: 20px;
+  font-weight: 300;
+  padding-top: px;
+  @media (min-width: 768px) {
+    margin-left: 30px;
+    padding-top: 1px;
+  }
 `;
 
 export default function NavBar() {
@@ -215,7 +231,7 @@ export default function NavBar() {
                   Contact
                 </NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink to="/login" onClick={closeMobileMenu}>
                   <FaUser
                     style={{
@@ -226,7 +242,7 @@ export default function NavBar() {
                   />
                   Account
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
             </NavList>
           </Div>
           <CartHamContainer>
@@ -236,6 +252,16 @@ export default function NavBar() {
                 <CartItemsNumber>{totalQuantity}</CartItemsNumber>
               </StyledLink>
             </CartContainer>
+            <Account onClick={() => navigate('/userpage')}>
+              <FaUser
+                style={{
+                  fontSize: '23px',
+                  // paddingTop: '0px',
+                  marginRight: '15px',
+                  color: 'rgb(239, 159, 70)',
+                }}
+              />
+            </Account>
             <HamburgerToggle onClick={toggleNav}>{showMobileMenu ? <FaTimes /> : <FaBars />}</HamburgerToggle>
           </CartHamContainer>
         </NavContainer>

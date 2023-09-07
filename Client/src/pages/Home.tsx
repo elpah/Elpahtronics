@@ -19,9 +19,12 @@ import Button from '../components/Button.tsx';
 import { useNavigate } from 'react-router-dom';
 
 const HomePageContainer = styled.div`
-  margin-top: 110px;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
+  @media (min-width: 1198px) {
+    margin-top: 110px;
+  }
 `;
 
 const HeaderDiv = styled.div`

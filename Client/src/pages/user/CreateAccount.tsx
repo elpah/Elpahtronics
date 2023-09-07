@@ -6,31 +6,38 @@ import { auth } from '../../firebase';
 import SignUp from '../../components/auth/SignUp';
 
 const CreateAccountPageContainer = styled.div`
-  background-color: #f9f9f9;
-  height: 100vh;
+  // background-color: #f9f9f9;
+  background-color: red;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 120px;
+  margin-top: 80px;
+  padding: 5px;
+  height: 100vh;
+
+  @media (min-width: 768px) {
+    margin-top: 80px;
+    // height: 110%;
+  }
+  @media (min-width: 1198px) {
+    margin-top: 110px;
+    height: 100vh;
+  }
 `;
 
 const SignUpFormContainer = styled.div`
-  height: 300px;
   width: 100%;
   max-width: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5px;
-  margin-top: -250px;
 
   border-radius: 5px;
-  @media (min-width: 768px) {
-    padding: 10px;
-    height: 70vh;
-  }
+  // @media (min-width: 768px) {
+  //   padding: 10px;
+  // }
 `;
 export default function CreateAccount() {
   const [checkingLogIn, setCheckingLogIn] = useState(true);

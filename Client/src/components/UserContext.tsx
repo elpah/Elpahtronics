@@ -1,10 +1,10 @@
 import React, { createContext, FC, ReactNode, useContext, useEffect, useState } from 'react';
 
-interface User {
+interface UserType {
   userName: string;
   fbId: string;
   userEmailAddress: string;
-  orders?: [];
+  orders?: any[];
   ShippingAddress?: {
     street: string;
     apartment?: string;
@@ -16,10 +16,11 @@ interface User {
 }
 
 interface UserContextType {
-  currentUser: User;
-  setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
+  currentUser: UserType;
+  setCurrentUser: React.Dispatch<React.SetStateAction<UserType>>;
 }
-const initialUser: User = {
+
+const initialUser: UserType = {
   userName: '',
   fbId: '',
   userEmailAddress: '',
@@ -40,7 +41,7 @@ const UserContext = createContext<UserContextType>({
 });
 
 export const UserContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState<User>(initialUser);
+  const [currentUser, setCurrentUser] = useState<UserType>(initialUser);
 
   return <UserContext.Provider value={{ currentUser, setCurrentUser }}>{children}</UserContext.Provider>;
 };

@@ -141,7 +141,7 @@ const Span = styled.span`
 
 const Image = styled.img`
   height: 50px;
-  widthl: 60px;
+  margin-top: 80px;
 `;
 
 const CreateAccount = styled.p`
