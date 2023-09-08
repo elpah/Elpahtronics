@@ -4,13 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { SignOutFunction } from '../../components/auth/SignOut';
 import styled from 'styled-components';
-import { UserContextProvider, useUserContext } from '../../components/UserContext';
+import { useUserContext } from '../../components/UserContext';
 
 export default function UserPage() {
   const { currentUser, setCurrentUser } = useUserContext();
   const [authUser, setAuthUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [userAvailable, setUserAvailable] = useState(false);
   const navigate = useNavigate();
+
   const resetUser = {
     userName: '',
     fbId: '',
@@ -57,9 +59,19 @@ export default function UserPage() {
       });
   };
 
-  return loading || !currentUser.userName ? (
-    <LoadingP>Loading...</LoadingP>
-  ) : (
+  useEffect(() => {
+    if (currentUser.userName !== '') {
+      setUserAvailable(true);
+    } else {
+      setUserAvailable(false);
+    }
+  }, [currentUser.userName]);
+
+  if (loading || !userAvailable) {
+    return <LoadingP>Loading...</LoadingP>;
+  }
+
+  return (
     <Container>
       <div>{authUser ? <p>{`Signed In as ${currentUser.userName}`}</p> : <p>Signed Out</p>}</div>
 

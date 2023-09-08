@@ -102,7 +102,7 @@ const CategoryHeader = styled.h2`
 `;
 const CategoryCardContainer = styled.div`
   width: 90%;
-  max-width:1400px;
+  max-width:1700px;
   margin:auto;
   display: grid;
   grid-template-columns:repeat(2, 1fr);

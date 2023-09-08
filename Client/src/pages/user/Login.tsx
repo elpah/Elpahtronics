@@ -15,7 +15,7 @@ const SignInPageContainer = styled.div`
   align-items: center;
   margin-top: 80px;
   @media (min-width: 768px) {
-    margin-top: 110px;
+    // margin-top: 80px;
   }
   @media (min-width: 1198px) {
     margin-top: 60px;
@@ -31,8 +31,7 @@ const SignInFormContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 5px;
-  margin-top: -300px;
-
+  margin-top: -200px;
   border-radius: 5px;
   @media (min-width: 768px) {
     padding: 10px;

@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useUserContext } from './UserContext';
 
 import styled from 'styled-components';
-import { FaBars, FaTimes, FaUser } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUser, FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { BsCart } from 'react-icons/bs';
 import { BsTelephone } from 'react-icons/bs';
-
 import { useCartContext } from './CartContext.tsx';
-import {
-  elpahtronicsblack,
-  elpahtronicswhite,
-  elpahtronicsblue,
-  elpahlogotry,
-  elpahtronicslogosmall,
-} from '../assets/images/exportImages.ts';
+import { elpahtronicsblue } from '../assets/images/exportImages.ts';
 
 const BarContainer = styled.div`
   width: 100%;
@@ -43,7 +37,7 @@ const StyledHeader = styled.header`
   background-color: #fff;
   border-bottom: 2px solid red;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1700px;
   height: 80px;
   margin: auto;
   position: relative;
@@ -93,6 +87,9 @@ const NavItem = styled.li`
 
   @media (min-width: 768px) {
     font-size: 20px;
+    padding-top: 28px;
+  }
+  @media (min-width: 1198px) {
     padding-top: 26px;
   }
 `;
@@ -116,7 +113,7 @@ const NavLink = styled(Link)`
 
   @media (min-width: 768px) {
     padding-bottom: 10px;
-    font-size: 25px;
+    font-size: 20px;
 
     &:hover {
       color: #000080;
@@ -124,6 +121,10 @@ const NavLink = styled(Link)`
         width: 100%;
       }
     }
+  }
+
+  @media (min-width: 1198px) {
+    font-size: 26px;
   }
 `;
 
@@ -177,18 +178,31 @@ const Container = styled.div`
   top: 0;
   width: 100%;
 `;
-
-const Account = styled.p`
-  font-size: 20px;
+const AccountName = styled.p`
+  font-size: 15px;
   font-weight: 300;
-  padding-top: px;
+  display: none;
   @media (min-width: 768px) {
-    margin-left: 30px;
-    padding-top: 1px;
+    padding-bottom: 10px;
+    display: block;
+    margin-left: -8px;
+  }
+`;
+const Account = styled.div`
+  position: relative;
+  display: flex;
+  @media (min-width: 769px) {
+    margin-left: 60px;
+    padding-top: 5px;
+  }
+  @media (min-width: 1198px) {
   }
 `;
 
 export default function NavBar() {
+  const { currentUser, setCurrentUser } = useUserContext();
+  const [showUserMenu, setShowUserMenu] = useState(false);
+
   const navigate = useNavigate();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const toggleNav = () => setShowMobileMenu(!showMobileMenu);
@@ -231,18 +245,6 @@ export default function NavBar() {
                   Contact
                 </NavLink>
               </NavItem>
-              {/* <NavItem>
-                <NavLink to="/login" onClick={closeMobileMenu}>
-                  <FaUser
-                    style={{
-                      fontSize: '15px',
-                      marginRight: '5px',
-                      color: 'rgb(239, 159, 70)',
-                    }}
-                  />
-                  Account
-                </NavLink>
-              </NavItem> */}
             </NavList>
           </Div>
           <CartHamContainer>
@@ -252,15 +254,40 @@ export default function NavBar() {
                 <CartItemsNumber>{totalQuantity}</CartItemsNumber>
               </StyledLink>
             </CartContainer>
-            <Account onClick={() => navigate('/userpage')}>
+            <Account>
               <FaUser
+                onClick={() => navigate('/userpage')}
                 style={{
-                  fontSize: '23px',
-                  // paddingTop: '0px',
+                  fontSize: '18px',
                   marginRight: '15px',
                   color: 'rgb(239, 159, 70)',
                 }}
               />
+              <AccountName>{currentUser.userName ? currentUser.userName.split(' ')[0] : 'login'} </AccountName>
+              {/* <FaIconContainer onClick={() => setShowUserMenu(!showUserMenu)}>
+                {!showMobileMenu ? (
+                  <FaAngleUp
+                    style={{
+                      fontSize: '20px',
+                      paddingBottom: '2px',
+                    }}
+                  />
+                ) : (
+                  <FaAngleDown
+                    style={{
+                      fontSize: '20px',
+                      paddingBottom: '2px',
+                    }}
+                  />
+                )}
+              </FaIconContainer> */}
+              {showUserMenu && (
+                <UserMenu>
+                  <li>My Orders</li>
+                  <li>userPage</li>
+                  <li>SignOut</li>
+                </UserMenu>
+              )}
             </Account>
             <HamburgerToggle onClick={toggleNav}>{showMobileMenu ? <FaTimes /> : <FaBars />}</HamburgerToggle>
           </CartHamContainer>
@@ -269,3 +296,19 @@ export default function NavBar() {
     </Container>
   );
 }
+
+const FaIconContainer = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+`;
+
+const UserMenu = styled.ul`
+  z-index: 1;
+  background-color: red;
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  border: 2px solid black;
+`;

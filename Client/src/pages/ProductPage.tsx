@@ -48,7 +48,7 @@ const FixedImage = styled.div`
 const HeaderContainer = styled.div`
   width: 90%;
   height: 300px;
-  max-width: 1400px;
+  max-width: 1700px;
   margin: auto;
   margin-top: 90px;
   display: flex;
@@ -126,7 +126,7 @@ const Paragraph = styled.p`
 `;
 const ProductCardContainer = styled.div`
   width: 90%;
-  max-width: 1400px;
+  max-width: 1700px;
   display: grid;
   grid-gap: 8px;
   margin: auto;
@@ -167,7 +167,7 @@ const FilterCategory = styled.div<FilterCategoryProps>`
   background-color: rgba(245, 245, 245, 0.6);
   padding: 4px;
   width: 80%;
-  max-width: 1300px;
+  max-width: 1700px;
   margin: auto;
   margin-bottom: 20px;
   overflow: hidden;

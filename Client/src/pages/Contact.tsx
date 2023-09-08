@@ -116,7 +116,7 @@ const FaqFormHeader = styled.h2`
 const Faq = styled.div``;
 const Form = styled.div``;
 const FooterContainer = styled.div`
-  max-width: 1500px;
+  max-width: 1700px;
   margin: auto;
   // width: 110%;
 `;

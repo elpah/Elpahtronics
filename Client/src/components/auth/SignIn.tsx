@@ -18,19 +18,25 @@ const Form = styled.form`
 const Header = styled.h2`
   margin-bottom: 20px;
   color: #007bff;
-  font-size: 35px;
+  font-size: 30px;
   text-align: center;
   font-weight: bold;
+  @media (min-width: 768px) {
+    font-size: 35px;
+  }
 `;
 
 const Input = styled.input`
   font-size: 20px;
   width: 100%;
-  height: 60px;
+  height: 40px;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  @media (min-width: 768px) {
+    height: 60px;
+  }
 `;
 
 const ErrorMessage = styled.p`
@@ -145,8 +151,11 @@ const Image = styled.img`
 `;
 
 const CreateAccount = styled.p`
-  font-size: 18px;
+  font-size: 15px;
   margin-top: 10px;
   text-align: center;
   color: rgb(186, 186, 186);
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 `;
