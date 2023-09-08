@@ -15,7 +15,6 @@ const SignInPageContainer = styled.div`
   align-items: center;
   margin-top: 80px;
   @media (min-width: 768px) {
-    // margin-top: 80px;
   }
   @media (min-width: 1198px) {
     margin-top: 60px;

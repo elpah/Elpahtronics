@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useUserContext } from './UserContext';
-
 import styled from 'styled-components';
 import { FaBars, FaTimes, FaUser, FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { BsCart } from 'react-icons/bs';
@@ -18,7 +17,6 @@ const BarContainer = styled.div`
     display: none;
   }
 `;
-
 const Bar = styled.div`
   display: flex;
   justify-content: space-between;
@@ -178,6 +176,13 @@ const Container = styled.div`
   top: 0;
   width: 100%;
 `;
+const FaIconContainer = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+`;
+
 const AccountName = styled.p`
   font-size: 15px;
   font-weight: 300;
@@ -199,13 +204,59 @@ const Account = styled.div`
   }
 `;
 
-export default function NavBar() {
+// const UserMenu = styled.ul`
+//   background-color: red;
+//   position: absolute;
+//   top: 100px;
+//   left: 20px;
+//   border: 2px solid black;
+//   transform: translateY(-10px);
+//   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+// `;
+const UserMenu = styled.ul`
+  background-color: red;
+  position: absolute;
+  top: 60px;
+  right: 0px;
+  border: 2px solid black;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  padding: 0; /* Remove default padding */
+
+  li {
+    list-style: none; /* Remove list bullets */
+    padding: 10px 20px; /* Add padding to list items */
+    color: white; /* Text color */
+    cursor: pointer; /* Add cursor pointer for clickable items */
+
+    &:hover {
+      background-color: #333; /* Background color on hover */
+    }
+  }
+
+  /* Style the SignOut button differently */
+  li:last-child {
+    background-color: #333; /* Button background color */
+    text-align: center;
+    padding: 15px 0;
+    font-weight: bold;
+  }
+`;
+interface NavBarProps {
+  handleClick: () => void;
+}
+export default function NavBar({ handleClick }: NavBarProps) {
   const { currentUser, setCurrentUser } = useUserContext();
-  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const navigate = useNavigate();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+
   const toggleNav = () => setShowMobileMenu(!showMobileMenu);
+  const toggleUserMenu = () => {
+    setShowUserMenu(!showUserMenu);
+  };
+
   const closeMobileMenu = () => setShowMobileMenu(false);
   const { cartArray } = useCartContext();
   const totalQuantity = cartArray.reduce((total, product) => total + product.productQuantity, 0);
@@ -254,9 +305,9 @@ export default function NavBar() {
                 <CartItemsNumber>{totalQuantity}</CartItemsNumber>
               </StyledLink>
             </CartContainer>
-            <Account>
+            <Account onClick={toggleUserMenu}>
               <FaUser
-                onClick={() => navigate('/userpage')}
+                // onClick={() => navigate('/userpage')}
                 style={{
                   fontSize: '18px',
                   marginRight: '15px',
@@ -264,8 +315,8 @@ export default function NavBar() {
                 }}
               />
               <AccountName>{currentUser.userName ? currentUser.userName.split(' ')[0] : 'login'} </AccountName>
-              {/* <FaIconContainer onClick={() => setShowUserMenu(!showUserMenu)}>
-                {!showMobileMenu ? (
+              <FaIconContainer>
+                {showUserMenu ? (
                   <FaAngleUp
                     style={{
                       fontSize: '20px',
@@ -280,12 +331,13 @@ export default function NavBar() {
                     }}
                   />
                 )}
-              </FaIconContainer> */}
+              </FaIconContainer>
+
               {showUserMenu && (
                 <UserMenu>
-                  <li>My Orders</li>
+                  <li>Orders</li>
                   <li>userPage</li>
-                  <li>SignOut</li>
+                  <li onClick={handleClick}>SignOut</li>
                 </UserMenu>
               )}
             </Account>
@@ -296,19 +348,3 @@ export default function NavBar() {
     </Container>
   );
 }
-
-const FaIconContainer = styled.div`
-  display: none;
-  @media (min-width: 768px) {
-    display: block;
-  }
-`;
-
-const UserMenu = styled.ul`
-  z-index: 1;
-  background-color: red;
-  position: absolute;
-  top: 40px;
-  left: 20px;
-  border: 2px solid black;
-`;

@@ -13,29 +13,6 @@ export default function UserPage() {
   const [userAvailable, setUserAvailable] = useState(false);
   const navigate = useNavigate();
 
-  const resetUser = {
-    userName: '',
-    fbId: '',
-    userEmailAddress: '',
-    orders: [],
-    ShippingAddress: {
-      street: '',
-      apartment: '',
-      city: '',
-      state: '',
-      postalCode: '',
-      country: '',
-    },
-  };
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('currentUserLocal');
-    if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-      setCurrentUser(parsedUser);
-    }
-  }, []);
-
   useEffect(() => {
     const listen = onAuthStateChanged(auth, user => {
       user ? setAuthUser(user) : navigate('/login');
@@ -47,24 +24,8 @@ export default function UserPage() {
     };
   }, [authUser]);
 
-  const useSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        localStorage.removeItem('currentUserLocal');
-        navigate('/login');
-        setCurrentUser(resetUser);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
   useEffect(() => {
-    if (currentUser.userName !== '') {
-      setUserAvailable(true);
-    } else {
-      setUserAvailable(false);
-    }
+    currentUser.userName ? setUserAvailable(true) : setUserAvailable(false);
   }, [currentUser.userName]);
 
   if (loading || !userAvailable) {
@@ -73,9 +34,7 @@ export default function UserPage() {
 
   return (
     <Container>
-      <div>{authUser ? <p>{`Signed In as ${currentUser.userName}`}</p> : <p>Signed Out</p>}</div>
-
-      <button onClick={useSignOut}>Sign Out</button>
+      <p>{`Signed In as ${currentUser.userName}`}</p>
     </Container>
   );
 }
@@ -87,11 +46,3 @@ const Container = styled.div`
 const LoadingP = styled.div`
   margin-top: 150px;
 `;
-
-const resetUser = {
-  userName: '',
-  fbId: '',
-  userEmailAddress: '',
-  orders: [],
-  ShippingAddress: { street: '', apartment: '', city: '', state: '', postalCode: '', country: '' },
-};
