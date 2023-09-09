@@ -28,10 +28,9 @@ const resetUser = {
 function App() {
   const { currentUser, setCurrentUser } = useUserContext();
   const navigate = useNavigate();
-  const [authUser, setAuthUser] = useState<User | null>(null);
+  // const [authUser, setAuthUser] = useState<User | null>(null);
 
   const useSignOut = () => {
-    console.log('clicked');
     signOut(auth)
       .then(() => {
         localStorage.removeItem('currentUserLocal');

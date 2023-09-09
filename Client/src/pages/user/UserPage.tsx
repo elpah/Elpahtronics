@@ -34,11 +34,50 @@ export default function UserPage() {
 
   return (
     <Container>
-      <p>{`Signed In as ${currentUser.userName}`}</p>
+      <UserNavContainer>
+        <ul>
+          <NavItem>Edit Profile</NavItem>
+          <NavItem>My Orders</NavItem>
+          <NavItem>Lorem</NavItem>
+          <NavItem>Lorem</NavItem>
+        </ul>
+      </UserNavContainer>
+      {/* <p>{`Signed In as ${currentUser.userName}`}</p> */}
     </Container>
   );
 }
 
+const NavItem = styled.li`
+  font-size: 18px;
+  margin-bottom: 10px;
+  padding: 10px;
+  // background-color: #fff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #333;
+    color: #fff;
+  }
+`;
+
+const UserNavContainer = styled.div`
+  padding-top: 20px;
+  height: 100%;
+  background-color: rgb(59, 59, 59);
+  width: 75%;
+  max-width: 350px;
+  position: fixed;
+  left: 0;
+  top: 80px;
+  @media (min-width: 768px) {
+    top: 110px;
+  }
+  @media (min-width: 1198px) {
+    top: 110px;
+  }
+`;
 const Container = styled.div`
   margin-top: 200px;
 `;
