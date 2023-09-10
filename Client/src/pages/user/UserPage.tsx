@@ -5,12 +5,20 @@ import { auth } from '../../firebase';
 import { SignOutFunction } from '../../components/auth/SignOut';
 import styled from 'styled-components';
 import { useUserContext } from '../../components/UserContext';
+import OrderCardContainer from '../../components/OrderCardContainer';
+import Profile from '../../components/Profile';
+import { profile } from 'console';
 
 export default function UserPage() {
   const { currentUser, setCurrentUser } = useUserContext();
   const [authUser, setAuthUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [userAvailable, setUserAvailable] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [showOrders, setShowOrders] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [heading, setHeading] = useState('');
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,30 +36,80 @@ export default function UserPage() {
     currentUser.userName ? setUserAvailable(true) : setUserAvailable(false);
   }, [currentUser.userName]);
 
-  if (loading || !userAvailable) {
-    return <LoadingP>Loading...</LoadingP>;
-  }
+  // if (loading || !userAvailable) {
+  //   return <LoadingP>Loading...</LoadingP>;
+  // }
+  const UserNavButton = styled.button`
+    position: fixed;
+    background-color: rgb(59, 59, 59);
+    top: 110px;
+    left: 0;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    border-radius: 0 0 5px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    &:hover {
+      background-color: #333;
+  `;
 
   return (
     <Container>
-      <UserNavContainer>
+      <UserNavButton onClick={() => setIsOpen(true)}>User</UserNavButton>
+
+      <UserNavContainer isOpen={isOpen}>
         <ul>
-          <NavItem>Edit Profile</NavItem>
-          <NavItem>My Orders</NavItem>
-          <NavItem>Lorem</NavItem>
-          <NavItem>Lorem</NavItem>
+          <CloseButton onClick={() => setIsOpen(false)}>X</CloseButton>
+          <NavItem
+            onClick={() => {
+              setShowProfile(true);
+              setShowOrders(false);
+              setIsOpen(false);
+              setHeading('My profile');
+            }}
+          >
+            Profile
+          </NavItem>
+          <NavItem
+            onClick={() => {
+              setShowOrders(true);
+              setShowProfile(false);
+              setIsOpen(false);
+              setHeading('My orders');
+            }}
+          >
+            My Orders
+          </NavItem>
         </ul>
       </UserNavContainer>
-      {/* <p>{`Signed In as ${currentUser.userName}`}</p> */}
+
+      {showProfile && <Profile />}
+      {showOrders && (
+        <OrdersContainer>
+          <Header>{heading}</Header>
+          <Para>8 Items</Para>
+          <OrderCardContainer />
+        </OrdersContainer>
+      )}
     </Container>
   );
 }
 
+const Header = styled.h2`
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+`;
+const Para = styled.p``;
+
+const OrdersContainer = styled.div``;
 const NavItem = styled.li`
   font-size: 18px;
   margin-bottom: 10px;
   padding: 10px;
-  // background-color: #fff;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -60,26 +118,54 @@ const NavItem = styled.li`
     background-color: #333;
     color: #fff;
   }
-`;
-
-const UserNavContainer = styled.div`
-  padding-top: 20px;
-  height: 100%;
-  background-color: rgb(59, 59, 59);
-  width: 75%;
-  max-width: 350px;
-  position: fixed;
-  left: 0;
-  top: 80px;
   @media (min-width: 768px) {
-    top: 110px;
+    font-size: 20px;
   }
   @media (min-width: 1198px) {
-    top: 110px;
+    font-size: 26px;
   }
 `;
+
+type UserNavContainerProps = {
+  isOpen: boolean;
+};
+
+const UserNavContainer = styled.div<UserNavContainerProps>`
+  background-color: rgb(59, 59, 59);
+  width: 75%;
+  height: 100%;
+  max-width: 350px;
+  position: fixed;
+  left: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
+  transition: left 0.3s ease-in-out;
+`;
+
+const CloseButton = styled.button`
+  background-color: transparent;
+  align-items: right;
+  border: none;
+  font-size: 25px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 7px;
+
+  &:hover {
+    color: red;
+  }
+`;
+
 const Container = styled.div`
-  margin-top: 200px;
+  padding-top: 10px;
+  width: 90%;
+  margin: auto;
+  margin-top: 70px;
+  @media (min-width: 768px) {
+    margin-top: 70px;
+  }
+  @media (min-width: 1198px) {
+    margin-top: 100px;
+  }
 `;
 
 const LoadingP = styled.div`

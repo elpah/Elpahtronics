@@ -180,6 +180,8 @@ const FaIconContainer = styled.div`
   display: none;
   @media (min-width: 768px) {
     display: block;
+    margin-left: 0px;
+    margin-right: 10px;
   }
 `;
 
@@ -204,39 +206,33 @@ const Account = styled.div`
   }
 `;
 
-// const UserMenu = styled.ul`
-//   background-color: red;
-//   position: absolute;
-//   top: 100px;
-//   left: 20px;
-//   border: 2px solid black;
-//   transform: translateY(-10px);
-//   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-// `;
-const UserMenu = styled.ul`
+interface UserMenuProps {
+  isOpen: boolean;
+}
+const UserMenu = styled.ul<UserMenuProps>`
   background-color: red;
   position: absolute;
-  top: 60px;
+  top: ${({ isOpen }) => (isOpen ? '60px' : '-140%')};
   right: 0px;
   border: 2px solid black;
   transform: translateY(-10px);
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  padding: 0; /* Remove default padding */
+  transition: top 0.2s ease-in-out;
+  padding: 0;
+  list-style: none;
+  z-index: -1;
 
   li {
-    list-style: none; /* Remove list bullets */
-    padding: 10px 20px; /* Add padding to list items */
-    color: white; /* Text color */
-    cursor: pointer; /* Add cursor pointer for clickable items */
+    color: white;
+    cursor: pointer;
+    padding: 10px;
 
     &:hover {
-      background-color: #333; /* Background color on hover */
+      background-color: #333;
     }
   }
 
-  /* Style the SignOut button differently */
   li:last-child {
-    background-color: #333; /* Button background color */
+    background-color: #333;
     text-align: center;
     padding: 15px 0;
     font-weight: bold;
@@ -247,19 +243,18 @@ interface NavBarProps {
 }
 export default function NavBar({ handleClick }: NavBarProps) {
   const { currentUser, setCurrentUser } = useUserContext();
-
   const navigate = useNavigate();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [showUserMenu, setShowUserMenu] = useState(false);
-
   const toggleNav = () => setShowMobileMenu(!showMobileMenu);
-  const toggleUserMenu = () => {
-    setShowUserMenu(!showUserMenu);
-  };
-
   const closeMobileMenu = () => setShowMobileMenu(false);
   const { cartArray } = useCartContext();
   const totalQuantity = cartArray.reduce((total, product) => total + product.productQuantity, 0);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleUserMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <Container>
@@ -307,7 +302,6 @@ export default function NavBar({ handleClick }: NavBarProps) {
             </CartContainer>
             <Account onClick={toggleUserMenu}>
               <FaUser
-                // onClick={() => navigate('/userpage')}
                 style={{
                   fontSize: '18px',
                   marginRight: '15px',
@@ -316,7 +310,7 @@ export default function NavBar({ handleClick }: NavBarProps) {
               />
               <AccountName>{currentUser.userName ? currentUser.userName.split(' ')[0] : 'login'} </AccountName>
               <FaIconContainer>
-                {showUserMenu ? (
+                {isOpen ? (
                   <FaAngleUp
                     style={{
                       fontSize: '20px',
@@ -333,13 +327,11 @@ export default function NavBar({ handleClick }: NavBarProps) {
                 )}
               </FaIconContainer>
 
-              {showUserMenu && (
-                <UserMenu>
-                  <li>Orders</li>
-                  <li>userPage</li>
-                  <li onClick={handleClick}>SignOut</li>
-                </UserMenu>
-              )}
+              <UserMenu isOpen={isOpen}>
+                <li>Orders</li>
+                <li>userPage</li>
+                <li onClick={handleClick}>SignOut</li>
+              </UserMenu>
             </Account>
             <HamburgerToggle onClick={toggleNav}>{showMobileMenu ? <FaTimes /> : <FaBars />}</HamburgerToggle>
           </CartHamContainer>

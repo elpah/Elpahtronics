@@ -49,6 +49,7 @@ const CheckIcon = styled.svg`
 `;
 const SuccessPageContainer = styled.div`
   height: 100vh;
+  margin-top: 110px;
 `;
 
 const Header = styled.h1`
@@ -76,6 +77,7 @@ const OrderNumberHeader = styled.h2`
   }
   width: 100%;
   margin: 0 auto;
+
   position: relative;
 
   &::after {
@@ -107,6 +109,7 @@ const OrderDetailsContainer = styled.div`
   width: 90%;
   max-width: 1400px;
   margin: auto;
+  margin-bottom: 60px;
 `;
 const DetailsDiv = styled.div`
   display: grid;
