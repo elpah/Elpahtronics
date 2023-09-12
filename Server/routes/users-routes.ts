@@ -6,14 +6,15 @@ import { createUser, getUserByFbId } from "../usersdb/db";
 const userRouter = Router();
 
 userRouter.post("/create-user", async (req, res) => {
-  const { name, userEmailAddress, dob, fbId } = req.body;
+  const { name, userEmailAddress, userDob, fbId, userPhoneNumber } = req.body;
   try {
     const newUser = {
       userName: name,
       fbId: fbId,
       userEmailAddress: userEmailAddress,
-      dob: dob,
+      userDob: userDob,
       orders: [],
+      userPhoneNumber: userPhoneNumber,
     };
     createUser(newUser);
     res.status(200).json({ message: "user created successfully" });

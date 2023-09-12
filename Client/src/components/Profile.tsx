@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useUserContext } from './UserContext';
 
 const ProfileContainer = styled.div`
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.4);
@@ -127,30 +128,31 @@ const ProfileEmail = styled.p`
 `;
 
 export default function Profile() {
+  const { currentUser } = useUserContext();
   return (
     <ProfileContainer>
       <ProfileHeader>
-        <ProfileName>Elpachris Obeng</ProfileName>
-        <ProfileEmail>el@mail.com</ProfileEmail>
+        <ProfileName>{currentUser.userName}</ProfileName>
+        <ProfileEmail>{currentUser.userEmailAddress}</ProfileEmail>
       </ProfileHeader>
       <ProfileInfo>
         <InfoContainer>
           <InfoHeader>User Profile</InfoHeader>
           <InfoItem>
             <InfoLabel>Email:</InfoLabel>
-            <InfoValue>el@mail.com</InfoValue>
+            <InfoValue>{currentUser.userEmailAddress}</InfoValue>
           </InfoItem>
           <InfoItem>
             <InfoLabel>Phone:</InfoLabel>
-            <InfoValue>+311892834924</InfoValue>
+            <InfoValue>{currentUser.userPhoneNumber}</InfoValue>
           </InfoItem>
           <InfoItem>
             <InfoLabel>DOB:</InfoLabel>
-            <InfoValue>27-24-97</InfoValue>
+            <InfoValue>{currentUser.userDOB}</InfoValue>
           </InfoItem>
           <InfoItem>
             <InfoLabel>Shipping Address:</InfoLabel>
-            <InfoValue>1234 Elm Street, New York, NL</InfoValue>
+            <InfoValue>1234 street, Zaandam, NL</InfoValue>
           </InfoItem>
         </InfoContainer>
       </ProfileInfo>

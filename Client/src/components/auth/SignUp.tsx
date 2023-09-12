@@ -184,8 +184,9 @@ export default function SignUp() {
         body: JSON.stringify({
           name: `${firstName} ${lastName}`,
           userEmailAddress: email,
-          dob: dob,
+          userDob: dob,
           fbId: fbId,
+          userPhoneNumber: phoneNumber,
         }),
       });
 
@@ -211,6 +212,7 @@ export default function SignUp() {
             setFirstName(event.target.value);
           }}
           placeholder="First Name"
+          required
         />
         <NamePass
           type="text"
@@ -219,6 +221,7 @@ export default function SignUp() {
             setLastName(event.target.value);
           }}
           placeholder="Last Name"
+          required
         />
       </Container>
       <Container>
@@ -228,6 +231,7 @@ export default function SignUp() {
           value={phoneNumber}
           onChange={event => setPhoneNumber(event.target.value)}
           placeholder="Phone Number"
+          required
         />
       </Container>
       <Input
@@ -238,6 +242,7 @@ export default function SignUp() {
           setEmail(event.target.value);
         }}
         placeholder="Email Address"
+        required
       />
       <Container>
         <NamePass
@@ -248,6 +253,7 @@ export default function SignUp() {
             setPassword(event.target.value);
           }}
           placeholder="password"
+          required
         />
         <NamePass
           type="password"
@@ -257,6 +263,7 @@ export default function SignUp() {
             setRepeatPassword(event.target.value);
           }}
           placeholder=" repeat password"
+          required
         />
       </Container>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}

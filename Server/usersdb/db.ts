@@ -14,7 +14,8 @@ type User = {
   fbId: string;
   userName: string;
   userEmailAddress: string;
-  dob: string;
+  userPhoneNumber: string;
+  userDob: string;
   orders?: string[];
 };
 
@@ -24,7 +25,8 @@ const createUser = async (user: User) => {
     userName: user.userName,
     fbId: user.fbId,
     userEmailAddress: user.userEmailAddress,
-    dob: user.dob,
+    phoneNumber: user.userPhoneNumber,
+    dob: user.userDob,
     orders: [],
   };
   const db = await connectToDatabase();

@@ -17,9 +17,13 @@ export default function UserPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [showOrders, setShowOrders] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-
   const navigate = useNavigate();
 
+  // useEffect(()=>{
+  //   if(currentUser.orders && currentUser.orders.length >0){
+  //     set
+  //   }
+  // },[])
   useEffect(() => {
     const listen = onAuthStateChanged(auth, user => {
       user ? setAuthUser(user) : navigate('/login');
@@ -84,7 +88,7 @@ export default function UserPage() {
       </UserNavContainer>
 
       {showProfile && <Profile />}
-      {showOrders && currentUser.orders && currentUser.orders.length > 0 ? (
+      {showOrders ? (
         <OrdersContainer>
           <Header>My Orders</Header>
           <Para>8 Items</Para>
@@ -92,7 +96,7 @@ export default function UserPage() {
         </OrdersContainer>
       ) : (
         <NoOrdersContainer>
-          <NoOrders>You do not have any order. </NoOrders>
+          <NoOrders>You have not placed any orders yet. </NoOrders>
           <ShopNow onClick={() => navigate('/product')}>Show Now...</ShopNow>
         </NoOrdersContainer>
       )}
@@ -118,7 +122,7 @@ const ShopNow = styled.button`
 
 const NoOrdersContainer = styled.div`
   text-align: center;
-  margin: 20px auto;
+  margin: 80px auto;
 `;
 
 const NoOrders = styled.p`

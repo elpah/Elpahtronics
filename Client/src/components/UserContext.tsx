@@ -4,6 +4,8 @@ interface UserType {
   userName: string;
   fbId: string;
   userEmailAddress: string;
+  userPhoneNumber: string;
+  userDOB: string;
   orders?: any[];
   ShippingAddress?: {
     street: string;
@@ -24,6 +26,8 @@ const initialUser: UserType = {
   userName: '',
   fbId: '',
   userEmailAddress: '',
+  userPhoneNumber: '',
+  userDOB: '',
   orders: [],
   ShippingAddress: {
     street: '',
