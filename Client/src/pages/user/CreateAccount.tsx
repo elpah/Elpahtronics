@@ -40,6 +40,7 @@ const SignUpFormContainer = styled.div`
 export default function CreateAccount() {
   const [checkingLogIn, setCheckingLogIn] = useState(true);
   const navigate = useNavigate();
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) {

@@ -19,11 +19,6 @@ export default function UserPage() {
   const [showProfile, setShowProfile] = useState(false);
   const navigate = useNavigate();
 
-  // useEffect(()=>{
-  //   if(currentUser.orders && currentUser.orders.length >0){
-  //     set
-  //   }
-  // },[])
   useEffect(() => {
     const listen = onAuthStateChanged(auth, user => {
       user ? setAuthUser(user) : navigate('/login');

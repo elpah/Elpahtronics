@@ -21,6 +21,8 @@ const resetUser = {
   userName: '',
   fbId: '',
   userEmailAddress: '',
+  userPhoneNumber: '',
+  userDob: '',
   orders: [],
   ShippingAddress: { street: '', apartment: '', city: '', state: '', postalCode: '', country: '' },
 };

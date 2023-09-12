@@ -148,7 +148,7 @@ export default function Profile() {
           </InfoItem>
           <InfoItem>
             <InfoLabel>DOB:</InfoLabel>
-            <InfoValue>{currentUser.userDOB}</InfoValue>
+            <InfoValue>{currentUser.userDob}</InfoValue>
           </InfoItem>
           <InfoItem>
             <InfoLabel>Shipping Address:</InfoLabel>

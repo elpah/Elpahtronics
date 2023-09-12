@@ -25,8 +25,8 @@ const createUser = async (user: User) => {
     userName: user.userName,
     fbId: user.fbId,
     userEmailAddress: user.userEmailAddress,
-    phoneNumber: user.userPhoneNumber,
-    dob: user.userDob,
+    userPhoneNumber: user.userPhoneNumber,
+    userDob: user.userDob,
     orders: [],
   };
   const db = await connectToDatabase();

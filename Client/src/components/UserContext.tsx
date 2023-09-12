@@ -5,7 +5,7 @@ interface UserType {
   fbId: string;
   userEmailAddress: string;
   userPhoneNumber: string;
-  userDOB: string;
+  userDob: string;
   orders?: any[];
   ShippingAddress?: {
     street: string;
@@ -27,7 +27,7 @@ const initialUser: UserType = {
   fbId: '',
   userEmailAddress: '',
   userPhoneNumber: '',
-  userDOB: '',
+  userDob: '',
   orders: [],
   ShippingAddress: {
     street: '',

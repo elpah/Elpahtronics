@@ -166,7 +166,7 @@ export default function SignUp() {
         const user = userCredentials.user;
         const uid = user.uid;
         if (user) {
-          createUserInDb(firstName, lastName, email, dob, uid);
+          createUserInDb(firstName, lastName, email, phoneNumber, dob, uid);
           SignOutFunction();
         }
       })
@@ -174,7 +174,14 @@ export default function SignUp() {
         setErrorMessage(error.message);
       });
   };
-  async function createUserInDb(firstName: string, lastName: string, email: string, dob: string, fbId: string) {
+  async function createUserInDb(
+    firstName: string,
+    lastName: string,
+    email: string,
+    phoneNumber: string,
+    dob: string,
+    fbId: string,
+  ) {
     try {
       const response = await fetch('http://localhost:8000/api/users/create-user', {
         method: 'POST',

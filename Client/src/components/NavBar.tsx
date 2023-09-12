@@ -57,7 +57,7 @@ const CartHamContainer = styled.div`
   margin-top: 28px;
 `;
 
-const NavList = styled.ul<{ showMobileMenu: boolean }>`
+const NavList = styled.ul<MobileMenuProps>`
   list-style: none;
   display: flex;
   margin-top: 0px;
@@ -69,10 +69,12 @@ const NavList = styled.ul<{ showMobileMenu: boolean }>`
     right: 0;
     top: 100%;
     margin-top: 2px;
-    display: ${props => (props.showMobileMenu ? 'flex block' : 'none')};
+    right: ${({ showMobileMenu }) => (showMobileMenu ? '0' : '-100%')};
+    transition: right 0.2s ease-in-out;
+
     width: 70%;
     max-width: 400px;
-    height: 300px;
+    height: 250px;
     background-color: rgba(255, 255, 255, 2.5);
     box-shadow: 0px 3px 8px 3px rgba(0, 0, 0, 0.1);
   }
@@ -82,6 +84,7 @@ const NavItem = styled.li`
   font-size: 15px;
   margin-left: 20px;
   padding: 10px;
+  padding-right: 20px;
 
   @media (min-width: 768px) {
     font-size: 20px;
@@ -96,7 +99,7 @@ const NavLink = styled(Link)`
   font-weight: 400;
   text-decoration: none;
   position: relative;
-  font-size: 30px;
+  font-size: 25px;
 
   &:before {
     content: '';
@@ -205,37 +208,32 @@ const Account = styled.div`
   @media (min-width: 1198px) {
   }
 `;
+interface MobileMenuProps {
+  showMobileMenu: boolean;
+}
 
 interface UserMenuProps {
   isOpen: boolean;
 }
 const UserMenu = styled.ul<UserMenuProps>`
-  background-color: red;
+  background-color: rgb(26, 62, 103);
+  width: 130px;
   position: absolute;
   top: ${({ isOpen }) => (isOpen ? '60px' : '-140%')};
   right: 0px;
-  border: 2px solid black;
   transform: translateY(-10px);
   transition: top 0.2s ease-in-out;
   padding: 0;
   list-style: none;
   z-index: -1;
-
   li {
     color: white;
     cursor: pointer;
     padding: 10px;
-
+    padding-left: 30px;
     &:hover {
-      background-color: #333;
+      background-color: rgb(0, 32, 64);
     }
-  }
-
-  li:last-child {
-    background-color: #333;
-    text-align: center;
-    padding: 15px 0;
-    font-weight: bold;
   }
 `;
 interface NavBarProps {
@@ -249,13 +247,14 @@ export default function NavBar({ handleClick }: NavBarProps) {
   const closeMobileMenu = () => setShowMobileMenu(false);
   const { cartArray } = useCartContext();
   const totalQuantity = cartArray.reduce((total, product) => total + product.productQuantity, 0);
-
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleUserMenu = () => {
     setIsOpen(!isOpen);
   };
-
+  const toggleNavMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
+  };
   return (
     <Container>
       <BarContainer>
@@ -333,7 +332,7 @@ export default function NavBar({ handleClick }: NavBarProps) {
                 <li onClick={handleClick}>SignOut</li>
               </UserMenu>
             </Account>
-            <HamburgerToggle onClick={toggleNav}>{showMobileMenu ? <FaTimes /> : <FaBars />}</HamburgerToggle>
+            <HamburgerToggle onClick={toggleNavMenu}>{showMobileMenu ? <FaTimes /> : <FaBars />}</HamburgerToggle>
           </CartHamContainer>
         </NavContainer>
       </StyledHeader>
