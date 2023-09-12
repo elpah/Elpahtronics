@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import OrderItem from './OrderItem';
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 export default function OrderCard() {
   const [showOrderDetails, setShowOrderDetails] = useState(false);
@@ -11,21 +11,30 @@ export default function OrderCard() {
         <OrderNumber>Order: #4X123KJ45X67</OrderNumber>
         <OrderDate> 27-10-2023</OrderDate>
       </OrderInfo>
-
-      <ViewOrder onClick={() => setShowOrderDetails(true)}>
-        view order <FaArrowRight style={{ paddingTop: '6px' }} />
+      {/* <ViewOrder onClick={() => setShowOrderDetails(!showOrderDetails)}>
+       { !showOrderDetails ? ('view order' <FaArrowRight style={{ paddingTop: '6px' }} />
+        ):(('show less' <FaArrowLeft style={{ paddingTop: '6px' }} />
+        ))}
+      </ViewOrder> */}
+      <ViewOrder onClick={() => setShowOrderDetails(!showOrderDetails)}>
+        {!showOrderDetails ? (
+          <>
+            View Order <FaArrowRight style={{ paddingTop: '6px' }} />
+          </>
+        ) : (
+          <>
+            Show Less <FaArrowLeft style={{ paddingTop: '6px' }} />
+          </>
+        )}
       </ViewOrder>
-
-      <OrderItem />
-      <OrderItem />
-      <OrderItem />
-      <OrderItem />
+      {showOrderDetails && <OrderItem />}
       <TotalPrice>Total Price: 2000 Euros</TotalPrice>
     </OrderCardContainer>
   );
 }
 const ViewOrder = styled.div`
   cursor: pointer;
+  margin-bottom: 20px;
   font-weight: bold;
   color: green;
 

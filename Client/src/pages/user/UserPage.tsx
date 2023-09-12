@@ -17,7 +17,6 @@ export default function UserPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [showOrders, setShowOrders] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const [heading, setHeading] = useState('');
 
   const navigate = useNavigate();
 
@@ -68,7 +67,6 @@ export default function UserPage() {
               setShowProfile(true);
               setShowOrders(false);
               setIsOpen(false);
-              setHeading('My profile');
             }}
           >
             Profile
@@ -78,7 +76,6 @@ export default function UserPage() {
               setShowOrders(true);
               setShowProfile(false);
               setIsOpen(false);
-              setHeading('My orders');
             }}
           >
             My Orders
@@ -87,25 +84,78 @@ export default function UserPage() {
       </UserNavContainer>
 
       {showProfile && <Profile />}
-      {showOrders && (
+      {showOrders && currentUser.orders && currentUser.orders.length > 0 ? (
         <OrdersContainer>
-          <Header>{heading}</Header>
+          <Header>My Orders</Header>
           <Para>8 Items</Para>
           <OrderCardContainer />
         </OrdersContainer>
+      ) : (
+        <NoOrdersContainer>
+          <NoOrders>You do not have any order. </NoOrders>
+          <ShopNow onClick={() => navigate('/product')}>Show Now...</ShopNow>
+        </NoOrdersContainer>
       )}
     </Container>
   );
 }
+const ShopNow = styled.button`
+  font-weight: 400;
+  background-color: white;
+  color: #000;
+  padding: 10px 20px;
+  border: 1px solid black;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
 
-const Header = styled.h2`
-  font-size: 20px;
-  text-align: center;
-  margin-top: 20px;
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
 `;
-const Para = styled.p``;
 
-const OrdersContainer = styled.div``;
+const NoOrdersContainer = styled.div`
+  text-align: center;
+  margin: 20px auto;
+`;
+
+const NoOrders = styled.p`
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 20px;
+`;
+// const ShopNow = styled.button``;
+
+// const NoOrders = styled.p`
+//   font-size: 30px;
+//   font-weight: 400;
+// `;
+
+// const NoOrdersContainer = styled.div``;
+const Header = styled.h2`
+  color: rgb(113, 114, 116);
+  font-weight: 200;
+  font-size: 25px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  @media (min-width: 768px) {
+    font-size: 30px;
+  }
+  @media (min-width: 1198px) {
+    font-size: 45px;
+  }
+`;
+const Para = styled.p`
+  margin-bottom: -20px;
+`;
+
+const OrdersContainer = styled.div`
+  width: 80%;
+  margin: auto;
+`;
 const NavItem = styled.li`
   font-size: 18px;
   margin-bottom: 10px;
@@ -156,9 +206,13 @@ const CloseButton = styled.button`
 `;
 
 const Container = styled.div`
+  background-color: #f9f9f9;
   padding-top: 10px;
-  width: 90%;
+
+  width: 100%;
+  max-width: 1700px;
   margin: auto;
+  height: 100vh;
   margin-top: 70px;
   @media (min-width: 768px) {
     margin-top: 70px;
