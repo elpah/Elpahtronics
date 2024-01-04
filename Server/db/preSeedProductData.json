@@ -154,12 +154,86 @@
     "productImage": "https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e61eb4ad4af6e75689_macbook%2013-min.png"
   },
   {
-    "productId": "809726451hij236574138920",
+    "productId": "809726IJK1hij574138920",
     "category": "books",
-    "productName": "Novel",
+    "productName": "The Wager",
     "productPrice": "15$",
-    "productDescription": "Bestselling novel by a renowned author.",
-    "productImage": "https://example.com/novel.jpg"
+    "productDescription": "A captivating book that unfolds thrilling narratives and suspense.",
+    "productImage": "https://cdn.waterstones.com/bookjackets/large/9781/4711/9781471183706.jpg"
+  },
+  {
+    "productId": "809726AKA1hij57ET38920",
+    "category": "books",
+    "productName": "How They Broke Britain",
+    "productPrice": "43$",
+    "productDescription": "A book by James O'Brien",
+    "productImage": "https://cdn.waterstones.com/override/v1/large/9780/7535/9780753560341.jpg"
+  },
+  {
+    "productId": "8097UKAKA1hij574138920",
+    "category": "books",
+    "productName": "In Memoriam",
+    "productPrice": "$",
+    "productDescription": "A book by Alice Winn",
+    "productImage": "https://cdn.waterstones.com/override/v4/large/9780/2415/9780241567821.jpg"
+  },
+  {
+    "productId": "80972HEAT1hij574138920",
+    "category": "books",
+    "productName": "Knife",
+    "productPrice": "20$",
+    "productDescription": "by Salman Rushman",
+    "productImage": "https://cdn.waterstones.com/bookjackets/large/9781/7873/9781787334793.jpg"
+  },
+
+  {
+    "productId": "809726AKA1hij57413TT30",
+    "category": "books",
+    "productName": "You Are Here",
+    "productPrice": "15$",
+    "productDescription": "A book by David Nicholls",
+    "productImage": "https://cdn.waterstones.com/override/v1/large/9781/3997/9781399731256.jpg"
+  },
+  {
+    "productId": "8097A6AKA1hij574138920",
+    "category": "books",
+    "productName": "Rambling Man",
+    "productPrice": "24$",
+    "productDescription": "By Billy Connolly",
+    "productImage": "https://cdn.waterstones.com/bookjackets/large/9781/3998/9781399802574.jpg"
+  },
+  {
+    "productId": "809726IKAKaij574138920",
+    "category": "books",
+    "productName": "Politics on the edge",
+    "productPrice": "52$",
+    "productDescription": "By Rory Stewart",
+    "productImage": "https://cdn.waterstones.com/override/v1/large/9781/7873/9781787332713.jpg"
+  },
+
+  {
+    "productId": "809726AKA1hKT574138920",
+    "category": "books",
+    "productName": "The Secret",
+    "productPrice": "$",
+    "productDescription": "A book by Lee Child",
+    "productImage": "https://cdn.waterstones.com/bookjackets/large/9781/7876/9781787633773.jpg"
+  },
+  {
+    "productId": "80972GGKA1EDj574138920",
+    "category": "books",
+    "productName": "Precipice",
+    "productPrice": "35$",
+    "productDescription": "Book by a renowned author",
+    "productImage": "https://cdn.waterstones.com/override/v2/large/2928/3772/2928377239510.jpg"
+  },
+  {
+    "productId": "809726AKA1hij52238920",
+    "category": "books",
+    "productName": "Shape's Command",
+    "productPrice": "25$",
+    "productDescription": "A dynamic and empowering book that captivates and inspires",
+    "productImage": "https://cdn.waterstones.com/override/v1/large/9780/0086/9780008671532.jpg"
   },
 
   {
