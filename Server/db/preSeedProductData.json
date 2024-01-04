@@ -1,51 +1,472 @@
 [
   {
-    "productId": "642578029fdf623741730929",
-    "category":"furniture",
-    "productName": "Sofa",
-    "productPrice": "500$",
-    "productDescription": "Comfortable sofa for your living room.",
-    "productImage": "https://example.com/sofa.jpg"
+    "productId": "6A2B78B29fdf6AC7417C0DZ9",
+    "category": "bags",
+    "productName": "LV Keepall Sport",
+    "productPrice": "800$",
+    "productDescription": "Spacious duffle, perfect for adventures.",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-sport-g68-travel--M23786_PM1_Side%20view.png?wid=1440&hei=1440"
   },
   {
-    "productId": "8a7b3c4d5e6f7g8h9i0j",
-    "category":"tech",
+    "productId": "642578029fdf6D37417309Z9",
+    "category": "bags",
+    "productName": "LV Micro Steamer",
+    "productPrice": "800$",
+    "productDescription": "Versatile bag for daily elegance.",
+    "productImage": "  https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-micro-steamer-a05-bags--M23837_PM1_Interior%20view.png?wid=1440&hei=1440"
+  },
+
+  {
+    "productId": "642578029fdf6237417309Y9",
+    "category": "furniture",
+    "productName": "Velvet Sofa Bed",
+    "productPrice": "556$",
+    "productDescription": "Comfortable sofa for your living room.",
+    "productImage": "https://w7.pngwing.com/pngs/136/883/png-transparent-window-living-room-curtain-couch-furniture-american-simple-casual-single-modern-sofa-tufted-yellow-leather-armchair-interior-design-textile-sofa-thumbnail.png"
+  },
+  {
+    "productId": "642578029fdf623741730929",
+    "category": "furniture",
+    "productName": "Velvet Sofa Bed",
+    "productPrice": "556$",
+    "productDescription": "Comfortable sofa for your living room.",
+    "productImage": "https://pictureserver.net/images/pic/d5/e6/undef_src_sa_picid_766969_x_1000_type_whitesh_image.jpg?ver=16"
+  },
+  {
+    "productId": "158347902rst620394875lmn",
+    "category": "furniture",
+    "productName": "Burgundy Sofa Bed",
+    "productPrice": "380$",
+    "productDescription": "Comfortable sofa for your living room.",
+    "productImage": "https://pictureserver.net/images/pic/d7/e1/undef_src_sa_picid_762962_x_760_type_whitesh_image.jpg?ver=11"
+  },
+
+  {
+    "productId": "6A2B78B29fdf6AC7417C0HQZ9",
+    "category": "sneakers",
+    "productName": "Nike Dunk Low Retro",
+    "productPrice": "159$",
+    "productDescription": "Iconic streetwear style.",
+    "productImage": "https://static.nike.com/a/images/q_auto:eco/t_product_v1/f_auto/dpr_2.0/h_441,c_limit/9bc016bc-cd7a-49cc-a399-47930b00c59f/dunk-low-retro-shoe-VMwkPQ.png"
+  },
+  {
+    "productId": "6A2B78BITUf6DDB7417C0HQZ9",
+    "category": "bags",
+    "productName": "LV Michael Backpack Nv2",
+    "productPrice": "8292$",
+    "productDescription": "Trendsetting design, optimal functionality, contemporary style.",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-michael-backpack-nv2-damier-graphite-canvas-bags--N45279_PM2_Front%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "6A2B78B2DDU6DDB7417C0HQZ9",
+    "category": "bags",
+    "productName": "LV Sac Plat Cross",
+    "productPrice": "1700$",
+    "productDescription": "Elegant and versatile, the epitome of luxury.",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-sac-plat-cross-monogram-taurillon-leather-bags--M21884_PM1_Side%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "6A2B78BINTfdf6DDB7417C0HQZ9",
+    "category": "bags",
+    "productName": "LV Takeoff Briefcase",
+    "productPrice": "2800$",
+    "productDescription": "Elevate your style with this sophisticated travel companion.",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-takeoff-briefcase-lv-aerogram-bags--M21440_PM1_Side%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "6A2B78B2INGf6DDB7417C0HQZ9",
+    "category": "bags",
+    "productName": "LV Duo Slingbag",
+    "productPrice": "900$",
+    "productDescription": "Effortless style meets practicality in this fashion-forward accessory.",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-duo-slingbag-monogram-shadow-leather-bags--M21890_PM1_Side%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "6A2B78B29fdf6DDB7417C0HQZ9",
+    "category": "travel",
+    "productName": "LV Keepall Bandoulière 50",
+    "productPrice": "9800$",
+    "productDescription": "Iconic luxury for stylish and practical travel.",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandoulière-50-lv-aerogram-travel--M23727_PM1_Side%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "6A2U78B29fdf6DDB7417C0HQZ9",
+    "category": "travel",
+    "productName": "LV Keepall Bandoulière 55",
+    "productPrice": "4820$",
+    "productDescription": "Timeless elegance for sophisticated travel.",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandoulière-55-monogram-other-travel--M23963_PM2_Front%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "6A2BIJK8B29fdf6D417C0HQZ9",
+    "category": "bags",
+    "productName": "LV Discovery Backpack PM",
+    "productPrice": "2800$",
+    "productDescription": "Luxe style for everyday adventures.",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-discovery-backpack-pm-taigarama-bags--M30230_PM2_Front%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "6A2B729fdf6DVGB7417C0HQZ9",
+    "category": "bags",
+    "productName": "LV Steamer Wearable Wallet",
+    "productPrice": "2290$",
+    "productDescription": " Luxury, functionality, and fashion",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-steamer-wearable-wallet-monogram-macassar-canvas-bags--M82534_PM1_Interior%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "6DZ2B78RB29fdf6AC8H17C0H9",
+    "category": "sneakers",
+    "productName": "Airforce 1 Low Retro",
+    "productPrice": "99$",
+    "productDescription": "Timeless sneaker classic.",
+    "productImage": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/4f37fca8-6bce-43e7-ad07-f57ae3c13142/air-force-1-07-shoes-HvZlfx.png"
+  },
+  {
+    "productId": "6DZ2B78RB29fdf6AC8H17C0H10",
+    "category": "sneakers",
+    "productName": "Nike Blazer Mid",
+    "productPrice": "159$",
+    "productDescription": "Vintage-inspired, street-ready sneaker with timeless appeal.",
+    "productImage": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/389b709e-5102-4e55-aa5d-07099b500831/blazer-mid-77-vintage-shoes-2JSMNc.png"
+  },
+  {
+    "productId": "6DZ2B78RB29fdf6AC8H17C0H11",
+    "category": "sneakers",
+    "productName": "Airmax Plus",
+    "productPrice": "189$",
+    "productDescription": "Futuristic design, ultimate comfort, iconic sneaker style",
+    "productImage": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/b8bf34f1-f3c4-43ee-9591-db70497b8125/court-vision-mid-winter-shoes-8LrcSX.png"
+  },
+  {
+    "productId": "6DZ2B78RB29fdf6AC8H17C0H13",
+    "category": "sneakers",
+    "productName": "Nike Dunk Low Retro",
+    "productPrice": "139$",
+    "productDescription": "Timeless design, premium materials, iconic.",
+    "productImage": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/c2643901-9e8c-41b5-b17d-36802f3102e9/dunk-low-retro-shoes-p6gmkm.png"
+  },
+  {
+    "productId": "362514789abc951357682430",
+    "category": "tech",
     "productName": "Macbook Pro 13",
     "productPrice": "1090$",
     "productDescription": "256 8core GPU, 8gb",
     "productImage": "https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e61eb4ad4af6e75689_macbook%2013-min.png"
   },
   {
-    "productId": "9k8j7h6g5f4d3s2a1b",
-    "category":"books",
+    "productId": "809726451hij236574138920",
+    "category": "books",
     "productName": "Novel",
     "productPrice": "15$",
     "productDescription": "Bestselling novel by a renowned author.",
     "productImage": "https://example.com/novel.jpg"
   },
-  
+
   {
-    "productId": "a1b2c3d4e5f6g7h8i9j0k",
+    "productId": "294186350xyz790231765482",
     "category": "sneakers",
-    "productName": "Adidas",
-    "productPrice": "100$",
-    "productDescription": "Comfortable running shoes for active individuals.",
-    "productImage": "https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4037f3ba53bcf2021_adidas%20sneakers-min.png"
+    "productName": "Airmax Pulse Roam",
+    "productPrice": "169$",
+    "productDescription": "Comfortable shoes for active individuals.",
+    "productImage": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/f028724d-74e1-41cf-a1e8-30ad181a05fa/air-max-pulse-roam-shoes-WCGfgj.png"
   },
   {
-    "productId": "q9w8e7r6t5y4u3i2o1pe",
-    "category": "travel",
-    "productName": "Cabin",
-    "productPrice": "283$",
-    "productDescription": " luggage for your travel needs.",
-    "productImage": "https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e48b497e63cc46b800_base%20camp%20duffel%2002-min.png"
-  },
-  {
-    "productId": "q9w8e7r6t5y4u3i2o1p",
+    "productId": "916072385lmn573218649304",
     "category": "bags",
     "productName": "Tot e Medium",
     "productPrice": "299$",
     "productDescription": "Canvas full grain leather.",
     "productImage": "https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e7e006821d3b04db74_Tote%20Medium-min.png"
+  },
+  {
+    "productId": "6DZ2B78RB24448f6AC8H17C9",
+    "category": "sneakers",
+    "productName": "Nike Revolution 6 FlyEase",
+    "productPrice": "64$",
+    "productDescription": "Men's Easy On/Off Road Running Shoes",
+    "productImage": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/ac871484-8738-44cf-abbd-4d347ad536e9/revolution-6-flyease-easy-on-off-road-running-shoes-SNbtsR.png"
+  },
+  {
+    "productId": "6DZ2B78RB24448f6AC8H17C91",
+    "category": "sneakers",
+    "productName": "Nike Revolution 7 EasyOn",
+    "productPrice": "59$",
+    "productDescription": "Men's Road Running Shoes",
+    "productImage": "https://static.nike.com/a/images/t_PDP_864_v1,f_auto,q_auto:eco/b14aba9a-f828-45d3-9607-b687b884aa7d/revolution-7-easyon-road-running-shoes-8h3tkz.png"
+  },
+  {
+    "productId": "6DZ2B78RB24448f6AC8H17C92",
+    "category": "sneakers",
+    "productName": "Nike SB Dunk High Pro PRM",
+    "productPrice": "119$",
+    "productDescription": "Skate Shoes",
+    "productImage": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/6771bf3c-0c0b-43b5-9293-54bfe66004dd/sb-dunk-high-pro-prm-skate-shoes-SvF5D8.png"
+  },
+  {
+    "productId": "6DZ2B78RB24448f6AC8H17C93",
+    "category": "sneakers",
+    "productName": "Nike Dunk Low",
+    "productPrice": "119$",
+    "productDescription": "Effortless style, everyday comfort",
+    "productImage": "https://static.nike.com/a/images/t_PDP_864_v1,f_auto,q_auto:eco/56e981d8-dc93-46d6-9f5f-1eaae1b4bafc/dunk-low-shoes-nF8W1z.png"
+  },
+  {
+    "productId": "6DZ2B78RB24448f6AC8H17C94",
+    "category": "sneakers",
+    "productName": "Nike SB Force 58",
+    "productPrice": "74$",
+    "productDescription": "Skate Shoes",
+    "productImage": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/6f6a7b74-dba5-46fa-ad00-c6f88648c5db/sb-force-58-skate-shoes-zFc17n.png"
+  },
+
+  {
+    "productId": "6DZ2B78RB24448f6AC8H17C99",
+    "category": "sneakers",
+    "productName": "Nike Blazer Mid Pro Club",
+    "productPrice": "99$",
+    "productDescription": "Skate Shoes",
+    "productImage": "https://static.nike.com/a/images/t_PDP_864_v1,f_auto,q_auto:eco/8e158065-9466-46b0-9f94-32d15c271d0c/blazer-mid-pro-club-shoes-m5C2mp.png"
+  },
+  {
+    "productId": "120384576ghi3948572610jk",
+    "category": "tech",
+    "productName": "headset",
+    "productPrice": "179,01$",
+    "productDescription": "Cancel out ambient noise and maintain productivity on the go. ",
+    "productImage": "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MTQ0NTM0fGltYWdlL3BuZ3xoY2QvaGIxLzE0NTE2MjI3NjA0NTEwLnBuZ3xiOTY2ZmRhZjRlOTFiNjE3ZTk1Zjc4ZGUzMjJlZjlhNGQzNmMzMGUwYTA5NTRlNWQ1NjJkNDVjZTZmYTRmY2Q3/4XD1C99221-560x450-01.png"
+  },
+  {
+    "productId": "503298147uvw642587031fnx",
+    "category": "tech",
+    "productName": "iphone 14",
+    "productPrice": "699$",
+    "productDescription": "Cutting-edge iPhone, redefining mobile innovation.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-7inch_AV1?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1671474798353"
+  },
+  {
+    "productId": "846207351defj562130794rx",
+    "category": "tech",
+    "productName": "iphone 14",
+    "productPrice": "699$",
+    "productDescription": "Cutting-edge iPhone, redefining mobile innovation.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-7inch_AV2_GEO_US?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1671474799385"
+  },
+  {
+    "productId": "370251894stu912468357efy",
+    "category": "tech",
+    "productName": "iphone 13",
+    "productPrice": "699$",
+    "productDescription": " Powerful, sleek, and sophisticated.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-finish-unselect-gallery-2-202207?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1654894177855"
+  },
+  {
+    "productId": "259341078opq647832156bcr",
+    "category": "tech",
+    "productName": "iphone se",
+    "productPrice": "650$",
+    "productDescription": "Compact, powerful iPhone for everyday use.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-se-finish-unselect-gallery-2-202207?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1655249916900"
+  },
+  {
+    "productId": "730512489zab864395617fgh",
+    "category": "tech",
+    "productName": "iphone se",
+    "productPrice": "429$",
+    "productDescription": "Compact, powerful iPhone for everyday use.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-se-finish-unselect-gallery-3-202207?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1655249913137"
+  },
+  {
+    "productId": "134876902lmn542693781fgh",
+    "category": "tech",
+    "productName": "iphone 15",
+    "productPrice": "799$",
+    "productDescription": " Elevating innovation, redefining excellence.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-model-unselect-gallery-2-202309_GEO_US?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692925254305"
+  },
+  {
+    "productId": "628194350vwx473105896yza",
+    "category": "tech",
+    "productName": "iphone 15 plus",
+    "productPrice": "899$",
+    "productDescription": "Bigger, bolder, exceptional.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-7inch-blue?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692923784161"
+  },
+  {
+    "productId": "379280514rst581462703quv",
+    "category": "tech",
+    "productName": "iphone 15 pro max",
+    "productPrice": "1199$",
+    "productDescription": "Peak performance, maximum experience.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-bluetitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845699311"
+  },
+  {
+    "productId": "643507218xyz294681350wab",
+    "category": "tech",
+    "productName": "ipad pro",
+    "productPrice": "799$",
+    "productDescription": "Powerful, versatile, professional tablet.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-finish-select-202212-11inch-silver?wid=5120&hei=2880&fmt=p-jpg&qlt=95&.v=1667594750039"
+  },
+  {
+    "productId": "197248530lmn623594817ghi",
+    "category": "tech",
+    "productName": "Airpods Max",
+    "productPrice": "549$",
+    "productDescription": "Immerse in premium audio.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-green-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604022364000"
+  },
+  {
+    "productId": "532964071klp178935204qwe",
+    "category": "tech",
+    "productName": "beats studio pro",
+    "productPrice": "349$",
+    "productDescription": "Canvas full grain leather.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQTP3?wid=532&hei=582&fmt=png-alpha&.v=1687660671182"
+  },
+  {
+    "productId": "6A2B729UTVALVGB17C0HQZ9",
+    "category": "travel",
+    "productName": "Ear Plugs",
+    "productPrice": "$16",
+    "productDescription": "Silencing the world for uninterrupted moments of tranquility.",
+    "productImage": "https://go.travel/media/catalog/product/cache/05ca03a2111fc5cbc161bec3cfc13383/4/3/430_prod_a_col1_clear.png"
+  },
+  {
+    "productId": "6A2HIT29UTV6DVGB7417C0HQZ9",
+    "category": "travel",
+    "productName": "Classic Travel Blanket",
+    "productPrice": "35$",
+    "productDescription": "Stay cozy on your journeys with timeless comfort",
+    "productImage": "https://go.travel/media/catalog/product/cache/05ca03a2111fc5cbc161bec3cfc13383/4/6/466_prod_a_col1_gun_metal_1.png"
+  },
+  {
+    "productId": "6A2BIGTC9UTV6DVG17C0HQZ9",
+    "category": "travel",
+    "productName": "Shaped Eye Mask",
+    "productPrice": "8$",
+    "productDescription": "Relax in comfort with a customized sleep experience.",
+    "productImage": "https://go.travel/media/catalog/product/cache/05ca03a2111fc5cbc161bec3cfc13383/7/3/731_prod_a_col1_liquorice_black.png"
+  },
+  {
+    "productId": "6A2B729U206DVGB7417C0HQZ9",
+    "category": "travel",
+    "productName": "Bean Sleeper",
+    "productPrice": "20$",
+    "productDescription": "Cozy comfort in a versatile and stylish seating solution.",
+    "productImage": "https://go.travel/media/catalog/product/cache/05ca03a2111fc5cbc161bec3cfc13383/4/5/454_prod_a_col1_liquorice_black_1.png"
+  },
+  {
+    "productId": "6A2B729AuBV6DVGB7417C0HQZ9",
+    "category": "travel",
+    "productName": "Carry Clip",
+    "productPrice": "10$",
+    "productDescription": "Compact and practical, simplifying your daily essentials on-the-go.",
+    "productImage": "https://go.travel/media/catalog/product/cache/05ca03a2111fc5cbc161bec3cfc13383/4/6/464_prod_a_col1_liquorice_black_1.png"
+  },
+  {
+    "productId": "6A2B729UTV6DVGB7417BBCQZ9",
+    "category": "travel",
+    "productName": "Horizon Soft Duffle 85",
+    "productPrice": "$7482",
+    "productDescription": "A blend of luxury and utility for sophisticated journeys",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-horizon-soft-duffle-55-other-monogram-canvas-travel--M20125_PM2_Front%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "6A2B729UIVDVGB7417C0HQZ9",
+    "category": "travel",
+    "productName": "LV Horizon Soft Duffle 55",
+    "productPrice": "$7200",
+    "productDescription": "A blend of luxury and utility for sophisticated journeys",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-horizon-soft-duffle-55-monogram-eclipse-canvas-travel--M23162_PM1_Side%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "6A2ATV9UTV6DVGB7417C0HQZ9",
+    "category": "travel",
+    "productName": "MY LV Heritage",
+    "productPrice": "$9000",
+    "productDescription": "Timeless elegance, personal style, luxury redefined.",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-horizon-55-damier-ebene-canvas-travel--N23304_PM1_Side%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "6A2B729UAV6DVGB7417C0HQZ9",
+    "category": "travel",
+    "productName": "LV Horizon 55",
+    "productPrice": "$5900",
+    "productDescription": "Travel in luxury with this iconic luggage piece.",
+    "productImage": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-horizon-55-monogram-empreinte-leather-travel--M46115_PM2_Front%20view.png?wid=1440&hei=1440"
+  },
+  {
+    "productId": "945310287lmn462753981fgh",
+    "category": "tech",
+    "productName": "beats studio pro",
+    "productPrice": "349$",
+    "productDescription": "Ultimate sound, professional style.",
+    "productImage": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQTT3?wid=532&hei=582&fmt=png-alpha&.v=1687660671077"
+  },
+
+  {
+    "productId": "936247018abc581203475jkl",
+    "category": "tech",
+    "productName": "IdeaPad Flex 5 Gen 8",
+    "productPrice": "749$",
+    "productDescription": "Flexible productivity companion.",
+    "productImage": "https://p3-ofp.static.pub/fes/cms/2022/11/22/fyic3rq9syu7c6kbrnol4oeklil969831278.png"
+  },
+  {
+    "productId": "503129687rst842670351fgh",
+    "category": "tech",
+    "productName": "ThinkPad P14s Gen 3",
+    "productPrice": "899.99$",
+    "productDescription": "Canvas full grain leather.",
+    "productImage": "https://p4-ofp.static.pub/fes/cms/2023/03/29/swwywhtvwhbxy84zzx88aobgbx5g9f562541.png"
+  },
+
+  {
+    "productId": "139804752ghi527346981lmn",
+    "category": "tech",
+    "productName": "ILCE-7CR",
+    "productPrice": "3700$",
+    "productDescription": "High-performance mirrorless camera excellence.",
+    "productImage": "https://sony.scene7.com/is/image/sonyglobalsolutions/520_Category?$goldenAreaImage$&fmt=png-alpha"
+  },
+  {
+    "productId": "684091257rst352876490fgh",
+    "category": "tech",
+    "productName": "FDR-AX700 Camcorder",
+    "productPrice": "3700$",
+    "productDescription": "Superior 4K video recording.",
+    "productImage": "https://sony.scene7.com/is/image/sonyglobalsolutions/02_FDR-AX700?$goldenAreaImage$&fmt=png-alpha"
+  },
+  {
+    "productId": "175294063abc936218470xyz",
+    "category": "tech",
+    "productName": "sony A95L Series",
+    "productPrice": "3500$",
+    "productDescription": " Precision imaging, advanced technology.",
+    "productImage": "https://sony.scene7.com/is/image/sonyglobalsolutions/TVFY23_Golden_Area_02_A95L?$goldenAreaImage$&fmt=png-alpha"
+  },
+  {
+    "productId": "239145876uvw540786312rst",
+    "category": "tech",
+    "productName": "sony X90L Series",
+    "productPrice": "2700$",
+    "productDescription": "4K Ultra HD | High Dynamic Range (HDR) | Smart TV (Google TV)",
+    "productImage": "https://sony.scene7.com/is/image/sonyglobalsolutions/TVFY23_Golden_Area_07_X90L?$goldenAreaImage$&fmt=png-alpha"
+  },
+  {
+    "productId": "842367015ghi619430875lmn",
+    "category": "tech",
+    "productName": "INZONE H9",
+    "productPrice": "200$",
+    "productDescription": "Wireless INZONE H9 gaming headset with Noise Canceling",
+    "productImage": "https://sony.scene7.com/is/image/sonyglobalsolutions/GWX_TV_VandS_Categorypage_Gaming_gear_golden_area_MHC-V90DW_626x388?$goldenAreaImage$&fmt=png-alpha"
+  },
+  {
+    "productId": "763250918rst194837562abc",
+    "category": "bags",
+    "productName": "LV Bag",
+    "productPrice": "200$",
+    "productDescription": "Wireless INZONE H9 gaming headset with Noise Canceling",
+    "productImage": "https://en.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouli%C3%A8re%2055-monogram-canvas-travel--M41414_PM2_Front%20view.png?wid=2400&hei=2400"
   }
 ]

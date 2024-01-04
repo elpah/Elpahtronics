@@ -23,9 +23,11 @@ const ImageDiv = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 16px;
+  max-width: 500px;
 `;
 const Image = styled.img`
   height: 250px;
+  max-width: 100%;
   object-fit: contain;
   border-radius: 10px 10px 0 0;
 `;
@@ -88,9 +90,7 @@ export default function ProductCard({
           <H2>{productName}</H2>
           <H2>{productPrice}</H2>
         </NamePrice>
-        <Description onClick={handleCardClick}>
-          {productDescription}
-        </Description>
+        <Description onClick={handleCardClick}>{productDescription}</Description>
         {/* <QuantityAddToCartDiv> */}
 
         <AddToCartButton onClick={addToCart}>Add to cart</AddToCartButton>

@@ -7,7 +7,7 @@ import { useCartContext } from '../components/CartContext.tsx';
 import SummaryCard from '../components/SummaryCard.tsx';
 import CheckOutButton from '../components/CheckOutButton.tsx';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
-import PayPalPayment from '/Users/elpah/Desktop/ElpahtronicsNew/Elpahtronics/Client/src/components/PayPalPayment.tsx';
+import PayPalPayment from '../../src/components/PayPalPayment.tsx';
 
 const CartHeader = styled.h2`
   margin-bottom: 10px;
