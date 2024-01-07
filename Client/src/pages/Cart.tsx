@@ -6,7 +6,7 @@ import CartCard from '../components/CartCard.tsx';
 import { useCartContext } from '../components/CartContext.tsx';
 import SummaryCard from '../components/SummaryCard.tsx';
 import CheckOutButton from '../components/CheckOutButton.tsx';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import PayPalPayment from '../../src/components/PayPalPayment.tsx';
 
 const CartHeader = styled.h2`
@@ -120,13 +120,13 @@ export default function Cart() {
           <CartCardContainer>
             <CartHeader> Your Cart</CartHeader>
             <CartProductDiv>
-              <Paragraph onClick={() => navigate('/product')}>
+              <Paragraph onClick={() => navigate('/product?category=all+products')}>
                 <FaLessThan
                   size={10}
                   style={{
                     marginRight: '10px',
                   }}
-                />{' '}
+                />
                 BACK TO PRODUCTS
               </Paragraph>
               <ClearCartParagraph onClick={() => setCartArray([])}>

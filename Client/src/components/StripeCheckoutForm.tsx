@@ -12,11 +12,14 @@ import styled from 'styled-components';
 import { useCartContext } from './CartContext';
 import { useOrderContext } from './OrderContext';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from './UserContext';
 
 import { useShippingAddressContext } from '../components/ShippingAddressContext';
 
 export default function StripeCheckoutForm() {
   const { cartArray, totalPrice, setCartArray } = useCartContext();
+  const { currentUser } = useUserContext();
+
   const {
     setOrderNumber,
     setOrderTotal,
@@ -53,22 +56,28 @@ export default function StripeCheckoutForm() {
       setMessage(error.message);
       setIsProcessing(false);
     } else {
+      const requestBody = {
+        cart: cartArray.map(item => ({
+          productId: item.productId,
+          productName: item.productName,
+          productPrice: item.productPrice,
+          productQuantity: item.productQuantity,
+        })),
+        totalPrice: totalPrice,
+        address: shippingAddress,
+        email: email,
+        fbId: '',
+      };
+
+      if (currentUser.fbId !== '') {
+        requestBody.fbId = currentUser.fbId;
+      }
       fetch('http://localhost:8000/api/stripePaymentTest/create-new-order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          cart: cartArray.map(item => ({
-            productId: item.productId,
-            productName: item.productName,
-            productPrice: item.productPrice,
-            productQuantity: item.productQuantity,
-          })),
-          totalPrice: totalPrice,
-          address: shippingAddress,
-          email: email,
-        }),
+        body: JSON.stringify(requestBody),
       })
         .then(response => response.json())
         .then(data => {

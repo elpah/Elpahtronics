@@ -82,15 +82,18 @@ export default function UserPage() {
       {showProfile && <Profile />}
       {showOrders && (
         <>
-          <OrdersContainer>
-            <Header>My Orders</Header>
-            <Para>8 Items</Para>
-            <OrderCardContainer />
-          </OrdersContainer>
-          <NoOrdersContainer>
-            <NoOrders>You have not placed any orders yet. </NoOrders>
-            <ShopNow onClick={() => navigate('/product?category=all+products')}>Show Now...</ShopNow>
-          </NoOrdersContainer>
+          {currentUser.orders?.length! > 0 ? (
+            <OrdersContainer>
+              <Header>My Orders</Header>
+              <Para>8 Items</Para>
+              <OrderCardContainer />
+            </OrdersContainer>
+          ) : (
+            <NoOrdersContainer>
+              <NoOrders>You have not placed any orders yet. </NoOrders>
+              <ShopNow onClick={() => navigate('/product?category=all+products')}>Shop Now...</ShopNow>
+            </NoOrdersContainer>
+          )}
         </>
       )}
     </Container>

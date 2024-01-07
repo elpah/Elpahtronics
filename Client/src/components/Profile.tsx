@@ -151,7 +151,7 @@ export default function Profile() {
             <InfoValue>{currentUser.userDob}</InfoValue>
           </InfoItem>
           <InfoItem>
-            <InfoLabel>Shipping Address:</InfoLabel>
+            <InfoLabel>Shipping Address: (Hard coded)</InfoLabel>
             <InfoValue>1234 street, Zaandam, NL</InfoValue>
           </InfoItem>
         </InfoContainer>

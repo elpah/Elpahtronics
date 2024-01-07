@@ -109,12 +109,6 @@ export default function Checkout() {
   const [stripeModal, setStripeModal] = useState(false);
   const [addressCopy, setAddressCopy] = useState<Address | null>();
 
-  // useEffect(() => {
-  //   if (shippingAddress) {
-  //     setAddressCopy(shippingAddress);
-  //   }
-  // }, [shippingAddress]);
-
   function handlePaymentSelectConfirm(method: string) {
     setPaymentMethodSelectedd(method);
     setShowPaymentMethods(false);
