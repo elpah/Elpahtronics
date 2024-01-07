@@ -12,6 +12,7 @@ const connectToDatabase = async () => {
 };
 type Order = {
   orderId?: string;
+  fbId?: string;
   orderNumber: string;
   items: {
     name: string;
@@ -63,6 +64,13 @@ const getOrderById = async (orderId: string) => {
   const order = await col.findOne({ orderId });
   return order;
 };
+
+const getOrdersByFbId = async (fbId: string) => {
+  const db = await connectToDatabase();
+  const col: mongoDB.Collection = db.collection("orders");
+  const order = await col.find({ fbId }).toArray();
+  return order;
+};
 const getOrderByOrderNumber = async (orderNumber: string) => {
   const db = await connectToDatabase();
   const col: mongoDB.Collection = db.collection("orders");
@@ -70,4 +78,10 @@ const getOrderByOrderNumber = async (orderNumber: string) => {
   return order;
 };
 
-export { createOrder, getAllOrders, getOrderById, getOrderByOrderNumber };
+export {
+  createOrder,
+  getAllOrders,
+  getOrderById,
+  getOrderByOrderNumber,
+  getOrdersByFbId,
+};
