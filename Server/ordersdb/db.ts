@@ -36,6 +36,7 @@ type Order = {
 const createOrder = async (order: Order) => {
   const newOrder = {
     orderId: uuidv4(),
+    fbId: order.fbId,
     orderNumber: order.orderNumber,
     items: order.items,
     totalPrice: order.totalPrice,
@@ -66,11 +67,17 @@ const getOrderById = async (orderId: string) => {
 };
 
 const getOrdersByFbId = async (fbId: string) => {
-  const db = await connectToDatabase();
-  const col: mongoDB.Collection = db.collection("orders");
-  const order = await col.find({ fbId }).toArray();
-  return order;
+  try {
+    const db = await connectToDatabase();
+    const col: mongoDB.Collection = db.collection("orders");
+    const orders = await col.find({ fbId }).limit(5).toArray();
+    return orders;
+  } catch (err) {
+    console.error("Error fetching orders by fbId:", err);
+    throw err;
+  }
 };
+
 const getOrderByOrderNumber = async (orderNumber: string) => {
   const db = await connectToDatabase();
   const col: mongoDB.Collection = db.collection("orders");

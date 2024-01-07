@@ -6,6 +6,7 @@ import paypalRouter from "./routes/paypal-routes";
 import stripeRouter from "./routes/stripe-routes";
 import userRouter from "./routes/users-routes";
 import feedbackEmail from "./routes/feedbackEmail";
+import ordersRouter from "./routes/orders-routes";
 
 import { preSeedData } from "./productsDb/db";
 
@@ -25,6 +26,7 @@ app.use("/api/paypalPaymentTest", paypalRouter);
 app.use("/api/stripePaymentTest", stripeRouter);
 app.use("/api/users", userRouter);
 app.use("/api/sendEmail", feedbackEmail);
+app.use("/api/orders", ordersRouter);
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 export default app;

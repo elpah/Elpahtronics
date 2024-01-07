@@ -15,7 +15,7 @@ paypalRouter.post("/create-paypal-order", async (req, res) => {
 });
 
 paypalRouter.post("/capture-paypal-order", async (req, res) => {
-  const { orderID, cart, totalPrice } = req.body;
+  const { orderID, cart, totalPrice, fbId } = req.body;
   try {
     const captureData = await paypal.capturePayment(orderID);
     const shippingAddress = captureData.purchase_units[0].shipping;
@@ -23,6 +23,7 @@ paypalRouter.post("/capture-paypal-order", async (req, res) => {
     const orderId = captureData.id;
     const newOrder = {
       orderNumber: orderId,
+      fbId,
       items: cart,
       totalPrice: totalPrice,
       shippingAddress: shippingAddress,

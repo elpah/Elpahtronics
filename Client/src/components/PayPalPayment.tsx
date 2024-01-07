@@ -2,9 +2,12 @@ import { PayPalButtons } from '@paypal/react-paypal-js';
 import { useCartContext } from './CartContext';
 import { useNavigate } from 'react-router-dom';
 import { useOrderContext } from './OrderContext';
+import { useUserContext } from './UserContext';
 
 export default function PayPalPayment() {
   const { cartArray, setCartArray, totalPrice } = useCartContext();
+  const { currentUser } = useUserContext();
+
   const navigate = useNavigate();
   const {
     setOrderNumber,
@@ -49,6 +52,7 @@ export default function PayPalPayment() {
           productQuantity: item.productQuantity,
         })),
         totalPrice: totalPrice,
+        fbId: currentUser.fbId || '',
       }),
     })
       .then(response => response.json())
