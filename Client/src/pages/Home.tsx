@@ -149,32 +149,26 @@ const HomePage = () => {
     {
       paragraph: 'Furniture',
       image: furniture,
-      link: 'somelink',
     },
     {
       paragraph: 'Bags',
       image: bags,
-      link: 'somelink',
     },
     {
       paragraph: 'Books',
       image: books,
-      link: 'somelink',
     },
     {
       paragraph: 'Tech',
       image: tech,
-      link: 'somelink',
     },
     {
       paragraph: 'Sneakers',
       image: sneakers,
-      link: 'somelink',
     },
     {
       paragraph: 'Travel',
       image: travel,
-      link: 'somelink',
     },
   ];
   const brands = [
@@ -182,28 +176,29 @@ const HomePage = () => {
       header: 'Apple',
       paragraph: 'Delivery in 24 hours',
       image: appleLogo,
-      link: 'someling',
+      link: 'product',
     },
     {
       header: 'Ikea',
       paragraph: 'Delivery in 24 hours',
       image: ikeaLogo,
-      link: 'someling',
+      link: 'product',
     },
     {
       header: 'Sony',
       paragraph: 'Delivery in 24 hours',
       image: sonyLogo,
 
-      link: 'someling',
+      link: 'product',
     },
     {
       header: 'Zara',
       paragraph: 'Delivery in 24 hours',
       image: zaraLogo,
-      link: 'somelink',
+      link: 'product',
     },
   ];
+
   return (
     <>
       <HomePageContainer>
@@ -221,12 +216,7 @@ const HomePage = () => {
         <CategoryHeader>Shop some of categories</CategoryHeader>
         <CategoryCardContainer>
           {categories.map((category, index) => (
-            <CategoryCard
-              key={index}
-              categoryName={category.paragraph}
-              categoryLink={category.link}
-              categoryImage={category.image}
-            />
+            <CategoryCard key={index} categoryName={category.paragraph} categoryImage={category.image} />
           ))}
         </CategoryCardContainer>
         <CategoryHeader>Choose By Brand</CategoryHeader>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -65,21 +65,81 @@ const PrivacyLabel = styled.label`
     margin-right: 8px;
   }
 `;
+type formProps = {
+  handleSubmit: (formData: FormData) => void;
+};
 
-export default function MessageForm() {
+type FormData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  subject: string;
+  message: string;
+  checkbox: boolean;
+};
+
+export default function MessageForm({ handleSubmit, ...props }: formProps) {
+  const [formValues, setFormValues] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    subject: '',
+    message: '',
+    checkbox: false,
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+
+    setFormValues(prevValues => ({
+      ...prevValues,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
+    }));
+  };
+
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleSubmit(formValues);
+  };
+
   return (
-    <Form>
+    <Form onSubmit={submitForm}>
       <NameDiv>
-        <FormInput type="text" name="firstName" placeholder="First Name" />
-        <FormInput type="text" name="lastName" placeholder="Last Name" />
+        <FormInput
+          type="text"
+          name="firstName"
+          value={formValues.firstName}
+          onChange={handleChange}
+          placeholder="First Name"
+        />
+        <FormInput
+          type="text"
+          name="lastName"
+          value={formValues.lastName}
+          onChange={handleChange}
+          placeholder="Last Name"
+        />
       </NameDiv>
-      <FormInput type="email" name="email" placeholder="youremail@email.com" />
-      <FormInput type="text" name="subject" placeholder="Subject" />
-      <TextArea name="message" placeholder="Enter Your Message" />
+      <FormInput
+        type="email"
+        name="email"
+        value={formValues.email}
+        onChange={handleChange}
+        placeholder="youremail@email.com"
+      />
+      <FormInput type="text" name="subject" value={formValues.subject} onChange={handleChange} placeholder="Subject" />
+      <TextArea name="message" value={formValues.message} onChange={handleChange} placeholder="Enter Your Message" />
       <PrivacyLabel>
-        <input type="checkbox" /> You agree to our friendly Privacy Policy
+        <input
+          id="privacyCheckbox"
+          name="checkbox"
+          type="checkbox"
+          checked={formValues.checkbox}
+          onChange={handleChange}
+        />
+        <label htmlFor="privacyCheckbox">You agree to our friendly Privacy Policy</label>
       </PrivacyLabel>
-      <Button>Send Message</Button>
+      <Button type="submit">Send Message</Button>
     </Form>
   );
 }

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 interface Props {
   categoryName: string;
-  categoryLink: string;
   categoryImage: string;
 }
 
@@ -19,7 +18,7 @@ const CategoryItemContainer = styled.div<{ backgroundImage: string }>`
   overflow: hidden;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -50,12 +49,12 @@ const CategoryParagraph = styled.p`
   transform: translateX(-50%);
   z-index: 1;
 `;
-const CategoryItem = ({ categoryName, categoryLink, categoryImage }: Props) => (
-    <CatLink to={categoryLink}>
-      <CategoryItemContainer backgroundImage={categoryImage}>
-        <CategoryParagraph>{categoryName}</CategoryParagraph>
-      </CategoryItemContainer>
-    </CatLink>
+const CategoryItem = ({ categoryName, categoryImage }: Props) => (
+  <CatLink to={`/product?category=${categoryName.toLowerCase()}`}>
+    <CategoryItemContainer backgroundImage={categoryImage}>
+      <CategoryParagraph>{categoryName}</CategoryParagraph>
+    </CategoryItemContainer>
+  </CatLink>
 );
 
 export default CategoryItem;

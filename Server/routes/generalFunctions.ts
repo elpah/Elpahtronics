@@ -1,6 +1,11 @@
 import "dotenv/config";
 import mailjet from "node-mailjet";
 
+const mailjetClient = mailjet.connect(
+  process.env.MAIL_JET_PK as string,
+  process.env.MAIL_JET_SK as string
+);
+
 function generateOrderNumber(): string {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const numbers = "0123456789";
@@ -35,7 +40,7 @@ function getDate() {
   };
 }
 
-async function sendEmail(
+async function sendOrderEmail(
   email: string,
   orderNumber: string,
   cart: {
@@ -46,11 +51,6 @@ async function sendEmail(
   }[],
   totalPrice: string
 ) {
-  const mailjetClient = mailjet.connect(
-    process.env.MAIL_JET_PK as string,
-    process.env.MAIL_JET_SK as string
-  );
-
   if (!email) {
     return "Email not found";
   }
@@ -82,7 +82,7 @@ async function sendEmail(
                 <head>
                   <style>
                     body {
-                    //   font-family: Arial, sans-serif;
+                      font-family: Arial, sans-serif;
                       margin: 0;
                       padding: 0;
                     }
@@ -158,4 +158,50 @@ async function sendEmail(
   }
 }
 
-export { getDate, generateOrderNumber, sendEmail };
+async function sendFeedbackEmail(
+  name: string,
+  email: string,
+  subject: string,
+  message: string,
+  checked: boolean
+) {
+  const request = mailjetClient.post("send", { version: "v3.1" }).request({
+    Messages: [
+      {
+        From: {
+          Email: "elpachris.obeng@appliedtechnology.se",
+          Name: "Elpahtronics",
+        },
+        To: [
+          {
+            Email: email,
+          },
+        ],
+        Subject: "Order Confirmation",
+        HTMLPart: `
+              <html>
+                <head>
+                </head>
+                <body>
+                  <div class="container">
+                    <div class="header">
+                      <h1>Feedback Received</h1>
+                    </div>
+                    <div class="message"
+                      <p>Hi, ${name}</p>
+                      <p>Thank you for reaching out! Your message has been successfully received. Our team is dedicated to providing prompt assistance, and you can expect a response within the next 24 hours. We appreciate your patience and look forward to helping you. </p>
+                    </div>
+                    <div class="footer">
+                      <p>If you have any questions, please <a class="link" href="#">contact us</a>.</p>
+                    </div>
+                  </div>
+                </body>
+              </html>
+            `,
+        CustomID: "Elpahtronics",
+      },
+    ],
+  });
+}
+
+export { getDate, generateOrderNumber, sendOrderEmail, sendFeedbackEmail };

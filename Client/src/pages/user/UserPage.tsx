@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { onAuthStateChanged, User } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
-import { SignOutFunction } from '../../components/auth/SignOut';
 import styled from 'styled-components';
 import { useUserContext } from '../../components/UserContext';
 import OrderCardContainer from '../../components/OrderCardContainer';
 import Profile from '../../components/Profile';
-import { profile } from 'console';
 
 export default function UserPage() {
   const { currentUser, setCurrentUser } = useUserContext();
@@ -16,7 +14,8 @@ export default function UserPage() {
   const [userAvailable, setUserAvailable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [showOrders, setShowOrders] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
+  const [orders, setOrders] = useState([]);
+  const [showProfile, setShowProfile] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,7 +56,6 @@ export default function UserPage() {
   return (
     <Container>
       <UserNavButton onClick={() => setIsOpen(true)}>User</UserNavButton>
-
       <UserNavContainer isOpen={isOpen}>
         <ul>
           <CloseButton onClick={() => setIsOpen(false)}>X</CloseButton>
@@ -81,19 +79,19 @@ export default function UserPage() {
           </NavItem>
         </ul>
       </UserNavContainer>
-
       {showProfile && <Profile />}
-      {showOrders ? (
-        <OrdersContainer>
-          <Header>My Orders</Header>
-          <Para>8 Items</Para>
-          <OrderCardContainer />
-        </OrdersContainer>
-      ) : (
-        <NoOrdersContainer>
-          <NoOrders>You have not placed any orders yet. </NoOrders>
-          <ShopNow onClick={() => navigate('/product')}>Show Now...</ShopNow>
-        </NoOrdersContainer>
+      {showOrders && (
+        <>
+          <OrdersContainer>
+            <Header>My Orders</Header>
+            <Para>8 Items</Para>
+            <OrderCardContainer />
+          </OrdersContainer>
+          <NoOrdersContainer>
+            <NoOrders>You have not placed any orders yet. </NoOrders>
+            <ShopNow onClick={() => navigate('/product?category=all+products')}>Show Now...</ShopNow>
+          </NoOrdersContainer>
+        </>
       )}
     </Container>
   );

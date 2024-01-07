@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   FaCommentDots,
@@ -164,6 +164,27 @@ const FixedImage = styled.div`
 `;
 
 export default function Contact() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const handleFAQClick = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  function handleSubmit(formData: any) {
+    console.log(formData);
+    fetch('http://localhost:8000/api/sendEmail/feedback-email', {
+      method: 'POST',
+      body: formData,
+      headers: {},
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+
   const contacts = [
     {
       title: 'Chat to sales',
@@ -245,15 +266,24 @@ export default function Contact() {
           <FaqContainer>
             <FaqFormHeader>Frequently Asked Questions</FaqFormHeader>
             <Faq>
-              {Faquestions.map((question, index) => (
-                <FAQ key={index} title={question.title} paragraph={question.paragraph} icon={question.icon} />
+              {Faquestions.map((faq, index) => (
+                <FAQ
+                  key={index}
+                  title={faq.title}
+                  paragraph={faq.paragraph}
+                  icon={faq.icon}
+                  isOpen={index === openIndex}
+                  onClick={() => handleFAQClick(index)}
+                  index={index}
+                  currentIndex={openIndex!}
+                />
               ))}
             </Faq>
           </FaqContainer>
           <FormContainer>
             <FaqFormHeader> Send Us A Message</FaqFormHeader>
             <Form>
-              <MessageForm />
+              <MessageForm handleSubmit={handleSubmit} />
             </Form>
           </FormContainer>
         </FaqFormContainer>

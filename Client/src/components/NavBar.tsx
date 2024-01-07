@@ -239,6 +239,7 @@ const UserMenu = styled.ul<UserMenuProps>`
 interface NavBarProps {
   handleClick: () => void;
 }
+
 export default function NavBar({ handleClick }: NavBarProps) {
   const { currentUser, setCurrentUser } = useUserContext();
   const navigate = useNavigate();
@@ -281,7 +282,7 @@ export default function NavBar({ handleClick }: NavBarProps) {
               </NavItem>
 
               <NavItem>
-                <NavLink to="/product" onClick={closeMobileMenu}>
+                <NavLink to={'/product?category=all+products'} onClick={closeMobileMenu}>
                   Product
                 </NavLink>
               </NavItem>
@@ -328,7 +329,8 @@ export default function NavBar({ handleClick }: NavBarProps) {
 
               <UserMenu isOpen={isOpen}>
                 <li>Orders</li>
-                <li>userPage</li>
+                {!currentUser.userEmailAddress && <li onClick={() => navigate('/login')}>Login</li>}
+                {currentUser.userEmailAddress && <li onClick={() => navigate('/userpage')}>userPage</li>}
                 <li onClick={handleClick}>SignOut</li>
               </UserMenu>
             </Account>

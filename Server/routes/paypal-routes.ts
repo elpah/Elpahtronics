@@ -3,7 +3,7 @@ import * as paypal from "../paypal-api";
 import Router from "express";
 const paypalRouter = Router();
 import { createOrder } from "../ordersdb/db";
-import { getDate, sendEmail } from "./generalFunctions";
+import { getDate, sendOrderEmail } from "./generalFunctions";
 
 paypalRouter.post("/create-paypal-order", async (req, res) => {
   try {
@@ -34,8 +34,7 @@ paypalRouter.post("/capture-paypal-order", async (req, res) => {
       deliveryOptions: "fedex",
     };
     createOrder(newOrder);
-    sendEmail(emailAddress, orderId, cart, totalPrice);
-    // console.log(newOrder);
+    sendOrderEmail(emailAddress, orderId, cart, totalPrice);
     res.send(newOrder);
   } catch (err: any) {
     res.status(500).send(err.message);

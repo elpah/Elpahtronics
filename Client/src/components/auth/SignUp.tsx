@@ -3,7 +3,6 @@ import { createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { auth } from '../../firebase';
-import { SignOutFunction } from './SignOut';
 import { footerlogosmall } from '../../assets/images/exportImages';
 
 const Form = styled.form`
@@ -167,7 +166,14 @@ export default function SignUp() {
         const uid = user.uid;
         if (user) {
           createUserInDb(firstName, lastName, email, phoneNumber, dob, uid);
-          SignOutFunction();
+          signOut(auth)
+            .then(() => {
+              localStorage.removeItem('currentUserLocal');
+              navigate('/login');
+            })
+            .catch(error => {
+              console.log(error);
+            });
         }
       })
       .catch(error => {

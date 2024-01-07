@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
+
 import styled, { css } from 'styled-components';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { techprod1 } from '../assets/images/exportImages';
@@ -16,7 +18,7 @@ interface FilterCategoryProps {
 }
 
 const label = [
-  { categoryitemName: 'All', value: 'All Products' },
+  { categoryitemName: 'All Products', value: 'all products' },
   { categoryitemName: 'Furniture', value: 'furniture' },
   { categoryitemName: 'Bags', value: 'bags' },
   { categoryitemName: 'Books', value: 'books' },
@@ -229,15 +231,21 @@ const CategoryItem = styled.p`
 `;
 
 export default function ProductPage() {
-  const [categoryName, setCategoryName] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
   const [productModalVisibility, setProductModalVisibility] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
   const { cartArray, setCartArray } = useCartContext();
+  const { search } = useLocation();
+  let [searchParams, setSearchParams] = useSearchParams();
+
+  const category = searchParams.get('category');
+
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+  }, [search]);
 
   const { data: products, isLoading } = useProducts();
-
   const handleCardClick = (product: Product) => {
     setSelectedProduct(product);
     setProductModalVisibility(true);
@@ -274,7 +282,7 @@ export default function ProductPage() {
 
   return (
     <ProductPageContainer>
-      <FixedImage></FixedImage>
+      <FixedImage />
       <HeaderContainer>
         <ChildDivCenter>
           <Header>Get 5% cashback on 200$</Header>
@@ -292,11 +300,17 @@ export default function ProductPage() {
         {
           <FilterCategory showCategoryList={showCategoryList}>
             {label.map(labelItem => (
-              <CategoryItem onClick={() => setCategoryName(labelItem.value)}>{labelItem.categoryitemName}</CategoryItem>
+              <CategoryItem
+                onClick={() => {
+                  setSearchParams({ category: labelItem.value.toLowerCase() });
+                }}
+              >
+                {labelItem.categoryitemName}
+              </CategoryItem>
             ))}
           </FilterCategory>
         }
-        <ProductHeader>{categoryName}</ProductHeader>
+        <ProductHeader>{category!.toUpperCase()}</ProductHeader>
         {productModalVisibility && (
           <ProductModal
             onClose={() => setProductModalVisibility(false)}
@@ -317,9 +331,7 @@ export default function ProductPage() {
           <ProductCardContainer>
             {products
               ?.filter(item =>
-                categoryName === 'All Products'
-                  ? true
-                  : item.category.toLowerCase().includes(categoryName.toLowerCase()),
+                category === 'all products' ? true : item.category.toLowerCase().includes(category!.toLowerCase()),
               )
               .map(product => (
                 <ProductCard

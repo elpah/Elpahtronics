@@ -6,6 +6,10 @@ interface Props {
   title: string;
   paragraph: string;
   icon: ReactElement;
+  isOpen: boolean;
+  onClick: () => void;
+  index: number;
+  currentIndex: number;
 }
 
 const FaqContainer = styled.div`
@@ -51,12 +55,19 @@ const Header = styled.p`
   }
 `;
 
-const Paragraph = styled.p`
+const Paragraph = styled.p<{ isOpen: boolean; isClosing: boolean }>`
   font-size: 16px;
   font-weight: 200;
   color: #333;
   margin-left: 40px;
   margin-right: 40px;
+  max-height: ${({ isOpen }) => (isOpen ? '500px' : '0')};
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  margin-top: ${({ isOpen, isClosing }) => (isOpen && !isClosing ? '10px' : '0')};
+  margin-bottom: ${({ isOpen, isClosing }) => (isOpen && !isClosing ? '10px' : '0')};
+  opacity: ${({ isOpen, isClosing }) => (isOpen || isClosing ? '1' : '0')};
+  transition: opacity 0.3s ease-in-out, margin 0.3s ease-in-out;
   @media (max-width: 280px) {
     font-size: 12px;
   }
@@ -82,8 +93,8 @@ const FaIconWrapper = styled.div`
   }
 `;
 
-export default function FAQ({ title, paragraph, icon }: Props) {
-  const [showPara, setShowPara] = useState<boolean>(false);
+export default function FAQ({ title, paragraph, icon, onClick, isOpen, index, currentIndex }: Props) {
+  const isClosing = currentIndex !== index && currentIndex !== null;
 
   return (
     <FaqContainer>
@@ -92,11 +103,13 @@ export default function FAQ({ title, paragraph, icon }: Props) {
           <IconWrapper>{icon}</IconWrapper>
           <Header>{title}</Header>
         </HeaderWrapper>
-        <FaIconWrapper onClick={() => setShowPara(!showPara)}>
-          {showPara ? <FaChevronUp /> : <FaChevronDown />}
-        </FaIconWrapper>
+        <FaIconWrapper onClick={onClick}>{isOpen ? <FaChevronUp /> : <FaChevronDown />}</FaIconWrapper>
       </WithoutParagraph>
-      {showPara && <Paragraph>{paragraph}</Paragraph>}
+      {
+        <Paragraph isOpen={isOpen} isClosing={isClosing}>
+          {paragraph}
+        </Paragraph>
+      }
     </FaqContainer>
   );
 }
