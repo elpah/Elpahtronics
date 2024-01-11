@@ -4,8 +4,8 @@ const ordersRouter = Router();
 
 import { getOrdersByFbId } from "../ordersdb/db";
 
-ordersRouter.post("/orders-by-fbId", async (req, res) => {
-  const { fbId } = req.body;
+ordersRouter.get("/orders-by-fbId", async (req, res) => {
+  const { fbId } = req.query;
 
   try {
     console.log("Received fbId:", fbId);
