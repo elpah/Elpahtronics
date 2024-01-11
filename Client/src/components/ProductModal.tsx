@@ -48,7 +48,6 @@ const ProductCardDiv = styled.div`
 
 const ImageDiv = styled.div`
   background-color: RGB(245, 245, 245);
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,7 +58,8 @@ const ImageDiv = styled.div`
 `;
 
 const Image = styled.img`
-  object-fit: cover;
+  width: 100%;
+  max-width: 500px;
 `;
 
 const CloseButton = styled.button`
