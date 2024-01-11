@@ -51,6 +51,7 @@ function App() {
       setCurrentUser(parsedUser);
     }
   }, []);
+
   return (
     <div className="app">
       <div className="app">

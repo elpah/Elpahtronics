@@ -1,16 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function OrderItem() {
+type OrderItem = {
+  itemName: String;
+  itemQuantity: string;
+  itemPrice: string;
+};
+export default function OrderItem({ itemName, itemQuantity, itemPrice }: OrderItem) {
   return (
     <OrderItems>
       <SingleOrderItem>
         <ImgNameDiv>
-          <ItemImage src="" alt="" />
-          <ItemName>Book</ItemName>
+          {/* <ItemImage src="" alt="" /> */}
+          <ItemName>{itemName}</ItemName>
         </ImgNameDiv>
-        <ItemQuantity>Quantity:1</ItemQuantity>
-        <ItemPrice>Price: 20 Euros</ItemPrice>
+        <ItemQuantity>{itemQuantity}</ItemQuantity>
+        <ItemPrice>Price: {itemPrice}</ItemPrice>
       </SingleOrderItem>
     </OrderItems>
   );

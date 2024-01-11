@@ -3,19 +3,24 @@ import styled from 'styled-components';
 import OrderItem from './OrderItem';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
-export default function OrderCard() {
+type OrderCard = {
+  orderNumber: string;
+  orderDate: string;
+  children: any;
+  // item: {
+  //   itemName: string;
+  //   itemQuantity: string;
+  //   itemPrice: string;
+  // };
+};
+export default function OrderCard({ orderNumber, orderDate, children }: OrderCard) {
   const [showOrderDetails, setShowOrderDetails] = useState(false);
   return (
     <OrderCardContainer>
       <OrderInfo>
-        <OrderNumber>Order: #4X123KJ45X67</OrderNumber>
-        <OrderDate> 27-10-2023</OrderDate>
+        <OrderNumber>Order: #{orderNumber}</OrderNumber>
+        <OrderDate>{orderDate}</OrderDate>
       </OrderInfo>
-      {/* <ViewOrder onClick={() => setShowOrderDetails(!showOrderDetails)}>
-       { !showOrderDetails ? ('view order' <FaArrowRight style={{ paddingTop: '6px' }} />
-        ):(('show less' <FaArrowLeft style={{ paddingTop: '6px' }} />
-        ))}
-      </ViewOrder> */}
       <ViewOrder onClick={() => setShowOrderDetails(!showOrderDetails)}>
         {!showOrderDetails ? (
           <>
@@ -27,8 +32,10 @@ export default function OrderCard() {
           </>
         )}
       </ViewOrder>
-      {showOrderDetails && <OrderItem />}
-      <TotalPrice>Total Price: 2000 Euros</TotalPrice>
+      {showOrderDetails && children}
+
+      {/* {showOrderDetails && <OrderItem itemName={item.itemName} itemQuantity={item.itemQuantity} itemPrice={item.itemPrice} />} */}
+      <TotalPrice></TotalPrice>
     </OrderCardContainer>
   );
 }

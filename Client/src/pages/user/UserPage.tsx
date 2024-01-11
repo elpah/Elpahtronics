@@ -5,7 +5,23 @@ import { auth } from '../../firebase';
 import styled from 'styled-components';
 import { useUserContext } from '../../components/UserContext';
 import OrderCardContainer from '../../components/OrderCardContainer';
+import OrderItem from '../../components/OrderItem';
 import Profile from '../../components/Profile';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+
+type Item = {
+  productName: string;
+  productQuantity: string;
+  productPrice: string;
+};
+
+type Order = {
+  orderNumber: string;
+  orderDate: string;
+  orderTotal: string;
+  items: Item[];
+};
 
 export default function UserPage() {
   const { currentUser, setCurrentUser } = useUserContext();
@@ -14,9 +30,20 @@ export default function UserPage() {
   const [userAvailable, setUserAvailable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [showOrders, setShowOrders] = useState(false);
-  const [orders, setOrders] = useState([]);
   const [showProfile, setShowProfile] = useState(true);
+
   const navigate = useNavigate();
+
+  async function getOrderByFbId() {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/orders/orders-by-fbId?fbId=${currentUser.fbId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+      throw error;
+    }
+  }
+  const { data, error, isLoading } = useQuery<Order[], Error>(['orders'], getOrderByFbId);
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, user => {
@@ -33,9 +60,6 @@ export default function UserPage() {
     currentUser.userName ? setUserAvailable(true) : setUserAvailable(false);
   }, [currentUser.userName]);
 
-  // if (loading || !userAvailable) {
-  //   return <LoadingP>Loading...</LoadingP>;
-  // }
   const UserNavButton = styled.button`
     position: fixed;
     background-color: rgb(59, 59, 59);
@@ -52,6 +76,8 @@ export default function UserPage() {
     &:hover {
       background-color: #333;
   `;
+
+  if (isLoading || loading) return <LoadingP>Loading...</LoadingP>;
 
   return (
     <Container>
@@ -82,23 +108,39 @@ export default function UserPage() {
       {showProfile && <Profile />}
       {showOrders && (
         <>
-          {currentUser.orders?.length! > 0 ? (
+          {data?.length! > 0 && !isLoading ? (
             <OrdersContainer>
               <Header>My Orders</Header>
-              <Para>8 Items</Para>
-              <OrderCardContainer />
+              <Para>{data?.length} items</Para>
+              {data?.map((order, key) => (
+                <OrderCardContainer key={key} orderNumber={order.orderNumber} orderDate={order.orderDate}>
+                  {order.items.map((item, itemKey) => (
+                    <OrderItem
+                      key={itemKey}
+                      itemName={item.productName}
+                      itemPrice={item.productPrice}
+                      itemQuantity={item.productQuantity}
+                    />
+                  ))}
+                </OrderCardContainer>
+              ))}
             </OrdersContainer>
           ) : (
-            <NoOrdersContainer>
-              <NoOrders>You have not placed any orders yet. </NoOrders>
-              <ShopNow onClick={() => navigate('/product?category=all+products')}>Shop Now...</ShopNow>
-            </NoOrdersContainer>
+            <>
+              {isLoading && <LoadingP>Loading...</LoadingP>}
+
+              <NoOrdersContainer>
+                <NoOrders>You have not placed any orders yet. </NoOrders>
+                <ShopNow onClick={() => navigate('/product?category=all+products')}>Shop Now...</ShopNow>
+              </NoOrdersContainer>
+            </>
           )}
         </>
       )}
     </Container>
   );
 }
+
 const ShopNow = styled.button`
   font-weight: 400;
   background-color: white;
@@ -126,14 +168,7 @@ const NoOrders = styled.p`
   font-weight: 400;
   margin-bottom: 20px;
 `;
-// const ShopNow = styled.button``;
 
-// const NoOrders = styled.p`
-//   font-size: 30px;
-//   font-weight: 400;
-// `;
-
-// const NoOrdersContainer = styled.div``;
 const Header = styled.h2`
   color: rgb(113, 114, 116);
   font-weight: 200;
@@ -223,5 +258,5 @@ const Container = styled.div`
 `;
 
 const LoadingP = styled.div`
-  margin-top: 150px;
+  margin-top: 50px;
 `;
