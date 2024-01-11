@@ -34,12 +34,10 @@ ol {
   list-style: none;
 }
 
-/* Remove anchor text decoration */
 a {
   text-decoration: none;
 }
 
-/* Reset heading margins */
 h1,
 h2,
 h3,
@@ -49,4 +47,7 @@ h6 {
   margin: 0;
 }
 
-/* Optionally add additional resets based on your needs */
+
+.react-toast-notifications__toast__icon{
+  margin-top:18px;
+}

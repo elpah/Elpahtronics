@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { ToastServices } from '../ToastServices.tsx';
 import {
   FaCommentDots,
   FaUsers,
@@ -15,6 +16,7 @@ import ContactCard from '../components/ContactCard.tsx';
 import FAQ from '../components/FAQ.tsx';
 import Footer from '../components/Footer.tsx';
 import MessageForm from '../components/MessageForm.tsx';
+import { useMutation } from '@tanstack/react-query';
 
 const ContactPageContainer = styled.div`
   width: 100%;
@@ -164,26 +166,35 @@ const FixedImage = styled.div`
 `;
 
 export default function Contact() {
+  const { showToast } = ToastServices();
+
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const handleFAQClick = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  function handleSubmit(formData: any) {
-    console.log(formData);
+  const mutation = useMutation(formData =>
     fetch('http://localhost:8000/api/sendEmail/feedback-email', {
       method: 'POST',
-      body: formData,
-      headers: {},
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
+      .then(response => {
+        if (response.ok) {
+          console.log('done');
+          showToast('Message sent successfully.', 2000, { appearance: 'success', autoDismiss: true });
+        }
       })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }
+      .catch(() => {
+        showToast('Failed to send message', 2000, { appearance: 'error', autoDismiss: true });
+      }),
+  );
+
+  const handleSubmit = (formData: any) => {
+    mutation.mutate(formData);
+  };
 
   const contacts = [
     {

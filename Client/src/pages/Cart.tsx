@@ -8,6 +8,7 @@ import SummaryCard from '../components/SummaryCard.tsx';
 import CheckOutButton from '../components/CheckOutButton.tsx';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import PayPalPayment from '../../src/components/PayPalPayment.tsx';
+import { ToastServices } from '../ToastServices.tsx';
 
 const CartHeader = styled.h2`
   margin-bottom: 10px;
@@ -69,8 +70,8 @@ const initialOptions = {
 export default function Cart() {
   const navigate = useNavigate();
   const { totalPrice } = useCartContext();
-
   const { cartArray, setCartArray } = useCartContext();
+  const { showToast } = ToastServices();
 
   const handleIncrement = (productId: string) => {
     const existingProduct = cartArray.find(product => product.productId === productId);
@@ -110,6 +111,7 @@ export default function Cart() {
     if (existingProductIndex !== -1) {
       const updatedCartArray = cartArray.filter((product, index) => index !== existingProductIndex);
       setCartArray(updatedCartArray);
+      showToast(' Product Deleted From Cart.', 2000, { appearance: 'error', autoDismiss: true });
     }
   };
 

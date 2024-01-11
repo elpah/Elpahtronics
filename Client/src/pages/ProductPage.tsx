@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-
+import { ToastServices } from '../ToastServices.tsx';
 import styled, { css } from 'styled-components';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { techprod1 } from '../assets/images/exportImages';
@@ -238,12 +238,9 @@ export default function ProductPage() {
   const { cartArray, setCartArray } = useCartContext();
   const { search } = useLocation();
   let [searchParams, setSearchParams] = useSearchParams();
+  const { showToast } = ToastServices();
 
   const category = searchParams.get('category');
-
-  useEffect(() => {
-    const categoryParam = searchParams.get('category');
-  }, [search]);
 
   const { data: products, isLoading } = useProducts();
   const handleCardClick = (product: Product) => {
@@ -264,7 +261,6 @@ export default function ProductPage() {
         }
         return product;
       });
-
       setCartArray(updatedCartArray);
     } else {
       const selectedProduct = products?.find(product => product.productId === productId);
@@ -277,6 +273,8 @@ export default function ProductPage() {
         setCartArray(prevCartArray => [...prevCartArray, updatedProduct]);
       }
     }
+    showToast('Successfully Added To Cart.', 2000, { appearance: 'success', autoDismiss: true });
+
     setQuantity(1);
   };
 
