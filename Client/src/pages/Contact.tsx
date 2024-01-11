@@ -15,6 +15,7 @@ import ContactCard from '../components/ContactCard.tsx';
 import FAQ from '../components/FAQ.tsx';
 import Footer from '../components/Footer.tsx';
 import MessageForm from '../components/MessageForm.tsx';
+import { useMutation } from '@tanstack/react-query';
 
 const ContactPageContainer = styled.div`
   width: 100%;
@@ -169,21 +170,26 @@ export default function Contact() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  function handleSubmit(formData: any) {
-    console.log(formData);
+  const mutation = useMutation(formData =>
     fetch('http://localhost:8000/api/sendEmail/feedback-email', {
       method: 'POST',
-      body: formData,
-      headers: {},
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
+      .then(response => {
+        if (response.ok) {
+          console.log('done');
+          //do something
+        }
       })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }
+      .catch(e => console.log(e)),
+  );
+
+  const handleSubmit = (formData: any) => {
+    mutation.mutate(formData);
+  };
 
   const contacts = [
     {

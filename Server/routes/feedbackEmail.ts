@@ -4,7 +4,7 @@ const feedbackEmail = Router();
 import { sendFeedbackEmail } from "./generalFunctions";
 
 feedbackEmail.post("/feedback-email", async (req, res) => {
-  const { name, email, subject, message } = req.body;
+  const { name, email, subject, message, checked } = req.body;
   try {
     await sendFeedbackEmail(name, email, subject, message);
     res.status(200).send("Feedback email sent successfully");
