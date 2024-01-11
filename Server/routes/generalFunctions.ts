@@ -158,7 +158,7 @@ async function sendOrderEmail(
   }
 }
 async function sendFeedbackEmail(
-  name: string,
+  firstName: string,
   email: string,
   subject: string,
   message: string
@@ -186,7 +186,7 @@ async function sendFeedbackEmail(
                   <h1>Feedback Received</h1>
                 </div>
                 <div class="message">
-                  <p>Hi, ${name}</p>
+                  <p>Hi, ${firstName}</p>
                   <p>Thank you for reaching out! Your message with the subject "${subject}" has been successfully received. Our team is dedicated to providing prompt assistance, and you can expect a response within the next 24 hours. We appreciate your patience and look forward to helping you.</p>
                   <p style="font-style: italic;">Your Message: ${message}</p>
                 </div>
