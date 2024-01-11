@@ -11,10 +11,20 @@ import { OrderContextProvider } from './components/OrderContext.tsx';
 import { ShippingAddressContextProvider } from './components/ShippingAddressContext.tsx';
 import GlobalStyles from './components/GlobalStyles.tsx';
 import { UserContextProvider } from './components/UserContext.tsx';
+import { ToastProvider } from 'react-toast-notifications';
 
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+const toastOptions = {
+  placement: 'bottom-left',
+  modifiers: [
+    (appearance: any, options: any) => ({
+      big: options.autoDismiss,
+    }),
+  ],
+};
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
@@ -24,7 +34,9 @@ root.render(
             <ShippingAddressContextProvider>
               <UserContextProvider>
                 <GlobalStyles />
-                <App />
+                <ToastProvider placement="bottom-left">
+                  <App />
+                </ToastProvider>
               </UserContextProvider>
             </ShippingAddressContextProvider>
           </CartContextProvider>

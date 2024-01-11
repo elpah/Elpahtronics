@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { ToastServices } from '../ToastServices.tsx';
 import {
   FaCommentDots,
   FaUsers,
@@ -165,6 +166,8 @@ const FixedImage = styled.div`
 `;
 
 export default function Contact() {
+  const { showToast } = ToastServices();
+
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const handleFAQClick = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -181,10 +184,12 @@ export default function Contact() {
       .then(response => {
         if (response.ok) {
           console.log('done');
-          //do something
+          showToast('Message sent successfully.', 2000, { appearance: 'success', autoDismiss: true });
         }
       })
-      .catch(e => console.log(e)),
+      .catch(() => {
+        showToast('Failed to send message', 2000, { appearance: 'error', autoDismiss: true });
+      }),
   );
 
   const handleSubmit = (formData: any) => {

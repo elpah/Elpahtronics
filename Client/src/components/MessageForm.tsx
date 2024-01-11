@@ -88,6 +88,17 @@ export default function MessageForm({ handleSubmit, ...props }: formProps) {
     checkbox: false,
   });
 
+  function resetForm() {
+    setFormValues({
+      firstName: '',
+      lastName: '',
+      email: '',
+      subject: '',
+      message: '',
+      checkbox: false,
+    });
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
 
@@ -100,12 +111,14 @@ export default function MessageForm({ handleSubmit, ...props }: formProps) {
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleSubmit(formValues);
+    resetForm();
   };
 
   return (
     <Form onSubmit={submitForm}>
       <NameDiv>
         <FormInput
+          required
           type="text"
           name="firstName"
           value={formValues.firstName}
@@ -113,6 +126,7 @@ export default function MessageForm({ handleSubmit, ...props }: formProps) {
           placeholder="First Name"
         />
         <FormInput
+          required
           type="text"
           name="lastName"
           value={formValues.lastName}
@@ -121,14 +135,28 @@ export default function MessageForm({ handleSubmit, ...props }: formProps) {
         />
       </NameDiv>
       <FormInput
+        required
         type="email"
         name="email"
         value={formValues.email}
         onChange={handleChange}
         placeholder="youremail@email.com"
       />
-      <FormInput type="text" name="subject" value={formValues.subject} onChange={handleChange} placeholder="Subject" />
-      <TextArea name="message" value={formValues.message} onChange={handleChange} placeholder="Enter Your Message" />
+      <FormInput
+        required
+        type="text"
+        name="subject"
+        value={formValues.subject}
+        onChange={handleChange}
+        placeholder="Subject"
+      />
+      <TextArea
+        required
+        name="message"
+        value={formValues.message}
+        onChange={handleChange}
+        placeholder="Enter Your Message"
+      />
       <PrivacyLabel>
         <input
           id="privacyCheckbox"
