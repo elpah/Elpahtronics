@@ -157,13 +157,11 @@ async function sendOrderEmail(
     throw err;
   }
 }
-
 async function sendFeedbackEmail(
   name: string,
   email: string,
   subject: string,
-  message: string,
-  checked: boolean
+  message: string
 ) {
   const request = mailjetClient.post("send", { version: "v3.1" }).request({
     Messages: [
@@ -177,27 +175,28 @@ async function sendFeedbackEmail(
             Email: email,
           },
         ],
-        Subject: "Order Confirmation",
+        Subject: "Elpatronics Feedback",
         HTMLPart: `
-              <html>
-                <head>
-                </head>
-                <body>
-                  <div class="container">
-                    <div class="header">
-                      <h1>Feedback Received</h1>
-                    </div>
-                    <div class="message"
-                      <p>Hi, ${name}</p>
-                      <p>Thank you for reaching out! Your message has been successfully received. Our team is dedicated to providing prompt assistance, and you can expect a response within the next 24 hours. We appreciate your patience and look forward to helping you. </p>
-                    </div>
-                    <div class="footer">
-                      <p>If you have any questions, please <a class="link" href="#">contact us</a>.</p>
-                    </div>
-                  </div>
-                </body>
-              </html>
-            `,
+          <html>
+            <head>
+            </head>
+            <body>
+              <div class="container">
+                <div class="header">
+                  <h1>Feedback Received</h1>
+                </div>
+                <div class="message">
+                  <p>Hi, ${name}</p>
+                  <p>Thank you for reaching out! Your message with the subject "${subject}" has been successfully received. Our team is dedicated to providing prompt assistance, and you can expect a response within the next 24 hours. We appreciate your patience and look forward to helping you.</p>
+                  <p style="font-style: italic;">Your Message: ${message}</p>
+                </div>
+                <div class="footer">
+                  <p>If you have any questions, please <a class="link" href="#">contact us</a>.</p>
+                </div>
+              </div>
+            </body>
+          </html>
+        `,
         CustomID: "Elpahtronics",
       },
     ],
