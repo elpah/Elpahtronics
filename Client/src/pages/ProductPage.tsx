@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ToastServices } from '../ToastServices.tsx';
 import styled, { css } from 'styled-components';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
@@ -236,17 +236,14 @@ export default function ProductPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
   const { cartArray, setCartArray } = useCartContext();
-  const { search } = useLocation();
   let [searchParams, setSearchParams] = useSearchParams();
   const { showToast } = ToastServices();
-
-  const category = searchParams.get('category');
-
   const { data: products, isLoading } = useProducts();
   const handleCardClick = (product: Product) => {
     setSelectedProduct(product);
     setProductModalVisibility(true);
   };
+  const category = searchParams.get('category');
 
   const handleAddToCartClick = (productId: string) => {
     const existingProduct = cartArray.find(product => product.productId === productId);
@@ -287,7 +284,7 @@ export default function ProductPage() {
           <Paragraph>
             Shopping is a bit of a relaxing hobby for me, which is sometimes troubling for the bank balance.
           </Paragraph>
-          <Button buttonName="Learn More" onClick={() => console.log('redirect to my Github Profile')} />
+          <Button buttonName="Learn More" />
         </ChildDivCenter>
       </HeaderContainer>
       <ContentContainer>

@@ -4,7 +4,7 @@ import {
   appleLogo,
   ikeaLogo,
   sonyLogo,
-  zaraLogo,
+  nikeLogo,
   furniture,
   sneakers,
   bags,
@@ -176,26 +176,26 @@ const HomePage = () => {
       header: 'Apple',
       paragraph: 'Delivery in 24 hours',
       image: appleLogo,
-      link: 'product',
+      link: 'product?category=all+products',
     },
     {
       header: 'Ikea',
       paragraph: 'Delivery in 24 hours',
       image: ikeaLogo,
-      link: 'product',
+      link: 'product?category=all+products',
     },
     {
       header: 'Sony',
       paragraph: 'Delivery in 24 hours',
       image: sonyLogo,
 
-      link: 'product',
+      link: 'product?category=all+products',
     },
     {
-      header: 'Zara',
+      header: 'Nike',
       paragraph: 'Delivery in 24 hours',
-      image: zaraLogo,
-      link: 'product',
+      image: nikeLogo,
+      link: 'product?category=all+products',
     },
   ];
 
@@ -210,7 +210,7 @@ const HomePage = () => {
               Departmental Oasis...
             </Header>
             <Para>Shopping is a bit of a relaxing hobby, which is sometimes troubling for the bank balance.</Para>
-            <Button buttonName="Shop Now" onClick={() => navigate('/product')} />
+            <Button buttonName="Shop Now" onClick={() => navigate('/product?category=all+products')} />
           </HeaderContainer>
         </HeaderDiv>
         <CategoryHeader>Shop some of categories</CategoryHeader>

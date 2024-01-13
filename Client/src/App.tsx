@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Contact from './pages/Contact.tsx';
@@ -7,6 +7,7 @@ import Home from './pages/Home.tsx';
 import NavBar from './components/NavBar.tsx';
 import Cart from './pages/Cart.tsx';
 import Login from './pages/user/Login.tsx';
+import Orders from './pages/Orders.tsx';
 import NotFound from './pages/NotFound.tsx';
 import Checkout from './pages/Checkout.tsx';
 import PaymentSuccess from './pages/PaymentSuccess.tsx';
@@ -14,7 +15,7 @@ import PaymentFailed from './pages/PaymentFailed.tsx';
 import CreateAccount from './pages/user/CreateAccount.tsx';
 import UserPage from './pages/user/UserPage.tsx';
 import { useUserContext } from './components/UserContext';
-import { User, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import { auth } from './firebase.ts';
 
 const resetUser = {
@@ -28,9 +29,8 @@ const resetUser = {
 };
 
 function App() {
-  const { currentUser, setCurrentUser } = useUserContext();
+  const { setCurrentUser } = useUserContext();
   const navigate = useNavigate();
-  // const [authUser, setAuthUser] = useState<User | null>(null);
 
   const useSignOut = () => {
     signOut(auth)
@@ -50,6 +50,7 @@ function App() {
       const parsedUser = JSON.parse(storedUser);
       setCurrentUser(parsedUser);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -62,6 +63,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path="/signup" element={<CreateAccount />} />
           <Route path="/userpage" element={<UserPage />} />
           <Route path="/checkoutpage" element={<Checkout />} />

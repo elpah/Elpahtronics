@@ -60,23 +60,6 @@ export default function UserPage() {
     currentUser.userName ? setUserAvailable(true) : setUserAvailable(false);
   }, [currentUser.userName]);
 
-  const UserNavButton = styled.button`
-    position: fixed;
-    background-color: rgb(59, 59, 59);
-    top: 110px;
-    left: 0;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    border-radius: 0 0 5px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-
-    &:hover {
-      background-color: #333;
-  `;
-
   if (isLoading || loading) return <LoadingP>Loading...</LoadingP>;
 
   return (
@@ -140,6 +123,23 @@ export default function UserPage() {
     </Container>
   );
 }
+
+const UserNavButton = styled.button`
+    position: fixed;
+    background-color: rgb(59, 59, 59);
+    top: 110px;
+    left: 0;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    border-radius: 0 0 5px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    &:hover {
+      background-color: #333;
+  `;
 
 const ShopNow = styled.button`
   font-weight: 400;

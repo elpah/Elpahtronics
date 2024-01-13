@@ -183,7 +183,6 @@ export default function Contact() {
     })
       .then(response => {
         if (response.ok) {
-          console.log('done');
           showToast('Message sent successfully.', 2000, { appearance: 'success', autoDismiss: true });
         }
       })
