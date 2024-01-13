@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Footer from '../components/Footer';
 import { facebook, instagram, twitter } from '../assets/images/exportImages';
-import { Elements, useStripe } from '@stripe/react-stripe-js';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useOrderContext } from '../components/OrderContext';
 
 const rotateAnimation = keyframes`
@@ -206,21 +204,7 @@ const SocialsImageContainer = styled.div`
 export default function PaymentSuccess() {
   const { orderNumber, orderTotal, orderDate, paymentMethod, orderEmail, expectedDelivery, deliveryOptions } =
     useOrderContext();
-  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (
-  //     !orderNumber ||
-  //     !orderTotal ||
-  //     !orderDate ||
-  //     !paymentMethod ||
-  //     !orderEmail ||
-  //     !expectedDelivery ||
-  //     !deliveryOptions
-  //   ) {
-  //     navigate('/');
-  //   }
-  // }, []);
   return (
     <SuccessPageContainer>
       <TopHeaderContainer>

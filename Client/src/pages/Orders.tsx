@@ -169,6 +169,16 @@ const OrderItems = styled.div`
       border-bottom: none;
     }
 
+    .product {
+      width: 40%;
+    }
+    .quantity {
+      width: 20%;
+    }
+    .price {
+      width: 20%;
+    }
+
     p {
       margin: 0;
     }
@@ -205,13 +215,15 @@ export default function Orders() {
   const [showSpinner, setShowSpinner] = useState<boolean>(false);
   const [orderError, setError] = useState<boolean>(false);
   let [searchParams, setSearchParams] = useSearchParams();
-  const myOrderNumber = searchParams.get('order-number');
 
   useEffect(() => {
+    const myOrderNumber = searchParams.get('order-number');
     if (myOrderNumber) {
       getOrderByOrderNumber(myOrderNumber);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   async function getOrderByOrderNumber(orderNumber: string) {
     try {
       const response = await axios.get(
@@ -270,13 +282,13 @@ export default function Orders() {
               <p className="items-label">Order Items:</p>
               {order?.items.map((item, index) => (
                 <div className="item" key={index}>
-                  <p>
+                  <p className="product">
                     <span className="label">Product:</span> {item.productName}
                   </p>
-                  <p>
+                  <p className="quantity">
                     <span className="label">Quantity:</span> {item.productQuantity}
                   </p>
-                  <p>
+                  <p className="prics">
                     <span className="label">Price:</span> {item.productPrice}
                   </p>
                 </div>

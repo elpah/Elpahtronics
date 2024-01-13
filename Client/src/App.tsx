@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Contact from './pages/Contact.tsx';
@@ -15,7 +15,7 @@ import PaymentFailed from './pages/PaymentFailed.tsx';
 import CreateAccount from './pages/user/CreateAccount.tsx';
 import UserPage from './pages/user/UserPage.tsx';
 import { useUserContext } from './components/UserContext';
-import { User, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import { auth } from './firebase.ts';
 
 const resetUser = {
@@ -29,9 +29,8 @@ const resetUser = {
 };
 
 function App() {
-  const { currentUser, setCurrentUser } = useUserContext();
+  const { setCurrentUser } = useUserContext();
   const navigate = useNavigate();
-  // const [authUser, setAuthUser] = useState<User | null>(null);
 
   const useSignOut = () => {
     signOut(auth)
@@ -51,6 +50,7 @@ function App() {
       const parsedUser = JSON.parse(storedUser);
       setCurrentUser(parsedUser);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

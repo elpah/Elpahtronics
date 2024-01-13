@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import OrderItem from './OrderItem';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 type OrderCard = {
@@ -76,11 +75,6 @@ const OrderNumber = styled.p`
 
 const OrderDate = styled.p`
   margin-left: 10px;
-`;
-
-const OrderStatus = styled.p`
-  font-size: 18px;
-  margin-top: 10px;
 `;
 
 const TotalPrice = styled.p`
