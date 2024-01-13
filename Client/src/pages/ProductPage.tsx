@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ToastServices } from '../ToastServices.tsx';
 import styled, { css } from 'styled-components';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
@@ -236,7 +236,6 @@ export default function ProductPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
   const { cartArray, setCartArray } = useCartContext();
-  const { search } = useLocation();
   let [searchParams, setSearchParams] = useSearchParams();
   const { showToast } = ToastServices();
 
