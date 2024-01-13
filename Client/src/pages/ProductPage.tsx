@@ -238,14 +238,12 @@ export default function ProductPage() {
   const { cartArray, setCartArray } = useCartContext();
   let [searchParams, setSearchParams] = useSearchParams();
   const { showToast } = ToastServices();
-
-  const category = searchParams.get('category');
-
   const { data: products, isLoading } = useProducts();
   const handleCardClick = (product: Product) => {
     setSelectedProduct(product);
     setProductModalVisibility(true);
   };
+  const category = searchParams.get('category');
 
   const handleAddToCartClick = (productId: string) => {
     const existingProduct = cartArray.find(product => product.productId === productId);

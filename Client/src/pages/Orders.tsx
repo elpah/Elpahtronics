@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 const OrderContainer = styled.div`
@@ -203,13 +204,15 @@ export default function Orders() {
   const [order, setOrder] = useState<Order>();
   const [showSpinner, setShowSpinner] = useState<boolean>(false);
   const [orderError, setError] = useState<boolean>(false);
+  let [searchParams, setSearchParams] = useSearchParams();
+  const myOrderNumber = searchParams.get('order-number');
+
   useEffect(() => {
-    console.log(order);
-  }, [order]);
-
+    if (myOrderNumber) {
+      getOrderByOrderNumber(myOrderNumber);
+    }
+  }, []);
   async function getOrderByOrderNumber(orderNumber: string) {
-    console.log('orderNumber', orderNumber);
-
     try {
       const response = await axios.get(
         `http://localhost:8000/api/orders/orders-by-order-number?orderNumber=${orderNumber}`,
@@ -227,11 +230,12 @@ export default function Orders() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const orderNumber = (event.target as any).search.value;
+    setSearchParams({ 'order-number': orderNumber });
     setError(false);
     setOrder(undefined);
     setShowSpinner(true);
-    const orderNumber = (event.target as any).search.value;
-    getOrderByOrderNumber(orderNumber);
+    getOrderByOrderNumber(orderNumber!);
   };
 
   return (
