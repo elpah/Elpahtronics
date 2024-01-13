@@ -7,6 +7,7 @@ import Home from './pages/Home.tsx';
 import NavBar from './components/NavBar.tsx';
 import Cart from './pages/Cart.tsx';
 import Login from './pages/user/Login.tsx';
+import Orders from './pages/Orders.tsx';
 import NotFound from './pages/NotFound.tsx';
 import Checkout from './pages/Checkout.tsx';
 import PaymentSuccess from './pages/PaymentSuccess.tsx';
@@ -62,6 +63,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path="/signup" element={<CreateAccount />} />
           <Route path="/userpage" element={<UserPage />} />
           <Route path="/checkoutpage" element={<Checkout />} />

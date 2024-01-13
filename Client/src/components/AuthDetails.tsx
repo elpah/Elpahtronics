@@ -19,12 +19,8 @@ export default function AuthDetails() {
 
   const useSignOut = () => {
     signOut(auth)
-      .then(() => {
-        console.log('signed Out successfull');
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      .then(() => {})
+      .catch(error => {});
   };
   return (
     <>

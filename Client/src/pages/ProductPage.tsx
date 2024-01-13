@@ -287,7 +287,7 @@ export default function ProductPage() {
           <Paragraph>
             Shopping is a bit of a relaxing hobby for me, which is sometimes troubling for the bank balance.
           </Paragraph>
-          <Button buttonName="Learn More" onClick={() => console.log('redirect to my Github Profile')} />
+          <Button buttonName="Learn More" />
         </ChildDivCenter>
       </HeaderContainer>
       <ContentContainer>

@@ -328,7 +328,7 @@ export default function NavBar({ handleClick }: NavBarProps) {
               </FaIconContainer>
 
               <UserMenu isOpen={isOpen}>
-                <li>Orders</li>
+                <li onClick={() => navigate('/orders')}>Orders</li>
                 {!currentUser.userEmailAddress && <li onClick={() => navigate('/login')}>Login</li>}
                 {currentUser.userEmailAddress && <li onClick={() => navigate('/userpage')}>userPage</li>}
                 <li onClick={handleClick}>SignOut</li>
