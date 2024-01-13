@@ -3,7 +3,7 @@ import productCover from './productCover.jpg';
 import appleLogo from './popularLogos/appleLogo.jpeg';
 import ikeaLogo from './popularLogos/ikeaLogo.png';
 import sonyLogo from './popularLogos/sonyLogo.jpeg';
-import zaraLogo from './popularLogos/zaraLogo.jpeg';
+import nikeLogo from './popularLogos/nikeLogo.png';
 import furniture from './categories/furniture.jpg';
 import sneakers from './categories/sneakers.jpg';
 import travel from './categories/travel.jpg';
@@ -30,7 +30,7 @@ export {
   appleLogo,
   ikeaLogo,
   sonyLogo,
-  zaraLogo,
+  nikeLogo,
   coverImage,
   furniture,
   sneakers,
