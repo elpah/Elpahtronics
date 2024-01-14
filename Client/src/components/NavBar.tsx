@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUserContext } from './UserContext';
 import styled from 'styled-components';
 import { FaBars, FaTimes, FaUser, FaAngleDown, FaAngleUp } from 'react-icons/fa';
@@ -247,7 +247,6 @@ export default function NavBar({ handleClick }: NavBarProps) {
   const { currentUser, setCurrentUser } = useUserContext();
   const navigate = useNavigate();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const toggleNav = () => setShowMobileMenu(!showMobileMenu);
   const closeMobileMenu = () => setShowMobileMenu(false);
   const { cartArray } = useCartContext();
   const totalQuantity = cartArray.reduce((total, product) => total + product.productQuantity, 0);

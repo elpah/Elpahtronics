@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -71,9 +71,7 @@ export default function SignIn() {
     event.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
-        const user = userCredentials.user;
         const fbId = userCredentials.user.uid;
-        const userEmail = userCredentials.user.email;
         if (fbId) {
           getUserFromDB(fbId);
           navigate('/userpage');
