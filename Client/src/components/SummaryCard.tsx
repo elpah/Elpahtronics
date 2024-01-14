@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useCartContext } from './CartContext.tsx';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
-import PayPalPayment from './PayPalPayment.tsx';
 
 const SummaryDiv = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -15,9 +13,11 @@ const SummaryDiv = styled.div`
   max-height: 400px;
   margin: auto;
   margin-top: 30px;
+
   @media (min-width: 768px) {
     max-width: 650px;
   }
+
   @media (min-width: 1198px) {
     margin-top: 0;
     margin-left: 100px;
@@ -60,8 +60,6 @@ interface Props {
 }
 
 export default function SummaryCard({ children }: Props) {
-  const { cartArray } = useCartContext();
-  const navigate = useNavigate();
   const { totalPrice } = useCartContext();
 
   return (

@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  elpahtronicsblack,
-  elpahtronicswhite,
-  elpahtronicsblue,
-  elpahlogotry,
-  elpahtronicslogosmall,
-  footerlogobig,
-  footerlogosmall,
-} from '../assets/images/exportImages.ts';
+import { footerlogosmall } from '../assets/images/exportImages.ts';
 
 import styled from 'styled-components';
 

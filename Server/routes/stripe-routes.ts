@@ -1,6 +1,5 @@
 import Router from "express";
 import "dotenv/config";
-import express from "express";
 import { createOrder } from "../ordersdb/db";
 import {
   getDate,
@@ -35,11 +34,11 @@ stripeRouter.post("/create-payment-intent", async (req, res) => {
 });
 
 stripeRouter.post("/create-new-order", async (req, res) => {
-  const { email, address, cart, totalPrice,fbId } = req.body;
+  const { email, address, cart, totalPrice, fbId } = req.body;
   try {
     const orderNumber = generateOrderNumber();
     const newOrder = {
-      fbId:fbId,
+      fbId: fbId,
       orderNumber: orderNumber,
       items: cart,
       totalPrice: totalPrice,

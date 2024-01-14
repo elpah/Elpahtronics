@@ -10,8 +10,8 @@ import { elpahtronicsblue } from '../assets/images/exportImages.ts';
 
 const BarContainer = styled.div`
   width: 100%;
-  background-color: green;
-  color: white;
+  background-color: brown;
+  color: #fff;
   height: 30px;
   @media (max-width: 768px) {
     display: none;
@@ -29,6 +29,9 @@ const BarParagraph = styled.p`
   margin: 0;
   padding: 3px;
   font-size: 15px;
+  &:hover {
+    color: #fdb203;
+  }
 `;
 
 const StyledHeader = styled.header`
@@ -175,7 +178,7 @@ const Div = styled.div`
 `;
 const Container = styled.div`
   position: fixed;
-  z-index: 2;
+  z-index: 101;
   top: 0;
   width: 100%;
 `;
@@ -262,10 +265,10 @@ export default function NavBar({ handleClick }: NavBarProps) {
         <Bar>
           <BarParagraph>
             <BsTelephone />
-            +233203829421
+            +3162XXXXXXX
           </BarParagraph>
           <BarParagraph> 30% Discount | Shop Now</BarParagraph>
-          <BarParagraph>Lorem Ipsum</BarParagraph>
+          <BarParagraph>github.com/elpah</BarParagraph>
         </Bar>
       </BarContainer>
       <StyledHeader>
@@ -328,10 +331,10 @@ export default function NavBar({ handleClick }: NavBarProps) {
               </FaIconContainer>
 
               <UserMenu isOpen={isOpen}>
-                <li onClick={() => navigate('/orders')}>Orders</li>
+                <li onClick={() => navigate('/orders')}>Find Order</li>
                 {!currentUser.userEmailAddress && <li onClick={() => navigate('/login')}>Login</li>}
-                {currentUser.userEmailAddress && <li onClick={() => navigate('/userpage')}>userPage</li>}
-                <li onClick={handleClick}>SignOut</li>
+                {currentUser.userEmailAddress && <li onClick={() => navigate('/userpage')}>My Profile</li>}
+                <li onClick={handleClick}>Sign Out</li>
               </UserMenu>
             </Account>
             <HamburgerToggle onClick={toggleNavMenu}>{showMobileMenu ? <FaTimes /> : <FaBars />}</HamburgerToggle>

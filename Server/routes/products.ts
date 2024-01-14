@@ -3,7 +3,6 @@ import {
   getAllProducts,
   getProductByCategory,
   getProductById,
-  updateProduct,
 } from "../productsDb/db";
 
 const productRouter = Router();
@@ -31,13 +30,6 @@ productRouter.get("/:id", async (req, res) => {
   const product = await getProductById(id);
   res.json(product);
   console.log("here", product);
-});
-
-productRouter.patch("/:id", async (req, res) => {
-  const { id } = req.params;
-  const { date } = req.body;
-  const product = await updateProduct(id, date);
-  return res.set("Content-Type", "application/json").status(200).json(product);
 });
 
 export default productRouter;
