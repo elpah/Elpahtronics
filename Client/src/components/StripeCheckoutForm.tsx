@@ -5,9 +5,7 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
-import { Stripe, loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import { useContext, useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { useCartContext } from './CartContext';
 import { useOrderContext } from './OrderContext';

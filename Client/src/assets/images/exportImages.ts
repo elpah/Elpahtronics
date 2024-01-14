@@ -17,8 +17,6 @@ import ideal from './icons/idealIcon.png';
 import facebook from './icons/facebook.png';
 import instagram from './icons/instagram.png';
 import twitter from './icons/twitter.png';
-import elpahtronicsblack from './elpahtronicsLogo/elpahtronicslogoblack.png';
-import elpahtronicswhite from './elpahtronicsLogo/elpahtronicslogowhite.png';
 import elpahtronicsblue from './elpahtronicsLogo/elpahtronicslogoblue.png';
 import elpahlogotry from './elpahtronicsLogo/elpahlogotry.png';
 import elpahtronicslogosmall from './elpahtronicsLogo/elpatronicslogosmall.png';
@@ -46,8 +44,6 @@ export {
   facebook,
   instagram,
   twitter,
-  elpahtronicsblack,
-  elpahtronicswhite,
   elpahtronicsblue,
   elpahlogotry,
   elpahtronicslogosmall,

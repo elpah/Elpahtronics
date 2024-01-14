@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { auth } from '../../firebase';
 import { useUserContext } from '../../components/UserContext';
 import { footerlogosmall } from '../../assets/images/exportImages';
-import { UserContextProvider } from '../UserContext';
 
 const Form = styled.form`
   width: 90%;

@@ -120,7 +120,6 @@ const Form = styled.div``;
 const FooterContainer = styled.div`
   max-width: 1700px;
   margin: auto;
-  // width: 110%;
 `;
 const HeaderContent = styled.div`
   margin: 200px auto 100px;

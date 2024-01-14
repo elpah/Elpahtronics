@@ -213,7 +213,7 @@ const HomePage = () => {
             <Button buttonName="Shop Now" onClick={() => navigate('/product?category=all+products')} />
           </HeaderContainer>
         </HeaderDiv>
-        <CategoryHeader>Shop some of categories</CategoryHeader>
+        <CategoryHeader>Shop some of our categories</CategoryHeader>
         <CategoryCardContainer>
           {categories.map((category, index) => (
             <CategoryCard key={index} categoryName={category.paragraph} categoryImage={category.image} />
