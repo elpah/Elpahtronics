@@ -82,28 +82,34 @@ This project is built with
 ### Backend
 
 1. Open a new terminal
-2. Move to the `server` directory
+2. Move to the `Server` directory
 
    ```console
    cd server
 
 3. Rename .env.example to .env and add your details for the MongoDB connection string, database name, mailjet, and stripe keys
 
- ```console
-  mv .env.example .env
-
-4. Run the commands
- ```console
-  npm install && npm start
-
-### Frontend
-```console
-   cd Client
+   ```console
+   mv .env.example .env
    
+   
+4. Run the commands
+   ```console
    npm install && npm start
 
 
 
+### Client
+1. Open a new terminal
+2. Move to the `Client` directory
+
+   ```console
+   cd Client
+
+      
+3. Run the commands
+   ```console
+   npm install && npm start
 
 
 
