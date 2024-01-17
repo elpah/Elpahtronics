@@ -331,9 +331,12 @@ export default function NavBar({ handleClick }: NavBarProps) {
 
               <UserMenu isOpen={isOpen}>
                 <li onClick={() => navigate('/orders')}>Find Order</li>
-                {!currentUser.userEmailAddress && <li onClick={() => navigate('/login')}>Login</li>}
+                {!currentUser.userEmailAddress ? (
+                  <li onClick={() => navigate('/login')}>Login</li>
+                ) : (
+                  <li onClick={handleClick}>Sign Out</li>
+                )}
                 {currentUser.userEmailAddress && <li onClick={() => navigate('/userpage')}>My Profile</li>}
-                <li onClick={handleClick}>Sign Out</li>
               </UserMenu>
             </Account>
             <HamburgerToggle onClick={toggleNavMenu}>{showMobileMenu ? <FaTimes /> : <FaBars />}</HamburgerToggle>

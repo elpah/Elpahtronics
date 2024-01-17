@@ -150,7 +150,6 @@ async function sendOrderEmail(
 
   try {
     const result = await request;
-    console.log("Email sent successfully");
     return "Email sent successfully";
   } catch (err) {
     console.error(err);

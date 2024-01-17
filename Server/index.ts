@@ -17,13 +17,15 @@ if (process.env.PRESEED === "True") {
 }
 
 const app = express();
-app.use(
-  cors({
-    origin: [],
-    methods: ["post", "get"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["http://localhost:3000"],
+//     methods: ["post", "get"],
+//     credentials: true,
+//   })
+// );
+
+app.use(cors());
 
 const port = process.env.PORT;
 app.use(express.json());
