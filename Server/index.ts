@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import productRouter from "./routes/products";
@@ -17,10 +17,16 @@ if (process.env.PRESEED === "True") {
 }
 
 const app = express();
+app.use(
+  cors({
+    origin: [],
+    methods: ["post", "get"],
+    credentials: true,
+  })
+);
 
 const port = process.env.PORT;
 app.use(express.json());
-app.use(cors());
 app.use("/api/products", productRouter);
 app.use("/api/paypalPaymentTest", paypalRouter);
 app.use("/api/stripePaymentTest", stripeRouter);
