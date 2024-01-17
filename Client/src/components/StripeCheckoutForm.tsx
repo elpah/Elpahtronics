@@ -34,7 +34,7 @@ export default function StripeCheckoutForm() {
   const [email, setEmail] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [billingAddress, setBillingAddress] = useState({});
-  const { shippingAddress, setShippingAddress } = useShippingAddressContext();
+  const { shippingAddress } = useShippingAddressContext();
 
   const navigate = useNavigate();
 

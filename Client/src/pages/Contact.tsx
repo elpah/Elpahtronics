@@ -222,15 +222,15 @@ export default function Contact() {
   ];
   const Faquestions = [
     {
-      title: 'Is there a free trial available?',
+      title: 'Can I return items if it does not match the description?',
       paragraph:
-        'Yes, you can try us for free for 30 days. If you want, we will provide you with a free 30 minutes onboarding call to get you up and running.',
+        'Yes, yAbsolutely! If your new finds dont bring you joy, you can return them hassle-free within 30 days.',
       icon: <FaGift />,
     },
     {
-      title: 'Can I change my plan later?',
+      title: 'What happens if I accidentally order the wrong item or color?',
       paragraph:
-        'Yes, you can change your plan later at any time. We offer flexible plans that allow you to upgrade or downgrade as needed.',
+        'No worries! We get it; mistakes happen. You can easily exchange the item for the right size or color within our return policy. Feel free to reach out to our support team, and we will assist you in making your shopping experience just right!',
       icon: <FaQuestionCircle />,
     },
     {
