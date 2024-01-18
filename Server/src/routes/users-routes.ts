@@ -1,7 +1,6 @@
 import Router from "express";
 import "dotenv/config";
 import { createUser, getUserByFbId } from "../usersdb/db";
-
 const userRouter = Router();
 
 userRouter.post("/create-user", async (req, res) => {

@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
+    "build": "tsc",
     "test": "mocha -r ts-node/register ./*.test.ts",
-    "start": "nodemon --exec ts-node --transpile-only index.ts",
+    "start": "npm run build && nodemon --watch 'dist/**/*.js' --exec 'node' dist/index.js",
     "resetdata": "rimraf data",
     "docker:start": "docker compose up",
     "docker:init": "npm run resetdata && npm run docker:start",

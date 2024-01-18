@@ -3,10 +3,12 @@
         "allowSyntheticDefaultImports": true,
         "target": "es6",
       "module": "commonjs",
-      "strict": true,
       "esModuleInterop": true,
-      "outDir": "./dist" 
+      "outDir": "./dist" ,
+      "rootDir": "./src",
+      "strict": true,
     },
-    "include": ["index.ts"]
+    "include": ["src/*.ts","src/**/*.json"],
+    "exclude": ["node_modules"]
   }
   
