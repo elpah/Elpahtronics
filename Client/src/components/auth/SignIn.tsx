@@ -88,7 +88,7 @@ export default function SignIn() {
 
   async function getUserFromDB(fbId: string) {
     try {
-      const response = await fetch('http://localhost:8000/api/users/get-user', {
+      const response = await fetch('https://e-tronics-server.vercel.app/api/users/get-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

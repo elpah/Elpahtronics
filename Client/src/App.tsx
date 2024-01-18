@@ -17,6 +17,7 @@ import UserPage from './pages/user/UserPage.tsx';
 import { useUserContext } from './components/UserContext';
 import { signOut } from 'firebase/auth';
 import { auth } from './firebase.ts';
+import { ToastContainer } from 'react-toastify';
 
 const resetUser = {
   userName: '',
@@ -71,6 +72,16 @@ function App() {
           <Route path="/failed" element={<PaymentFailed />} />
           * <Route path="*" element={<NotFound />} />
         </Routes>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={1000}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable={false}
+          theme="colored"
+        />
       </div>
     </div>
   );

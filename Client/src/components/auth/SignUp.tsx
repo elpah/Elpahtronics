@@ -189,7 +189,7 @@ export default function SignUp() {
     fbId: string,
   ) {
     try {
-      const response = await fetch('http://localhost:8000/api/users/create-user', {
+      const response = await fetch('https://e-tronics-server.vercel.app/api/users/create-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

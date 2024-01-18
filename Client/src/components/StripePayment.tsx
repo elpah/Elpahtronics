@@ -15,14 +15,14 @@ export default function StripePayment({ handleCloseButton }: Props) {
   const [clientSecret, setClientSecret] = useState<string | null>();
   const { totalPrice } = useCartContext();
   useEffect(() => {
-    fetch('http://localhost:8000/api/stripePaymentTest/config').then(async result => {
+    fetch('https://e-tronics-server.vercel.app/api/stripePaymentTest/config').then(async result => {
       const { publishableKey } = await result.json();
       setStripePromise(loadStripe(publishableKey));
     });
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/stripePaymentTest/create-payment-intent', {
+    fetch('https://e-tronics-server.vercel.app/api/stripePaymentTest/create-payment-intent', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

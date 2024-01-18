@@ -1,3 +1,5 @@
+@import 'react-toastify/dist/ReactToastify.css';
+
 /* CSS Reset */
 html,
 body,
@@ -51,3 +53,52 @@ h6 {
 .react-toast-notifications__toast__icon{
   margin-top:18px;
 }
+
+
+:root {
+  --toastify-color-warning: #fe7171;
+  --toastify-color-info: #d7fef1;
+  --toastify-text-color-info: #222222;
+  --toastify-icon-color-warning: var(--toastify-color-warning);
+  --toastify-toast-width: 376px;
+}
+
+.Toastify__toast {
+  border-radius: 13px;
+}
+.Toastify__toast-body {
+  font-family: Work Sans;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.Toastify__toast-icon {
+  margin-inline-end: 15px;
+
+  text-align: center;
+
+  /* 17.5px/17.5 (semi) */
+  font-family: Work Sans;
+  font-size: 17.7px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px; /* 158.192% */
+}
+
+.Toastify__close-button {
+  display: none;
+}
+
+/* .Toastify__progress-bar {
+  background-color:green;
+}*/
+
+/* .Toastify__progress-bar--wrp{
+  display: none;
+  background-color:green;
+} */
+
+/* Toastify__progress-bar--animated Toastify__progress-bar-theme--colored Toastify__progress-bar--success" */

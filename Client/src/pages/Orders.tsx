@@ -227,7 +227,7 @@ export default function Orders() {
   async function getOrderByOrderNumber(orderNumber: string) {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/orders/orders-by-order-number?orderNumber=${orderNumber}`,
+        `https://e-tronics-server.vercel.app/api/orders/orders-by-order-number?orderNumber=${orderNumber}`,
       );
       if (response.data) {
         setShowSpinner(false);

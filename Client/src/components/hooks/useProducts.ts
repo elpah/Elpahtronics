@@ -4,7 +4,7 @@ import Product from '../../productType';
 
 const useProducts = () => {
   const fetchProducts = () =>
-    axios.get<Product[]>('http://localhost:8000/api/products/available').then(res => {
+    axios.get<Product[]>('https://e-tronics-server.vercel.app/api/products/available').then(res => {
       return res.data;
     });
 

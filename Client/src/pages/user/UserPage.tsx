@@ -36,7 +36,9 @@ export default function UserPage() {
 
   async function getOrderByFbId() {
     try {
-      const response = await axios.get(`http://localhost:8000/api/orders/orders-by-fbId?fbId=${currentUser.fbId}`);
+      const response = await axios.get(
+        `https://e-tronics-server.vercel.app/api/orders/orders-by-fbId?fbId=${currentUser.fbId}`,
+      );
       return response.data;
     } catch (error) {
       console.error('Error fetching orders:', error);

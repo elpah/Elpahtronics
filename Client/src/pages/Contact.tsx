@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ToastServices } from '../ToastServices.tsx';
 import {
   FaCommentDots,
   FaUsers,
@@ -17,6 +16,7 @@ import FAQ from '../components/FAQ.tsx';
 import Footer from '../components/Footer.tsx';
 import MessageForm from '../components/MessageForm.tsx';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 const ContactPageContainer = styled.div`
   width: 100%;
@@ -165,15 +165,13 @@ const FixedImage = styled.div`
 `;
 
 export default function Contact() {
-  const { showToast } = ToastServices();
-
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const handleFAQClick = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   const mutation = useMutation(formData =>
-    fetch('http://localhost:8000/api/sendEmail/feedback-email', {
+    fetch('https://e-tronics-server.vercel.app/api/sendEmail/feedback-email', {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {
@@ -182,11 +180,11 @@ export default function Contact() {
     })
       .then(response => {
         if (response.ok) {
-          showToast('Message sent successfully.', 2000, { appearance: 'success', autoDismiss: true });
+          toast.success('Feedback submitted successfully.');
         }
       })
       .catch(() => {
-        showToast('Failed to send message', 2000, { appearance: 'error', autoDismiss: true });
+        toast.error('Error submitting feedback.');
       }),
   );
 

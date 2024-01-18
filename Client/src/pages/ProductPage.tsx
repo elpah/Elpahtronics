@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { ToastServices } from '../ToastServices.tsx';
 import styled, { css } from 'styled-components';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { techprod1 } from '../assets/images/exportImages';
@@ -12,6 +11,7 @@ import ProductModal from '../components/ProductModal.tsx';
 import useProducts from '../components/hooks/useProducts';
 import ProductsIsLoading from '../components/productLoading/ProductsIsLoading.tsx';
 import { useCartContext } from '../components/CartContext.tsx';
+import { toast } from 'react-toastify';
 
 interface FilterCategoryProps {
   showCategoryList: boolean;
@@ -237,7 +237,6 @@ export default function ProductPage() {
   const [showCategoryList, setShowCategoryList] = useState<boolean>(false);
   const { cartArray, setCartArray } = useCartContext();
   let [searchParams, setSearchParams] = useSearchParams();
-  const { showToast } = ToastServices();
   const { data: products, isLoading } = useProducts();
   const handleCardClick = (product: Product) => {
     setSelectedProduct(product);
@@ -270,8 +269,7 @@ export default function ProductPage() {
         setCartArray(prevCartArray => [...prevCartArray, updatedProduct]);
       }
     }
-    showToast('Successfully Added To Cart.', 2000, { appearance: 'success', autoDismiss: true });
-
+    toast.success('Successfully added to cart');
     setQuantity(1);
   };
 
