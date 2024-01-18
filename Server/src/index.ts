@@ -26,7 +26,7 @@ const app = express();
 
 app.use(cors());
 
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 app.use(express.json());
 app.use("/api/products", productRouter);
 app.use("/api/paypalPaymentTest", paypalRouter);
