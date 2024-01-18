@@ -33,7 +33,6 @@ This project is built with
 - Send confirmation email when feedback is submitted
 
 ## Preview
-https://github.com/elpah/files/blob/master/mockups/elpatronicss.mp4
 
 ### Home Page
 
