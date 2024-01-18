@@ -51,7 +51,13 @@ stripeRouter.post("/create-new-order", async (req, res) => {
       deliveryOptions: "fedex",
     };
     createOrder(newOrder);
-    sendOrderEmail(email, orderNumber, cart, totalPrice);
+    await sendOrderEmail(email, orderNumber, cart, totalPrice)
+      .then(() => {
+        console.log("email sent successfully");
+      })
+      .catch(() => {
+        console.log("failed to send email");
+      });
     res.send(newOrder);
   } catch (e) {
     console.log(e);

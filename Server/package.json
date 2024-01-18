@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "build": "tsc --build && npm run copy-files",
+    "build": "tsc --build",
     "test": "mocha -r ts-node/register ./*.test.ts",
     "start": "npm run build && nodemon --watch 'dist/**/*.js' --exec 'node' dist/index.js",
     "resetdata": "rimraf data",
-    "copy-files": "cp ./db/preSeedData.json ./dist/db/",
     "docker:start": "docker compose up",
     "docker:init": "npm run resetdata && npm run docker:start",
     "docker:close": "docker compose down",
