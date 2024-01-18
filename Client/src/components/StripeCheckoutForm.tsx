@@ -70,6 +70,7 @@ export default function StripeCheckoutForm() {
       if (currentUser.fbId !== '') {
         requestBody.fbId = currentUser.fbId;
       }
+
       fetch('https://e-tronics-server.vercel.app/api/stripePaymentTest/create-new-order', {
         method: 'POST',
         headers: {
