@@ -34,6 +34,8 @@ This project is built with
 
 ## Preview
 
+https://github.com/elpah/ReactCalculator/assets/81959047/b2c4b39a-3abf-4637-a65f-c128f5207712
+
 ### Home Page
 
 ![Home Page](https://github.com/elpah/elpah/blob/main/mockups/homepage-1.png?raw=true)
