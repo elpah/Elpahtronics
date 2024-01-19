@@ -1,6 +1,9 @@
 # **ELPAHTRONICS**
 An E-Commerce web application that demonstrates the online shopping process.
 
+## Preview
+https://github.com/elpah/ReactCalculator/assets/81959047/b2c4b39a-3abf-4637-a65f-c128f5207712
+
 ## Technologies
 
 This project is built with 
@@ -31,10 +34,6 @@ This project is built with
 - Make a payment through Visa Card
 - Send a confirmation email with order details when payment is successful.
 - Send confirmation email when feedback is submitted
-
-## Preview
-
-https://github.com/elpah/ReactCalculator/assets/81959047/b2c4b39a-3abf-4637-a65f-c128f5207712
 
 ### Home Page
 
