@@ -6,7 +6,7 @@ let db: mongoDB.Db;
 const connectToDatabase = async () => {
   if (!db) {
     await client.connect();
-    db = client.db("elpahtronicsdb");
+    db = client.db("elpahtronicsDb");
   }
   return db;
 };
