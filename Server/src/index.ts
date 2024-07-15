@@ -7,7 +7,12 @@ import stripeRouter from "./routes/stripe-routes";
 import userRouter from "./routes/users-routes";
 import feedbackEmail from "./routes/feedbackEmail";
 import ordersRouter from "./routes/orders-routes";
+import { preSeedData } from "./productsDb/db";
 dotenv.config();
+
+if (process.env.PRESEED === "True") {
+  preSeedData();
+}
 
 const app = express();
 app.use(cors());

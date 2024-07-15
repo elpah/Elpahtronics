@@ -8,7 +8,7 @@ import {
 const productRouter = Router();
 
 productRouter.get("/", async (req, res) => {
-  res.send("Hello");
+  res.send("product route");
 });
 
 productRouter.get("/available/:category", async (req, res) => {

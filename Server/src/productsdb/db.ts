@@ -1,13 +1,13 @@
 import * as mongoDB from "mongodb";
 import client from "../db/client";
-// const data = require("../db/preSeedProductData.json");
+const data = require("../db/preSeedProductData.json");
 
 let db: mongoDB.Db;
 
 const connectToDatabase = async () => {
   if (!db) {
     await client.connect();
-    db = client.db("elpahtronicsDb");
+    db = client.db("elpahtronicsdb");
   }
   return db;
 };
@@ -33,11 +33,11 @@ const getProductById = async (id: string) => {
   return product;
 };
 
-// const preSeedData = async () => {
-//   const db = await connectToDatabase();
-//   const col: mongoDB.Collection = db.collection("products");
-//   col.deleteMany();
-//   col.insertMany(data);
-// };
+const preSeedData = async () => {
+  const db = await connectToDatabase();
+  const col: mongoDB.Collection = db.collection("products");
+  col.deleteMany();
+  col.insertMany(data);
+};
 
-export { getAllProducts, getProductById, getProductByCategory };
+export { getAllProducts, getProductById, getProductByCategory, preSeedData };
