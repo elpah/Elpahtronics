@@ -5,15 +5,10 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "start": "nodemon src/index.ts",
-    "build": "rimraf dist && tsc",
-    "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --build",
+    "test": "mocha -r ts-node/register ./*.test.ts",
+    "start": "npm run build && nodemon --watch 'dist/**/*.js' --exec 'node' dist/index.js",
     "resetdata": "rimraf data",
-    "docker:start": "docker compose up",
-    "docker:init": "npm run resetdata && npm run docker:start",
-    "docker:close": "docker compose down",
     "clean": "tsc --build --clean",
     "prepare": ""
   },
@@ -35,11 +30,6 @@
     "stripe": "^12.18.0",
     "typescript": "^4.9.5"
   },
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-  ],
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/expect": "^24.3.0",
