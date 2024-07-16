@@ -6,10 +6,11 @@
   "scripts": {
     "lint": "eslint .",
     "build": "tsc --build",
-    "test": "mocha -r ts-node/register ./*.test.ts",
-    "start": "npm run build && nodemon --watch 'dist/**/*.js' --exec 'node' dist/index.js",
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts",
     "resetdata": "rimraf data",
     "clean": "tsc --build --clean",
+    "vercel-build": "echo hello",
     "prepare": ""
   },
   "keywords": [],

@@ -3,7 +3,7 @@ import {
   getAllProducts,
   getProductByCategory,
   getProductById,
-} from "../productsDb/db";
+} from "../productsdb/db";
 
 const productRouter = Router();
 

@@ -1,6 +1,6 @@
 import * as mongoDB from "mongodb";
 import client from "../db/client";
-const data = require("../db/preSeedProductData.json");
+// const data = require("../db/preSeedProductData.json");
 
 let db: mongoDB.Db;
 
@@ -33,11 +33,25 @@ const getProductById = async (id: string) => {
   return product;
 };
 
-const preSeedData = async () => {
-  const db = await connectToDatabase();
-  const col: mongoDB.Collection = db.collection("products");
-  col.deleteMany();
-  col.insertMany(data);
+// const preSeedData = async () => {
+//   const db = await connectToDatabase();
+//   const col: mongoDB.Collection = db.collection("products");
+//   col.deleteMany();
+//   col.insertMany(data);
+// };
+
+export {
+  connectToDatabase,
+  getAllProducts,
+  getProductById,
+  getProductByCategory,
 };
 
-export { getAllProducts, getProductById, getProductByCategory, preSeedData };
+// Cannot find module '../productsDb/db'
+// Require stack:
+// - /var/task/src/routes/products.js
+// - /var/task/src/index.js
+// - /var/task/api/index.js
+// Did you forget to add it to "dependencies" in `package.json`?
+// Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+// INIT_REPORT Init Duration: 498.46 ms	Phase: invoke	Status: error	Error Type: Runtime.ExitError
