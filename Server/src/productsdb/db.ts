@@ -46,12 +46,3 @@ export {
   getProductById,
   getProductByCategory,
 };
-
-// Cannot find module '../productsDb/db'
-// Require stack:
-// - /var/task/src/routes/products.js
-// - /var/task/src/index.js
-// - /var/task/api/index.js
-// Did you forget to add it to "dependencies" in `package.json`?
-// Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
-// INIT_REPORT Init Duration: 498.46 ms	Phase: invoke	Status: error	Error Type: Runtime.ExitError
