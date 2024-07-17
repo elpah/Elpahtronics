@@ -7,7 +7,7 @@ import {
 
 const productRouter = Router();
 
-productRouter.get("/", async (req, res) => {
+productRouter.get("/", async (_req, res) => {
   res.send("product route");
 });
 

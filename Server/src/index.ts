@@ -7,7 +7,7 @@ import stripeRouter from "./routes/stripe-routes";
 import userRouter from "./routes/users-routes";
 import feedbackEmail from "./routes/feedbackEmail";
 import ordersRouter from "./routes/orders-routes";
-// import { preSeedData } from "./productsDb/db";
+// import { preSeedData } from "./productsdb/db";
 dotenv.config();
 
 // if (process.env.PRESEED === "True") {
