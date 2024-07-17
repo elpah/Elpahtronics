@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useState, useEffect } from 'react';
-import { Stripe, StripeElementsOptions, loadStripe } from '@stripe/stripe-js';
+import { Stripe, loadStripe } from '@stripe/stripe-js';
 import StripeCheckoutForm from './StripeCheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { useCartContext } from './CartContext';
@@ -14,15 +14,16 @@ export default function StripePayment({ handleCloseButton }: Props) {
   const [stripePromise, setStripePromise] = useState<Promise<Stripe | null> | null>(null);
   const [clientSecret, setClientSecret] = useState<string | null>();
   const { totalPrice } = useCartContext();
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   useEffect(() => {
-    fetch('https://e-tronics-server.vercel.app/api/stripePaymentTest/config').then(async result => {
+    fetch(`${backendUrl}stripePaymentTest/config`).then(async result => {
       const { publishableKey } = await result.json();
       setStripePromise(loadStripe(publishableKey));
     });
   }, []);
 
   useEffect(() => {
-    fetch('https://e-tronics-server.vercel.app/api/stripePaymentTest/create-payment-intent', {
+    fetch(`${backendUrl}stripePaymentTest/create-payment-intent`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

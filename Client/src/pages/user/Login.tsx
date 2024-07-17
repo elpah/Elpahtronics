@@ -4,7 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import SignIn from '../../components/auth/SignIn';
 import { auth } from '../../firebase';
-import { UserContextProvider, useUserContext } from '../../components/UserContext';
+// import { UserContextProvider, useUserContext } from '../../components/UserContext';
 
 const SignInPageContainer = styled.div`
   background-color: #f9f9f9;
@@ -39,7 +39,7 @@ const SignInFormContainer = styled.div`
 `;
 export default function Login() {
   const [checkingLogIn, setCheckingLogIn] = useState(true);
-  const { currentUser, setCurrentUser } = useUserContext();
+  // const { currentUser, setCurrentUser } = useUserContext();
   const navigate = useNavigate();
 
   useEffect(() => {

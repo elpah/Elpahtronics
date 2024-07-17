@@ -24,22 +24,20 @@ type Order = {
 };
 
 export default function UserPage() {
-  const { currentUser, setCurrentUser } = useUserContext();
+  const { currentUser} = useUserContext();
   const [authUser, setAuthUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [userAvailable, setUserAvailable] = useState(false);
+  const [_loading, setLoading] = useState(true);
+  const [_userAvailable, setUserAvailable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [showOrders, setShowOrders] = useState(false);
   const [showProfile, setShowProfile] = useState(true);
-
   const navigate = useNavigate();
-
-  // useEffect(() => console.log('user', auth.currentUser?.uid));
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   async function getOrderByFbId() {
     try {
       const response = await axios.get(
-        `https://e-tronics-server.vercel.app/api/orders/orders-by-fbId?fbId=${auth.currentUser?.uid}`,
+       `${backendUrl}orders/orders-by-fbId?fbId=${auth.currentUser?.uid}`,
       );
       return response.data;
     } catch (error) {
@@ -63,8 +61,6 @@ export default function UserPage() {
   useEffect(() => {
     currentUser.userName ? setUserAvailable(true) : setUserAvailable(false);
   }, [currentUser.userName]);
-
-  // if (isLoading || loading) return <LoadingP>Loading...</LoadingP>;
 
   return (
     <Container>

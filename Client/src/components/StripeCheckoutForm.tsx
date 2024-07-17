@@ -17,6 +17,7 @@ import { useShippingAddressContext } from '../components/ShippingAddressContext'
 export default function StripeCheckoutForm() {
   const { cartArray, totalPrice, setCartArray } = useCartContext();
   const { currentUser } = useUserContext();
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const {
     setOrderNumber,
@@ -33,7 +34,7 @@ export default function StripeCheckoutForm() {
   const [message, setMessage] = useState<string | undefined>();
   const [email, setEmail] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [billingAddress, setBillingAddress] = useState({});
+  const [_billingAddress, setBillingAddress] = useState({});
   const { shippingAddress } = useShippingAddressContext();
 
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ export default function StripeCheckoutForm() {
         requestBody.fbId = currentUser.fbId;
       }
 
-      fetch('https://e-tronics-server.vercel.app/api/stripePaymentTest/create-new-order', {
+      fetch(`${backendUrl}stripePaymentTest/create-new-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

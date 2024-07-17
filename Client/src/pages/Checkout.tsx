@@ -99,7 +99,6 @@ const ModifyPayment = styled.p`
     cursor: pointer;
   }
 `;
-const ChosenPaymentParagraph = styled.p``;
 
 export default function Checkout() {
   const [showCheckoutModal, setShowCheckoutModal] = useState<boolean>(false);

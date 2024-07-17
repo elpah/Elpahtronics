@@ -11,7 +11,6 @@ export default function OrderItem({ itemName, itemQuantity, itemPrice }: OrderIt
     <OrderItems>
       <SingleOrderItem>
         <ImgNameDiv>
-          {/* <ItemImage src="" alt="" /> */}
           <ItemName>{itemName}</ItemName>
         </ImgNameDiv>
         <ItemQuantity>{itemQuantity}</ItemQuantity>
@@ -20,14 +19,6 @@ export default function OrderItem({ itemName, itemQuantity, itemPrice }: OrderIt
     </OrderItems>
   );
 }
-
-const ItemImage = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`;
 
 const ItemName = styled.p`
   margin: 0;

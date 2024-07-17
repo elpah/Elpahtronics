@@ -3,8 +3,9 @@ import axios from 'axios';
 import Product from '../../productType';
 
 const useProducts = () => {
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const fetchProducts = () =>
-    axios.get<Product[]>('https://e-tronics-server.vercel.app/api/products/available').then(res => {
+    axios.get<Product[]>(`${backendUrl}products/available`).then(res => {
       return res.data;
     });
 

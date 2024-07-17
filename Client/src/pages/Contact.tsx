@@ -166,12 +166,14 @@ const FixedImage = styled.div`
 
 export default function Contact() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
   const handleFAQClick = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   const mutation = useMutation(formData =>
-    fetch('https://e-tronics-server.vercel.app/api/sendEmail/feedback-email', {
+    fetch(`${backendUrl}sendEmail/feedback-email`, {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {
