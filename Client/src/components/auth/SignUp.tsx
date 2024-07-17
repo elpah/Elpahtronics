@@ -151,8 +151,6 @@ export default function SignUp() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [dob, setDOB] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
-
 
   const navigate = useNavigate();
 
@@ -191,7 +189,7 @@ export default function SignUp() {
     fbId: string,
   ) {
     try {
-      const response = await fetch(`${backendUrl}users/create-user`, {
+      const response = await fetch('https://elpahtronics-backend.vercel.app/api/users/create-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -7,7 +7,6 @@ import { useUserContext } from './UserContext';
 export default function PayPalPayment() {
   const { cartArray, setCartArray, totalPrice } = useCartContext();
   const { currentUser } = useUserContext();
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ export default function PayPalPayment() {
   } = useOrderContext();
 
   const createOrder = (data: any) => {
-    return fetch(`${backendUrl}paypalPaymentTest/create-paypal-order`, {
+    return fetch('https://elpahtronics-backend.vercel.app/api/paypalPaymentTest/create-paypal-order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +39,7 @@ export default function PayPalPayment() {
   };
 
   const onApprove = (data: any) => {
-    return fetch(`${backendUrl}paypalPaymentTest/capture-paypal-order`, {
+    return fetch('https://elpahtronics-backend.vercel.app/api/paypalPaymentTest/capture-paypal-order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

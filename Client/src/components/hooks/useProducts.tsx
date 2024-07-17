@@ -3,9 +3,8 @@ import axios from 'axios';
 import Product from '../../productType';
 
 const useProducts = () => {
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const fetchProducts = () =>
-    axios.get<Product[]>(`https://elpahtronics-backend.vercel.app/api/products/available`).then(res => {
+    axios.get<Product[]>('https://elpahtronics-backend.vercel.app/api/products/available').then(res => {
       return res.data;
     });
 

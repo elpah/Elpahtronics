@@ -32,12 +32,11 @@ export default function UserPage() {
   const [showOrders, setShowOrders] = useState(false);
   const [showProfile, setShowProfile] = useState(true);
   const navigate = useNavigate();
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   async function getOrderByFbId() {
     try {
       const response = await axios.get(
-       `${backendUrl}orders/orders-by-fbId?fbId=${auth.currentUser?.uid}`,
+       `https://elpahtronics-backend.vercel.app/api/orders/orders-by-fbId?fbId=${auth.currentUser?.uid}`,
       );
       return response.data;
     } catch (error) {

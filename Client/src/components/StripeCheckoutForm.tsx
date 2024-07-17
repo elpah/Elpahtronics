@@ -17,7 +17,6 @@ import { useShippingAddressContext } from '../components/ShippingAddressContext'
 export default function StripeCheckoutForm() {
   const { cartArray, totalPrice, setCartArray } = useCartContext();
   const { currentUser } = useUserContext();
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const {
     setOrderNumber,
@@ -72,7 +71,7 @@ export default function StripeCheckoutForm() {
         requestBody.fbId = currentUser.fbId;
       }
 
-      fetch(`${backendUrl}stripePaymentTest/create-new-order`, {
+      fetch('https://elpahtronics-backend.vercel.app/api/stripePaymentTest/create-new-order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

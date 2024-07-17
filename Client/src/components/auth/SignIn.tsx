@@ -66,7 +66,6 @@ export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useUserContext();
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 
   const signIn = (event: any) => {
@@ -90,7 +89,7 @@ export default function SignIn() {
 
   async function getUserFromDB(fbId: string) {
     try {
-      const response = await fetch(`${backendUrl}users/get-user`, {
+      const response = await fetch('https://elpahtronics-backend.vercel.app/api/users/get-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

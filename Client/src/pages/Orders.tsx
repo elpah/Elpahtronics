@@ -215,7 +215,6 @@ export default function Orders() {
   const [showSpinner, setShowSpinner] = useState<boolean>(false);
   const [orderError, setError] = useState<boolean>(false);
   let [searchParams, setSearchParams] = useSearchParams();
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     const myOrderNumber = searchParams.get('order-number');
@@ -228,7 +227,7 @@ export default function Orders() {
   async function getOrderByOrderNumber(orderNumber: string) {
     try {
       const response = await axios.get(
-        `${backendUrl}orders/orders-by-order-number?orderNumber=${orderNumber}`,
+        `https://elpahtronics-backend.vercel.app/api/orders/orders-by-order-number?orderNumber=${orderNumber}`,
       );
       if (response.data) {
         setShowSpinner(false);
