@@ -21,7 +21,7 @@ This project is built with
 **Server:**
 - [MongoDB](https://www.mongodb.com/cloud/atlas/register) for the database to store products, users, and orders.
 - [Mailjet](https://www.mailjet.com/) for sending order confirmations and feedback confirmations to users.
-
+  
 ## Features
 
 - Sign up
