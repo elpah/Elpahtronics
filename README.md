@@ -111,6 +111,3 @@ This project is built with
 3. Run the commands
    ```console
    npm install && npm start
-
-
-
