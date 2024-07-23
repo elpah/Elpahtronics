@@ -37,7 +37,7 @@ const BarParagraph = styled.p`
 const StyledHeader = styled.header`
   background-color: #fff;
   width: 100%;
-  max-width: 1700px;
+  max-width: 1950px;
   height: 80px;
   margin: auto;
   position: relative;

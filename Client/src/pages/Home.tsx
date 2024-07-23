@@ -28,7 +28,7 @@ const HomePageContainer = styled.div`
 `;
 
 const HeaderDiv = styled.div`
-  height: 400px;
+  height:500px;
   width: 100%;
   background: url('https://images.unsplash.com/photo-1518481852452-9415b262eba4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')
     no-repeat;
@@ -45,7 +45,7 @@ const HeaderDiv = styled.div`
 const HeaderContainer = styled.div`
   width: 90%;
   margin: auto;
-  max-width: 1400px;
+  max-width: 1700px;
 `;
 const Header = styled.h2`
   max-width: 1400px;
