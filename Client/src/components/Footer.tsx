@@ -4,6 +4,7 @@ import { footerlogosmall } from '../assets/images/exportImages.ts';
 import styled from 'styled-components';
 
 const FooterContainerMain = styled.div` 
+margin-top:50px;
   background-color: #f4f4f4;
   display:flex;
   flex-direction:column;
@@ -17,7 +18,7 @@ const FooterContainer = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1800px;
 
 `;
 const TopFooterContainer = styled.div`
@@ -26,8 +27,7 @@ const TopFooterContainer = styled.div`
   @media (min-width: 1198px) {
     padding-bottom: 0;
     display: grid;
-    grid-template-columns: 1fr auto 1fr; /* Set three columns with equal width */
-    grid-gap: 10px; /* Add some gap between grid items */
+    grid-template-columns: 1.6fr auto 1fr; 
   }
 `;
 const LogoContainer = styled.div`
@@ -77,8 +77,7 @@ const AcceptedPayments = styled.div`
   margin-top: 40px;
   @media (min-width: 1198px) {
     grid-column: 3;
-    padding-left: 10px;
-
+ justify-self: end;
     margin-top: 0;
   }
 `;
@@ -121,6 +120,7 @@ const ListItems = styled.li`
 `;
 const Paragraph = styled.p`
   margin-top: 18px;
+  max-width:460px;
   font-size: 15px;
   @media (max-width: 280px) {
     font-size: 12px;
