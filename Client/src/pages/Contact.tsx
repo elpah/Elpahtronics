@@ -117,10 +117,6 @@ const FaqFormHeader = styled.h2`
 `;
 const Faq = styled.div``;
 const Form = styled.div``;
-const FooterContainer = styled.div`
-  max-width: 1700px;
-  margin: auto;
-`;
 const HeaderContent = styled.div`
   margin: 200px auto 100px;
   text-align: center;
@@ -296,9 +292,7 @@ export default function Contact() {
           </FormContainer>
         </FaqFormContainer>
       </Container>
-      <FooterContainer>
         <Footer />
-      </FooterContainer>
     </ContactPageContainer>
   );
 }

@@ -36,7 +36,6 @@ const BarParagraph = styled.p`
 
 const StyledHeader = styled.header`
   background-color: #fff;
-  border-bottom: 2px solid red;
   width: 100%;
   max-width: 1700px;
   height: 80px;
@@ -177,10 +176,13 @@ const Div = styled.div`
   display: flex;
 `;
 const Container = styled.div`
+  background-color: #fff;
+    border-bottom: 2px solid red;
+
+  width: 100%;
   position: fixed;
   z-index: 101;
   top: 0;
-  width: 100%;
 `;
 const FaIconContainer = styled.div`
   display: none;

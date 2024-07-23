@@ -3,13 +3,22 @@ import { footerlogosmall } from '../assets/images/exportImages.ts';
 
 import styled from 'styled-components';
 
-const FooterContainer = styled.div`
+const FooterContainerMain = styled.div` 
+  background-color: #f4f4f4;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
   border-top: 2px solid rgb(226, 226, 226);
+
+
+`
+const FooterContainer = styled.div`
   background-color: #f4f4f4;
   padding-left: 20px;
   padding-right: 20px;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1600px;
+
 `;
 const TopFooterContainer = styled.div`
   width: 90%;
@@ -119,8 +128,7 @@ const Paragraph = styled.p`
 `;
 const FooterParagraph = styled.p`
   font-size: 12px;
-  display: inline;
-  vertical-align: middle;
+  margin-left: 6px;
   &:hover {
     color: red;
   }
@@ -128,9 +136,16 @@ const FooterParagraph = styled.p`
     font-size: 10px;
   }
 `;
-const BottomFooter = styled.div`
+const BottomFooterContainer= styled.div` 
   border-top: 2px solid rgb(226, 226, 226);
+  width:100%;
+  display:flex;
+  align-items:center;
+ `
+
+const BottomFooter = styled.div`
   width: 90%;
+  max-width: 1500px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -169,7 +184,11 @@ const RightDiv = styled.div`
   }
 `;
 
-const TxtImg = styled.div``;
+const TxtImg = styled.div`
+display:flex;
+align-items:center;
+
+`;
 const ImageIcon = styled.img`
   vertical-align: middle;
 `;
@@ -181,6 +200,7 @@ const LogoImage = styled.img`
 
 export default function Footer() {
   return (
+    <FooterContainerMain>
     <FooterContainer>
       <TopFooterContainer>
         <LogoContainer>
@@ -258,7 +278,8 @@ export default function Footer() {
           </ImageContainer>
         </AcceptedPayments>
       </TopFooterContainer>
-
+      </FooterContainer>
+      <BottomFooterContainer>
       <BottomFooter>
         <TxtImgContainer>
           <TxtImg>
@@ -288,9 +309,11 @@ export default function Footer() {
           <FooterParagraph>Privacy & Policy</FooterParagraph>
         </MiddleDiv>
         <RightDiv>
-          <FooterParagraph>All Right Reserved By Elpah® |2023</FooterParagraph>
+          <FooterParagraph>All Right Reserved By Elpah® | 2023</FooterParagraph>
         </RightDiv>
       </BottomFooter>
-    </FooterContainer>
+      </BottomFooterContainer>
+   
+    </FooterContainerMain>
   );
 }
